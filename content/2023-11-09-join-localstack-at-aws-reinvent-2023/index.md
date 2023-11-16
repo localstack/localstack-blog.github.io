@@ -9,6 +9,7 @@ leadimage: 'localstack-at-reinvent.png'
 contributors: ['LocalStack Team']
 tags: ['news']
 show_cta_2: true
+weight: 2
 ---
 
 {{< img-simple src="localstack-at-reinvent.png" >}}

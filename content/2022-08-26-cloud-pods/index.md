@@ -8,7 +8,6 @@ images: []
 contributors: ["Giovanni Grano", "Waldemar Hummer"]
 tags: ['news']
 leadimage: "cloud_pods_banner.png"
-weight: 3
 ---
 
 {{< img src="cloud_pods_banner.png" >}}
