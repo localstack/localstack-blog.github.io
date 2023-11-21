@@ -1,2 +1,2 @@
-baseurl = "https://localstack.cloud/"
+baseurl = "https://blog.localstack.cloud/"
 canonifyURLs = false
