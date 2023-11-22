@@ -45,7 +45,7 @@ We want to **lower the barrier of entry** for everybody and make it **easier to 
 - [IAM Policy Enforcement](https://docs.localstack.cloud/user-guide/security-testing/iam-enforcement/)
 - [State Persistence](https://docs.localstack.cloud/references/persistence-mechanism/)
 
-LocalStack is deeply rooted in open source and by making LocalStack available for free for non-commercial projects we hope to **further support and give back to the open source community**. It is the easiest way to get into cloud development and to learn not only the specific AWS services but also general cloud concepts that are also applicable to all the other cloud platforms out there. Using the Hobby Plan does not require a credit card, no need to set up an AWS account and there is also no cost risk (or using up the **AWS Free Tier**).
+LocalStack is deeply rooted in open-source, and by making LocalStack available for free for non-commercial projects, we hope to **further support and give back to the open-source community**. It is the easiest way to get into cloud development and to learn not only the specific AWS services but also general cloud concepts that are also applicable to all the other cloud platforms out there. Using the Hobby Plan does not require a credit card. There is no need to set up an AWS account, and there is also no cost risk (or use up the **AWS Free Tier**).
 
 *Get started with LocalStack Hobby Plan today! [Sign up here](https://app.localstack.cloud/pricing/).*
 
