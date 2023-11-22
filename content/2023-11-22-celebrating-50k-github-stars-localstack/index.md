@@ -38,7 +38,7 @@ After years of active development, we have achieved what we set out to do — bu
 
 The best is yet to come! We are primarily working on making our users happy with new features and improving LocalStack as much as we can do. With the [3.0 release](https://blog.localstack.cloud/2023-11-16-announcing-localstack-30-general-availability/), LocalStack has evolved from being an open-source project to an enterprise development framework! We have also received a lot of feedback from our individual users, and we've heard you loud and clear — We're super excited to bring our **Hobby Plan** for individuals *who are not using LocalStack commercially*!
 
-We want to **lower the barrier of entry** for everybody and make it **easier to get started**. With the Hobby Plan, we want to enable more users to use the LocalStack emulator with all its otherwise **paid features**. LocalStack's Hobby Plan allows you to get started with:
+We want to **lower the barrier of entry** for everybody and make it **easier to get started**. With the Hobby Plan, we aim to enable more users to use the LocalStack emulator with all its otherwise **paid features**. LocalStack's Hobby Plan allows you to get started with:
 
 - [Advanced AWS services](https://docs.localstack.cloud/user-guide/aws/feature-coverage/)
 - [CI Starter Tier](https://docs.localstack.cloud/user-guide/ci/ci-keys/)
