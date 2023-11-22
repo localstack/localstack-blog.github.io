@@ -10,7 +10,7 @@ tags: ['news']
 contributors: ["Waldemar Hummer", "Harsh Mishra"]
 ---
 
-Seven years ago on August 16, 2016, the LocalStack project was born. The journey since then has been nothing short of incredible. LocalStack has now crossed 50,000 stars on GitHub, after three major releases and dozens of minor releases. Today, LocalStack has been recognized as the **de-facto platform** for local cloud development and testing, and we're proud to be part of the growing movement that aims to fix the Developer Experience (**DevX**) in the cloud! For the past 16 months since the [**LocalStack 1.0**](https://blog.localstack.cloud/2022-07-13-announcing-localstack-v1-general-availability/) went live, it has been on a consistent upward trajectory and we are proud of everyone who is discovering, starring and joining our project & community!
+Seven years ago, on August 16, 2016, the LocalStack project was born. The journey since then has been nothing short of incredible. LocalStack has now crossed 50,000 stars on GitHub after three major releases and dozens of minor releases. Today, LocalStack is the **de facto platform** for local cloud development and testing, and we are proud to be part of the growing movement that wants to improve the developer experience (**DevX**) in the cloud. For the past 16 months since [**LocalStack 1.0**](https://blog.localstack.cloud/2022-07-13-announcing-localstack-v1-general-availability/) went live, it has been on a consistent upward trajectory, and we are proud of everyone who is discovering, starring, and joining our project & community!
 
 We'll use this milestone to look back at LocalStack's growth and some important milestones, and what our community users can expect next!
 
