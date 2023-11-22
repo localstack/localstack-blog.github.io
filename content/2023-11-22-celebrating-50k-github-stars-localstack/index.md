@@ -57,6 +57,6 @@ LocalStack is deeply rooted in open-source, and by making LocalStack available f
 
 To put it in a nutshell, we are incredibly thankful to our community for all the support and feedback we have received over the years! Your contributions have made LocalStack a battle-tested cloud emulation platform. They helped us evolve from a project that leveraged existing tools to a more integrated platform that is capable of emulating complex interactions between various AWS services.
 
-Our mission remains the same — To give developers back control over their environments and free them from wasting time with inefficient dev&test loops in the cloud, so they can instead focus on developing great products! We are excited about making LocalStack more configurable and adaptable to specific user needs, and we are looking forward to your continued support and feedback!
+Our mission remains the same: Give developers back control over their environments and free them from wasting time on inefficient development & testing loops in the cloud, so they can focus on creating great products! We are excited about making LocalStack more configurable and adaptable to specific user needs, and we are looking forward to your continued support and feedback!
 
 *Onto hitting the 100,000 GitHub Stars milestone next!* 🚀
