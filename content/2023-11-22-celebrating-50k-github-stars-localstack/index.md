@@ -1,5 +1,5 @@
 ---
-title: LocalStack celebrating 50,000 GitHub Stars
+title: Celebrating 50,000 GitHub Stars for LocalStack!
 description: We're excited to announce that LocalStack has hit a significant milestone of achieving 50,000 GitHub Stars. It's been an incredible journey since we started out to build the best possible cloud developer experience, and we couldn't be happier to share this news with you!
 lead: We're excited to announce that LocalStack has hit a significant milestone of achieving 50,000 GitHub Stars. It's been an incredible journey since we started out to build the best possible cloud developer experience, and we couldn't be happier to share this news with you!
 date: 2023-11-22
