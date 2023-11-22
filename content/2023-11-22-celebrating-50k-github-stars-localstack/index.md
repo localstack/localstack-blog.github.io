@@ -28,7 +28,7 @@ LocalStack, originally a side project, first garnered public attention with a po
 
 Here is a graphic that captures the watershed moment and the subsequent growth of LocalStack as a project:
 
-<graphic>
+{{< img-simple src="localstack-growth-graph.png" width=300 alt="An infographic highlighting key milestones of LocalStack, including GitHub stars and Docker pulls growth, along with version releases and team expansion from August 2016 to November 2023">}}
 
 ## Engaging with the community
 
