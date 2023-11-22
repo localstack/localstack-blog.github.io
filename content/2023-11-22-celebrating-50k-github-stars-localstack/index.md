@@ -22,7 +22,7 @@ LocalStack's journey to achieving 50,000 GitHub stars is a story of community-dr
 
 LocalStack, originally a side project, first garnered public attention with a post on [Hacker News](https://news.ycombinator.com/item?id=13966088) (also archived on the [Internet Archive](https://web.archive.org/web/20231122065745/https://news.ycombinator.com/item?id=13966088)). This post introduced the concept of a fully local mocking and testing framework for cloud applications, drawing the interest of the broader tech community, including notable AWS figures. A key moment in LocalStack's journey was when Jeff Barr, Chief Evangelist at AWS, [shared a tweet about LocalStack](https://twitter.com/jeffbarr/status/846382903210663936) (also archived on the [Internet Archive](https://chat.openai.com/c/c591ffcf-bd80-4de2-a6b1-ac5cf13d2903)), leading to an overnight surge in GitHub stars, with thousands joining our community.
 
-Here is a graphic that captures the watershed moment, and the subsequent growth of LocalStack as a project:
+Here is a graphic that captures the watershed moment and the subsequent growth of LocalStack as a project:
 
 <graphic>
 
