@@ -36,7 +36,7 @@ The community's response was overwhelmingly positive — developers began active
 
 Going forward, we will continue to focus on strengthening the LocalStack ecosystem and integrations with frameworks such as *[Testcontainers](https://testcontainers.com/), [CloudFormation](https://docs.localstack.cloud/user-guide/aws/cloudformation/), [CDK](https://docs.localstack.cloud/user-guide/integrations/cdk-for-terraform/)* and more! With the new [extension mechanism](https://docs.localstack.cloud/user-guide/extensions/), you can now extend and customize LocalStack to your needs. We have shipped official extensions for [Miniflare](https://miniflare.dev/), [Mailhog](https://github.com/mailhog/MailHog), [Stripe](https://github.com/adrienverge/localstripe), [httpbin](https://httpbin.org/), and more to provide you with a smooth local development experience.
 
-After years of active development, we have achieved what we set out to do — building **faster development cycles** with instant development loops, providing **better isolation** of application logic in test environments, and setting up **enhanced security** with no dependency on a remote cloud service for execution. As always, we are grounding our work on user insights and feedback, and we are excited to have such a committed community!
+After years of active development, we have achieved what we set out to do — building **faster development cycles** with instant feedback loops, providing **better isolation** of application logic in test environments, and setting up **enhanced security** with no dependency on a remote cloud service for execution. As always, we are grounding our work on user insights and feedback, and we are excited to have such a committed community!
 
 ## What's next?
 
