@@ -59,4 +59,4 @@ To put it in a nutshell, we are incredibly thankful to our community for all the
 
 Our mission remains the same: Give developers back control over their environments and free them from wasting time on inefficient development & testing loops in the cloud, so they can focus on creating great products! We are excited about making LocalStack more configurable and adaptable to specific user needs, and we are looking forward to your continued support and feedback!
 
-*Onto hitting the 100,000 GitHub Stars milestone next!* 🚀
+*Ad astra - onto hitting the 100,000 GitHub Stars milestone next!* 🚀
