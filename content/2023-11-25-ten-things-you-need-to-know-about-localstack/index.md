@@ -5,11 +5,11 @@ lead: Discover LocalStack's versatility through our curated list of top 10 featu
 date: 2023-11-24
 lastmod: 2023-11-24
 images: ['10-things-to-know.png']
-contributors: ["LocalStack Team"]
+contributors: ["Anca Ghenade"]
 tags: ['showcase']
 show_cta_1: true
 leadimage: '10-things-to-know.png'
-weight: 1
+weight: 3
 ---
 
 {{< img-simple src="10-things-to-know.png" >}}
@@ -110,3 +110,9 @@ Pro CLI, and streamlines team collaboration by managing roles and permissions. U
 local AWS resources via the Resource Browser, and manage Cloud Pods through a dedicated browser. Additionally, the Extensions Library broadens 
 LocalStack's capabilities, while features for state export/import and custom endpoints enhance user experience. LocalStack also supports 
 Single-Sign On configurations, providing a seamless and integrated environment for enterprise needs. Learn more about our [**Web App**](https://docs.localstack.cloud/user-guide/web-application/).
+
+
+LocalStack presents a comprehensive suite of tools and features designed to revolutionize the way teams approach cloud-based development and 
+testing. From the robustness of security testing, the resilience offered by chaos engineering, to the convenience of cloud-based ephemeral 
+environments and dynamic Cloud Pods, LocalStack is no longer just a cloud emulator where you test your applications and infrastructure as code.
+You can now embrace the full potential of LocalStack and transform your cloud development into a more efficient, reliable, and collaborative process.
