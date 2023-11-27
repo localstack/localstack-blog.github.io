@@ -1,9 +1,9 @@
 ---
-title: 10 Things You Need to Know About LocalStack
+title: AWS re:Invent - Ten Things You Need to Know About LocalStack
 description: Discover LocalStack's versatility through our curated list of top 10 features, catering to both beginners and experts in the cloud journey, from core emulation to advanced analytics.
 lead: Discover LocalStack's versatility through our curated list of top 10 features, catering to both beginners and experts in the cloud journey, from core emulation to advanced analytics.
-date: 2023-11-24
-lastmod: 2023-11-24
+date: 2023-11-27
+lastmod: 2023-11-27
 images: ['10-things-to-know.png']
 contributors: ["Anca Ghenade"]
 tags: ['showcase']
@@ -12,29 +12,31 @@ leadimage: '10-things-to-know.png'
 weight: 3
 ---
 
-[//]: # ({{< img-simple src="10-things-to-know.png" >}})
+In an era dominated by cloud computing, developing and testing software locally before deploying it to the cloud for production is essential,
+as it allows for thorough, controlled testing environments, quicker iteration, and reduced dependency on cloud resources during the development
+phase, leading to more robust and reliable cloud-deployed applications.
 
-In our journey of growth and global outreach, one question we frequently encounter is, "What is LocalStack?" It's a testament to the growing 
-curiosity and interest in this versatile tool. To address this query and to share the excitement, we've decided to compile a comprehensive 
-list highlighting the top 10 features of LocalStack that we're excited about.
+Here at AWS re:Invent, a recurring question captures our attention: *"What is LocalStack?"* - A query that sparks conversations about innovation,
+local development solutions, and the seamless transition to the cloud environment. So, to address the excitement and to celebrate our participation 
+as an official sponsor of this event, we've decided to compile a comprehensive list highlighting the top 10 features of LocalStack that you should get excited about.
 
-Our aim is to provide insights that cater to everyone's needs - whether you're just starting out and are intrigued by the idea of a core cloud 
+This blog post will provide insights that cater to everyone's needs - whether you're just starting out and are intrigued by the idea of a core cloud 
 emulator, or you're a seasoned pro looking for more advanced functionalities like dashboards and stack analytics. This list promises 
 to unveil aspects of LocalStack that are both foundational and fascinating, ensuring that no matter where you are in your cloud journey, 
 there's something valuable for you.
 
-{{< img-simple src="cloud-emulator-banner.png" >}}
+{{< img-simple src="cloud-emulator-banner.png" alt="cloud emulator">}}
 
 
 ## Navigating the Cloud Environment
 
-LocalStack provides a highly accurate emulation of the AWS cloud environment, enabling developers to replicate AWS services in a container 
+LocalStack provides a [**high fidelity**](/2022-08-04-parity-explained/) replication of the AWS cloud environment, enabling developers to emulate AWS services in a container 
 on any machine, with remarkable fidelity. It's an invaluable tool for testing and development, offering realistic and detailed AWS service 
 interactions. This makes the developing journey of cloud applications a breeze, allowing for cost-effective and efficient 
 experimentation and integration before deployment to the actual AWS cloud. You can check out all the services in detail on our 
-[**service coverage page**](https://docs.localstack.cloud/user-guide/aws/feature-coverage/).
+[**service coverage**](https://docs.localstack.cloud/references/coverage/) page.
 
-{{< img-simple src="cloud-testing-banner.png" >}}
+{{< img-simple src="cloud-testing-banner.png" alt="cloud testing">}}
 
 ## Rapid Testing Feedback Loops
 
@@ -44,21 +46,20 @@ developers can rigorously test their applications, ensuring compatibility and ro
 not only accelerates development cycles but also significantly reduces the complexity and expense associated with cloud-based testing,
 streamlining the path from development to production. See how easy it is to [**get started**](https://docs.localstack.cloud/getting-started/).
 
-{{< img-simple src="ci-banner.png" >}}
+{{< img-simple src="ci-banner.png" alt="continuous integration">}}
 
 
 ## Streamlining DevOps Processes
 
-LocalStack is a pivotal tool for CI/CD DevOps workflows, allowing teams to forego the complexities of AWS testing environments. It integrates
+LocalStack is a pivotal tool for continuous integration DevOps workflows, allowing [**teams**](/2023-04-24-case-study-knowbe4/) to forego the complexities of AWS testing environments. It integrates
 smoothly with existing continuous integration platforms, embedding AWS cloud emulation directly into CI pipelines. This integration 
 facilitates robust testing and delivery of cloud-native applications by leveraging LocalStack's features like Cloud Pods and CI analytics.
 Teams can confidently execute their test suites and integration checks, ensuring that applications are vetted thoroughly in a controlled 
 setting before any code is deployed, aligning with best practices in modern software development.
 
-It’s as easy as running any container in CI. You can find all the information on the [**CI documentation
-page**](https://docs.localstack.cloud/user-guide/ci/).
+It’s as easy as running any container in CI. You can find all the information in our [**CI documentation**](https://docs.localstack.cloud/user-guide/ci/).
 
-{{< img-simple src="iac-banner.png" >}}
+{{< img-simple src="iac-banner.png" alt="infrastructure as code">}}
 
 
 ## Test and Validate Infrastructure as Code
@@ -70,7 +71,7 @@ crucial for catching issues upfront, reducing errors in production, and accelera
 iterative improvements, all within the confines of a developer's local environment. 
 Find out more about all the [**integrations**](https://docs.localstack.cloud/user-guide/integrations/).
 
-{{< img-simple src="iam-banner.png" >}}
+{{< img-simple src="iam-banner.png" alt="iam policies">}}
 
 
 ## Validate IAM Policies and Enhance Security
@@ -82,7 +83,7 @@ analysis of policy evaluations, and the use of live policy streams to identify a
 the overall security framework before deployment. Read the full story in our [**IAM security user guide**](https://docs.localstack.cloud/user-guide/security-testing/).
 
 
-{{< img-simple src="chaos-banner.png" >}}
+{{< img-simple src="chaos-banner.png" alt="chaos engineering">}}
 
 
 ## Engineering for Robust Cloud Systems
@@ -95,9 +96,9 @@ identified and mitigated, leading to robust systems capable of withstanding unpr
 practical examples in our [**user guides**](https://docs.localstack.cloud/user-guide/chaos-engineering/).
 
 
-{{< img-simple src="ephemeral-banner.png" >}}
+{{< img-simple src="ephemeral-banner.png" alt="cloud sandbox">}}
 
-## Cloud Ephemeral Sandboxes
+## Spin Up Cloud Sandboxes
 
 LocalStack ephemeral environments offer a cloud-based sandbox, enabling developers to utilize LocalStack instances directly in the cloud. 
 This approach streamlines the development and testing cycles and supports the creation of preview environments for each pull request, enhancing 
@@ -106,10 +107,10 @@ features, ensuring that all team members can work in sync and test in a uniform 
 You can read about it further [**here**](https://docs.localstack.cloud/user-guide/cloud-sandbox/).
 
 
-{{< img-simple src="cloud-pod-banner.png" >}}
+{{< img-simple src="cloud-pod-banner.png" alt="cloud pods">}}
 
 
-## Save, Share, Restore Entire Stacks with Cloud Pods
+## Save, Share, Restore Entire State with Cloud Pods
 
 Cloud Pods offer a dynamic way to manage the state of LocalStack instances, with the capability to save, version, share, and restore these states 
 as persistent snapshots. This functionality is invaluable for collaborative debugging by allowing team members to share specific instance states. 
@@ -118,7 +119,7 @@ it facilitates the creation of consistent and reproducible local development and
 LocalStack’s remote storage backend, teams can manage and share their application’s state effortlessly, all while interfacing seamlessly via the 
 LocalStack Web Application. Read more about Cloud Pods [**here**](https://docs.localstack.cloud/user-guide/cloud-pods/).
 
-{{< img-simple src="extensions-banner.png" >}}
+{{< img-simple src="extensions-banner.png" alt="localstack extensions">}}
 
 
 ## Personalized Experience with Extensions
@@ -131,7 +132,7 @@ to specialized backends. MailHog, Miniflare, AWS replicator, httpbin, Stripe, Di
 the Extension Library. [**Extend your knowledge**](https://docs.localstack.cloud/user-guide/extensions/).
 
 
-{{< img-simple src="webapp-banner.png" >}}
+{{< img-simple src="webapp-banner.png" alt="localstack webapp">}}
 
 ## Manage Resources and Monitor Usage with the Web App
 
@@ -147,3 +148,6 @@ LocalStack presents a comprehensive suite of tools and features designed to revo
 testing. From the robustness of security testing, the resilience offered by chaos engineering, to the convenience of cloud-based ephemeral 
 environments and dynamic Cloud Pods, LocalStack is no longer just a cloud emulator where you test your applications and infrastructure as code.
 You can now embrace the full potential of LocalStack and transform your cloud development into a more efficient, reliable, and collaborative process.
+
+To wrap up, don't forget to visit us at booth 1074 on the AWS re:Invent expo floor. We'd love to meet you, share in the excitement, and show you the engaging
+activities we have in store. Come by, say hi, and experience the buzz of innovation with us!
