@@ -121,7 +121,7 @@ framework for launching custom services within the LocalStack container and util
 to introduce new services, augment existing ones, or incorporate unique functionalities. With the Extensions API, custom logic and services can 
 be seamlessly integrated, enabling tasks like starting bespoke services, enriching AWS requests with extra data, or redirecting AWS API call logs 
 to specialized backends. MailHog, Miniflare, AWS replicator, httpbin, Stripe, Diagnosis Viewer are only a few examples of what users can find in 
-the Extension Library. [**Extend your LocalStack Experience**](https://docs.localstack.cloud/user-guide/extensions/).
+the Extension Library. [**Get started with Extensions, or build your own!**](https://docs.localstack.cloud/user-guide/extensions/).
 
 {{< img-simple src="extensions-banner.png" alt="localstack extensions">}}
 
