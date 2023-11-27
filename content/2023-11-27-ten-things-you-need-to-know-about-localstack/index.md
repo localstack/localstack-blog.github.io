@@ -134,7 +134,7 @@ the Extension Library. [**Extend your knowledge**](https://docs.localstack.cloud
 
 {{< img-simple src="webapp-banner.png" alt="localstack webapp">}}
 
-## Manage Resources and Monitor Usage with the Web App
+## Manage Resources and Observe Telemetry With the Web App
 
 The LocalStack Web Application is an all-encompassing web interface designed to comprehensively manage LocalStack functionalities, including 
 account services, Stack Insights, Cloud Pods, and CI analytics. It facilitates resource and configuration management, acts as a gateway to the 
