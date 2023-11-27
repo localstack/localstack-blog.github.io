@@ -104,7 +104,7 @@ LocalStack ephemeral environments offer a cloud-based sandbox, enabling develope
 This approach streamlines the development and testing cycles and supports the creation of preview environments for each pull request, enhancing 
 the review process for application changes. Additionally, it fosters collaborative development by providing a shared environment for testing new 
 features, ensuring that all team members can work in sync and test in a uniform setting. 
-You can read about it further [**here**](https://docs.localstack.cloud/user-guide/cloud-sandbox/).
+You can read about it further in [**our documentation**](https://docs.localstack.cloud/user-guide/cloud-sandbox/).
 
 
 {{< img-simple src="cloud-pod-banner.png" alt="cloud pods">}}
@@ -117,7 +117,7 @@ as persistent snapshots. This functionality is invaluable for collaborative debu
 It streamlines continuous integration by pre-seeding environments, thereby automating the initialization of testing pipelines. Additionally, 
 it facilitates the creation of consistent and reproducible local development and testing environments. Through the Cloud Pods CLI, alongside 
 LocalStack’s remote storage backend, teams can manage and share their application’s state effortlessly, all while interfacing seamlessly via the 
-LocalStack Web Application. Read more about Cloud Pods [**here**](https://docs.localstack.cloud/user-guide/cloud-pods/).
+LocalStack Web Application. Read more about Cloud Pods in our dedicated [**user guide**](https://docs.localstack.cloud/user-guide/cloud-pods/).
 
 {{< img-simple src="extensions-banner.png" alt="localstack extensions">}}
 
