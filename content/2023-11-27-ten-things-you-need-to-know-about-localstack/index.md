@@ -114,7 +114,7 @@ it facilitates the creation of consistent and reproducible local development and
 LocalStack’s remote storage backend, teams can manage and share their application’s state effortlessly, all while interfacing seamlessly via the 
 LocalStack Web Application. Read more about Cloud Pods in our dedicated [**user guide**](https://docs.localstack.cloud/user-guide/cloud-pods/).
 
-## Personalized Experience with Extensions
+## Expand your local testing stack with Extensions
 
 LocalStack Extensions offer developers the flexibility to enhance and personalize their LocalStack experience. These extensions provide a 
 framework for launching custom services within the LocalStack container and utilizing the platform's robust ecosystem. They empower developers 
