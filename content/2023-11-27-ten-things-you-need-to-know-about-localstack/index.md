@@ -69,7 +69,7 @@ It’s as easy as running any container in CI. You can find all the information 
 ## Test and Validate Infrastructure as Code
 
 LocalStack seamlessly integrates with Infrastructure as Code (IaC) tools such as Terraform, Pulumi, and AWS CDK, providing developers with 
-a powerful environment to pre-test infrastructure provisioning scripts. By mirroring AWS services locally, it allows users to validate their 
+a powerful environment to pre-test infrastructure provisioning configs. By mirroring AWS services locally, it allows users to validate their 
 infrastructure code and ensure all components are configured correctly before deploying to the actual cloud. This early testing capability is 
 crucial for catching issues upfront, reducing errors in production, and accelerating development cycles by enabling immediate feedback and 
 iterative improvements, all within the confines of a developer's local environment. 
