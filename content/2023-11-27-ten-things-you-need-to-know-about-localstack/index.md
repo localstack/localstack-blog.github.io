@@ -34,7 +34,7 @@ there's something valuable for you.
 {{< img-simple src="cloud-emulator-banner.png" alt="cloud emulator">}}
 
 LocalStack provides a [**high fidelity**](/2022-08-04-parity-explained/) replication of the AWS cloud environment, enabling developers to emulate AWS services in a container 
-on any machine, with remarkable fidelity. It's an invaluable tool for testing and development, offering realistic and detailed AWS service 
+on any machine. It's an invaluable tool for testing and development, offering realistic and detailed AWS service 
 interactions. This makes the developing journey of cloud applications a breeze, allowing for cost-effective and efficient 
 experimentation and integration before deployment to the actual AWS cloud. You can check out all the services in detail on our 
 [**service coverage**](https://docs.localstack.cloud/references/coverage/) page.
