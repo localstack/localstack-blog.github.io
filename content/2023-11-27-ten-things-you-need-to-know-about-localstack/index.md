@@ -133,7 +133,7 @@ framework for launching custom services within the LocalStack container and util
 to introduce new services, augment existing ones, or incorporate unique functionalities. With the Extensions API, custom logic and services can 
 be seamlessly integrated, enabling tasks like starting bespoke services, enriching AWS requests with extra data, or redirecting AWS API call logs 
 to specialized backends. MailHog, Miniflare, AWS replicator, httpbin, Stripe, Diagnosis Viewer are only a few examples of what users can find in 
-the Extension Library. [**Extend your knowledge**](https://docs.localstack.cloud/user-guide/extensions/).
+the Extension Library. [**Extend your LocalStack Experience**](https://docs.localstack.cloud/user-guide/extensions/).
 
 
 {{< img-simple src="webapp-banner.png" alt="localstack webapp">}}
@@ -145,8 +145,7 @@ account services, Stack Insights, Cloud Pods, and CI analytics. It facilitates r
 Pro CLI, and streamlines team collaboration by managing roles and permissions. Users can monitor AWS API usage with Stack Insights, navigate 
 local AWS resources via the Resource Browser, and manage Cloud Pods through a dedicated browser. Additionally, the Extensions Library broadens 
 LocalStack's capabilities, while features for state export/import and custom endpoints enhance user experience. LocalStack also supports 
-Single-Sign On configurations, providing a seamless and integrated environment for enterprise needs. Learn more about our [**Web App**](https://docs.localstack.cloud/user-guide/web-application/).
-
+Single-Sign On configurations, providing a seamless and integrated environment for enterprise needs. Learn more about our [**Web Application**](https://docs.localstack.cloud/user-guide/web-application/).
 
 ## Conclusion
 
@@ -155,8 +154,5 @@ testing. From the robustness of security testing, the resilience offered by chao
 environments and dynamic Cloud Pods, LocalStack is no longer just a cloud emulator where you test your applications and infrastructure as code.
 You can now embrace the full potential of LocalStack and transform your cloud development into a more efficient, reliable, and collaborative process.
 
-
-## Join Us at AWS re:Invent
-
-To wrap up, don't forget to visit us at booth 1074 on the AWS re:Invent expo floor. We'd love to meet you, share in the excitement, and show you the engaging
+To wrap up, don't forget to visit us at **Booth 1074** on the AWS re:Invent expo floor. We'd love to meet you, share in the excitement, and show you the engaging
 activities we have in store. Come by, say hi, and experience the buzz of innovation with us!
