@@ -103,7 +103,7 @@ the review process for application changes. Additionally, it fosters collaborati
 features, ensuring that all team members can work in sync and test in a uniform setting. 
 You can read about it further in [**our documentation**](https://docs.localstack.cloud/user-guide/cloud-sandbox/).
 
-## Save, Share, Restore Entire State with Cloud Pods
+## Save, Share, and Restore Cloud State with Cloud Pods
 
 {{< img-simple src="cloud-pod-banner.png" alt="cloud pods">}}
 
