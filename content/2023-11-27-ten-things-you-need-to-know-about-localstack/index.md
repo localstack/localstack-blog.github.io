@@ -116,6 +116,9 @@ LocalStack Web Application. Read more about Cloud Pods in our dedicated [**user 
 
 ## Expand your local testing stack with Extensions
 
+{{< img-simple src="extensions-banner.png" alt="localstack extensions">}}
+
+
 LocalStack Extensions offer developers the flexibility to enhance and personalize their LocalStack experience. These extensions provide a 
 framework for launching custom services within the LocalStack container and utilizing the platform's robust ecosystem. They empower developers 
 to introduce new services, augment existing ones, or incorporate unique functionalities. With the Extensions API, custom logic and services can 
@@ -123,9 +126,11 @@ be seamlessly integrated, enabling tasks like starting bespoke services, enrichi
 to specialized backends. MailHog, Miniflare, AWS replicator, httpbin, Stripe, Diagnosis Viewer are only a few examples of what users can find in 
 the Extension Library. [**Get started with Extensions, or build your own!**](https://docs.localstack.cloud/user-guide/extensions/).
 
-{{< img-simple src="extensions-banner.png" alt="localstack extensions">}}
 
 ## Manage Resources and Observe Telemetry With the Web App
+
+{{< img-simple src="webapp-banner.png" alt="localstack webapp">}}
+
 
 The LocalStack Web Application is an all-encompassing web interface designed to comprehensively manage LocalStack functionalities, including 
 account services, Stack Insights, Cloud Pods, and CI analytics. It facilitates resource and configuration management, acts as a gateway to the 
@@ -134,7 +139,6 @@ local AWS resources via the Resource Browser, and manage Cloud Pods through a de
 LocalStack's capabilities, while features for state export/import and custom endpoints enhance user experience. LocalStack also supports 
 Single-Sign On configurations, providing a seamless and integrated environment for enterprise needs. Learn more about our [**Web Application**](https://docs.localstack.cloud/user-guide/web-application/).
 
-{{< img-simple src="webapp-banner.png" alt="localstack webapp">}}
 
 ## Conclusion
 
