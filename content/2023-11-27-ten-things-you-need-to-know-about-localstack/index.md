@@ -12,6 +12,10 @@ leadimage: '10-things-to-know.png'
 weight: 3
 ---
 
+
+{{< img-simple src="10-things-to-know-banner.png" alt="ten things about localstack">}}
+
+
 In an era dominated by cloud computing, developing and testing software locally before deploying it to the cloud for production is essential,
 as it allows for thorough, controlled testing environments, quicker iteration, and reduced dependency on cloud resources during the development
 phase, leading to more robust and reliable cloud-deployed applications.
@@ -144,10 +148,15 @@ LocalStack's capabilities, while features for state export/import and custom end
 Single-Sign On configurations, providing a seamless and integrated environment for enterprise needs. Learn more about our [**Web App**](https://docs.localstack.cloud/user-guide/web-application/).
 
 
+## Conclusion
+
 LocalStack presents a comprehensive suite of tools and features designed to revolutionize the way teams approach cloud-based development and 
 testing. From the robustness of security testing, the resilience offered by chaos engineering, to the convenience of cloud-based ephemeral 
 environments and dynamic Cloud Pods, LocalStack is no longer just a cloud emulator where you test your applications and infrastructure as code.
 You can now embrace the full potential of LocalStack and transform your cloud development into a more efficient, reliable, and collaborative process.
+
+
+## Join Us at AWS re:Invent
 
 To wrap up, don't forget to visit us at booth 1074 on the AWS re:Invent expo floor. We'd love to meet you, share in the excitement, and show you the engaging
 activities we have in store. Come by, say hi, and experience the buzz of innovation with us!
