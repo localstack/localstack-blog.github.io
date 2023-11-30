@@ -11,8 +11,10 @@ contributors:
 - Joel
 ---
 
+
 <!-- picture -->
 
+<!-- why is connecting hard? -->
 LocalStack normally runs in a Docker container, meaning that it is isolated from the host system.
 By default, LocalStack _publishes_ its edge port (usually `4566`) to the host.
 Publishing a port means that a port on the host forwards network communications to the LocalStack container.
@@ -20,19 +22,12 @@ Requests made to `localhost:4566` are then forwarded to the container.
 
 This works well when interacting from the host, for example using [`awslocal`](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal) commands.
 It does not work when trying to connect to LocalStack from your own containers, or LocalStack compute resources such as Lambda functions or ECS containers.
-<!-- too much detail?! -->
-Sometimes users wish to use multiple different methods to connect to LocalStack at the same time, for example
 
-* running a web application locally on the host, that
-* enqueues an SQS message in LocalStack that eventually
-* triggers a Lambda function that in turn
-* accesses a DynamoDB table.
+Sometimes users wish to use multiple different methods to connect to LocalStack at the same time, for example if the application code runs on the host, which triggers a Lambda function which in turn invokes more AWS services.
+In this situation, there is not one single hostname that can be reached from a Lambda function - which runs in a separate Docker container - and the host machine.
 
-Our initial attempt to resolve this issue was to provide comprehensive troubleshooting advice in the form of our [Network troubleshooting guide](https://docs.localstack.cloud/references/network-troubleshooting/), however this was always a temporary solution.
-For users connecting simultaneously through different means such as the scenario outlined above, this was not going to solve all issues.
-In particular, the host would connect to LocalStack on `localhost`, which would not be correct for the Lambda function accessing LocalStack.
-
-In the past, our community users have suggested connecting their application containers to the host network (`--network host`) or by making requests to `host.docker.internal:4566`.
+As per usual, our fantastic community have been very resourceful in trying to solve this problem.
+One idea was to connect their application containers to the host network (`--network host`) or by making requests to `host.docker.internal:4566` when using Docker Desktop.
 In some cases, using the host networking solves the problem, but it causes other problems:
 
 * If SSL is used, then certificate validation must be turned off:
@@ -80,13 +75,29 @@ localhost.localstack.cloud. 600	IN	A	127.0.0.1
 This command queries the Google public nameserver (`8.8.8.8`) for the `localhost.localstack.cloud` domain.
 In the "ANSWER" section we see `127.0.0.1` returned, as an `A` record, meaning IP address.
 
-### Why is using `localhost.localstack.cloud` not enough?
+Unfortunately this domain name is not suitable for use in compute environments such as Lambda functions.
+When you create a Lambda function, ECS container or EC2 instance, we create a new Docker container running your application code.
+In these situations, the domain name `localhost.localstack.cloud` will not resolve to the LocalStack container as you may expect, but the compute environment container itself.
 
-When you create a lambda function, ECS container or EC2 instance, we create a new Docker container running your application code.
-In these situations, using the domain name `localhost.localstack.cloud` will not resolve to the LocalStack container as you may expect.
-We currently have code in our Lambda managed runtimes to intercept any domain names that resolve to `127.0.0.1` and rewrite them to the LocalStack container IP, but this is only available to managed runtimes.
+## Step 1: providing helpful advice
 
-To tackle the problem generally, we are bringing our DNS server from LocalStack Pro into the LocalStack Community edition.
+Our initial attempt to resolve this issue was to provide comprehensive troubleshooting advice in the form of our [Network troubleshooting guide](https://docs.localstack.cloud/references/network-troubleshooting/), however this was always a temporary solution.
+For users connecting simultaneously through different means such as the scenario outlined above, this was not going to solve all issues.
+
+Our main suggestion involved relying on Docker's networking capabilities, and for the user to use docker networks.
+In this mode, the name of the LocalStack container resolves correctly.
+Unfortunately this is not without its limitations. mainly that subdomains do not resolve to a valid IP address.
+It also meant that LocalStack had to be configured to return its container name in resource identifiers such as URLs, rather than `localhost`.
+Previous to this initiative, we supported setting `HOSTNAME_EXTERNAL` and `LOCALSTACK_HOSTNAME` to provide this functionality.
+The user could set `HOSTNAME_EXTERNAL=localhost.localstack.cloud` to gain the benefits of subdomain support and TLS certificates, though its use in Lambda functions was still a problem.
+Unfortunately the use of these two configuration variables within LocalStack services was inconsistent, or worse: nonexistent, and there was confusion as to why two variables were needed to support the same functionality.
+
+There needed to be a more suitable solution that would reduce the amount of complexity for users, as well as providing seamless connectivity.
+
+## Step 2: dynamic name resolution
+
+In order to provide seamless connectivity, we designed a system based on DNS.
+We brought our existing DNS server from LocalStack Pro into the LocalStack Community edition.
 By doing this, we are able to respond with the IP address of the container for any requests to `localhost.localstack.cloud`, provided your code is running in a correctly configured environment.
 
 We are now able to resolve the three issues mentioned above:
@@ -246,3 +257,9 @@ Finally, if you have difficulties connecting to LocalStack, we provide a debug u
 
 As always, let us know if any issues using the [GitHub issue tracker](https://github.com/localstack/localstack/issues), or if you are a Pro customer feel free to [reach out to us directly](https://docs.localstack.cloud/getting-started/help-and-support).
 We want to hear your feedback on this feature, so please get in touch!
+
+---
+
+### TODO
+
+* [ ] Check tenses
