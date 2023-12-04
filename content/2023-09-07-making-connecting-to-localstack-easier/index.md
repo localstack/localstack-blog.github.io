@@ -79,6 +79,8 @@ Unfortunately this domain name is not suitable for use in compute environments s
 When you create a Lambda function, ECS container or EC2 instance, we create a new Docker container running your application code.
 In these situations, the domain name `localhost.localstack.cloud` will not resolve to the LocalStack container as you may expect, but the compute environment container itself.
 
+So how did we go about making connectivity to LocalStack easier?
+
 ## Step 1: providing helpful advice
 
 Our initial attempt to resolve this issue was to provide comprehensive troubleshooting advice in the form of our [Network troubleshooting guide](https://docs.localstack.cloud/references/network-troubleshooting/), however this was always a temporary solution.
@@ -97,8 +99,8 @@ There needed to be a more suitable solution that would reduce the amount of comp
 ## Step 2: dynamic name resolution
 
 In order to provide seamless connectivity, we designed a system based on DNS.
-We brought our existing DNS server from LocalStack Pro into the LocalStack Community edition.
-By doing this, we are able to respond with the IP address of the container for any requests to `localhost.localstack.cloud`, provided your code is running in a correctly configured environment.
+We brought our existing DNS server from LocalStack Pro into the LocalStack Community edition, and updated to to support this new use case.
+We now respond with the IP address of the container for any requests to `localhost.localstack.cloud`, provided your code is running in a correctly configured environment.
 
 We are now able to resolve the three issues mentioned above:
 
@@ -108,7 +110,6 @@ We are now able to resolve the three issues mentioned above:
     * Subdomains of `localhost.localstack.cloud` also resolve to the LocalStack container. 
 * Each host port can only be published once, whereas container ports are separate from each other and multiple containers can publish the same port.
     * Now all networking can be done over the Docker network, and no ports have to be published to the host at all.
-
 
 ## How to use this new feature
 
@@ -167,7 +168,7 @@ This sample uses `*.localhost.localstack.cloud` throughout to seamlessly configu
 * The application container connects across the Docker network to LocalStack.
 * A Lambda function communicates with LocalStack to subscribe to SQS messages, access objects in S3, and write to a DynamoDB table.
 
-## Supporting additional customisation
+## Step 3: supporting additional customisation
 
 Our aim with the networking improvements was to make the default configuration by default.
 Despite this, it might be the case that additional customisation is required.
@@ -222,7 +223,7 @@ From very early on in LocalStack's history, this was accounted for via "cosmetic
 
 TODO
 
-## Debugging your networking configuration
+## Step 4: debugging your networking configuration
 
 The final part of this networking initiative was to provide a way for you to debug your networking configuration.
 We released a tool: [https://github.com/localstack/localstack-docker-debug](https://github.com/localstack/localstack-docker-debug) that provides advice for users who are facing connectivity issues.
