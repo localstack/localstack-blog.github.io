@@ -35,7 +35,6 @@ In some cases, using the host networking solves the problem, but it causes other
     * if using host networking (`--network host`), requests are made to an IP address or `localhost`, which is not included in the certificate; and
     * when using the gateway domain (`host.docker.internal`), this domain is also not included in the set of certificate domains.
 * Subdomains created by resources such as S3 buckets or OpenSearch clusters will not resolve to the LocalStack container.
-* Servers listening on the host must bind to either the Docker network gateway IP address, which is inconvenient to get, or `0.0.0.0` which exposes the server to traffic from outside the host, which may be insecure.
 * Each host port can only be published once, whereas container ports are separate from each other and multiple containers can publish the same port.
 
 We already solve the first two issues by using the domain name `localhost.localstack.cloud` in our documentation and examples.
@@ -77,28 +76,31 @@ In the "ANSWER" section we see `127.0.0.1` returned, as an `A` record, meaning I
 
 Unfortunately this domain name is not suitable for use in compute environments such as Lambda functions.
 When you create a Lambda function, ECS container or EC2 instance, we create a new Docker container running your application code.
-In these situations, the domain name `localhost.localstack.cloud` will not resolve to the LocalStack container as you may expect, but the compute environment container itself.
+Prior to LocalStack v3.0, the domain name `localhost.localstack.cloud` did not resolve to the LocalStack container as you may have expected, but the compute environment container itself.
 
 So how did we go about making connectivity to LocalStack easier?
 
 ## Step 1: providing helpful advice
 
-Our initial attempt to resolve this issue was to provide comprehensive troubleshooting advice in the form of our [Network troubleshooting guide](https://docs.localstack.cloud/references/network-troubleshooting/), however this was always a temporary solution.
+We created comprehensive troubleshooting advice in the form of our [Network troubleshooting guide](https://docs.localstack.cloud/references/network-troubleshooting/), however this was always a temporary solution.
 For users connecting simultaneously through different means such as the scenario outlined above, this was not going to solve all issues.
 
 Our main suggestion involved relying on Docker's networking capabilities, and for the user to use docker networks.
 In this mode, the name of the LocalStack container resolves correctly.
-Unfortunately this is not without its limitations. mainly that subdomains do not resolve to a valid IP address.
-It also meant that LocalStack had to be configured to return its container name in resource identifiers such as URLs, rather than `localhost`.
+Unfortunately this is not without its limitations.
+Mainly that subdomains do not resolve to a valid IP address, and LocalStack had to be configured to return its container name in resource identifiers such as URLs, rather than `localhost`.
 Previous to this initiative, we supported setting `HOSTNAME_EXTERNAL` and `LOCALSTACK_HOSTNAME` to provide this functionality.
 The user could set `HOSTNAME_EXTERNAL=localhost.localstack.cloud` to gain the benefits of subdomain support and TLS certificates, though its use in Lambda functions was still a problem.
 Unfortunately the use of these two configuration variables within LocalStack services was inconsistent, or worse: nonexistent, and there was confusion as to why two variables were needed to support the same functionality.
 
-There needed to be a more suitable solution that would reduce the amount of complexity for users, as well as providing seamless connectivity.
+There needed to be a more general solution that would reduce the amount of complexity for users, as well as providing seamless connectivity.
 
 ## Step 2: dynamic name resolution
 
-In order to provide seamless connectivity, we designed a system based on DNS.
+We wanted our users to be able to use the same domain name regardless of where their code was running from.
+So for example, on the host `localhost.localstack.cloud` would resolve to `127.0.0.1`, but inside a separate container (such as a Lambda function, or the user's own docker container) the name would resolve to the IP address of the LocalStack container.
+
+To implement this feature, we designed a system based on DNS.
 We brought our existing DNS server from LocalStack Pro into the LocalStack Community edition, and updated to to support this new use case.
 We now respond with the IP address of the container for any requests to `localhost.localstack.cloud`, provided your code is running in a correctly configured environment.
 
@@ -111,7 +113,7 @@ We are now able to resolve the three issues mentioned above:
 * Each host port can only be published once, whereas container ports are separate from each other and multiple containers can publish the same port.
     * Now all networking can be done over the Docker network, and no ports have to be published to the host at all.
 
-## How to use this new feature
+### How to use this new feature
 
 For AWS services like Lambda or ECS, we are running your application code in an environment pre-configured to use this feature.
 
@@ -123,7 +125,7 @@ When using the Docker CLI, you can use the `--dns` flag, or the `dns:` entry of 
 This flag accepts an IP address to use for resolving domain names.
 To use this flag, your LocalStack container will need to have a known IP address.
 
-### Setting LocalStack as the DNS server using Docker Compose
+#### Setting LocalStack as the DNS server using Docker Compose
 
 When using Docker Compose, you can specify the IP address that the LocalStack container will be assigned by using a user-defined network, and using the `ipam` configuration settings.
 An example configuration would look similar to:
@@ -172,6 +174,7 @@ This sample uses `*.localhost.localstack.cloud` throughout to seamlessly configu
 
 Our aim with the networking improvements was to make the default configuration by default.
 Despite this, it might be the case that additional customisation is required.
+For example, some users cannot configure their application Docker containers, or they wish to change the port LocalStack binds to.
 For those users who require additional customisation, we provide two approaches:
 
 * "functional" configuration, and
@@ -180,9 +183,6 @@ For those users who require additional customisation, we provide two approaches:
 ### Functional configuration
 
 This type of configuration changes the behaviour of LocalStack.
-Until the start of this initiative, most of the configuration listed in our [documentation](https://docs.localstack.cloud/references/configuration/) has been functional configuration.
-These variables change the behaviour of LocalStack.
-
 Of most relevance to this article, we previously used the configuration variables:
 
 * `EDGE_PORT` (default: `4566`)
@@ -192,12 +192,13 @@ Of most relevance to this article, we previously used the configuration variable
 to define what host and port the LocalStack server bound to.
 
 These variables only allowed customisation of a single bind host, and one or two ports.
-We stopped using different ports for HTTP and HTTPS <!-- how long? --> a while ago, so the names were not accurate.
+We stopped using different ports for HTTP and HTTPS <!-- TODO how long? --> a while ago, so the names were not accurate.
 It was also a lot of similar sounding configuration to configure these two bind addresses.
 
 With LocalStack 2.0 we introduced `GATEWAY_LISTEN` as an alternative, which allowed multiple listen addresses to be specified in a single configuration variable.
 This meant more flexibility for our users, and a simpler configuration.
 Multiple bind addresses could be configured with a single variable.
+With this change, we reduced the number of required configuration variables down to 1.
 
 ### Cosmetic configuration
 
@@ -214,14 +215,8 @@ $ awslocal sqs create-queue --queue-name myqueue
 but this domain resolved to `127.0.0.1` only, and as such was not usable from other Docker containers.
 From very early on in LocalStack's history, this was accounted for via "cosmetic" configuration variables: `LOCALSTACK_HOSTNAME` and `HOSTNAME_EXTERNAL`.
 
-<!-- When would additional customisation be needed?
-
-* running multiple copies of LocalStack and publishing the ports to the host
-* proxies
-
--->
-
-TODO
+If our DNS based improvements are not available, or do not solve the connectivity problem, the user can configure cosmetic variables to a name that resolves to the LocalStack container.
+Where previously there were two variables that performed the same role in an inconsistent way, we now have a single variable: `LOCALSTACK_HOST` which is used internally by all services that return URLs.
 
 ## Step 4: debugging your networking configuration
 
