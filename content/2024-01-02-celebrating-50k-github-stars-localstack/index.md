@@ -4,11 +4,14 @@ description: We're excited to announce that LocalStack has hit a significant mil
 lead: We're excited to announce that LocalStack has hit a significant milestone of achieving 50,000 GitHub stars. It has been an incredible journey since we started out to build the best possible cloud developer experience, and we are thrilled to share this news with you!
 date: 2023-11-22
 lastmod: 2023-11-22
-images: []
-contributors: []
+images: ['50k-github-stars-localstack.png']
+leadimage: '50k-github-stars-localstack.png'
 tags: ['news']
 contributors: ["Waldemar Hummer", "Harsh Mishra"]
+weight: 2
 ---
+
+{{< img-simple src="50k-github-stars-localstack.png" width=300 alt="A LocalStack banner indicating 50k stars">}}
 
 Seven years ago, on August 16, 2016, the LocalStack project was born. The journey since then has been nothing short of incredible. LocalStack has now crossed 50,000 stars on GitHub after three major releases and dozens of minor releases. For the past 16 months since [**LocalStack 1.0**](https://blog.localstack.cloud/2022-07-13-announcing-localstack-v1-general-availability/) went live, it has been on a consistent upward trajectory, and we are proud of everyone who is discovering, starring, and joining our project & community!
 
