@@ -65,8 +65,8 @@ inquirer
             .replace(/-+/g, '-')
         directoryPath = `${moment().format('YYYY-MM-DD')}-${directoryPath}`;
         const frontMatter = genFrontMatter(answers)
-        const filePath = `content/blog/${directoryPath}/index.md`
-        fs.mkdirSync(`content/blog/${directoryPath}`)
+        const filePath = `content/${directoryPath}/index.md`
+        fs.mkdirSync(`content/${directoryPath}`)
         fs.writeFile(filePath, frontMatter, (err) => {
             if (err) {
                 throw err
