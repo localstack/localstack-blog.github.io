@@ -2,8 +2,8 @@
 title: Celebrating 50,000 GitHub Stars for LocalStack!
 description: We're excited to announce that LocalStack has hit a significant milestone of achieving 50,000 GitHub stars. It has been an incredible journey since we started out to build the best possible cloud developer experience, and we are thrilled to share this news with you!
 lead: We're excited to announce that LocalStack has hit a significant milestone of achieving 50,000 GitHub stars. It has been an incredible journey since we started out to build the best possible cloud developer experience, and we are thrilled to share this news with you!
-date: 2023-11-22
-lastmod: 2023-11-22
+date: 2024-01-03
+lastmod: 2024-01-03
 images: ['50k-github-stars-localstack.png']
 leadimage: '50k-github-stars-localstack.png'
 tags: ['news']
@@ -27,7 +27,7 @@ We'll use this milestone to look back at LocalStack's growth, some important mil
 
 LocalStack's journey to achieving 50,000 GitHub stars is a story of community-driven growth and engagement. The project's inception occurred at Atlassian with the initial commit ([`44326584`](https://github.com/localstack/localstack/commit/44326584#diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5)), introducing an *easy-to-use mocking framework* tailored for cloud application development, especially for AWS Cloud. Starting with eight AWS services, including Lambda, API Gateway, and DynamoDB, LocalStack was developed to replicate AWS APIs locally, enabling offline development. The initial idea was to enable developers to work on their applications offline, even in circumstances such as commuting on a train or flight.
 
-LocalStack, originally a side project, first garnered public attention with a post on [Hacker News](https://news.ycombinator.com/item?id=13966088) (also archived on the [Internet Archive](https://web.archive.org/web/20231122065745/https://news.ycombinator.com/item?id=13966088)). This post introduced the concept of a fully local mocking and testing framework for cloud applications, drawing the interest of the broader tech community, including notable AWS figures. A key moment in LocalStack's journey was when Jeff Barr, Chief Evangelist at AWS, [shared a tweet about LocalStack](https://twitter.com/jeffbarr/status/846382903210663936) (also archived on the [Internet Archive]()), leading to an overnight surge in GitHub stars, with thousands joining our community.
+LocalStack, originally a side project, first garnered public attention with a post on [Hacker News](https://news.ycombinator.com/item?id=13966088) (also archived on the [Internet Archive](https://web.archive.org/web/20231122065745/https://news.ycombinator.com/item?id=13966088)). This post introduced the concept of a fully local mocking and testing framework for cloud applications, drawing the interest of the broader tech community, including notable AWS figures. A key moment in LocalStack's journey was when Jeff Barr, Chief Evangelist at AWS, [shared a tweet about LocalStack](https://twitter.com/jeffbarr/status/846382903210663936) (also archived on the [Internet Archive](https://web.archive.org/web/20231124234044/https://twitter.com/jeffbarr/status/846382903210663936)), leading to an overnight surge in GitHub stars, with thousands joining our community.
 
 Here is a graphic that captures the watershed moment and the subsequent growth of LocalStack as a project:
 
