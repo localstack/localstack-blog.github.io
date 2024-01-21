@@ -85,7 +85,7 @@ The extension runs at `http://authress.localhost.localstack.cloud:4566/`. You ca
 
 ### Adding Authentication to your using Authress
 
-Authress supports authentication and authorization. Here we’ll review how to configure one of the [Authress Starter kits](https://authress.io/knowledge-base/docs/introduction/quick-start-guides) for authentication and authorization, however, if you already have an application you can use that instead. The application code is located in repositories on GitHub. 
+Authress supports authentication and authorization. Here we’ll review how to configure one of the [Authress Starter kits](https://authress.io/knowledge-base/docs/introduction/quick-start-guides) for authentication and authorization, however, if you already have an application you can use that instead. The application code is located in [repositories on GitHub](https://github.com/Authress/react-starter-kit?tab=readme-ov-file#authress-starter-kit-react). 
 
 Below is a sample application that showcases a basic React example that uses Authress to log in (for other languages and frameworks, see the other [starter kits](https://authress.io/knowledge-base/docs/introduction/quick-start-guides)). After logging in, you can navigate to the Authress protected page, which won’t be accessible to you unless you are logged in. Clone the repository onto your local developer machine with the following command:
 
