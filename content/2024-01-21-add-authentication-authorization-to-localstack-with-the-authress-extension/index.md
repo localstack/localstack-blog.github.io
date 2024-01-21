@@ -11,7 +11,7 @@ tags: ['news']
 
 ## Introduction
 
-We are excited to announce the [LocalStack Extension for Authress](https://pypi.org/project/localstack-extension-authress/), our first [community extension](https://docs.localstack.cloud/user-guide/extensions/developing-extensions/). It enables a high-fidelity, fully local authentication and authorization service that operates on your local machine. With this extension, you’ll get a development version of Authress running on your machine. This bypasses the need to rely on the live version for local development.
+The [LocalStack Extension for Authress](https://pypi.org/project/localstack-extension-authress/), our first [community extension](https://docs.localstack.cloud/user-guide/extensions/developing-extensions/), enables running Authress directly on your machine. It provides a high-fidelity, fully local authentication and authorization service, which bypasses the need to rely on the live version for local development.
 
 Ensuring your users can access your software while maintaining the privacy of their data and clean tenant separation is not a trivial challenge. It’s not just about supporting different login mechanisms and protecting the personal data included in the user identity. It is also about deciding who gets to access what as the users interact with the software. The logic to support all of this gets complex real quick, and that complexity further increases whenever your software supports different data access patterns, multiple user roles, or nested resource hierarchies.
   
