@@ -66,15 +66,28 @@ localstack extensions install localstack-extension-authress
 
 You will see the following output after the installation of the extension is successful:
 
-<picture>
+```bash
+[13:03:07] Extension successfully installed         extensions.py:85
+┏━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ Name         ┃ Summary       ┃ Version ┃ Author   ┃ Plugin name  ┃
+┡━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━┩
+│ localstack-… │ LocalStack    │ 0.1.23  │ Authress │ localstack-… │
+│              │ Extension:    │         │          │              │
+│              │ Authress      │         │          │              │
+└──────────────┴───────────────┴─────────┴──────────┴──────────────┘
+```
 
-Alternatively, you can navigate to the Extensions Library on the LocalStack Web Application. The library allows the installation and management of Extensions as simple as the click of a button. Click on the **+ Install** button on the Web Application to install the extension on your local machine.
+Alternatively, you can navigate to the [Extensions Library on the LocalStack Web Application](https://app.localstack.cloud/extensions/library). The library allows the installation and management of Extensions as simple as the click of a button. Click on the **+ Install** button on the Web Application to install the extension on your local machine.
 
-<picture>
+{{< img-simple src="localstack-extensions-library-authress.png" width=300 alt="A screenshot of the LocalStack Extensions Library showcasing the Authress Extension">}}
 
 Irrespective of whether you use the CLI or the Extension Library to install the Extension, you will see the following in the LocalStack container logs:
 
-<picture>
+```bash
+2024-01-21T07:43:08.760  INFO --- [  MainThread] Authress                   : Starting up ghcr.io/authress/authress-local:latest as localstack-authress-af6bd0fc
+2024-01-21T07:43:08.762  INFO --- [  MainThread] Authress                   : setting up proxy to http://localhost:8888
+2024-01-21T07:43:09.778  INFO --- [e_proxy_job)] Authress                   : Authress API Started on: http://authress.localhost.localstack.cloud:4566
+```
 
 The extension runs at `http://authress.localhost.localstack.cloud:4566/`. You can now configure API calls to the authorization server by passing this URL as the Authress API URL.
 
