@@ -182,7 +182,6 @@ If the service starts correctly, you should see output from the local service:
 [nodemon] watching path(s): *.*
 [nodemon] watching extensions: ts,js,json
 [nodemon] starting `node --loader ts-node/esm src/index.ts`
-(node:26191) ExperimentalWarning: Custom ESM Loaders is an experimental feature. This feature could change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 App Running on http://localhost:8080
 
