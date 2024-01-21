@@ -93,12 +93,12 @@ After cloning the sample application, install the dependencies using the followi
 npm install
 ```
 
-You can open the sample application in VS Code or your favourite IDE. Now that you have the Authress LocalStack extension running, navigate to the `src/authressClient.tsx` file, and complete the Authress configuration.  Update the `authressLoginHostUrl` to point at the Authress LocalStack extension URL, in the following manner:
+You can open the sample application in VS Code or your favourite IDE. Now that you have the Authress LocalStack extension running, navigate to the `src/authressClient.tsx` file, and complete the Authress configuration.  Update the `authressApiUrl` to point at the Authress LocalStack extension URL, in the following manner:
 
 ```typescript
 loginClient = new LoginClient({
     applicationId: 'app_default',
-    authressLoginHostUrl: 'http://authress.localhost.localstack.cloud:4566',
+    authressApiUrl: 'http://authress.localhost.localstack.cloud:4566',
   });
 ```
 
