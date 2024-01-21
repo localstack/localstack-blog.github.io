@@ -212,7 +212,7 @@ The result will be an access token within an JSON response:
 }```
 ```
 
-Copy out that access token and use it with the running application service
+Copy out that access token and use it with the running application service:
 
 ```bash
 curl http://localhost:8080/accounts/001/items/resource_001 
