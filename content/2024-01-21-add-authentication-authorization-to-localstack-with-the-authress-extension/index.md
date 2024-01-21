@@ -25,7 +25,7 @@ While developing your software, you need to provide a way for your users to acce
 
 Authress simplifies your software development by taking care of the complexity surrounding authentication and authorization. You only need to worry about your core functionality, what login methods to offer and what kind of access restrictions you want to put in place. You don’t even need to design all the access rules up front - Authress is inherently flexible and lets you easily change the permission schemas as your software evolves. It’s also inherently modular - whether it’s only user login, permissions, machine-to-machine authentication, or the entire auth stack, you can choose which parts to use.
 
-Authress released [Authress Local](https://github.com/Authress/authress-local) in July 2023 to provide a local running version for integrating login, authentication, authorization, API keys, and enhanced security into your service's development & testing workflow. Authress Local mirrors the Authress Production API, enabling you to achieve a significant parity with the cloud service, and guaranteeing consistent performance when deployed in production.
+Authress released [Authress Local](https://authress.io/knowledge-base/docs/SDKs/authress-local) in July 2023 to provide a local running version for integrating login, authentication, authorization, API keys, and enhanced security into your service's development & testing workflow. Authress Local mirrors the Authress Production API, enabling you to achieve a significant parity with the cloud service, and guaranteeing consistent performance when deployed in production.
 
 ## Why run Authress as a LocalStack Extension?  
  
