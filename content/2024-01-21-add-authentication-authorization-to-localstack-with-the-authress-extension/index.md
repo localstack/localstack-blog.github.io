@@ -120,13 +120,13 @@ npm run start
 
 The application will now be available on [`http://localhost:8080/`](http://localhost:8080). You can open the URL on your browser, and you will see the following page.
 
-<picture>
+{{< img-simple src="authress-react-starter-kit.png" width=300 alt="A screenshot of the Authress React Starter Kit">}}
 
 You can try navigating to the protected page by clicking on the **Authress Protected Route Page**. You will immediately see a page remarking that you are not logged in, and the application has prevented you from accessing a protected page.
 
-On the main page or in the navigation bar, you can now click on **Login**, and you will be immediately logged in and redirected to the main page. On this page, you can now see a valid user authentication session with the user profile highlighted Here you will notice, that because you are offline, there is no redirection to the authentication page. Once your app is deployed to production a customized login box will appear to complete the login process.
+{{< img-simple src="you-are-not-logged-in.png" width=300 alt="A screenshot of the Authress React Starter Kit showing that you are not logged in">}}
 
-<picture>
+On the main page or in the navigation bar, you can now click on **Login**, and you will be immediately logged in and redirected to the main page. On this page, you can now see a valid user authentication session with the user profile highlighted Here you will notice, that because you are offline, there is no redirection to the authentication page. Once your app is deployed to production a customized login box will appear to complete the login process.
 
 Navigate to the LocalStack container logs to see the authentication APIs being triggered:
 
@@ -137,7 +137,7 @@ Navigate to the LocalStack container logs to see the authentication APIs being t
 
 You can now click on the **Authress Protected Route Page** to see the protected page. 
 
-<picture>
+{{< img-simple src="authress-logged-in-page.png" width=300 alt="A screenshot of the Authress React Starter Kit showing that you are now logged in">}}
 
 ### Adding Authorization to your application
 
@@ -175,7 +175,20 @@ npm run start
 
 If the service starts correctly, you should see output from the local service:
 
-<picture>
+```bash
+> nodemon src/index.ts
+[nodemon] 2.0.21
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: ts,js,json
+[nodemon] starting `node --loader ts-node/esm src/index.ts`
+(node:26191) ExperimentalWarning: Custom ESM Loaders is an experimental feature. This feature could change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+App Running on http://localhost:8080
+
+*******************************************
+Try hitting one of the existing endpoints: curl -XGET http://localhost:8080/accounts -H"Authorization: Bearer YOUR_TOKEN"
+```
 
 Since this is an API based service, we can validate it works correctly, by making a call to one of the protected resources in this service. If you are using your own application service, choose one of the available endpoints there.
 
