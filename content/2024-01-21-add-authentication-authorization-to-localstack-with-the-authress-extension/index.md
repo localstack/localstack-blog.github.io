@@ -155,11 +155,11 @@ After cloning the sample application, install the dependencies using the followi
 npm install
 ```
 
-As with the React application, the next step is to update the Authress configuration. Navigate to the `src/authressPermissionsWrapper.tsx`, and update the `authressDomain` to point at the Authress LocalStack extension URL.
+As with the React application, the next step is to update the Authress configuration. Navigate to the `src/authressPermissionsWrapper.tsx`, and update the `authressApiUrl` to point at the Authress LocalStack extension URL.
 
 ```typescript
 const serviceClientAccessKey = 'sc_c.0.acc.MC4CAQAwBQYDK2VwBCIEIALXnuHrzrj++Q54hCHI/GvULrovX9SNis8+rFKgEM2v';
-const authressDomain = 'http://authress.localhost.localstack.cloud:4566';
+const authressApiUrl = 'http://authress.localhost.localstack.cloud:4566';
 ```
 
 Make sure to also update the `serviceClientAccessKey` to any valid key. The one shared above can be used.
