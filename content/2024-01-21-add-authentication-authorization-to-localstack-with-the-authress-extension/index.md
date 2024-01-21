@@ -83,7 +83,7 @@ Irrespective of whether you use the CLI or the Extension Library to install the 
 
 The extension runs at `http://authress.localhost.localstack.cloud:4566/`. You can now configure API calls to the authorization server by passing this URL as the Authress API URL.
 
-### Add Authentication to your using Authress
+### Adding Authentication to your using Authress
 
 Authress supports authentication and authorization. Here we’ll review how to configure one of the [Authress Starter kits](https://authress.io/knowledge-base/docs/introduction/quick-start-guides) for authentication and authorization, however, if you already have an application you can use that instead. The application code is located in repositories on GitHub. 
 
@@ -164,7 +164,7 @@ const authressDomain = 'http://authress.localhost.localstack.cloud:4566';
 
 Make sure to also update the `serviceClientAccessKey` to any valid key. The one shared above can be used.
 
-### Test your application authorization
+### Testing your application authorization
 
 Now that the service application is configured to use the Authress LocalStack Extension, you can start the service.
 Navigate to the terminal and run the following command to start a local server:
