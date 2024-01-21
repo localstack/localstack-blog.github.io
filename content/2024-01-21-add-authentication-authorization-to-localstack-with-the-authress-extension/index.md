@@ -120,7 +120,7 @@ You can try navigating to the protected page by clicking on the **Authress Prote
 
 {{< img-simple src="you-are-not-logged-in.png" width=300 alt="A screenshot of the Authress React Starter Kit showing that you are not logged in">}}
 
-On the main page or in the navigation bar, you can now click on **Login**, and you will be immediately logged in and redirected to the main page. On this page, you can now see a valid user authentication session with the user profile highlighted Here you will notice, that because you are offline, there is no redirection to the authentication page. Once your app is deployed to production a customized login box will appear to complete the login process.
+On the main page or in the navigation bar, you can now click on **Login**, and you will be immediately logged in and redirected to the main page. On this page, you can now see a valid user authentication session with the user profile highlighted. Here, you will notice because you are offline, there is no redirection to the authentication page. Once your app is deployed to production a customized login box will appear to complete the login process.
 
 Navigate to the LocalStack container logs to see the authentication APIs being triggered:
 
