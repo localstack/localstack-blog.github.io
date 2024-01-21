@@ -135,7 +135,7 @@ You can now click on the **Authress Protected Route Page** to see the protected 
 
 ### Adding Authorization to your application
 
-Above, we successfully added authentication user login to an application using the [Authress React Starter Kit](https://authress.io/knowledge-base/docs/SDKs/javascript?source=localstack&sdk=react). Additionally, Authress can also provide Authorization, access control, and api key management to web services as well as front-end UIs. That means we can use the Authress LocalStack Extension to enable offline authorization.
+Above, we successfully added authentication and user login to an application using the [Authress React Starter Kit](https://authress.io/knowledge-base/docs/SDKs/javascript?source=localstack&sdk=react). Additionally, Authress can also provide authorization, access control, and api key management to web services. That means we can use the Authress LocalStack Extension to enable offline authorization.
 
 Here, we’ll see how that works by using the [Authress Starter Kit for Express](https://authress.io/knowledge-base/docs/SDKs/javascript?source=localstack&sdk=express). Alternatively, if you already have a running local application, you can add Authress authorization to that instead. For using the starter kit, clone the repository onto your local developer machine with the following command:
 
