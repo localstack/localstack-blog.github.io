@@ -224,7 +224,7 @@ curl http://localhost:8080/accounts/001/items/resource_001
 
 ### Conclusion
 
-Congratulations! You’ve successfully added authentication and authorization to your running application on your machine You can further explore Authress APIs and their cloud offering for various use cases such as:
+Congratulations! You’ve successfully added authentication and authorization to your running application on your machine. You can further explore Authress APIs and their cloud offering for various use cases such as:
 
 -   Quickly adding user authentication to your application with an [Authress Login Box](https://authress.io/knowledge-base/docs/authentication/user-authentication#login-configuration)
 -   Adding authorization and [securing a Multitenant application architecture](https://authress.io/knowledge-base/articles/creating-a-multitenant-application#a-multitenant-application)
