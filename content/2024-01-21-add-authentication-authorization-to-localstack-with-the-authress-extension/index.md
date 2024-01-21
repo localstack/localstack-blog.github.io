@@ -192,7 +192,7 @@ Try hitting one of the existing endpoints: curl -XGET http://localhost:8080/acco
 
 Since this is an API based service, we can validate it works correctly, by making a call to one of the protected resources in this service. If you are using your own application service, choose one of the available endpoints there.
 
-[The Authress Starter Kit for Express](https://authress.io/knowledge-base/docs/SDKs/javascript?source=localstack&sdk=express) has user, account, and resource endpoints already available. Here you can test the resource endpoint. And to do that we first need a valid access token. You can Authress via the UI to get a valid access token or you can receive one from the Authress Extension.
+The [Authress Starter Kit for Express](https://authress.io/knowledge-base/docs/SDKs/javascript?source=localstack&sdk=express) has user, account, and resource endpoints already available. Here you can test the resource endpoint. And to do that, we first need a valid access token. You can generate a valid access token in the [Authress Management Portal](https://authress.io/app/#/authress-local?focus=token-generation) or you can receive one from the Authress Extension.
 
 To get an access token from the Authress Extension, run the following command:
 
