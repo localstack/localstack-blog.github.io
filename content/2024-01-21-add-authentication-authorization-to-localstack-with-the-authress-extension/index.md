@@ -19,7 +19,7 @@ Building an in-house authentication and authorization system may sound simple bu
 
 ## What is Authress?
 
-[Authress](https://authress.com/) is a login and access control API that lets you add authentication and granular authorization rules to any software you’re building. It’s easy to integrate into your project thanks to many different language SDKs, or, if you’re brave, directly over the REST API.
+[Authress](https://authress.io) is a login and access control API that lets you add authentication and granular authorization rules to any software you’re building. It’s easy to integrate into your project thanks to many different language SDKs, or, if you’re brave, directly over the REST API.
 
 While developing your software, you need to provide a way for your users to access it securely. Depending on who your users are, you may need to support a variety of login methods, passwordless login, or SSO integrations. What’s more, your software is likely going to be used by different people, possibly also by different companies or tenants. This means that not all logged-in users are the same in terms of what they can access. If your access patterns are dictated by nested hierarchies, whether on the user group side, permission sets, resource side, or a combination of the above, decoupling access from identity becomes crucial for the security of your application.
 
