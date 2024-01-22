@@ -76,7 +76,7 @@ This shift not only streamlined their development cycle but also offered an envi
 
 Moreover, Neurolytics developed a custom Command Line Interface (CLI) tool in Golang, leveraging AWS and Docker SDK, to manage their local infrastructure more effectively. This tool enabled them to start up their LocalStack environment with a single command and manage each service individually, further enhancing their development process.
 
-The CLI also included features for backing up and exporting the state of services, as well as importing functionality, allowing for easy sharing of the local environment state among team members. This level of control and flexibility was instrumental in achieving a more efficient and collaborative development environment.
+The CLI also included features for backing up and exporting the state of services, as well as importing functionality, allowing for easy sharing of the local environment state among team members. This level of control and flexibility was instrumental in achieving a more efficient and collaborative development environment, powered by LocalStack.
 
 ## Results
 
