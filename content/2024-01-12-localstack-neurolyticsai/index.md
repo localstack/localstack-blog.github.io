@@ -53,7 +53,7 @@ properties:
 
 ## Challenge
 
-Neurolytics faced considerable challenges in its development cycle due to the complexities of integrating with various AWS services. Their platform required the orchestration of multiple AWS services, which was a significant hurdle, as each update or feature development necessitated direct deployment and testing on AWS, which led to lengthy and inefficient development cycles. Moreover, the need to maintain individual AWS accounts for each developer added a layer of operational cost and complexity.
+Neurolytics faced considerable challenges in its development cycle due to the complexities of integrating with various AWS services. Their platform required the orchestration of multiple AWS services, which turned out to be a significant hurdle, as each update or feature development necessitated direct deployment and testing on AWS, which led to lengthy and inefficient development cycles. Moreover, the need to maintain individual AWS accounts for each developer added a layer of operational cost and complexity.
 
 The process of real-time testing and debugging in the AWS environment posed another significant challenge: The inability to perform quick local tests for immediate feedback considerably slowed down the pace of development. Consequently, the development team found themselves in a constant loop of building, deploying, and waiting, which was not only time-consuming but also detracted them from an agile development process.
 
