@@ -61,7 +61,7 @@ In response to these challenges, Neurolytics began exploring solutions that coul
 
 ## Solution
 
-In response to the challenges faced in their development process, Neurolytics turned to LocalStack. This shift was geared towards achieving faster development iterations, reducing operational costs, and enhancing the overall efficiency of their development process. The integration of LocalStack into Neurolytics’ development marked a turning point. It allowed the team to run multiple cloud services locally, maintaining parity with the real AWS cloud.
+In response to the challenges faced in their development process, Neurolytics turned to LocalStack. This shift was geared towards achieving faster development iterations, reducing operational costs, and enhancing the overall efficiency of their development process. The integration of LocalStack into Neurolytics’ development toolstack marked a turning point. It allowed the team to run multiple cloud services locally, maintaining parity with the real AWS cloud.
 
 This shift not only streamlined their development cycle but also offered an environment for quicker debugging and feature validation. The benefits extended beyond just technical improvements — financially, it translated into considerable cost savings by eliminating the need for individual AWS accounts for each developer, and operationally, it simplified the management of their cloud resources.
 
