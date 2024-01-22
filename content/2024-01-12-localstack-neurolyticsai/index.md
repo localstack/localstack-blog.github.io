@@ -48,7 +48,7 @@ properties:
 
   <p>Hosted on Amazon Web Services (AWS), Neurolytics' infrastructure leverages the robustness and scalability of the platform. However, the challenge of time- and cost-efficient development in such a dynamic environment led them to LocalStack. This move has enabled the Neurolytics team to significantly streamline their development and testing cycle, thereby enhancing their agility and innovation capabilities.</p>
 
-  <p>In this case study, we talk with Yashar Hosseinpour, who offers a detailed look at how LocalStack has streamlined Neurolytics' dev&test loops. This includes the reduction in development time, cost savings, and the overall impact on their engineering processes. We explore the challenges they faced, the solutions they implemented, and the benefits they've reaped from integrating LocalStack into their AWS-based development workflows.</p>
+  <p>In this case study, we talk with Yashar Hosseinpour, who offers some detailed insights into how LocalStack has streamlined Neurolytics' dev&test loops. This includes a reduction in development time, cost savings, and the overall impact on their engineering processes. We explore the challenges they faced, the solutions they implemented, and the benefits they've reaped from integrating LocalStack into their AWS-based development workflows.</p>
 </div>
 
 ## Challenge
