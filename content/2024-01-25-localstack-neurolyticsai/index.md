@@ -2,8 +2,8 @@
 title: Neurolytics enhances the efficiency and agility of its cloud-based development with LocalStack
 description: Neurolytics leverages the full spectrum of LocalStack's capabilities to revolutionize its AI-driven behavioral video analysis platform. In this case study, we explore the journey of Neurolytics with Yashar Hosseinpour, delving into how they utilize LocalStack for seamless local development and testing, which resulted in substantial cost savings, showcasing the transformative impact of LocalStack on their local infrastructure development and overall engineering productivity.
 lead: Neurolytics leverages the full spectrum of LocalStack's capabilities to revolutionize its AI-driven behavioral video analysis platform. In this case study, we explore the journey of Neurolytics with Yashar Hosseinpour, delving into how they utilize LocalStack for seamless local development and testing, which resulted in substantial cost savings, showcasing the transformative impact of LocalStack on their local infrastructure development and overall engineering productivity.
-date: 2024-01-12
-lastmod: 2024-01-12
+date: 2024-01-25
+lastmod: 2024-01-25
 contributors: ["LocalStack Team"]
 logo: 'neurolytics-logo.png'
 leadimage: 'localstack-xiatech.png'
