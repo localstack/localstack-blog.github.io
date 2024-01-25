@@ -57,7 +57,7 @@ Neurolytics faced considerable challenges in its development cycle due to the co
 
 The process of real-time testing and debugging in the AWS environment posed another significant challenge: The inability to perform quick local tests for immediate feedback considerably slowed down the pace of development. Consequently, the development team found themselves in a constant loop of building, deploying, and waiting, which was not only time-consuming but also detracted them from an agile development process.
 
-In response to these challenges, Neurolytics began exploring solutions that could replicate the AWS environment locally. The aim was to establish a rapid, efficient feedback loop, enabling developers to test and debug in a local setup that closely mirrored the cloud environment. It was in this context that LocalStack emerged as a potential solution, promising to transform their cloud development and testing strategy.
+In response to these challenges, Neurolytics began exploring solutions that could replicate the AWS environment locally. The aim was to establish a rapid, efficient feedback loop, enabling developers to test and debug in a local setup that closely mirrored the cloud environment. It was in this context that LocalStack emerged as a potential solution, promising to transform its cloud development and testing strategy.
 
 ## Solution
 
