@@ -1,12 +1,12 @@
 ---
-title: Case Study — LocalStack & Neurolytics.ai
-description: Neurolytics leverages the full spectrum of LocalStack's capabilities to revolutionize its AI-driven behavioral video analysis platform, enhancing the efficiency and agility of its cloud-based development. In this case study, we explore the journey of Neurolytics with Yashar Hosseinpour, delving into how they utilize LocalStack for seamless local development and testing. This approach has not only accelerated their feature deployment but also resulted in substantial cost savings, showcasing the transformative impact of LocalStack on their local infrastructure development and overall engineering productivity.
-lead: Neurolytics leverages the full spectrum of LocalStack's capabilities to revolutionize its AI-driven behavioral video analysis platform, enhancing the efficiency and agility of its cloud-based development. In this case study, we explore the journey of Neurolytics with Yashar Hosseinpour, delving into how they utilize LocalStack for seamless local development and testing. This approach has not only accelerated their feature deployment but also resulted in substantial cost savings, showcasing the transformative impact of LocalStack on their local infrastructure development and overall engineering productivity.
+title: Neurolytics enhances the efficiency and agility of its cloud-based development with LocalStack
+description: Neurolytics leverages the full spectrum of LocalStack's capabilities to revolutionize its AI-driven behavioral video analysis platform. In this case study, we explore the journey of Neurolytics with Yashar Hosseinpour, delving into how they utilize LocalStack for seamless local development and testing, which resulted in substantial cost savings, showcasing the transformative impact of LocalStack on their local infrastructure development and overall engineering productivity.
+lead: Neurolytics leverages the full spectrum of LocalStack's capabilities to revolutionize its AI-driven behavioral video analysis platform. In this case study, we explore the journey of Neurolytics with Yashar Hosseinpour, delving into how they utilize LocalStack for seamless local development and testing, which resulted in substantial cost savings, showcasing the transformative impact of LocalStack on their local infrastructure development and overall engineering productivity.
 date: 2024-01-12
 lastmod: 2024-01-12
 contributors: ["LocalStack Team"]
-logo: 
-leadimage: 
+logo: 'neurolytics-logo.png'
+leadimage: 'localstack-xiatech.png'
 tags: ["case-study"]
 layout: case-study
 properties:
@@ -63,6 +63,8 @@ In response to these challenges, Neurolytics began exploring solutions that coul
 
 In response to the challenges faced in their development process, Neurolytics turned to LocalStack. This shift was geared towards achieving faster development iterations, reducing operational costs, and enhancing the overall efficiency of their development process. The integration of LocalStack into Neurolytics’ development toolstack marked a turning point. It allowed the team to run multiple cloud services locally, maintaining parity with the real AWS cloud.
 
+<img src="neurolytics-localstack-aws-overview.png" alt="Overview of how Neurolytics use LocalStack on developer machines and the real AWS cloud for production">
+
 This shift not only streamlined their development cycle but also offered an environment for quicker debugging and feature validation. The benefits extended beyond just technical improvements — financially, it translated into considerable cost savings by eliminating the need for individual AWS accounts for each developer, and operationally, it simplified the management of their cloud resources.
 
 <div class="quote-container mt-4">
@@ -79,6 +81,11 @@ Moreover, Neurolytics developed a custom Command Line Interface (CLI) tool in Go
 The CLI also included features for backing up and exporting the state of services, as well as importing functionality, allowing for easy sharing of the local environment state among team members. This level of control and flexibility was instrumental in achieving a more efficient and collaborative development environment, powered by LocalStack.
 
 ## Results
+
+<div class="img-group d-block d-sm-flex align-items-start">
+  <img src="30-percent-reduction-development-testing-time.png" alt="Accelerating Resource Creation by 70% Compared to AWS" class="img-1">
+  <img src="cost-saving-operational-efficiency.png" alt="Streamlined Testing and Enhanced IaC Code Validation with LocalStack" class="img-2">
+</div>
 
 ### 30% Reduction in Development and Testing Time
 
