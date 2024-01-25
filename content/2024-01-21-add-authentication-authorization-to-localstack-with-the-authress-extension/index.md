@@ -33,6 +33,14 @@ Authress released [Authress Local](https://authress.io/knowledge-base/docs/SDKs/
 
 The LocalStack Extension for Authress replicates the Authress API, allowing you to integrate authentication & authorization directly into your locally running AWS applications. The Extension also allows you to jumpstart your development & testing workflows with Authress without an account. You can install the Extension using [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) or using the [Extensions Library](https://docs.localstack.cloud/user-guide/web-application/extensions-library/) on the [LocalStack Web Application](https://app.localstack.cloud/).
 
+
+The [Authress extension](https://github.com/Authress/localstack-extension?tab=readme-ov-file) is loaded by the [LocalStack Extensions framework](https://docs.localstack.cloud/user-guide/extensions/) directly into your LocalStack environment. It works by dynamically starting up and configuring the [Authress Local](https://github.com/Authress/authress-local?tab=readme-ov-file#authress-local) container. The locally running container provides a copy of the [Authress API](https://authress.io/app/#/api) directly in your development environment so that you can:
+
+* **Authenticate users** and generate JWTs offline without having to log in.
+* **Increase security** during development by verifying your authorization checks are correctly configured.
+* **Validate SDK and API** usage to catch any early bugs with your integration.
+* **Orchestrate complete integration tests** combining your identity and authorization infrastructure with your AWS infrastructure already provided by LocalStack.
+
 ## How to use the LocalStack Extension for Authress
 
 In this section, we’ll run a basic application that emulates authentication, authorization, user identity and role management by running the LocalStack Extension for Authress. For this tutorial, you’ll need to have the following prerequisites installed on your local machine:
