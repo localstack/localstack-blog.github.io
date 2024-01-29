@@ -83,7 +83,7 @@ Irrespective of whether you use the CLI or the Extension Library to install the 
 2024-01-21T07:43:09.778  INFO --- [e_proxy_job)] Authress                   : Authress API Started on: http://authress.localhost.localstack.cloud:4566
 ```
 
-The extension runs at `http://authress.localhost.localstack.cloud:4566/`. You can now configure API calls to the authorization server by passing this URL as the Authress API URL.
+The Authress extension runs at `http://authress.localhost.localstack.cloud:4566/`. You can now configure API calls to the locally running authorization server specifying this URL as the `Authress API URL` in the Authress SDKs. In the following sections, we'll see just how to do that.
 
 ### Adding Authentication to your Application using Authress
 
