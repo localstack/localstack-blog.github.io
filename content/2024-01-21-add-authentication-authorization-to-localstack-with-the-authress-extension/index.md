@@ -231,6 +231,6 @@ Congratulations! You’ve successfully added authentication and authorization to
 -   [Implementing signup and user onboarding flows](https://authress.io/knowledge-base/docs/usage-guides/onboarding-users) for enterprise businesses
 -   … and more!
 
-The Authress Extension for LocalStack makes it easy to manage and integrate authentication and authorization into locally-created cloud resources, and we hope to make your development process easier and faster!
+The Authress Extension for LocalStack makes it easy to manage and integrate authentication and authorization into locally-created cloud resources, and we hope to make your development process easier and faster! And if you are interested in developing a [LocalStack Extension](https://docs.localstack.cloud/user-guide/extensions/) to customize and extend your local development experience, check out our [Getting started guide for Extensions](https://docs.localstack.cloud/user-guide/extensions/getting-started/).
 
 If you have questions about Authress and how it enables login and role or resource-based granular access control, check out the [Auth Academy](https://authress.io/knowledge-base/academy/topics) or join their [Developer community](https://authress.com/community).
