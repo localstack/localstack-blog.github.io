@@ -1,7 +1,7 @@
 ---
-title: Add authentication & authorization to LocalStack with the Authress Extension
-description: We are excited to announce the LocalStack Extension for Authress which enables a high-fidelity, fully local authentication and authorization service and operates on your local machine.
-lead: We are excited to announce the LocalStack Extension for Authress which enables a high-fidelity, fully local authentication and authorization service and operates on your local machine.
+title: Add Authentication & Authorization to LocalStack with the Authress Extension
+description: We are excited to announce the LocalStack Extension for Authress, which enables a high-fidelity, fully local authentication and authorization service and operates on your local machine.
+lead: We are excited to announce the LocalStack Extension for Authress, which enables a high-fidelity, fully local authentication and authorization service and operates on your local machine.
 date: 2024-01-21T12:41:54+05:30
 lastmod: 2024-01-21T12:41:54+05:30
 images: []
@@ -29,9 +29,9 @@ Authress released [Authress Local](https://authress.io/knowledge-base/docs/SDKs/
 
 ## Why run Authress as a LocalStack Extension?  
  
-[LocalStack Extensions](https://docs.localstack.cloud/user-guide/extensions/) allow you to customize LocalStack by starting custom services in the same container while leveraging the existing ecosystem & feature set. With Authress Local as an Extension, you now have an easier and faster way to setup user management and access control for your app in a local environment.
+[LocalStack Extensions](https://docs.localstack.cloud/user-guide/extensions/) allow you to customize LocalStack by starting custom services in the same container while leveraging the existing ecosystem & feature set. With Authress Local as an Extension, you now have an easier and faster way to setup user management and access control for your application in a local environment.
 
-The LocalStack Extension for Authress replicates the Authress API, allowing you to integrate authentication & authorization directly into your locally running AWS applications. The Extension also allows you to jumpstart your development & testing workflows with Authress without an account. You can install the Extension using [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) or using the [Extensions Library](https://docs.localstack.cloud/user-guide/web-application/extensions-library/) on the [LocalStack Web Application](https://app.localstack.cloud/).
+The LocalStack Extension for Authress replicates the Authress API, allowing you to integrate authentication & authorization directly into your locally running AWS applications. The Extension also allows you to jumpstart your development & testing workflows with Authress without an account. You can install the Authress Extension using the [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) or using the [Extensions Library](https://docs.localstack.cloud/user-guide/web-application/extensions-library/) on the [LocalStack Web Application](https://app.localstack.cloud/).
 
 
 The [Authress extension](https://github.com/Authress/localstack-extension?tab=readme-ov-file) is loaded by the [LocalStack Extensions framework](https://docs.localstack.cloud/user-guide/extensions/) directly into your LocalStack environment. It works by dynamically starting up and configuring the [Authress Local](https://github.com/Authress/authress-local?tab=readme-ov-file#authress-local) container. The locally running container provides a copy of the [Authress API](https://authress.io/app/#/api) directly in your development environment so that you can:
@@ -71,7 +71,7 @@ You will see the following output after the installation of the extension is suc
 └──────────────┴───────────────┴─────────┴──────────┴──────────────┘
 ```
 
-Alternatively, you can navigate to the [Extensions Library on the LocalStack Web Application](https://app.localstack.cloud/extensions/library). The library allows the installation and management of Extensions as simple as the click of a button. Click on the **+ Install** button on the Web Application to install the extension on your local machine.
+Alternatively, you can navigate to the [Extensions Library on the LocalStack Web Application](https://app.localstack.cloud/extensions/library). The library allows the installation and management of Extensions as simple as the click of a button. Click on the **+&nbsp;Install** button on the Web Application to install the extension on your local machine.
 
 {{< img-simple src="localstack-extensions-library-authress.png" width=300 alt="A screenshot of the LocalStack Extensions Library showcasing the Authress Extension">}}
 
