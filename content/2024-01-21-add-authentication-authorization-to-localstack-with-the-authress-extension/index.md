@@ -1,7 +1,7 @@
 ---
 title: Add Authentication & Authorization to LocalStack with the Authress Extension
-description: We are excited to announce the LocalStack Extension for Authress, which enables a high-fidelity, fully local authentication and authorization service and operates on your local machine.
-lead: We are excited to announce the LocalStack Extension for Authress, which enables a high-fidelity, fully local authentication and authorization service and operates on your local machine.
+description: We are excited to announce the Authress Extension for LocalStack, which enables a high-fidelity, fully local authentication and authorization service and operates on your local machine.
+lead: We are excited to announce the Authress Extension for LocalStack, which enables a high-fidelity, fully local authentication and authorization service and operates on your local machine.
 date: 2024-01-21T12:41:54+05:30
 lastmod: 2024-01-21T12:41:54+05:30
 images: []
@@ -11,7 +11,7 @@ tags: ['news']
 
 ## Introduction
 
-The [LocalStack Extension for Authress](https://pypi.org/project/localstack-extension-authress/), our first [community extension](https://docs.localstack.cloud/user-guide/extensions/developing-extensions/), enables running Authress directly on your machine. It provides a high-fidelity, fully local authentication and authorization service, which bypasses the need to rely on the live version for local development.
+The [Authress Extension for LocalStack](https://pypi.org/project/localstack-extension-authress/), our first [community extension](https://docs.localstack.cloud/user-guide/extensions/developing-extensions/), enables running Authress directly on your machine. It provides a high-fidelity, fully local authentication and authorization service, which bypasses the need to rely on the live version for local development.
 
 Ensuring your users can access your software while maintaining the privacy of their data and clean tenant separation is not a trivial challenge. It’s not just about supporting different login mechanisms and protecting the personal data included in the user identity. It is also about deciding who gets to access what as the users interact with the software. The logic to support all of these security concerns gets complex real quick, and that complexity further increases whenever your software supports different data access patterns, multiple user roles, or nested resource hierarchies.
   
@@ -31,7 +31,7 @@ Authress released [Authress Local](https://authress.io/knowledge-base/docs/SDKs/
  
 [LocalStack Extensions](https://docs.localstack.cloud/user-guide/extensions/) allow you to customize LocalStack by starting custom services in the same container while leveraging the existing ecosystem & feature set. With Authress Local as an Extension, you now have an easier and faster way to setup user management and access control for your application in a local environment.
 
-The LocalStack Extension for Authress replicates the Authress API, allowing you to integrate authentication & authorization directly into your locally running AWS applications. The Extension also allows you to jumpstart your development & testing workflows with Authress without an account. You can install the Authress Extension using the [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) or using the [Extensions Library](https://docs.localstack.cloud/user-guide/web-application/extensions-library/) on the [LocalStack Web Application](https://app.localstack.cloud/).
+The Authress Extension for LocalStack replicates the Authress API, allowing you to integrate authentication & authorization directly into your locally running AWS applications. The Extension also allows you to jumpstart your development & testing workflows with Authress without an account. You can install the Authress Extension using the [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) or using the [Extensions Library](https://docs.localstack.cloud/user-guide/web-application/extensions-library/) on the [LocalStack Web Application](https://app.localstack.cloud/).
 
 
 The [Authress extension](https://github.com/Authress/localstack-extension?tab=readme-ov-file) is loaded by the [LocalStack Extensions framework](https://docs.localstack.cloud/user-guide/extensions/) directly into your LocalStack environment. It works by dynamically starting up and configuring the [Authress Local](https://github.com/Authress/authress-local?tab=readme-ov-file#authress-local) container. The locally running container provides a copy of the [Authress API](https://authress.io/app/#/api) directly in your development environment so that you can:
@@ -41,16 +41,16 @@ The [Authress extension](https://github.com/Authress/localstack-extension?tab=re
 * **Validate SDK and API** usage to catch any early bugs with your integration.
 * **Orchestrate complete integration tests** combining your identity and authorization infrastructure with your AWS infrastructure already provided by LocalStack.
 
-## How to use the LocalStack Extension for Authress
+## How to use the Authress Extension for LocalStack
 
-In this section, we’ll run a basic application that emulates authentication, authorization, user identity and role management by running the LocalStack Extension for Authress. For this tutorial, you’ll need to have the following prerequisites installed on your local machine:
+In this section, we’ll run a basic application that emulates authentication, authorization, user identity and role management by running the extension. For this tutorial, you’ll need to have the following prerequisites installed on your local machine:
 
 -   [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)  
 -   [LocalStack Web Application account](https://app.localstack.cloud/sign-up)   
 -   [Node.js](https://nodejs.org/en/download/current)
 
 
-### Install the LocalStack Extension for Authress
+### Install the Authress Extension for LocalStack
 
 To install the extension, you can either use the LocalStack CLI or the Extensions Library on the LocalStack Web Application. To install the extension using the LocalStack CLI, start your LocalStack container, configure your [Auth Token](https://docs.localstack.cloud/getting-started/auth-token/) (`LOCALSTACK_AUTH_TOKEN`) as an environment variable and run the following command:
 
@@ -101,7 +101,7 @@ After cloning the sample application, install the dependencies using the followi
 npm install
 ```
 
-You can open the sample application in VS Code or your favourite IDE. Now that you have the Authress LocalStack extension running, navigate to the `src/authressClient.tsx` file, and complete the Authress configuration.  Update the `authressApiUrl` to point at the Authress LocalStack extension URL, in the following manner:
+You can open the sample application in VS Code or your favourite IDE. Now that you have the extension running, navigate to the `src/authressClient.tsx` file, and complete the Authress configuration.  Update the `authressApiUrl` to point at the extension URL, in the following manner:
 
 ```typescript
 loginClient = new LoginClient({
@@ -143,7 +143,7 @@ You can now click on the **Authress Protected Route Page** to see the protected 
 
 ### Adding Authorization to your application
 
-Above, we successfully added authentication and user login to an application using the [Authress React Starter Kit](https://authress.io/knowledge-base/docs/SDKs/javascript?source=localstack&sdk=react). Additionally, Authress can also provide authorization, access control, and api key management to web services. That means we can use the Authress LocalStack Extension to enable offline authorization.
+Above, we successfully added authentication and user login to an application using the [Authress React Starter Kit](https://authress.io/knowledge-base/docs/SDKs/javascript?source=localstack&sdk=react). Additionally, Authress can also provide authorization, access control, and api key management to web services. That means we can use the Authress Extension for LocalStack to enable offline authorization.
 
 Here, we’ll see how that works by using the [Authress Starter Kit for Express](https://authress.io/knowledge-base/docs/SDKs/javascript?source=localstack&sdk=express). Alternatively, if you already have a running local application, you can add Authress authorization to that instead. For using the starter kit, clone the repository onto your local developer machine with the following command:
 
@@ -157,7 +157,7 @@ After cloning the sample application, install the dependencies using the followi
 npm install
 ```
 
-As with the React application, the next step is to update the Authress configuration. Navigate to the `src/authressPermissionsWrapper.tsx`, and update the `authressApiUrl` to point at the Authress LocalStack extension URL.
+As with the React application, the next step is to update the Authress configuration. Navigate to the `src/authressPermissionsWrapper.tsx`, and update the `authressApiUrl` to point at the extension URL.
 
 ```typescript
 const serviceClientAccessKey = 'sc_c.0.acc.MC4CAQAwBQYDK2VwBCIEIALXnuHrzrj++Q54hCHI/GvULrovX9SNis8+rFKgEM2v';
@@ -168,7 +168,7 @@ Make sure to also update the `serviceClientAccessKey` to any valid key. The one 
 
 ### Testing your application authorization
 
-Now that the service application is configured to use the Authress LocalStack Extension, you can start the service.
+Now that the service application is configured to use the extension, you can start the service.
 Navigate to the terminal and run the following command to start a local server:
 
 ```bash
