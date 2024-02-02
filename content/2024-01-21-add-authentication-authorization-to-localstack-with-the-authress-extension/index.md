@@ -93,6 +93,7 @@ Below is a sample application that showcases a basic React example that uses Aut
 
 ```bash
 git clone https://github.com/Authress/react-starter-kit.git 
+cd react-starter-kit
 ```
 
 After cloning the sample application, install the dependencies using the following command:
@@ -149,6 +150,7 @@ Here, we’ll see how that works by using the [Authress Starter Kit for Express]
 
 ```bash
 git clone https://github.com/Authress/express-starter-kit.git
+cd express-starter-kit
 ```
 
 After cloning the sample application, install the dependencies using the following command:
