@@ -209,7 +209,7 @@ The result will be an access token within an JSON response:
 {
     "accessToken":
             "eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImF1dGhyZXNzLWxvY2FsIn0.eyJhdWQiOiJsb2NhbGhvc3QiLCJleHAiOjE3MDU4NjIzNjksImlhdCI6MTcwNTc3NTk2OSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4ODg4Iiwic3ViIjoibWUifQ.F_PiFTg7ir0bDhet_AVs6aeIxbBycXUso-J7sUA22iWK6p4pOUFoyMJTr6ZD_GCEQqI314WMmjllK9GZ9spTBQ"
-}```
+}
 ```
 
 Copy out that access token and use it with the running application service:
