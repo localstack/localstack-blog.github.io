@@ -49,6 +49,14 @@ In this section, we’ll run a basic application that emulates authentication, a
 -   [LocalStack Web Application account](https://app.localstack.cloud/sign-up)   
 -   [Node.js](https://nodejs.org/en/download/current)
 
+Start your LocalStack container with your [`LOCALSTACK_AUTH_TOKEN`](https://docs.localstack.cloud/getting-started/auth-token/) environment variable set. You can use the following command to start LocalStack:
+
+```bash
+export LOCALSTACK_AUTH_TOKEN=your-auth-token
+EXTRA_CORS_ALLOWED_ORIGINS='*' localstack start
+```
+
+The `EXTRA_CORS_ALLOWED_ORIGINS` configuration variable allows the sample applications to send requests to the HTTP APIs running in LocalStack.
 
 ### Install the Authress Extension for LocalStack
 
