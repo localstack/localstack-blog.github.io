@@ -2,12 +2,15 @@
 title: Add Authentication & Authorization to LocalStack with the Authress extension
 description: We are excited to announce the Authress extension for LocalStack, which enables a high-fidelity, fully local authentication and authorization service that operates on your local machine.
 lead: We are excited to announce the Authress extension for LocalStack, which enables a high-fidelity, fully local authentication and authorization service that operates on your local machine.
-date: 2024-01-21T12:41:54+05:30
-lastmod: 2024-01-21T12:41:54+05:30
-images: []
+date: 2024-02-07
+lastmod: 2024-02-07
+images: ['authress-localstack-banner.png']
+leadimage: 'authress-localstack-banner.png'
 contributors: ["Harsh Mishra", "Warren Parad"]
-tags: ['news']
+tags: ['showcase']
 ---
+
+{{< img-simple src="authress-localstack-banner.png" width=300 alt="A LocalStack x Authress Extension banner">}}
 
 ## Introduction
 
