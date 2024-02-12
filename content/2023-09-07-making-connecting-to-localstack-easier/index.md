@@ -209,13 +209,25 @@ Of most relevance to this article, we previously used the configuration variable
 to define what host and port the LocalStack server bound to.
 
 These variables only allowed customization of a single bind host, and one or two ports.
-We stopped using different ports for HTTP and HTTPS <!-- TODO how long? --> a while ago, so the names were not accurate.
+We stopped using different ports for HTTP and HTTPS in 2019, so the names were not accurate.
 It was also a lot of similar sounding configuration to configure these two bind addresses.
 
 With LocalStack 2.0 we introduced `GATEWAY_LISTEN` as an alternative, which allowed multiple listen addresses to be specified in a single configuration variable.
 This meant more flexibility for our users, and a simpler configuration.
 Multiple bind addresses could be configured with a single variable.
 With this change, we reduced the number of required configuration variables down to 1.
+
+For example, the following configuration:
+
+```
+EDGE_PORT_HTTP=5000 EDGE_PORT=9000 EDGE_BIND_HOST=0.0.0.0 localstack start
+```
+
+can now be set with:
+
+```
+GATEWAY_LISTEN=0.0.0.0:5000,0.0.0.0:9000 localstack start
+```
 
 ## Cosmetic configuration
 
@@ -234,6 +246,23 @@ From very early on in LocalStack's history, this was accounted for via the "cosm
 
 If our DNS-based improvements are not available, or do not solve the connectivity problem, the user can configure cosmetic variables to a name that resolves to the LocalStack container.
 Where previously there were two variables that performed the same role in an inconsistent way, we now have a single variable: `LOCALSTACK_HOST` which is used internally by all services that return URLs.
+
+For example, by running LocalStack with:
+
+```
+LOCALSTACK_HOST=foo.bar:5000
+```
+
+a queue URL returned by SQS will be:
+
+```bash
+$ awslocal sqs create-queue --queue-name myqueue
+{
+    "QueueUrl": "http://foo.bar:5000/000000000000/myqueue"
+}
+```
+
+Even though the port `5000` is included in the URL in this example, the port specified by `LOCALSTACK_HOST` and `GATEWAY_LISTEN` may be different.
 
 # Providing tooling to help debug your network configuration
 
@@ -257,8 +286,7 @@ If it cannot, it temporarily adjusts the networking configuration of the applica
 Once this occurs, it prints helpful suggestions on what changes were needed to make the connection.
 If this does not work, the tool is able to capture your Docker network topology to help us understand your networking layout.
 
-
-## Conclusions
+# Conclusions
 
 We hope that with this new functionality available today, accessing LocalStack should be considerably easier.
 By moving the DNS server into LocalStack and configuring spawned AWS compute environments to use it by default, your Lambda functions, ECS containers, and EC2 instances should already be able to access LocalStack at `localhost.localstack.cloud`.
