@@ -86,7 +86,7 @@ So how did we go about making connectivity to LocalStack easier?
 * Updating and improving our advanced configuration
 * Providing tooling to help users debug their network configuration
 
-## Providing helpful advice
+# Providing helpful advice
 
 We created comprehensive troubleshooting advice in the form of our [Network troubleshooting guide](https://docs.localstack.cloud/references/network-troubleshooting/).
 We outlined different user setups and described settings were best practice, and were proven to work.
@@ -106,7 +106,7 @@ Unfortunately, the use of these two configuration variables within LocalStack se
 
 There needed to be a more general solution that would reduce the amount of complexity for users, as well as providing seamless connectivity.
 
-## Step 2: dynamic name resolution
+# Dynamic name resolution
 
 We wanted our users to be able to use the same domain name regardless of where their code was running from.
 So for example, on the host `localhost.localstack.cloud` would resolve to `127.0.0.1`, but inside a separate container (such as a Lambda function, or the user's own docker container) the name would resolve to the IP address of the LocalStack container.
@@ -187,7 +187,7 @@ This sample uses `*.localhost.localstack.cloud` throughout to seamlessly configu
 * The application container connects across the Docker network to LocalStack.
 * A Lambda function communicates with LocalStack to subscribe to SQS messages, access objects in S3, and write to a DynamoDB table.
 
-## Step 3: supporting additional customization
+# Supporting additional customization
 
 Our aim with the networking improvements was to make the default configuration by default.
 Despite this, it might be the case that additional customization is required.
@@ -197,7 +197,7 @@ For those users who require additional customization, we provide two approaches:
 * "functional" configuration, and
 * "cosmetic" configuration.
 
-### Functional configuration
+## Functional configuration
 
 This type of configuration changes the behaviour of LocalStack.
 Of most relevance to this article, we previously used the configuration variables:
@@ -217,7 +217,7 @@ This meant more flexibility for our users, and a simpler configuration.
 Multiple bind addresses could be configured with a single variable.
 With this change, we reduced the number of required configuration variables down to 1.
 
-### Cosmetic configuration
+## Cosmetic configuration
 
 This type of configuration changes the domain names and ports returned by services that return URLs.
 For example: before the start of this initiative, creating an SQS queue returned a queue URL:
@@ -235,7 +235,7 @@ From very early on in LocalStack's history, this was accounted for via the "cosm
 If our DNS-based improvements are not available, or do not solve the connectivity problem, the user can configure cosmetic variables to a name that resolves to the LocalStack container.
 Where previously there were two variables that performed the same role in an inconsistent way, we now have a single variable: `LOCALSTACK_HOST` which is used internally by all services that return URLs.
 
-## Step 4: providing tooling to help ddebug your network configuration
+# Providing tooling to help debug your network configuration
 
 The final part of this networking initiative was to provide a way for you to debug your networking configuration.
 We released a tool: [https://github.com/localstack/localstack-docker-debug](https://github.com/localstack/localstack-docker-debug) that provides advice for users who are facing connectivity issues.
