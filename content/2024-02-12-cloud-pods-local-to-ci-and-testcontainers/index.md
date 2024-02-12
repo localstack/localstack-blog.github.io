@@ -94,7 +94,7 @@ agile methodologies and fast-paced project timelines.
 ## "Talk is cheap. Show me the code.”
 
 We’ve mentioned some of the strong points of Cloud Pods. Let’s now see them deliver on those promises. You can follow 
-along with all the examples by cloning the [demo repository](https://github.com/tinyg210/localstack-cloud-pods-demo).
+along with all the examples by cloning the [**demo repository**](https://github.com/localstack-samples/localstack-cloud-pods-blogpost-demo).
 
 ### Accelerating development and testing
 
@@ -110,7 +110,7 @@ using IaC tools every time. Alternatively, you can also export the state of your
 using only the desired services with the `--services` flag.
 
 Now, we can kick it up a notch and introduce the same speed in CI. This example follows three workflows described in the
-same [repository](https://github.com/tinyg210/localstack-cloud-pods-demo). All the runs are doing the same thing: 
+same [**repository**](https://github.com/localstack-samples/localstack-cloud-pods-blogpost-demo). All the runs are doing the same thing: 
 setting up the environment, starting LocalStack, spinning up the desired resources, and, as a final check, verifying 
 if the buckets with the correct name exist.
 
@@ -163,7 +163,7 @@ lifecycle.
 
 In our sample application, we have covered two scenarios of provisioning our infrastructure for testing: using Cloud Pods
 stored on the LocalStack Platform and using the locally stored state file. You can view the full test suites in the same
-[repository](https://github.com/tinyg210/localstack-cloud-pods-demo), under the `src/test` folder.
+[**repository**](https://github.com/localstack-samples/localstack-cloud-pods-blogpost-demo), under the `src/test` folder.
 
 #### Cloud Pods
 
