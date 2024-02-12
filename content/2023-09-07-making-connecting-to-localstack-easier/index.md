@@ -98,11 +98,11 @@ With this guide, common networking scenarios are described, with example configu
 
 Our main suggestion involved relying on Docker's networking capabilities, and for the user to use docker networks.
 In this mode, the name of the LocalStack container resolves correctly.
-Unfortunately this is not without its limitations.
+Unfortunately, this is not without its limitations.
 Mainly that subdomains do not resolve to a valid IP address, and LocalStack had to be configured to return its container name in resource identifiers such as URLs, rather than `localhost`.
 Previous to this initiative, we supported setting `HOSTNAME_EXTERNAL` and `LOCALSTACK_HOSTNAME` to provide this functionality.
 The user could set `HOSTNAME_EXTERNAL=localhost.localstack.cloud` to gain the benefits of subdomain support and TLS certificates, though its use in Lambda functions was still a problem.
-Unfortunately the use of these two configuration variables within LocalStack services was inconsistent, or worse: nonexistent, and there was confusion as to why two variables were needed to support the same functionality.
+Unfortunately, the use of these two configuration variables within LocalStack services was inconsistent, or worse: nonexistent, and there was confusion as to why two variables were needed to support the same functionality.
 
 There needed to be a more general solution that would reduce the amount of complexity for users, as well as providing seamless connectivity.
 
