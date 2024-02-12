@@ -101,7 +101,8 @@ along with all the examples by cloning the [demo repository](https://github.com/
 The following recording shows the comparison in time spent waiting for the same infrastructure to be set up, first using 
 Terraform and then via Cloud Pods:
 
-[//]: # ([terraform-cloud-pod-benchmark.mp4]&#40;terraform-cloud-pod-benchmark.mp4&#41;)
+{{< video "terraform-cloud-pod-benchmark.mp4" "my-5" >}}
+
 
 The results speak for themselves: 1 minute 28 seconds vs 11 seconds. If your stack is generally stable and is not actively
 being built, you can easily focus on your application logic and use Cloud Pods rather than provision your infrastructure 
