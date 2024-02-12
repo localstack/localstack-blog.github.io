@@ -50,7 +50,7 @@ dig @8.8.8.8 localhost.localstack.cloud
 
 You will see the following output:
 
-```text
+```
 ; <<>> DiG 9.10.6 <<>> @8.8.8.8 localhost.localstack.cloud
 ; (1 server found)
 ;; global options: +cmd
@@ -113,7 +113,15 @@ So for example, on the host `localhost.localstack.cloud` would resolve to `127.0
 
 To implement this feature, we designed a system based on DNS.
 We brought our existing DNS server from LocalStack Pro into the LocalStack Community edition, and updated it to to support this new use case.
-We now respond with the IP address of the LocalStack container for any requests to `localhost.localstack.cloud`, provided your code is running in a correctly configured environment.
+Requests made to our DNS server to resolve the name `localhost.localstack.cloud` will respond with the IP address of the LocalStack container.
+Requests made to resolve names that we don't specifically handle (e.g. `example.com`) will be forwarded to your system DNS resolver:
+
+{{< mermaid >}}
+stateDiagram-v2
+    direction LR
+    Application --> LocalStack
+    LocalStack --> Upstream
+{{< /mermaid >}}
 
 We are now able to resolve the three issues mentioned above:
 
