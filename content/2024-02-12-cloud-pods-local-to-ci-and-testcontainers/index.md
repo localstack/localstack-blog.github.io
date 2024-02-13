@@ -261,14 +261,14 @@ LocalStack offers the flexibility to store Cloud Pods on-premises, ensuring full
 storage options, LocalStack supports two main types: S3 bucket remote storage and ORAS (OCI Registry as Storage) remote storage.
 Additionally, LocalStack facilitates the management of these storage options through a command-line interface (CLI), providing
 functionalities to create, delete, and list these remote storage locations for Cloud Pods. You can find all the necessary tools
-for that in the [documentation](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#remotes).
+for that in the [**documentation**](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#remotes).
 
 ## Limitations
 
 Cloud Pods are a powerful feature, though they are optimized to work with certain configurations. Primarily, matching the major
 version of LocalStack with that of the Cloud Pod ensures compatibility and smooth functionality. Additionally, while most services
 are fully supported, there are instances where certain service information may not be completely serialized into a Cloud Pod. 
-These nuances are minor and generally manageable within the framework and are also constantly [documented](https://docs.localstack.cloud/user-guide/state-management/persistence/#known-limitations) and updated.
+These nuances are minor and generally manageable within the framework and are also constantly [**documented**](https://docs.localstack.cloud/user-guide/state-management/persistence/#known-limitations) and updated.
 
 ## Conclusions
 
