@@ -123,6 +123,17 @@ stateDiagram-v2
     LocalStack --> Upstream
 {{< /mermaid >}}
 
+When receiving a DNS query for `localhost.localstack.cloud`, the LocalStack DNS resolver determines which subnet is shared between the incoming request's source IP address and the LocalStack container IP address.
+If it finds a shared subnet, the IP address of the LocalStack container in that subnet is returned.
+Otherwise, `127.0.0.1` is returned.
+
+{{< img-simple src="dns-subnet-matching.png" >}}
+
+In the scenario above, the LocalStack Docker container is part of two docker networks: "Network 1" and "Network 2".
+The application container is part of "Network 2" only.
+When it makes a DNS query for `localhost.localstack.cloud`, the LocalStack DNS server looks through its assigned IP addresses, and finds that the `172.19.0.0/24` subnet is common to both LocalStack and the incoming request's source IP address.
+Since this matches, the LocalStack DNS server returns the A record `172.19.0.2`.
+
 We are now able to resolve the three issues mentioned above:
 
 1. If SSL is used, then certificate validation must be turned off since LocalStack does not present a valid certificate for the domain used (either `localhost` or `host.docker.internal`).
