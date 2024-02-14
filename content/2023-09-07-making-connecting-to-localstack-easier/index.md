@@ -36,7 +36,7 @@ In some cases, using the host networking solves the problem, but it causes other
     * if using host networking (`--network host`), requests are made to an IP address or `localhost`, which is not included in the certificate; and
     * when using the gateway domain (`host.docker.internal`), this domain is also not included in the set of certificate domains.
 2. Subdomains created by resources such as S3 buckets or OpenSearch clusters will not resolve to the LocalStack container.
-3. The host port can only be published once, whereas container ports are separate from each other and multiple containers can publish the same port.
+3. The host port can only be published once, whereas container ports are separate from each other and multiple containers can bind to the same port.
 
 We already solve the first two issues by using the domain name `localhost.localstack.cloud` in our documentation and examples.
 This domain name is publicly registered and resolves to the IP address `127.0.0.1`.
@@ -50,7 +50,7 @@ dig @8.8.8.8 localhost.localstack.cloud
 
 You will see the following output:
 
-```
+```text
 ; <<>> DiG 9.10.6 <<>> @8.8.8.8 localhost.localstack.cloud
 ; (1 server found)
 ;; global options: +cmd
@@ -99,8 +99,8 @@ With this guide, common networking scenarios are described, with example configu
 Our main suggestion involved relying on Docker's networking capabilities, and for the user to use docker networks.
 In this mode, the name of the LocalStack container resolves correctly.
 Unfortunately, this is not without its limitations.
-Mainly that subdomains do not resolve to a valid IP address, and LocalStack had to be configured to return its container name in resource identifiers such as URLs, rather than `localhost`.
-Previous to this initiative, we supported setting `HOSTNAME_EXTERNAL` and `LOCALSTACK_HOSTNAME` to provide this functionality.
+Mainly that subdomains do not resolve to a valid IP address, and LocalStack needed to be configured to return its container name in resource identifiers such as URLs, rather than `localhost`.
+Before this initiative, we supported setting `HOSTNAME_EXTERNAL` and `LOCALSTACK_HOSTNAME` to provide this functionality.
 The user could set `HOSTNAME_EXTERNAL=localhost.localstack.cloud` to gain the benefits of subdomain support and TLS certificates, though its use in Lambda functions was still a problem.
 Unfortunately, the use of these two configuration variables within LocalStack services was inconsistent, or worse: nonexistent, and there was confusion as to why two variables were needed to support the same functionality.
 
@@ -109,12 +109,12 @@ There needed to be a more general solution that would reduce the amount of compl
 # Dynamic name resolution
 
 We wanted our users to be able to use the same domain name regardless of where their code was running from.
-So for example, on the host `localhost.localstack.cloud` would resolve to `127.0.0.1`, but inside a separate container (such as a Lambda function, or the user's own docker container) the name would resolve to the IP address of the LocalStack container.
+For example: from the host, `localhost.localstack.cloud` would resolve to `127.0.0.1`, but inside a separate container (such as a Lambda function, or the user's own docker container) the name would resolve to the IP address of the LocalStack container.
 
 To implement this feature, we designed a system based on DNS.
-We brought our existing DNS server from LocalStack Pro into the LocalStack Community edition, and updated it to to support this new use case.
-Requests made to our DNS server to resolve the name `localhost.localstack.cloud` will respond with the IP address of the LocalStack container.
-Requests made to resolve names that we don't specifically handle (e.g. `example.com`) will be forwarded to your system DNS resolver:
+We brought our existing DNS server from LocalStack Pro into the LocalStack Community edition, and updated it to to support this new use case:
+* Requests made to our DNS server to resolve the name `localhost.localstack.cloud` will respond with the IP address of the LocalStack container.
+* Requests made to resolve names that we don't specifically handle (e.g. `example.com`) will be forwarded to your system DNS resolver:
 
 {{< mermaid >}}
 stateDiagram-v2
@@ -127,11 +127,14 @@ When receiving a DNS query for `localhost.localstack.cloud`, the LocalStack DNS 
 If it finds a shared subnet, the IP address of the LocalStack container in that subnet is returned.
 Otherwise, `127.0.0.1` is returned.
 
+To illustrate how this works, the following diagram shows an application container trying to make a DNS query to the LocalStack DNS server.
+
 {{< img-simple src="dns-subnet-matching.png" >}}
 
-In the scenario above, the LocalStack Docker container is part of two docker networks: "Network 1" and "Network 2".
-The application container is part of "Network 2" only.
-When it makes a DNS query for `localhost.localstack.cloud`, the LocalStack DNS server looks through its assigned IP addresses, and finds that the `172.19.0.0/24` subnet is common to both LocalStack and the incoming request's source IP address.
+The LocalStack Docker container is part of two docker networks: "Network 1" and "Network 2".
+The application container is part of "Network 2" only, but this network is shared with LocalStack meaning that the query can be made to the container without going via ports published on the host.
+
+When it makes a DNS query for `localhost.localstack.cloud`, the LocalStack DNS server iterates through its assigned IP addresses, and finds that the `172.19.0.0/24` subnet is common to both LocalStack and the incoming query's source IP address.
 Since this matches, the LocalStack DNS server returns the A record `172.19.0.2`.
 
 We are now able to resolve the three issues mentioned above:
@@ -143,9 +146,9 @@ We are now able to resolve the three issues mentioned above:
 3. Each host port can only be published once, whereas container ports are separate from each other and multiple containers can publish the same port.
     * Now all inter-container networking can be done over the Docker network, and no ports have to be published to the host at all.
 
-So how can you make use of this new feature?
+**So how can you make use of this new feature?**
 
-For AWS services like Lambda or ECS, we are running your application code in an environment pre-configured to use this feature.
+AWS services like Lambda or ECS are running in an environment pre-configured to use this feature.
 
 _For your own containers, there is some configuration required._
 
@@ -280,7 +283,7 @@ Even though the port `5000` is included in the URL in this example, the port spe
 The final part of this networking initiative was to provide a way for you to debug your networking configuration.
 We released a tool: [https://github.com/localstack/localstack-docker-debug](https://github.com/localstack/localstack-docker-debug) that provides advice for users who are facing connectivity issues.
 
-For example, if your application code is running in a separate docker container, but that container cannot talk to LocalStack, you can run:
+For example, if your application code is running in a separate docker container, but that container cannot make network requests to LocalStack, you can run:
 
 ```bash
 docker run --rm \
@@ -293,7 +296,7 @@ docker run --rm \
 ```
 
 the tool attempts to connect to LocalStack.
-If it cannot, it temporarily adjusts the networking configuration of the application container name until connectivity is reached.
+If it cannot, it temporarily adjusts the networking configuration of the application container until connectivity is reached.
 Once this occurs, it prints helpful suggestions on what changes were needed to make the connection.
 If this does not work, the tool is able to capture your Docker network topology to help us understand your networking layout.
 
@@ -308,4 +311,4 @@ If further customization is required, we have streamlined and expanded on config
 Finally, if you have difficulties connecting to LocalStack, we provide a debug utility to help diagnose the cause of the problems.
 
 As always, let us know if any issues using the [GitHub issue tracker](https://github.com/localstack/localstack/issues), or if you are a Pro customer, feel free to [reach out to us directly](https://docs.localstack.cloud/getting-started/help-and-support).
-We want to hear your feedback on our networking initiative, so please get in touch via ou!
+We want to hear your feedback on our networking initiative, so please get in touch via our [discussion forum](https://discuss.localstack.cloud/).
