@@ -27,7 +27,7 @@ Sometimes, users wish to use multiple different methods to connect to LocalStack
 For example, application code running on the host triggers a Lambda function, which in turn invokes more AWS services.
 In this situation, there is not one single hostname that can be reached from a Lambda function (which runs in a separate Docker container) and the host machine.
 
-As per usual, our fantastic community have been very resourceful in trying to solve this problem.
+As per usual, our community has been very resourceful in trying to solve this problem.
 One idea was to connect their application containers to the host network (`--network host`) or by making requests to `host.docker.internal:4566` when using Docker Desktop.
 In some cases, using the host networking solves the problem, but it causes other problems:
 
@@ -36,11 +36,11 @@ In some cases, using the host networking solves the problem, but it causes other
     * if using host networking (`--network host`), requests are made to an IP address or `localhost`, which is not included in the certificate; and
     * when using the gateway domain (`host.docker.internal`), this domain is also not included in the set of certificate domains.
 2. Subdomains created by resources such as S3 buckets or OpenSearch clusters will not resolve to the LocalStack container.
-3. host port can only be published once, whereas container ports are separate from each other and multiple containers can publish the same port.
+3. The host port can only be published once, whereas container ports are separate from each other and multiple containers can publish the same port.
 
 We already solve the first two issues by using the domain name `localhost.localstack.cloud` in our documentation and examples.
 This domain name is publicly registered and resolves to the IP address `127.0.0.1`.
-Any (possibly nested) subdomain of this domain name also resolve to `127.0.0.1`.
+Any (possibly nested) subdomain of this domain name also resolves to `127.0.0.1`.
 This allows us to present a valid TLS certificate when using HTTPS from the host, but does not remove the connectivity problem.
 You can check that the domain maps to `127.0.0.1` by running:
 
@@ -89,9 +89,9 @@ So how did we go about making connectivity to LocalStack easier?
 # Providing helpful advice
 
 We created comprehensive troubleshooting advice in the form of our [Network troubleshooting guide](https://docs.localstack.cloud/references/network-troubleshooting/).
-We outlined different user setups and described settings were best practice, and were proven to work.
+The guide outlines different user setups and describes best practices for LocalStack networking.
 
-{{< img src="docs-screenshot.png" >}}
+{{< img-simple src="docs-screenshot.png" >}}
 
 With this guide, common networking scenarios are described, with example configuration for achieving connectivity.
 
@@ -212,10 +212,10 @@ These variables only allowed customization of a single bind host, and one or two
 We stopped using different ports for HTTP and HTTPS in 2019, so the names were not accurate.
 It was also a lot of similar sounding configuration to configure these two bind addresses.
 
-With LocalStack 2.0 we introduced `GATEWAY_LISTEN` as an alternative, which allowed multiple listen addresses to be specified in a single configuration variable.
+With LocalStack 2.0, we introduced `GATEWAY_LISTEN` as an alternative, which allowed multiple listen addresses to be specified in a single configuration variable.
 This meant more flexibility for our users, and a simpler configuration.
 Multiple bind addresses could be configured with a single variable.
-With this change, we reduced the number of required configuration variables down to 1.
+With this change, we reduced the number of required configuration variables down to one.
 
 For example, the following configuration:
 
@@ -245,7 +245,7 @@ but this domain resolved to `127.0.0.1` only, and as such was not usable from ot
 From very early on in LocalStack's history, this was accounted for via the "cosmetic" configuration variables: `LOCALSTACK_HOSTNAME` and `HOSTNAME_EXTERNAL`.
 
 If our DNS-based improvements are not available, or do not solve the connectivity problem, the user can configure cosmetic variables to a name that resolves to the LocalStack container.
-Where previously there were two variables that performed the same role in an inconsistent way, we now have a single variable: `LOCALSTACK_HOST` which is used internally by all services that return URLs.
+Where previously there were two variables that performed the same role in an inconsistent way, we now have a single variable: `LOCALSTACK_HOST`, which is used internally by all services that return URLs.
 
 For example, by running LocalStack with:
 
