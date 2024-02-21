@@ -2,12 +2,13 @@
 title: Mastering AWS Infrastructure Testing with LocalStack Cloud Pods - on localhost, CI and Testcontainers
 description: Discover how LocalStack Cloud Pods enable efficient testing of your applications by providing snapshots of AWS infrastructure for local development, continuous integration, and Testcontainers integration.
 lead: Discover how LocalStack Cloud Pods enable efficient testing of your applications by providing snapshots of AWS infrastructure for local development, continuous integration, and Testcontainers integration.
-date: 2024-02-11
-lastmod: 2024-02-11
+date: 2024-02-20
+lastmod: 2024-02-20
 images: ['cloud-pods-2024.png']
 leadimage: 'cloud-pods-2024.png'
 contributors: ["Anca Ghenade"]
 tags: ['showcase']
+weight: 2
 ---
 
 {{< img-simple src="cloud-pods-2024.png" width=300 alt="A LocalStack Cloud Pods banner">}}
