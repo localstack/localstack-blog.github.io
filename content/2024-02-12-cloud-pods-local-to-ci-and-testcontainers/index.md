@@ -25,8 +25,8 @@ differences between these approaches, we can simplify them in a diagram:
 
 {{< img-simple src="persistence-pods-remote.png" width=300 alt="The difference between persistence, local state and Cloud Pods.">}}
 
-Anything that is inside a LocalStack container constitutes the "state.” The "state" can either be persisted on your local 
-machine (PERSISTENCE=1), exported as a single local file (state export), or stored on the LocalStack platform (cloud pods). 
+Anything that is inside a LocalStack container constitutes the "state.” The "state" can either be persisted on your local
+machine and be loaded at startup, exported anytime as a single local file (state export), or stored on the LocalStack platform (cloud pods). 
 The underlying mechanisms of all three solutions are similar, but the layout obviously differs. We can observe how using state 
 locally and Cloud Pods are very similar, one might even consider them `local` and `remote` Pods. That being said, in this 
 article, we will focus on Cloud Pods and what problems they solve while glancing at the *local state* from time to time.
