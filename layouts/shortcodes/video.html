@@ -1,0 +1,23 @@
+<div class="container" style="padding: 0">
+    <div id="player-wrapper" class="{{ .Get 1 }}"></div>
+</div>
+
+<script
+        type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js"
+        crossorigin="anonymous"
+>
+</script>
+
+<script>
+    const playerElement = document.getElementById("player-wrapper");
+
+    const player = new Clappr.Player({
+        source: "{{ .Get 0 }}",
+        mute: true,
+        height: 500,
+        width: 840
+    });
+
+    player.attachTo(playerElement);
+</script>
