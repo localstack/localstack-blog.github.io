@@ -102,10 +102,10 @@ along with all the examples by cloning the [**demo repository**](https://github.
 The following recording shows the comparison in time spent waiting for the same infrastructure to be set up, first using 
 Terraform and then via Cloud Pods:
 
-{{< video "terraform-cloud-pod-benchmark.mp4" "my-5" >}}
+{{< youtube aDis2kOtqtw >}}
+<br>
 
-
-The results speak for themselves: 1 minute 28 seconds vs 11 seconds. If your stack is generally stable and is not actively
+The results speak for themselves: 1 minute 32 seconds vs 15 seconds. If your stack is generally stable and is not actively
 being built, you can easily focus on your application logic and use Cloud Pods rather than provision your infrastructure 
 using IaC tools every time. Alternatively, you can also export the state of your LocalStack instance or create a Cloud Pod
 using only the desired services with the `--services` flag.
@@ -120,7 +120,7 @@ This is also because you can skip some more steps in the workflows, such as inst
 For a one-time run, the differences are 1 minute and 42 seconds and 1 minute 40 seconds, but let’s remember that this stack is
 only using a few services: IAM, STS, SQS, SNS, DynamoDB, S3, Lambda, KMS, Kinesis, and CloudWatch. All these minutes add up
 with every workflow you run, and in this scenario, the run time went down by 42,8% and 42%, respectively. Meanwhile, the
-developer running this on their machine has reduced the waiting time by 86,6%.
+developer running this on their machine has reduced the waiting time by 84%.
 
 {{< img-simple src="ci-workflows.png" width=300 alt="Three GitHub action workflows using Cloud Pods.">}}
 
