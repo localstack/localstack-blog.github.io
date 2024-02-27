@@ -194,7 +194,7 @@ networks:
         - subnet: 10.0.2.0/24
 ```
 
-We have created a demo application to demonstrate this functionality: [https://github.com/localstack/networking-demo-application](https://github.com/localstack/networking-demo-application).
+We have created a demo application to demonstrate this functionality: [https://github.com/localstack-samples/networking-demo-application](https://github.com/localstack-samples/networking-demo-application).
 This sample uses `*.localhost.localstack.cloud` throughout to seamlessly configure AWS SDK clients to communicate with LocalStack.
 
 * The deploy process runs in a separate Docker container.
