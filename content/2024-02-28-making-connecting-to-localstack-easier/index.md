@@ -1,7 +1,7 @@
 ---
 title: How we are making connecting to LocalStack easier
-date: 2023-09-07
-lastmod: 2023-09-26
+date: 2024-02-28
+lastmod: 2024-02-28
 lead: Connecting your applications to LocalStack has not always been easy. In this post we describe the journey we went through to streamline the LocalStack networking experience.
 tags:
 - news
