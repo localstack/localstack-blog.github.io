@@ -2,17 +2,14 @@
 title: How we are making connecting to LocalStack easier
 date: 2024-02-28
 lastmod: 2024-02-28
-lead: Connecting your applications to LocalStack has not always been easy. In this post we describe the journey we went through to streamline the LocalStack networking experience.
-tags:
-- news
-contributors:
-- Simon
-- Daniel
-- Joel
+lead: Connecting your applications to LocalStack has not always been easy. In this post, we describe the journey we went through to streamline the LocalStack networking experience.
+tags: ['news']
+contributors: ["Simon Walker", "Daniel Fangl", "Joel Scheuner"]
+images: ['making-connecting-to-localstack-easier-banner.png']
+leadimage: 'making-connecting-to-localstack-easier-banner.png'
 ---
 
-
-<!-- picture -->
+{{< img-simple src="making-connecting-to-localstack-easier-banner.png" width=300 alt="Banner image for the blog: How we are making connecting to LocalStack easier">}}
 
 <!-- why is connecting hard? -->
 LocalStack normally runs in a Docker container, meaning that it is isolated from the host system.
@@ -122,6 +119,8 @@ stateDiagram-v2
     Application --> LocalStack
     LocalStack --> Upstream
 {{< /mermaid >}}
+
+<br>
 
 When receiving a DNS query for `localhost.localstack.cloud`, the LocalStack DNS resolver determines which subnet is shared between the incoming request's source IP address and the LocalStack container IP address.
 If it finds a shared subnet, the IP address of the LocalStack container in that subnet is returned.
@@ -300,7 +299,7 @@ If it cannot, it temporarily adjusts the networking configuration of the applica
 Once this occurs, it prints helpful suggestions on what changes were needed to make the connection.
 If this does not work, the tool is able to capture your Docker network topology to help us understand your networking layout.
 
-# Conclusions
+# Conclusion
 
 We hope that with this new functionality available today, accessing LocalStack should be considerably easier.
 By moving the DNS server into LocalStack and configuring spawned AWS compute environments to use it by default, your Lambda functions, ECS containers, and EC2 instances should already be able to access LocalStack at `localhost.localstack.cloud`.
