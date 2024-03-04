@@ -24,6 +24,8 @@ Sometimes, users wish to use multiple different methods to connect to LocalStack
 For example, application code running on the host triggers a Lambda function, which in turn invokes more AWS services.
 In this situation, there is not one single hostname that can be reached from a Lambda function (which runs in a separate Docker container) and the host machine.
 
+{{< img-simple src="localstack-lambda-ecs-docker-ec2.png" alt="An architecture diagram showing the logos of LocalStack, Lambda, EC2, ECS and Docker">}}
+
 As usual, our community has been very resourceful in trying to solve this problem.
 One idea was to connect their application containers to the host network (`--network host`) or by making requests to `host.docker.internal:4566` when using Docker Desktop.
 In some cases, using the host networking solves the problem, but it causes other problems:
@@ -88,7 +90,7 @@ So how did we go about making connectivity to LocalStack easier?
 We created comprehensive troubleshooting advice in the form of our [Network troubleshooting guide](https://docs.localstack.cloud/references/network-troubleshooting/).
 The guide outlines different user setups and describes best practices for LocalStack networking.
 
-{{< img-simple src="docs-screenshot.png" >}}
+{{< img-simple src="docs-screenshot.png" alt="Screenshot of the LocalStack Docs page" >}}
 
 With this guide, common networking scenarios are described, with example configuration for achieving connectivity.
 
@@ -128,7 +130,7 @@ Otherwise, `127.0.0.1` is returned.
 
 To illustrate how this works, the following diagram shows an application container trying to make a DNS query to the LocalStack DNS server.
 
-{{< img-simple src="dns-subnet-matching.png" >}}
+{{< img-simple src="dns-subnet-matching.png" alt="Architecture showcasing how an application container names a DNS query to LocalStack DNS server ">}}
 
 The LocalStack Docker container is part of two docker networks: "Network 1" and "Network 2".
 The application container is part of "Network 2" only, but this network is shared with LocalStack meaning that the query can be made to the container without going via ports published on the host.
@@ -301,6 +303,10 @@ The tool attempts to connect to LocalStack. If it cannot, it temporarily adjusts
 We hope that with this new functionality available today, accessing LocalStack should be considerably easier.
 By moving the DNS server into LocalStack and configuring spawned AWS compute environments to use it by default, your Lambda functions, ECS containers, and EC2 instances should already be able to access LocalStack at `localhost.localstack.cloud`.
 With a small configuration change, your application containers will also be able to reach LocalStack at `localhost.localstack.cloud`.
+
+For more information, check out the following YouTube video, where we demonstrate how to use the new networking features!
+
+{{< youtube Nad-vhM4Tsw >}}
 
 If further customization is required, we have streamlined and expanded on configuring both LocalStack itself, as well as cosmetic URLs returned by services that may be required for more complex networking setups.
 
