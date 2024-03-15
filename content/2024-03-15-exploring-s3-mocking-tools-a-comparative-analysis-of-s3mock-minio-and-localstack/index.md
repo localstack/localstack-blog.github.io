@@ -31,59 +31,59 @@ This document presents a comprehensive comparison of the S3 operations supported
 
 | Operation | LocalStack | MinIO | S3Mock |
 | --- | --- | --- | --- |
-| Core operations |  |  |  |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLocation.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html | ✅ | ❌ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAttributes.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectVersions.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html | ✅ | ❌ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html | ✅ | ❌ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html | ✅ | ❌ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html | ✅ | ❌ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html | ✅ | ✅ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_WriteGetObjectResponse.html | ❌ | ❌ | ❌ |
-| Bucket features |  |  |  |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAccelerateConfiguration.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAcl.html | ✅ | ✅ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAnalyticsConfiguration.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html | ✅ | ✅ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketInventoryConfiguration.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html | ❌ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html | ✅ | ✅ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketOwnershipControls.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketReplication.html | ✅ | ✅ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketRequestPayment.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html | ✅ | ✅ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html | ✅ | ✅ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketWebsite.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutPublicAccessBlock.html | ✅ | ❌ | ❌ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLockConfiguration.html | ✅ | ✅ | ✅ |
-| Object features |  |  |  |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLegalHold.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectRetention.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html | ✅ | ✅ | ✅ |
-| https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTorrent.html | ❌ | ❌ | ❌ |
+| **Core operations** |  |  |  |
+| [`CreateBucket`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html) | ✅ | ✅ | ✅ |
+| [`DeleteBucket`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html) | ✅ | ✅ | ✅ |
+| [`HeadBucket`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html) | ✅ | ✅ | ✅ |
+| [`ListBuckets`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html) | ✅ | ✅ | ✅ |
+| [`GetBucketLocation`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLocation.html) | ✅ | ✅ | ✅ |
+| [`PutObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html) | ✅ | ✅ | ✅ |
+| [`GetObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html) | ✅ | ✅ | ✅ |
+| [`HeadObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html) | ✅ | ✅ | ✅ |
+| [`CopyObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html) | ✅ | ✅ | ✅ |
+| [`DeleteObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html) | ✅ | ✅ | ✅ |
+| [`DeleteObjects`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html) | ✅ | ❌ | ✅ |
+| [`GetObjectAttributes`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAttributes.html) | ✅ | ✅ | ✅ |
+| [`RestoreObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html) | ✅ | ❌ | ❌ |
+| [`ListObjects`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html) | ✅ | ✅ | ✅ |
+| [`ListObjectsV2`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html) | ✅ | ✅ | ✅ |
+| [`ListObjectVersions`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectVersions.html) | ✅ | ✅ | ✅ |
+| [`CreateMultipartUpload`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html) | ✅ | ❌ | ✅ |
+| [`AbortMultipartUpload`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html) | ✅ | ✅ | ✅ |
+| [`CompleteMultipartUpload`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html) | ✅ | ✅ | ✅ |
+| [`ListMultipartUploads`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html) | ✅ | ✅ | ✅ |
+| [`UploadPart`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html) | ✅ | ❌ | ✅ |
+| [`UploadPartCopy`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html) | ✅ | ❌ | ✅ |
+| [`ListParts`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html) | ✅ | ❌ | ✅ |
+| [`SelectObjectContent`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html) | ✅ | ✅ | ❌ |
+| [`WriteGetObjectResponse`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_WriteGetObjectResponse.html) | ❌ | ❌ | ❌ |
+| **Bucket features** |  |  |  |
+| [`PutBucketAccelerateConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAccelerateConfiguration.html) | ✅ | ❌ | ❌ |
+| [`PutBucketAcl`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAcl.html) | ✅ | ✅ | ❌ |
+| [`PutBucketAnalyticsConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAnalyticsConfiguration.html) | ✅ | ❌ | ❌ |
+| [`PutBucketCors`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html) | ✅ | ❌ | ❌ |
+| [`PutBucketEncryption`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html) | ✅ | ✅ | ❌ |
+| [`PutBucketIntelligentTieringConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html) | ✅ | ❌ | ❌ |
+| [`PutBucketInventoryConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketInventoryConfiguration.html) | ✅ | ❌ | ❌ |
+| [`PutBucketLifecycleConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html) | ✅ | ✅ | ✅ |
+| [`PutBucketLogging`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html) | ✅ | ❌ | ❌ |
+| [`PutBucketMetricsConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html) | ❌ | ❌ | ❌ |
+| [`PutBucketNotificationConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html) | ✅ | ✅ | ❌ |
+| [`PutBucketOwnershipControls`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketOwnershipControls.html) | ✅ | ❌ | ❌ |
+| [`PutBucketPolicy`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html) | ✅ | ❌ | ❌ |
+| [`PutBucketReplication`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketReplication.html) | ✅ | ✅ | ❌ |
+| [`PutBucketRequestPayment`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketRequestPayment.html) | ✅ | ❌ | ❌ |
+| [`PutBucketTagging`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html) | ✅ | ✅ | ❌ |
+| [`PutBucketVersioning`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html) | ✅ | ✅ | ❌ |
+| [`PutBucketWebsite`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketWebsite.html) | ✅ | ❌ | ❌ |
+| [`PutPublicAccessBlock`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutPublicAccessBlock.html) | ✅ | ❌ | ❌ |
+| [`PutObjectLockConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLockConfiguration.html) | ✅ | ✅ | ✅ |
+| **Object features** |  |  |  |
+| [`PutObjectAcl`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html) | ✅ | ✅ | ✅ |
+| [`PutObjectLegalHold`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLegalHold.html) | ✅ | ✅ | ✅ |
+| [`PutObjectRetention`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectRetention.html) | ✅ | ✅ | ✅ |
+| [`PutObjectTagging`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html) | ✅ | ✅ | ✅ |
+| [`GetObjectTorrent`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTorrent.html) | ❌ | ❌ | ❌ |
 
 ## Tests results
 
