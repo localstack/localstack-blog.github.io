@@ -1,7 +1,7 @@
 ---
-title: Exploring S3 Mocking Tools — A Comparative Analysis of S3Mock, MinIo, and LocalStack
-description: Exploring S3 Mocking Tools — A Comparative Analysis of S3Mock, MinIo, and LocalStack
-lead: Exploring S3 Mocking Tools — A Comparative Analysis of S3Mock, MinIo, and LocalStack
+title: Exploring S3 Mocking Tools — A Comparative Analysis of S3Mock, MinIO, and LocalStack
+description: Exploring S3 Mocking Tools — A Comparative Analysis of S3Mock, MinIO, and LocalStack
+lead: Exploring S3 Mocking Tools — A Comparative Analysis of S3Mock, MinIO, and LocalStack
 date: 2024-03-15T2:34:20+05:30
 lastmod: 2024-03-15T2:34:20+05:30
 images: []
@@ -17,17 +17,17 @@ Amazon S3 (Simple Storage Service) is a scalable and durable cloud object storag
 Three popular tools for emulating S3 locally are:
 
 1. S3Mock: A lightweight, open-source tool for quickly emulating S3 locally. 
-2. MinIo: A scalable, standalone object storage server that is API-compatible with S3, suitable for local development and production deployments.
+2. MinIO: A scalable, standalone object storage server that is API-compatible with S3, suitable for local development and production deployments.
 3. LocalStack: A versatile local development environment that emulates various AWS services, including S3, allowing developers to simulate an entire AWS cloud infrastructure
 locally.
 
-Setting up each of the three tools - S3Mock, MinIo, and LocalStack - for local S3 emulation is a straightforward process. It simply involves pulling the respective image for the tool and starting the container. This ease of setup allows developers to quickly establish a local development environment for testing and development purposes without the need for direct interaction with AWS cloud infrastructures. 
+Setting up each of the three tools - S3Mock, MinIO, and LocalStack - for local S3 emulation is a straightforward process. It simply involves pulling the respective image for the tool and starting the container. This ease of setup allows developers to quickly establish a local development environment for testing and development purposes without the need for direct interaction with AWS cloud infrastructures. 
 
 In addition to its other features, LocalStack presents a unique offering in the form of a dedicated S3 container image tag. This specialized feature provides a more streamlined, lightweight option that is exclusively focused on emulating the services of S3. It simplifies the process by eliminating unnecessary components and honing in on the essential elements of S3. This makes it an ideal solution for users who require a lightweight, efficient, and effective S3 service emulation.
 
 ## API compliance with S3
 
-This document presents a comprehensive comparison of the S3 operations supported by three popular local S3 emulation tools: LocalStack, MinIo, and S3Mock. By understanding the specific S3 operations that each tool supports, developers can choose the tool that best meets their needs for local development and testing.
+This document presents a comprehensive comparison of the S3 operations supported by three popular local S3 emulation tools: LocalStack, MinIO, and S3Mock. By understanding the specific S3 operations that each tool supports, developers can choose the tool that best meets their needs for local development and testing.
 
 | Operation | LocalStack | MinIO | S3Mock |
 | --- | --- | --- | --- |
@@ -91,16 +91,16 @@ From the LocalStack repository, we ran the S3 integration tests, first targeting
 
 In this testing phase, we encountered a significant number of tests that had failed. Consequently, we took it upon ourselves to thoroughly analyze the results of these tests. We established a system to organize and categorize the results into four distinct classes for a more streamlined analysis. These classes included 'Passed', where the test completed successfully; 'Missing Exception', where the test failed due to an unexpected lack of exception; 'Imparity', where the test failed due to a response lacking specific attributes; and finally, 'Not Supported', where the test could not be carried out due to the lack of necessary support or resources.
 
-It's important to note that for MinIo, we had to make several modifications to the tests. These included forcing the signature_version of the boto client and setting up an access key and secret key that were previously created in the tool console.
+It's important to note that for MinIO, we had to make several modifications to the tests. These included forcing the signature_version of the boto client and setting up an access key and secret key that were previously created in the tool console.
 
-{{< img-simple src="localstack-tests-s3mock-minio.png" alt="LocalStack S3 Tests executed against S3Mock and Minio" width="800">}}
+{{< img-simple src="localstack-tests-s3mock-MinIO.png" alt="LocalStack S3 Tests executed against S3Mock and MinIO" width="800">}}
 
 LocalStack strives for continuous improvement to align its services closely with AWS. It maintains an extensive set of integration tests to thoroughly assess the features and capabilities of its simulated services, ensuring they mirror their AWS counterparts as accurately as possible. Given this dedication, it's understandable that other tools may not match LocalStack's parity with AWS services.
 
 Here are some illustrative examples where LocalStack, in its ongoing effort to achieve parity, manages to outperform other comparable tools in the market. The goal of these examples is to demonstrate the relative superiority of LocalStack in terms of the breadth and depth of AWS services it emulates, compared to the other tools:
 
 - test_s3_list_objects_timestamp_precision: The reason for this failure is the lack of parity in the timestamp. The timestamp is a crucial aspect of data handling and, in this case, it's not returned in the correct format, which should be in ISO 8061.
-- test_put_get_object_special_character: This parametrized test is designed to explore the potential for uploading objects that contain special characters within their keys. This is a critical feature to test as it ensures the systems' ability to handle a variety of object key inputs. Some examples of the keys rejected by MinIo and S3Mock:
+- test_put_get_object_special_character: This parametrized test is designed to explore the potential for uploading objects that contain special characters within their keys. This is a critical feature to test as it ensures the systems' ability to handle a variety of object key inputs. Some examples of the keys rejected by MinIO and S3Mock:
     - "file%2Fname"
     - "test key//"
     - "a/%F0%9F%98%80/"
