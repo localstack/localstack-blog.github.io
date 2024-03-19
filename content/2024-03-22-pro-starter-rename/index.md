@@ -2,12 +2,15 @@
 title: Renaming the Pro Tier
 date: 2024-03-19
 lastmod: 2024-03-19
-lead:
+lead: The renamed 'Starter' tier as the starting point of your journey towards local cloud development.
 tags: ['news']
 contributors: ["Simon Wallner", "Harsh Mishra"]
-images: ['missing.png']
-leadimage: 'missing.png'
+images: ['pro-starter.png']
+leadimage: 'pro-starter.png'
 ---
+
+{{< img-simple src="pro-starter.png" width=300 alt="Banner image for the blog: Renaming the Pro Tier">}}
+
 There is a lot going on here at LocalStack, with different teams continuously delivering features and improvements in the core AWS emulator, as well as the web app and additional services.
 The year has only just started, and our development pipeline is bursting with even more things to come.
 
