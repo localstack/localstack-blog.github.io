@@ -11,21 +11,21 @@ tags: ['showcase']
 
 ## Introduction
 
-[LocalStack Pro](https://twitter.com/localstack/status/1181338405315256320) was announced in 2019, shipping along with it the LocalStack Web application, revolving around resource browsers, and managing your LocalStack subscription. Over the past few years, we have expanded the scope of the LocalStack Web Application to encompass modern developer toolings & features to make local cloud development a breeze! These included [Stack Insights for detailed AWS API telemetry](https://docs.localstack.cloud/user-guide/web-application/stack-insights/), [Cloud Pods browser for storing state snapshots](https://docs.localstack.cloud/user-guide/web-application/cloud-pods-browser/), [Chaos Engineering](https://docs.localstack.cloud/user-guide/chaos-engineering/) & [IAM Policy Stream](https://docs.localstack.cloud/user-guide/security-testing/iam-policy-stream/) dashboards, and much more! While the initial focus was to provide an experience similar to the AWS Management Console, our overall vision has shifted to help developers turbocharge their inner development loop.
+[LocalStack Pro](https://twitter.com/localstack/status/1181338405315256320) was announced in 2019, shipping along with it the LocalStack Web application, revolving around resource browsers, and managing your LocalStack subscription. Over the past few years, we have expanded the scope of the LocalStack Web Application to encompass modern developer toolings & features to make local cloud development a breeze! These included [Stack Insights for detailed AWS API telemetry](https://docs.localstack.cloud/user-guide/web-application/stack-insights/), [Cloud Pods browser for storing state snapshots](https://docs.localstack.cloud/user-guide/web-application/cloud-pods-browser/), [Chaos Engineering](https://docs.localstack.cloud/user-guide/chaos-engineering/) & [IAM Policy Stream](https://docs.localstack.cloud/user-guide/security-testing/iam-policy-stream/) dashboards, and much more! While the initial focus was to provide an experience similar to the AWS Management Console, our overall vision has shifted to help developers turbocharge feedback cycles for their inner development loop.
 
-As our team expanded and we envisioned a broader scope for the LocalStack product, we started dogfooding our software to leverage the same features our customers use LocalStack for! LocalStack’s core cloud emulator allows us to run our application infrastructure locally and provide an efficient cloud developer experience across the entire software development lifecycle (SDLC). This experience enables us to build our product features in a way that closely matches what our customers are looking for — a comprehensive developer platform that facilitates local multi-cloud development across different providers and services!
+As our team expanded and we envisioned a broader scope for the LocalStack product, we started dogfooding our software to leverage the same features our customers use LocalStack for! LocalStack’s core cloud emulator allows us to run our own cloud application infrastructure locally and provide an efficient developer experience across the entire software development lifecycle (SDLC). This experience enables us to build our product features in a way that closely matches what our customers are looking for — a comprehensive developer platform that facilitates local multi-cloud development across different providers and services!
 
 In this blog, we highlight how we use the LocalStack core cloud emulator and other novel solutions, to build, test, and integrate new features in our LocalStack Web Application. We’ll also detail some of the lessons we have learned, recommendations for success, and how our experience has further helped us improve the base emulation layer!
 
 ## How do we enable local cloud development?
 
-The LocalStack Web Application comprises two central components — the client application and the related backend. Our whole infrastructure is hosted on Amazon Web Services (AWS) and is deployed using the Cloud Development Kit (CDK). We use various AWS services, such as Lambda, S3, SNS, SQS, CloudFront, DynamoDB, ECS, EC2, Cognito, and Secrets Manager, to name just a few! We use ReactJS & Typescript for our client application while using Flask & Python for the backend.
+The LocalStack Web Application comprises two central components — the client application and the related backend. Our whole infrastructure is hosted on Amazon Web Services (AWS) and is deployed using the Cloud Development Kit (CDK). We use various AWS services, such as Lambda, S3, SNS, SQS, CloudFront, DynamoDB, ECS, EC2, Cognito, and Secrets Manager, to name just a few. We use ReactJS & Typescript for our client application while using Flask & Python for the backend.
 
 The complexity of our cloud infrastructure and various managed dependencies mean that there is no straightforward way of testing it! While [AWS’s official recommendations](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/development-best-practices.html) push us forward to using assertions and snapshot tests, there are inherent limitations and hurdles such as protracted deployment periods and expensive cloud resources.
 
 ### Infrastructure deployments & testing
   
-With our core cloud emulator, we can run our entire cloud infrastructure on our local machine! We are using [`cdklocal`](https://github.com/localstack/aws-cdk-local), our open-source wrapper script on the CDK library to run our CDK deployments against LocalStack. Here are the commands that are wrapped inside a Makefile target, that enabled us to bootstrap the local developer environment and deploy our platform stack on developer machines.
+With our core cloud emulator, we can run our entire cloud infrastructure on the local machine! We are using [`cdklocal`](https://github.com/localstack/aws-cdk-local), our open-source wrapper script around the CDK library, to run our CDK deployments against LocalStack. Here are the commands that are wrapped inside a Makefile target, which enabled us to bootstrap the local developer environment and deploy our platform stack on developer machines.
 
 ```bash
 export AWS_ACCOUNT_ID=000000000000 AWS_DEFAULT_REGION=eu-central-1
@@ -34,15 +34,15 @@ cdklocal bootstrap aws://$$AWS_ACCOUNT_ID/$$AWS_DEFAULT_REGION
 cdklocal deploy --require-approval=never 
 ```
 
-The key tenet of our local cloud development model is agility — Deploying our CDK stack on AWS for development & testing used to take around 15 minutes. With LocalStack, we were able to cut it down to a minute! It enables a quick feedback loop and confidence with “our app runs locally!” while ensuring we are not handcuffed, as we deploy our applications locally tens or hundreds of times a day.
+The key tenet of our local cloud development model is agility — deploying our CDK stack on AWS for development & testing used to take around 15 minutes. With LocalStack, we were able to cut it down to a minute. It enables a quick feedback loop and confidence with “our app runs locally!” while ensuring we are not handcuffed, as we deploy our applications locally dozens of times a day.
 
-We also run our integration test suite against the locally deployed cloud infrastructure. This includes testing E2E flows encompassing Lambdas & SQS queues, Cognito triggers and authentication flows, alongside a DynamoDB-powered persistence layer with asynchronous stream handlers. The locally running integration suite enables us to further get rid of cloud-based developer environments, and use emulated resources to test our infrastructure, as realistically as possible!
+We also run our integration test suite against the locally deployed cloud infrastructure. This includes testing E2E flows encompassing Lambdas & SQS queues, Cognito triggers and authentication flows, alongside a DynamoDB-powered persistence layer with asynchronous stream handlers. The local integration suite enables us to further get rid of cloud-based developer environments, and use emulated resources to test our infrastructure locally, with highest level of fidelity.
 
 ### Development & debugging
 
 Apart from this, we further wished to leverage LocalStack’s debugging tools in our development process. We were able to incorporate [Lambda Hot Reloading](https://docs.localstack.cloud/user-guide/lambda-tools/hot-reloading/) & [ECS Code Mounting](https://docs.localstack.cloud/user-guide/aws/ecs/#mounting-local-directories-for-ecs-tasks).
 
-With Lambda Hot Reloading, we can continuously apply code changes to our locally running Lambda functions, removing the need to redeploy any infrastructural changes. This is especially useful during development, as well as our extensive integration and acceptance test suite, where developers can iterate quickly without the need to wait for code changes to be applied.
+With Lambda Hot Reloading, we can continuously apply and test code changes to our locally running Lambda functions, removing the need for any code uploads or function re-deployments. This is especially useful during development, as well as our extensive integration and acceptance test suite, where developers can iterate quickly without the need to wait for code changes to be applied.
 
 For example, with just a few lines of code, our CDK stack can be enabled to use the Hot Reloading feature mentioned above:
 
@@ -61,7 +61,7 @@ Our team can furthermore benefit from hot-reloading qualities by incorporating L
 
 ### LocalStack Extensions
 
-The idea of LocalStack Extensions is to provide a straightforward pathway to start custom service emulators together with LocalStack. As part of our effort to improve the user experience for extensions we released a couple of new extensions that we actively use. Our development & testing workflows make use of the Stripe and MailHog extensions both locally and in CI! We configure LocalStack to start with these extensions automatically by setting the following environment variable:
+The idea of LocalStack Extensions is to provide a straightforward pathway to start custom service emulators together with LocalStack. As part of our effort to improve the user experience for extensions, we have released a couple of new extensions that we also actively use internally. Our development & testing workflows make use of the Stripe and MailHog extensions - both locally and in CI! We configure LocalStack to start with these extensions automatically by setting the following environment variable:
 
 ```bash
 EXTENSION_AUTO_INSTALL=localstack-extension-mailhog, localstack-extension-stripe
@@ -69,7 +69,7 @@ EXTENSION_AUTO_INSTALL=localstack-extension-mailhog, localstack-extension-stripe
 
 // picture
 
-The LocalStack Web Application also handles various aspects around account management, such as Purchases, Subscriptions, Billing, and more! The Stripe extension fully allows us to test that using an emulated Stripe service that runs on the local machine! With the Stripe extension, we can now test user flows like purchasing a subscription or billing details, and other Stripe API operations. 
+The LocalStack Web Application also handles various aspects around account management, such as Purchases, Subscriptions, Billing, and more. The Stripe extension fully allows us to test these flows, using an emulated Stripe service that runs on the local machine. With the Stripe extension, we can now test user flows like purchasing a subscription or updating billing details, and other Stripe API operations. 
 
 Routing the calls to the locally running Stripe emulator is achieved by simply overriding the API endpoint of the Stripe SDK, depending on whether we’re running locally.
 
@@ -79,13 +79,13 @@ In the case of testing our checkout flow, which means purchasing a subscription,
 
 // example
 
-The Mailhog extension allows us to emulate a local email server for testing user flows that require our platform to send emails, such as account activation, trial expiry notifications, and much more! Using this extension automatically configures LocalStack to use the MailHog SMTP server when sending emails. This means that any mails we send from our application logic, ends up in the mailbox of MailHog, which we can either view via the UI or calling the API that comes with the extension.
+The Mailhog extension allows us to emulate a local email server for testing user flows that require our platform to send emails, such as account activation, trial expiry notifications, and much more! Using this extension automatically configures LocalStack to use the MailHog SMTP server when sending emails. This means that any mails we send from our application logic, ends up in the mailbox of MailHog, which we can then either view via the UI or fetch via the API that comes with the extension.
 
 // picture
 
 ## How do we use LocalStack in CI?
 
-By running our cloud deployment & test suite locally, we were able to demystify critical pain points of the local cloud developer experience, which further helped us improve the parity, performance, and robustness of our core cloud emulator. However, we wanted something similar for our experience while using LocalStack in continuous integration (CI) pipelines! While it is easy just to use LocalStack as a drop-in replacement for AWS, and run tests just like we would do it locally, it is hard to retrieve detailed API telemetry, critical CI analytics, and discover flaky tests that need remediation!
+By running our cloud deployment & test suite locally, we were able to demystify critical pain points of the local cloud developer experience, which further helped us improve the parity, performance, and robustness of our core cloud emulator. However, we wanted something similar for our experience while using LocalStack in continuous integration (CI) pipelines! While it is easy just to use LocalStack as a drop-in replacement for AWS, and run tests just like we would do it locally, it is hard to retrieve detailed API telemetry, critical CI analytics, and discover flaky tests that need remediation.
 
 // picture
 
@@ -97,7 +97,7 @@ We primarily use GitHub Actions to build, deploy and test our web application & 
 
 -   Pulls the `latest` - or a specific - version of the LocalStack Docker image
 -   Installs the `localstack` CLI alongside setting up configurations & wrapper scripts 
--   Starts the LocalStack container either with or without the pro capabilities depending on whether a valid CI Key is provided
+-   Starts the LocalStack container either with or without the pro capabilities, depending on whether a valid CI Key is provided
 
 The GitHub Action allowed us to migrate from our existing Docker Compose setup to using the following workflow step:
 
@@ -116,7 +116,7 @@ LocalStack’s persistence mechanism (enabled via `PERSISTENCE=1`) was useful fo
 
 // picture
 
-Using Cloud Pods, we were able to cut down the total infrastructure deployment time from a minute to less than 10 seconds, both locally and in CI! To create the pod, we have a GitHub action which creates a pod with the latest infrastructure, that’s triggered on each merge to main. We then use said pod in combination with our auto-loading Cloud Pods feature, which allows us to load cloud pods on the start-up of localstack automatically. This is another env var we set like this:  `AUTO_LOAD_POD=localstack-backend-pod`.
+Using Cloud Pods, we were able to cut down the total infrastructure deployment time from a minute to less than 10 seconds, both locally and in our CI pipelines. To maintain an up-to-date version of the cloud pod, we have a GitHub action which creates a pod with the latest infrastructure, that’s triggered on each merge to the `main` branch. We then use that pod in combination with our auto-loading Cloud Pods feature, which allows us to load cloud pods on the start-up of LocalStack automatically. This is another env var we set like this:  `AUTO_LOAD_POD=localstack-backend-pod`.
 
 // code
 
