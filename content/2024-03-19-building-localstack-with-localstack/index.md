@@ -99,7 +99,7 @@ The Mailhog extension allows us to emulate a local email server for testing user
 
 ## How do we use LocalStack in CI?
 
-By running our cloud deployment & test suite locally, we were able to demystify critical pain points of the local cloud developer experience, which further helped us improve the parity, performance, and robustness of our core cloud emulator. However, we wanted something similar for our experience while using LocalStack in continuous integration (CI) pipelines! While it is easy just to use LocalStack as a drop-in replacement for AWS, and run tests just like we would do it locally, it is hard to retrieve detailed API telemetry, critical CI analytics, and discover flaky tests that need remediation.
+By running our cloud deployment & test suite locally, we were able to demystify critical pain points of the local cloud developer experience, which further helped us improve the parity, performance, and robustness of our core cloud emulator. However, we wanted to extend that improved developer experience across continuous integration (CI) pipelines with LocalStack! While it is easy just to use LocalStack as a drop-in replacement for AWS, and run tests just like we would do it locally, it is hard to retrieve detailed API telemetry, critical CI analytics, and discover flaky tests that need remediation.
 
 // picture
 
