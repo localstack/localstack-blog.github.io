@@ -103,7 +103,7 @@ By running our cloud deployment & test suite locally, we were able to demystify 
 
 // picture
 
-This led us to embark on a journey to identify the missing puzzle pieces in the LocalStack CI experience. It led us to build internal homegrown systems which have now spun up as critical LocalStack features that we continue to leverage for our CI pipelines.
+This led us to embark on a journey to identify the missing puzzle pieces in the LocalStack CI experience. It made us build internal homegrown systems, which have now spun into critical LocalStack features that we continue to leverage for our CI pipelines.
 
 ### LocalStack GitHub Actions
 
