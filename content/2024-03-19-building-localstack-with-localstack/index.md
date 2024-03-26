@@ -44,12 +44,15 @@ Apart from this, we further wished to leverage LocalStack’s debugging tools in
 
 With Lambda Hot Reloading, we can continuously apply and test code changes to our locally running Lambda functions, removing the need for any code uploads or function re-deployments. This is especially useful during development, as well as our extensive integration and acceptance test suite, where developers can iterate quickly without the need to wait for code changes to be applied.
 
-Just a few lines of code allow us to enable hot reloading for our Lambda functions in our CDK stack:
+For example, with just a few lines of code, our CDK stack can be enabled to use the Hot Reloading feature mentioned above:
 
-// code
+```python
+if enable_hot_reloading():
+    lambda_bucket = s3.Bucket.from_bucket_name(scope, f"lambda_name_local", "hot-reload")
+    lambda_code = lambda_.Code.from_bucket(bucket=lambda_bucket, key=HOT_RELOADED_CODE_PATH) # path pointing to our root project directory
+```
 
-
-With just a few of many LocalStack features, we streamline our developer experience and make the setup independent of the cloud: :
+With just a few of many LocalStack features, we streamline our developer experience and make the setup independent of the cloud:
 
 -   Our infrastructure, containing our lambdas, is deployed in hot-reload mode, which makes LocalStack watch the lambda code for any changes
 -   We can trigger these lambdas either during integration tests or by invoking them manually — or through the locally running web application.
@@ -73,11 +76,22 @@ The LocalStack Web Application also handles various aspects around account manag
 
 Routing the calls to the locally running Stripe emulator is achieved by simply overriding the API endpoint of the Stripe SDK, depending on whether we’re running locally.
 
-// code
+```python
+stripe_sdk.api_base = “http://localhost:8420” if is_local_development else “https://api.stripe.com”
+stripe_sdk.Customer.create(...)
+```
 
 In the case of testing our checkout flow, which means purchasing a subscription, we can make the necessary calls to the Stripe extension, and check whether postconditions are fulfilled.
 
-// example
+```python
+def test_subscribe(self):
+    subscription = self.stripe_provider.subscribe(
+        plan=TeamPlan,
+    )
+    assert subscription
+    assert subscription.plan.id == TeamPlan.id
+    ...
+```
 
 The Mailhog extension allows us to emulate a local email server for testing user flows that require our platform to send emails, such as account activation, trial expiry notifications, and much more! Using this extension automatically configures LocalStack to use the MailHog SMTP server when sending emails. This means that any mails we send from our application logic, ends up in the mailbox of MailHog, which we can then either view via the UI or fetch via the API that comes with the extension.
 
@@ -99,11 +113,18 @@ We primarily use GitHub Actions to build, deploy and test our web application & 
 -   Installs the `localstack` CLI alongside setting up configurations & wrapper scripts 
 -   Starts the LocalStack container either with or without the pro capabilities, depending on whether a valid CI Key is provided
 
-The GitHub Action allows us to spin up LocalStack by using the following workflow step:
+The GitHub Action allowed us to migrate from our existing Docker Compose setup to using the following workflow step:
 
-// code
-
-This allows us to spin up LocalStack more easily. and use the same configuration we use locally to execute our test suite in the CI pipeline!
+```yaml
+- name: Start LocalStack
+  uses: LocalStack/setup-localstack@v0.1.2
+  with:
+    image-tag: 'latest'
+    use-pro: 'true'
+    configuration: EXTRA_CORS_ALLOWED_ORIGINS=*
+  env:
+    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+```
 
 ### State Snapshots with Cloud Pods
 
