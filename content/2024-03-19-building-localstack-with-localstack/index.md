@@ -188,7 +188,7 @@ This enables us to:
     
 With the help of auto-loaded Cloud Pods to pre-seed the infrastructure state, we have achieved a game-changing improvement to our pre-release testing due to faster application spin-ups & resource allocation.
 
-Though ephemeral environments have been ubiquitous in the frontend space, LocalStack can now spin up your entire application, including any infrastructure relying on AWS services, and ship you a live deployment with every change. This first-class preview-on-pull request support is instrumental in helping LocalStack become a true cloud development platform — not only for developers, but also for QA & management, to fully become the backbone of cloud development throughout the entire SDLC.
+Though application previews have been ubiquitous in the frontend space, LocalStack can now spin up your entire application, including any infrastructure relying on AWS services, and ship you a live deployment with every change. This first-class preview-on-pull request support is instrumental in helping LocalStack become a true cloud development platform — not only for developers, but also for QA & management, to fully become the backbone of cloud development throughout the entire SDLC.
 
 ## Conclusion
 
