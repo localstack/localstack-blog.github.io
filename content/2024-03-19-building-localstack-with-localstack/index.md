@@ -119,7 +119,7 @@ LocalStack’s persistence mechanism (enabled via `PERSISTENCE=1`) was useful fo
 Using Cloud Pods, we were able to cut down the total infrastructure deployment time from a minute to less than 10 seconds, both locally and in our CI pipelines. To maintain an up-to-date version of the cloud pod, we have a GitHub action which creates a pod with the latest infrastructure, that’s triggered on each merge to the `main` branch. We then use that pod in combination with our auto-loading Cloud Pods feature, which allows us to load cloud pods on the start-up of LocalStack automatically. This is another env var we set like this:  `AUTO_LOAD_POD=localstack-backend-pod`.
 
 // code
-
+Now, when LocalStack starts up, our whole backend will be loaded from the pod, and we can immediately run our integration test suite against it. 
 ### Continuous Integration (CI) Analytics
 
 With the LocalStack v3 release, we released a private preview of our CI Analytics offering. CI Analytics allow us to collect, analyze, and visualize critical metrics from our CI pipelines, helping us understand the impact of cloud infrastructure changes on CI builds.
