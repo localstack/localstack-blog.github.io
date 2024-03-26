@@ -138,7 +138,7 @@ This can be enabled by just setting a simple configuration variable in your Loca
 
 With CI Analytics we can drill down into the request & response traces for every AWS API call that we make with our integration test suite. With the help of CI Analytics, we have brought together the critical missing pieces of CI observability & analytics into one single feature which has massively improved our CI troubleshooting and debugging experience.
 
-Additionally, we can now instrument the important paths and processes, capture the infrastructure state which can be restored locally, and enrich our API telemetry to capture relevant data that help our developers understand flaky CI tests. As an example, we were able to figure out……
+Additionally, we can now instrument the important paths and processes, capture the infrastructure state which can be restored locally, and enrich our API telemetry to capture relevant data that help our developers understand flaky CI tests. 
 
 // picture
 
