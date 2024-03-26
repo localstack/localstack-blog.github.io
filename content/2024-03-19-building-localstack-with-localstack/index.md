@@ -144,7 +144,7 @@ Additionally, we can now instrument the important paths and processes, capture t
 
 ## How do we use LocalStack to enable application previews and E2E testing?
 
-The next step in the SDLC after local development/testing and running our test suite in CI are acceptance tests through application previews and e2e tests including our web UI. After running our integration tests, both locally and in CI, the next step was to deploy the CDK stack against a staging environment. The staging environment allowed us to run our end-to-end (E2E) integration test suite using the Playwright framework and further use it for acceptance testing, like getting alignment with cross-departmental projects. It allowed us to achieve the final degree of validation before we shipped a new release on production.
+The next step in our SDLC after local development/testing and running our test suite in CI, are acceptance tests through application previews, and e2e tests including our web UI. After running our integration tests, both locally and in CI, the next step was to deploy the CDK stack in our staging environment. The staging environment allowed us to run our end-to-end (E2E) integration test suite, which rely on the Playwright framework, and further use it for acceptance testing, to get alignment across cross-departmental projects. It allowed us to achieve the final degree of validation before we shipped a new release to production.
 
 With the LocalStack v3 release, we released a private preview of Ephemeral Instances. These ephemeral instances allow us to run a short-lived encapsulated deployment of the LocalStack sandbox in the cloud. It allows us to run our E2E tests, preview features in our cloud applications, and collaborate asynchronously within and across the team!
 
