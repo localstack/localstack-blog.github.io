@@ -5,7 +5,7 @@ lead: Building LocalStack with LocalStack
 date: 2024-03-19T9:21:02+05:30
 lastmod: 2024-03-19T9:21:02+05:30
 images: []
-contributors: []
+contributors: ["Lukas Pichler", "Harsh Mishra", "Vlad Gramuzov"]
 tags: ['showcase']
 ---
 
@@ -36,7 +36,7 @@ cd ../frontend
 cdklocal deploy --require-approval=never
 ```
 
-The key tenet of our local cloud development model is agility — deploying our CDK stack on AWS for development & testing used to take around 15 minutes. With LocalStack, we were able to cut it down to a minute. It enables a quick feedback loop and confidence with “our app runs locally!” while ensuring we are not handcuffed, as we deploy our applications dozens of times a day locally.
+The key tenet of our local cloud development model is agility — deploying our CDK stack on AWS for development & testing used to take around 15 minutes. With LocalStack, we were able to cut it down to a minute. It enables a quick feedback loop and confidence with *our app runs locally!* while ensuring we are not handcuffed, as we deploy our applications dozens of times a day locally.
 
 We also run our integration test suite against the locally deployed cloud infrastructure. This includes testing E2E flows encompassing Lambdas & SQS queues, Cognito triggers and authentication flows, alongside a DynamoDB-powered persistence layer with asynchronous stream handlers. The local integration suite enables us to further get rid of cloud-based developer environments, and use emulated resources to test our infrastructure locally, with highest level of fidelity.
 
