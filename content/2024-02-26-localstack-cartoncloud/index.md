@@ -1,5 +1,5 @@
 ---
-title: Case Study — LocalStack & CartonCloud
+title: CartonCloud utilizes LocalStack for transforming development efficiency and agility!
 description: CartonCloud maximizes engineering efficiency and agility by leveraging LocalStack to emulate AWS services in a localized environment. In this case study with CartonCloud’s CEO, Vincent Fletcher, we showcase how CartonCloud achieved a 10x reduction in onboarding time and a remarkable 15x improvement in cost and operational efficiency. By standardizing LocalStack across their development environment, CartonCloud not only expedited their engineering endeavours but also significantly enhanced the overall developer experience.
 lead: CartonCloud maximizes engineering efficiency and agility by leveraging LocalStack to emulate AWS services in a localized environment. In this case study with CartonCloud’s CEO, Vincent Fletcher, we showcase how CartonCloud achieved a 10x reduction in onboarding time and a remarkable 15x improvement in cost and operational efficiency. By standardizing LocalStack across their development environment, CartonCloud not only expedited their engineering endeavours but also significantly enhanced the overall developer experience.
 date: 2024-02-26T7:46:04+05:30
@@ -37,7 +37,7 @@ properties:
 
 <div class="quote-container mt-4">
 
-  > _“WIP”_
+  > _“LocalStack has massively decreased the time when the local environment is breaking for our developers. That was a big pain point, and it's not anymore!”_
   <div class="quote-author">
     <p><a href="https://www.linkedin.com/in/vincent-fletcher/">Vincent Fletcher</a>,</p>
     <p>Co-Founder & Chief Product Office at <a href="https://www.cartoncloud.com ">CartonCloud</a></p>
