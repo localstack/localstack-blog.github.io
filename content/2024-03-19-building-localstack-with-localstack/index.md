@@ -183,8 +183,8 @@ steps:
 This enables us to:
 
 -   Foster active collaboration with GTM, RevOps, and DevRel teams to demonstrate new features to prospective customers.
--   Removing the need for staging environments, by giving every engineer an isolated environment , unblocking our team members.
--   Cut down staging environment costs by tearing down environments automatically, and avoid unnecessary cloud costs.
+-   Remove the need for staging environments, by giving every engineer an isolated environment, essentially unblocking ourselves.
+-   Cut down costs around our staging environment by tearing down environments automatically, which avoids unnecessary cloud costs.
     
 With the help of auto-loaded Cloud Pods to pre-seed the infrastructure state, we have achieved a game-changing improvement to our pre-release testing due to faster application spin-ups & resource allocation.
 
