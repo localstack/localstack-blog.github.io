@@ -4,12 +4,11 @@ description: CartonCloud maximizes engineering efficiency and agility by leverag
 lead: CartonCloud maximizes engineering efficiency and agility by leveraging LocalStack to emulate AWS services in a localized environment. In this case study with CartonCloud’s CEO, Vincent Fletcher, we showcase how CartonCloud achieved a 10x reduction in onboarding time and a remarkable 15x improvement in cost and operational efficiency. By standardizing LocalStack across their development environment, CartonCloud not only expedited their engineering endeavours but also significantly enhanced the overall developer experience.
 date: 2024-02-26T7:46:04+05:30
 lastmod: 2024-02-26T7:46:04+05:30
-images: []
-contributors: []
+contributors: ['LocalStack Team']
 tags: ['case-study']
 contributors: ["LocalStack Team"]
-logo: ''
-leadimage: ''
+logo: 'cartoncloud-logo.png'
+leadimage: 'localstack-cartoncloud.png'
 layout: case-study
 properties:
   - key: Name
@@ -70,6 +69,11 @@ Upon successful completion of the pilot project, CartonCloud engineers were able
 Throughout this process, the CartonCloud team demonstrated innovation on multiple fronts. One notable achievement was the creation of the Hotpotato service — a NodeJS-based API proxy that exposes a static URL, forwarding requests to a configured Lambda in LocalStack through DNS resolution. Furthermore, Hotpotato monitors SQS queues, ensuring the efficient clearance of messages that have been received but remain unconsumed.
 
 ## Results
+
+<div class="img-group d-block d-sm-flex align-items-start">
+  <img src="10x-reduction-onboarding-time.png" alt="10x reduction in onboarding time" class="img-1">
+  <img src="15x-cost-operational-efficiency.png" alt="15x cost and operational efficiency" class="img-2">
+</div>
 
 ### 10x reduction in onboarding time
 
