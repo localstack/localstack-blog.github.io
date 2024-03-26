@@ -107,7 +107,7 @@ This led us to embark on a journey to identify the missing puzzle pieces in the 
 
 ### LocalStack GitHub Actions
 
-We primarily use GitHub Actions to build, deploy and test our web application & platform. Previously, setting up LocalStack on GitHub Actions (or any CI provider in general) was a pain which required pulling the Docker image, installing the `localstack` CLI and other associated tools, before you could start the Docker container! To simplify this process, we created a [`setup-localstack` GitHub Action](https://github.com/localstack/setup-localstack) that:
+We primarily use GitHub Actions to build, deploy, and test our web application & backend. Previously, setting up LocalStack on GitHub Actions (or any CI provider in general) was a pain, which required pulling the Docker image, installing the `localstack` CLI and other associated tools, before you could start LocalStack! To simplify this process, we created the [`setup-localstack` GitHub Action](https://github.com/localstack/setup-localstack) which:
 
 -   Pulls the `latest` - or a specific - version of the LocalStack Docker image
 -   Installs the `localstack` CLI alongside setting up configurations & wrapper scripts 
