@@ -64,7 +64,7 @@ Our team can furthermore benefit from hot-reloading qualities by incorporating L
 
 ### LocalStack Extensions
 
-The idea of LocalStack Extensions is to provide a straightforward pathway to start custom service emulators together with LocalStack. As part of our effort to improve the user experience for extensions, we have released a couple of new extensions that we also actively use internally. Our development & testing workflows make use of the Stripe and MailHog extensions - both locally and in CI! We configure LocalStack to start with these extensions automatically by setting the following environment variable:
+The idea of LocalStack Extensions is to provide a straightforward way to start custom service emulators together with LocalStack. As part of our effort to improve the user experience for extensions, we have released a couple of new extensions that we also actively use internally. Our development & testing workflows make use of the Stripe and MailHog extensions - both locally and in CI! We configure LocalStack to start with these extensions automatically by setting the following environment variable:
 
 ```bash
 EXTENSION_AUTO_INSTALL=localstack-extension-mailhog, localstack-extension-stripe
