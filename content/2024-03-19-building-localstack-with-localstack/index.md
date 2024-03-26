@@ -99,7 +99,7 @@ We primarily use GitHub Actions to build, deploy and test our web application & 
 -   Installs the `localstack` CLI alongside setting up configurations & wrapper scripts 
 -   Starts the LocalStack container either with or without the pro capabilities, depending on whether a valid CI Key is provided
 
-The GitHub Action allowed us to migrate from our existing Docker Compose setup to using the following workflow step:
+The GitHub Action allows us to spin up LocalStack by using the following workflow step:
 
 // code
 
