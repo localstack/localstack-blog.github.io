@@ -122,7 +122,7 @@ Using Cloud Pods, we were able to cut down the total infrastructure deployment t
 
 ### Continuous Integration (CI) Analytics
 
-With the LocalStack v3 release, we released a private preview of the CI Analytics. CI Analytics allows us to collect, analyze, and visualize critical metrics from our CI pipelines, helping you understand the impact of cloud infrastructure changes on CI builds.
+With the LocalStack v3 release, we released a private preview of our CI Analytics offering. CI Analytics allow us to collect, analyze, and visualize critical metrics from our CI pipelines, helping us understand the impact of cloud infrastructure changes on CI builds.
 
 // banner  
 
