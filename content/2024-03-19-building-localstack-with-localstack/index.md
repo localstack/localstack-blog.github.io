@@ -134,7 +134,8 @@ This allowed us to get detailed insights and traceability across the CI pipeline
 
 This can be enabled by just setting a simple configuration variable in your LocalStack GitHub Action (or any other CI provider in general):
 
-// code
+```yaml
+LS_CI_PROJECT=name-of-your-project
 
 With CI Analytics we can drill down into the request & response traces for every AWS API call that we make with our integration test suite. With the help of CI Analytics, we have brought together the critical missing pieces of CI observability & analytics into one single feature which has massively improved our CI troubleshooting and debugging experience.
 
