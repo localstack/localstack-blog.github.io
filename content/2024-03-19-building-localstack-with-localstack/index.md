@@ -44,7 +44,7 @@ Apart from this, we further wished to leverage LocalStack’s debugging tools in
 
 With Lambda Hot Reloading, we can continuously apply and test code changes to our locally running Lambda functions, removing the need for any code uploads or function re-deployments. This is especially useful during development, as well as our extensive integration and acceptance test suite, where developers can iterate quickly without the need to wait for code changes to be applied.
 
-For example, with just a few lines of code, our CDK stack can be enabled to use the Hot Reloading feature mentioned above:
+Just a few lines of code allow us to enable hot reloading for our Lambda functions in our CDK stack:
 
 // code
 
