@@ -107,7 +107,7 @@ This allows us to spin up LocalStack more easily. and use the same configuration
 
 ### State Snapshots with Cloud Pods
 
-LocalStack is ephemeral, which means that all the LocalStack state is removed when the container is stopped. However, we wanted to leverage our mechanism that can restore the emulator to a particular state before we run our tests against it. This can be possible with two options:
+LocalStack is ephemeral, which means that all state is gone when the container is stopped. However, we wanted to leverage our mechanism that can restore the emulator to a particular state before we run our tests against it. This is possible with two options:
 
 -   Running an initialization hook or an infrastructure-as-code (IaC) deployment against the emulator.
 -   Using a state snapshot that restores a previously-created state and pre-seed it in a test environment.
