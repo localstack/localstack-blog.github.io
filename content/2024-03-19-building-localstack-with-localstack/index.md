@@ -154,7 +154,31 @@ With these ephemeral instances, we can now deploy our entire application (fronte
 
 Here is how we configured our GitHub Action pipeline to spin up an ephemeral instance for our application changes with every pull request:
 
-// code
+```yaml
+steps:
+  - name: Checkout
+    uses: actions/checkout@v4
+
+  - name: Deploy Preview
+    uses: LocalStack/setup-localstack/preview@main
+    with:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      localstack-api-key: ${{ secrets.LOCALSTACK_API_KEY }}
+      preview-cmd: |
+        npm install -g aws-cdk-local aws-cdk
+        pip install awscli-local[ver1]
+        cd backend
+        export AWS_ACCOUNT_ID=000000000000 AWS_DEFAULT_REGION=eu-central-1
+        cdklocal bootstrap aws://$$AWS_ACCOUNT_ID/$$AWS_DEFAULT_REGION
+        cdklocal deploy --require-approval=never 
+        cd ../frontend
+        cdklocal deploy --require-approval=never
+
+  - name: Finalize PR comment
+    uses: LocalStack/setup-localstack/finish@main
+    with:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      include-preview: true
 
 This enables us to:
 
