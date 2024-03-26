@@ -28,10 +28,12 @@ The complexity of our cloud infrastructure and various managed dependencies mean
 With our core cloud emulator, we can run our entire cloud application - including its infrastructure - on our local machines! We are using [`cdklocal`](https://github.com/localstack/aws-cdk-local), our open-source wrapper script around the CDK library, to run our CDK deployments against LocalStack. Here are the commands we execute to bootstrap the local developer environment and deploy both our frontend and backend stacks on developer machines.
 
 ```bash
+cd backend
 export AWS_ACCOUNT_ID=000000000000 AWS_DEFAULT_REGION=eu-central-1
-
 cdklocal bootstrap aws://$$AWS_ACCOUNT_ID/$$AWS_DEFAULT_REGION
 cdklocal deploy --require-approval=never 
+cd ../frontend
+cdklocal deploy --require-approval=never
 ```
 
 The key tenet of our local cloud development model is agility — deploying our CDK stack on AWS for development & testing used to take around 15 minutes. With LocalStack, we were able to cut it down to a minute. It enables a quick feedback loop and confidence with “our app runs locally!” while ensuring we are not handcuffed, as we deploy our applications dozens of times a day locally.
@@ -137,11 +139,14 @@ LocalStack’s persistence mechanism (enabled via `PERSISTENCE=1`) was useful fo
 
 // picture
 
-Using Cloud Pods, we were able to cut down the total infrastructure deployment time from a minute to less than 10 seconds, both locally and in our CI pipelines. To maintain an up-to-date version of the cloud pod, we utilize a GitHub action in our backend repository, which creates a pod with the latest infrastructure on each merge to our `main` branch, by using cdklocal as described above.
-We then use that pod in combination with our auto-loading Cloud Pods feature, which allows us to load cloud pods on the start-up of LocalStack automatically. This is achieved by using the following environment variable.
+Using Cloud Pods, we were able to cut down the total infrastructure deployment time from a minute to less than 10 seconds, both locally and in our CI pipelines. To maintain an up-to-date version of the cloud pod, we have a GitHub action which creates a pod with the latest infrastructure, that’s triggered on each merge to the `main` branch. We then use that pod in combination with our auto-loading Cloud Pods feature, which allows us to load cloud pods on the start-up of LocalStack automatically.
 
-// code
+```yaml
+AUTO_LOAD_POD=localstack-backend-pod
+```
+
 Now, when LocalStack starts up, our whole backend will be loaded from the pod, and we can immediately run our integration test suite against it. 
+
 ### Continuous Integration (CI) Analytics
 
 With the LocalStack v3 release, we released a private preview of our CI Analytics offering. CI Analytics allow us to collect, analyze, and visualize critical metrics from our CI pipelines, helping us understand the impact of cloud infrastructure changes on CI builds.
