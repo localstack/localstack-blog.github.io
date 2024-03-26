@@ -72,7 +72,7 @@ EXTENSION_AUTO_INSTALL=localstack-extension-mailhog, localstack-extension-stripe
 
 // picture
 
-The LocalStack Web Application also handles various aspects around account management, such as Purchases, Subscriptions, Billing, and more. The Stripe extension fully allows us to test these flows, using an emulated Stripe service that runs on the local machine. With the Stripe extension, we can now test user flows like purchasing a subscription or updating billing details, and other Stripe API operations. 
+The LocalStack Web Application handles various aspects around account management, such as Purchases, Subscriptions, Billing, and more. The Stripe extension fully allows us to test these flows, using an emulated Stripe service that runs on our machines locally. With the Stripe extension, we can now test user flows like purchasing a subscription or updating billing details, and other Stripe API operations. 
 
 Routing the calls to the locally running Stripe emulator is achieved by simply overriding the API endpoint of the Stripe SDK, depending on whether we’re running locally.
 
