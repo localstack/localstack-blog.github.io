@@ -14,7 +14,7 @@ properties:
   - key: Name
     value: CartonCloud
   - key: Description
-    value: CartonCloud is a 3PL (TMS) transport management system and (WMS) warehouse management system with automation technology to transform the logistics industry to become more efficient and move to paperless systems to reduce administration tasks.
+    value: CartonCloud is a Third-Party Logistics (3PL) transport management system (TMS) and warehouse management system (WMS) with automation technology to transform the logistics industry to become more efficient and move to paperless systems to reduce administration tasks.
   - key: Location
     value: Burleigh Heads, Queensland
   - key: Industry
@@ -81,4 +81,4 @@ The integration of LocalStack with CartonCloud's developer environments has enab
 
 ### 15x cost and operational efficiency 
 
-LocalStack has enabled more efficient development workflows by enabling the local testing of serverless functions, reducing the reliance on AWS for testing purposes. Furthermore, the elimination of the need for an individual AWS developer environment per developer has resulted in a 15x cost efficiency gain, considering the use of LocalStack licenses on a per-month, per-developer basis. LocalStack has significantly minimized instances of local environment breakdowns for developers, ensuring a more stable environment, fewer issues and a calmer development experience overall. 
+LocalStack has enabled more efficient development workflows by enabling the local testing of serverless functions, reducing the reliance on AWS for testing purposes. Furthermore, the elimination of the need for an individual AWS developer environment per developer has resulted in a 15x cost efficiency gain, considering the use of LocalStack licenses on a per-month, per-developer basis. LocalStack has significantly minimized instances of local environment breakdowns for developers, ensuring a more stable environment, fewer issues and a smoother development experience overall.
