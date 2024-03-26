@@ -25,7 +25,7 @@ The complexity of our cloud infrastructure and various managed dependencies mean
 
 ### Infrastructure deployments & testing
   
-With our core cloud emulator, we can run our entire cloud infrastructure on the local machine! We are using [`cdklocal`](https://github.com/localstack/aws-cdk-local), our open-source wrapper script around the CDK library, to run our CDK deployments against LocalStack. Here are the commands that are wrapped inside a Makefile target, which enabled us to bootstrap the local developer environment and deploy our platform stack on developer machines.
+With our core cloud emulator, we can run our entire cloud application - including its infrastructure - on our local machines! We are using [`cdklocal`](https://github.com/localstack/aws-cdk-local), our open-source wrapper script around the CDK library, to run our CDK deployments against LocalStack. Here are the commands we execute to bootstrap the local developer environment and deploy both our frontend and backend stacks on developer machines.
 
 ```bash
 export AWS_ACCOUNT_ID=000000000000 AWS_DEFAULT_REGION=eu-central-1
