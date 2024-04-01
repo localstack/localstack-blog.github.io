@@ -5,7 +5,7 @@ lead: We're excited to announce our partnership with Shipyard ephemeral environm
 date: 2024-04-01T9:41:21+05:30
 lastmod: 2024-04-01T9:41:21+05:30
 images: []
-contributors: []
+contributors: ["Harsh Mishra", "Natalie Lunbeck"]
 tags: ['showcase']
 ---
 
@@ -69,10 +69,11 @@ services:
 
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
-    image: localstack/localstack:latest
+    image: localstack/localstack-pro:latest
     ports:
       - "127.0.0.1:4566:4566"            # LocalStack Gateway
       - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+      - "127.0.0.1:443:443"
     environment:
       - DEBUG=1
       - DOCKER_HOST=unix:///var/run/docker.sock
@@ -154,7 +155,7 @@ curl -X POST http://localhost:8080/api/items \
 You can also use the REST API to get any existing active items using the following command:
 
 ```bash
-curl -X GET [http://localhost:8080/api/items?archived=false](http://localhost:8080/api/items?archived=false)
+curl -X GET http://localhost:8080/api/items?archived=false
 ```
 
 You can fetch an email report by adding `[hello@example.com](mailto:hello@example.com)` in the **Email Report** tab and clicking **Send report**. Navigate to the LocalStack Web Application, and you’ll be able to find the sent emails on the SES Resource Browser.
@@ -253,7 +254,6 @@ You can further explore Shipyard and their offering for various use cases such a
 
 -   Adding Datadog logging and integrating with LocalStack’s serverless resources, such as Lambda, EventBridge, SQS, and more.
 -   Using Shipyard’s volume management to revert the data in case of regression and load them across sibling environments.
-    
 -   Monitoring key infrastructure metrics such as an overview of build and deploy times, CPU/Memory usage, and deployment timeline.
 
 If you have any questions about configuring and running your project, drop by Shipyard Slack Community or LocalStack Slack Community. We would love to hear your feedback about this integration!
