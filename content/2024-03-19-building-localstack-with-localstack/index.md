@@ -22,6 +22,8 @@ In this blog, we highlight how we use the LocalStack core cloud emulator and oth
 
 The LocalStack Web Application comprises two central components — the client application and the related backend. Our whole infrastructure is hosted on [Amazon Web Services (AWS)](https://aws.amazon.com/) and is deployed using the [Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/). We use various AWS services, such as [Lambda](https://aws.amazon.com/lambda/), [S3](https://aws.amazon.com/s3/), [SNS](https://aws.amazon.com/sns/), [SQS](https://aws.amazon.com/sqs/), [CloudFront](https://aws.amazon.com/cloudfront/), [DynamoDB](https://aws.amazon.com/dynamodb/), [ECS](https://aws.amazon.com/ecs/), [EC2](https://aws.amazon.com/ec2/), [Cognito](https://aws.amazon.com/cognito/), [Secrets Manager](https://aws.amazon.com/secrets-manager/), to name just a few. We use [ReactJS](https://react.dev/) & Typescript for our client application while using [Flask](https://flask.palletsprojects.com/en/3.0.x/) & Python for the backend.
 
+{{< img-simple src="web-application-architecture.png" alt="LocalStack Web Application architecture">}}
+
 The complexity of our cloud infrastructure and various managed dependencies mean that there is no straightforward way of testing it. While [AWS’s official recommendations](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/development-best-practices.html) push us forward to using assertions and snapshot tests, there are inherent limitations and hurdles such as protracted deployment periods and expensive cloud resources.
 
 ### Infrastructure deployments & testing
@@ -150,7 +152,7 @@ LocalStack is ephemeral, which means that all state is gone when the container i
 
 [LocalStack’s persistence mechanism](https://docs.localstack.cloud/user-guide/state-management/persistence/) (enabled via `PERSISTENCE=1`) was useful for local development & testing needs. However, we further wanted to leverage state snapshots that can be stored, versioned, and shared across different development & testing environments. [Cloud Pods](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/) are a mechanism to save LocalStack state onto a remote backend, allowing to restore infrastructure and state of various services when required.
 
-// picture
+{{< img-simple src="persistence-state-cloud-pods.png" alt="LocalStack Persistence vs Cloud Pods">}}
 
 Using Cloud Pods, we were able to cut down the total infrastructure deployment time from a minute to less than 10 seconds, both locally and in our CI pipelines. To maintain an up-to-date version of the Cloud Pod, we have a GitHub action which creates a pod with the latest infrastructure, that’s triggered on each merge to the `main` branch. We then use that pod in combination with our auto-loading Cloud Pods feature, which allows us to load cloud pods on the start-up of LocalStack automatically.
 
@@ -164,7 +166,7 @@ Now, when LocalStack starts up, our whole backend will be loaded from the pod, a
 
 With the LocalStack v3 release, we released a private preview of our [CI Analytics](https://docs.localstack.cloud/user-guide/ci/ci-analytics/) offering. CI Analytics allow us to collect, analyze, and visualize critical metrics from our CI pipelines, helping us understand the impact of cloud infrastructure changes on CI builds.
 
-// banner  
+{{< img-simple src="ci-analytics.png" alt="LocalStack CI Analytics">}}
 
 This allowed us to get detailed insights and traceability across the CI pipeline run by:
 
@@ -190,7 +192,7 @@ The next step in our SDLC after local development/testing and running our test s
 
 With the LocalStack v3 release, we released a private preview of [Ephemeral Instances](https://docs.localstack.cloud/user-guide/cloud-sandbox/ephemeral-instance/). These ephemeral instances allow us to run a short-lived encapsulated instance of LocalStack in the cloud. It allows us to run our E2E tests, preview features in our cloud application, and collaborate asynchronously within and across the team.
 
-// picture
+{{< img-simple src="ephemeral-instances.png" alt="LocalStack Ephemeral Instances">}}
 
 With these ephemeral instances, we can now deploy our entire application (frontend, backend, and infrastructure) on an ephemeral instance, and expose the instance to us internally, which allows us to test our changes with every pull request. This has allowed us to replace our staging environments with ephemeral instances, which we use to continuously run automated tests and check out individual features in parallel manually.
 
