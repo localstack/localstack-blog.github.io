@@ -5,27 +5,28 @@ lead: LocalStack Web Application allows developers to turbocharge their feedback
 date: 2024-03-19T9:21:02+05:30
 lastmod: 2024-03-19T9:21:02+05:30
 images: []
+show_cta_1: true
 contributors: ["Lukas Pichler", "Harsh Mishra", "Vlad Gramuzov"]
 tags: ['showcase']
 ---
 
 ## Introduction
 
-[LocalStack Pro](https://twitter.com/localstack/status/1181338405315256320) was announced in 2019, shipping along with it the LocalStack Web application to encompass modern developer toolings & features to make local cloud development a breeze. As our team expanded and we envisioned a broader scope for the LocalStack product, we started dogfooding our software to leverage the same features our customers use LocalStack for. 
+[LocalStack Pro was announced in 2019](https://twitter.com/localstack/status/1181338405315256320), shipping along with it the [LocalStack Web application](https://app.localstack.cloud) to support developer toolings & features to make local cloud development a breeze. As our team expanded and we envisioned a broader scope for the LocalStack product, we started dogfooding our software to leverage the same features our customers use LocalStack for. 
 
-LocalStack’s core cloud emulator allows us to run our own cloud application - including its infrastructure - locally and provide an efficient developer experience across the entire software development lifecycle (SDLC). This experience enables us to build our product features in a way that closely matches what our customers are looking for — a comprehensive developer platform that facilitates local multi-cloud development across different providers and services.
+[LocalStack’s core cloud emulator](https://docs.localstack.cloud/getting-started/installation/) allows us to run our own cloud application - including its infrastructure - locally and provide an efficient developer experience across the entire software development lifecycle (SDLC). This experience enables us to build our product features in a way that closely matches what our customers are looking for — a comprehensive developer platform that facilitates local multi-cloud development across different providers and services.
 
 In this blog, we highlight how we use the LocalStack core cloud emulator and other novel solutions, to build, test, and integrate new features in our LocalStack Web Application. We’ll also detail some of the lessons we have learned, recommendations for success, and how our experience has further helped us improve the base emulation layer.
 
 ## How do we enable local cloud development?
 
-The LocalStack Web Application comprises two central components — the client application and the related backend. Our whole infrastructure is hosted on Amazon Web Services (AWS) and is deployed using the Cloud Development Kit (CDK). We use various AWS services, such as Lambda, S3, SNS, SQS, CloudFront, DynamoDB, ECS, EC2, Cognito, and Secrets Manager, to name just a few. We use ReactJS & Typescript for our client application while using Flask & Python for the backend.
+The LocalStack Web Application comprises two central components — the client application and the related backend. Our whole infrastructure is hosted on [Amazon Web Services (AWS)](https://aws.amazon.com/) and is deployed using the [Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/). We use various AWS services, such as [Lambda](https://aws.amazon.com/lambda/), [S3](https://aws.amazon.com/s3/), [SNS](https://aws.amazon.com/sns/), [SQS](https://aws.amazon.com/sqs/), [CloudFront](https://aws.amazon.com/cloudfront/), [DynamoDB](https://aws.amazon.com/dynamodb/), [ECS](https://aws.amazon.com/ecs/), [EC2](https://aws.amazon.com/ec2/), [Cognito](https://aws.amazon.com/cognito/), [Secrets Manager](https://aws.amazon.com/secrets-manager/), to name just a few. We use [ReactJS](https://react.dev/) & Typescript for our client application while using [Flask](https://flask.palletsprojects.com/en/3.0.x/) & Python for the backend.
 
 The complexity of our cloud infrastructure and various managed dependencies mean that there is no straightforward way of testing it. While [AWS’s official recommendations](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/development-best-practices.html) push us forward to using assertions and snapshot tests, there are inherent limitations and hurdles such as protracted deployment periods and expensive cloud resources.
 
 ### Infrastructure deployments & testing
   
-With our core cloud emulator, we can run our entire cloud application - including its infrastructure - on our local machines. We are using [`cdklocal`](https://github.com/localstack/aws-cdk-local), our open-source wrapper script around the CDK library, to run our CDK deployments against LocalStack. Here are the commands we execute to bootstrap the local developer environment and deploy both our frontend and backend stacks on developer machines.
+With our core cloud emulator, we can run our entire cloud application - including its infrastructure - on our local machine. We are using [`cdklocal`](https://github.com/localstack/aws-cdk-local), our open-source wrapper script around the CDK library, to run our CDK deployments against LocalStack. Here are the commands we execute to bootstrap the local developer environment and deploy both our frontend and backend stacks on developer machines.
 
 ```bash
 cd backend
@@ -36,7 +37,7 @@ cd ../frontend
 cdklocal deploy --require-approval=never
 ```
 
-The key tenet of our local cloud development model is agility — deploying our CDK stack on AWS for development & testing used to take around 15 minutes. With LocalStack, we were able to cut it down less than sixty seconds. It enables a quick feedback loop and confidence with *our app runs locally!* while ensuring we are not handcuffed, as we deploy our applications dozens of times a day locally.
+The key tenet of our local cloud development model is agility — deploying our CDK stack on AWS for development & testing **used to take around 15 minutes**. With LocalStack, we were able to cut it down **less than sixty seconds**. It enables a quick feedback loop and confidence with *our app runs locally!* while ensuring we are not handcuffed, as we deploy our applications dozens of times a day locally.
 
 We also run our integration test suite against the locally deployed cloud infrastructure. This includes testing E2E flows encompassing Lambdas & SQS queues, Cognito triggers and authentication flows, alongside a DynamoDB-powered persistence layer with asynchronous stream handlers. The local integration suite enables us to further get rid of cloud-based developer environments, and use emulated resources to test our infrastructure locally, with highest level of fidelity.
 
@@ -44,7 +45,11 @@ We also run our integration test suite against the locally deployed cloud infras
 
 Apart from this, we further wished to leverage LocalStack’s debugging tools in our development process. We were able to incorporate [Lambda Hot Reloading](https://docs.localstack.cloud/user-guide/lambda-tools/hot-reloading/) & [ECS Code Mounting](https://docs.localstack.cloud/user-guide/aws/ecs/#mounting-local-directories-for-ecs-tasks).
 
-With Lambda Hot Reloading, we can continuously apply and test code changes to our locally running Lambda functions, removing the need for any code uploads or function re-deployments. This is especially useful during development, as well as our extensive integration and acceptance test suite, where developers can iterate quickly without the need to wait for code changes to be applied.
+With just a few of many LocalStack features, we streamline our developer experience and make the setup independent of the cloud:
+
+-   Our infrastructure, containing our Lambdas, is deployed in hot-reload mode, which makes LocalStack watch the Lambdas for any changes.
+-   We can trigger these Lambda either during integration tests or by invoking them manually — or through the locally running web application.
+-   We can make on-the-fly changes to the function and subsequent executions of the affected Lambda will change depending on the adjustments made.
 
 For example, with just a few lines of code, our CDK stack can be enabled to use the Hot Reloading feature mentioned above:
 
@@ -54,11 +59,7 @@ if enable_hot_reloading():
     lambda_code = lambda_.Code.from_bucket(bucket=lambda_bucket, key=HOT_RELOADED_CODE_PATH) # path pointing to our root project directory
 ```
 
-With just a few of many LocalStack features, we streamline our developer experience and make the setup independent of the cloud:
-
--   Our infrastructure, containing our lambdas, is deployed in hot-reload mode, which makes LocalStack watch the lambda code for any changes
--   We can trigger these lambdas either during integration tests or by invoking them manually — or through the locally running web application.
--   We can make on-the-fly changes to the function and subsequent executions of the affected lambda will change depending on the adjustments made.
+This is especially useful during development, as well as our extensive integration and acceptance test suite, where developers can iterate quickly without the need to wait for code changes to be applied.
 
 Our team can furthermore benefit from hot-reloading qualities by incorporating LocalStack’s ECS features. We can mount our backend code from the host filesystem into the ECS containers. Similar to Lambda hot reloading it makes development a breeze, enabling faster development loops and increased debuggability where the changes are made without having to build and (re-) deploy any infrastructural changes or even Docker images each time. 
 
@@ -68,17 +69,19 @@ Here is an example, where we register a task definition, mounting a host path `/
 
 ### LocalStack Extensions
 
-The idea of LocalStack Extensions is to provide a straightforward way to start custom service emulators together with LocalStack. As part of our effort to improve the user experience for extensions, we have released a couple of new extensions that we also actively use internally. Our development & testing workflows make use of the Stripe and MailHog extensions - both locally and in CI. We configure LocalStack to start with these extensions automatically by setting the following environment variable:
+[LocalStack Extensions](https://docs.localstack.cloud/user-guide/extensions/) provide a straightforward way to start custom service emulators together with LocalStack. As part of our effort to improve the user experience for extensions, we have released a couple of new extensions that we also actively use internally. 
+
+Our development & testing workflows make use of the [Stripe](https://pypi.org/project/localstack-extension-stripe/) and [Mailhog](https://pypi.org/project/localstack-extension-Mailhog/) extensions - both locally and in CI. We configure LocalStack to start with these extensions automatically by setting the following environment variable:
 
 ```bash
-EXTENSION_AUTO_INSTALL=localstack-extension-mailhog, localstack-extension-stripe
+EXTENSION_AUTO_INSTALL=localstack-extension-Mailhog, localstack-extension-stripe
 ```
 
 // picture
 
 The LocalStack Web Application handles various aspects around account management, such as Purchases, Subscriptions, Billing, and more. The Stripe extension fully allows us to test these flows, using an emulated Stripe service that runs on our machines locally. With the Stripe extension, we can now test user flows like purchasing a subscription or updating billing details, and other Stripe API operations. 
 
-Routing the calls to the locally running Stripe emulator is achieved by simply overriding the API endpoint of the Stripe SDK, depending on whether we’re running locally.
+Routing the calls to the locally running Stripe emulator is achieved by simply overriding the API endpoint of the [Stripe SDK](https://docs.stripe.com/libraries), depending on whether we’re running locally.
 
 ```python
 stripe_sdk.api_base = “http://localhost:8420” if is_local_development else “https://api.stripe.com”
@@ -97,9 +100,11 @@ def test_subscribe(self):
     ...
 ```
 
-The Mailhog extension allows us to emulate a local email server for testing user flows that require our platform to send emails, such as account activation, trial expiry notifications, and much more. Using this extension automatically configures LocalStack to use the MailHog SMTP server when sending emails. This means that any mails we send from our application logic, ends up in the mailbox of MailHog, which we can then either view via the UI or fetch via the API that comes with the extension.
+The Mailhog extension allows us to emulate a local email server for testing user flows that require our platform to send emails, such as account activation, trial expiry notifications, and much more. Using this extension automatically configures LocalStack to use the Mailhog SMTP server when sending emails. 
 
-After instructing LocalStack to start with the Mailhog extension, it automatically starts the MailHog service on port 25. Then, we just need to adjust our application to connect to the SMTP host running on port 25 locally.
+This means that any mails we send from our application logic, ends up in the mailbox of Mailhog, which we can then either view via the UI or fetch via the API that comes with the extension.
+
+After instructing LocalStack to start with the Mailhog extension, it automatically starts the Mailhog service on port 25. Then, we just need to adjust our application to connect to the SMTP host running on port 25 locally.
 
 ```python 
 smtp_host = "localhost:25"
@@ -115,9 +120,9 @@ By running our cloud deployment & test suite locally, we were able to demystify 
 
 This led us to embark on a journey to identify the missing puzzle pieces in the LocalStack CI experience. It made us build internal homegrown systems, which have now spun into critical LocalStack features that we continue to leverage for our CI pipelines.
 
-### LocalStack GitHub Actions
+### LocalStack GitHub Action
 
-We primarily use GitHub Actions to build, deploy, and test our web application & backend. Previously, setting up LocalStack on GitHub Actions (or any CI provider in general) was a pain, which required pulling the Docker image, installing the `localstack` CLI and other associated tools, before you could start LocalStack. To simplify this process, we created the [`setup-localstack` GitHub Action](https://github.com/localstack/setup-localstack) which:
+We primarily use [GitHub Actions](https://github.com/features/actions) to build, deploy, and test our web application & backend. Previously, setting up LocalStack on GitHub Actions (or any CI provider in general) was a pain, which required pulling the Docker image, installing the `localstack` CLI and other associated tools, before you could start LocalStack. To simplify this process, we created the [`setup-localstack` GitHub Action](https://github.com/localstack/setup-localstack) which:
 
 -   Pulls the `latest` - or a specific - version of the LocalStack Docker image
 -   Installs the `localstack` CLI alongside setting up configurations & wrapper scripts 
@@ -143,11 +148,11 @@ LocalStack is ephemeral, which means that all state is gone when the container i
 -   Running an initialization hook or an infrastructure-as-code (IaC) deployment against the emulator.
 -   Using a state snapshot that restores a previously-created state and pre-seed it in a test environment.
 
-LocalStack’s persistence mechanism (enabled via `PERSISTENCE=1`) was useful for local development & testing needs. However, we further wanted to leverage state snapshots that can be stored, versioned, and shared across different development & testing environments. Cloud Pods are a mechanism to save LocalStack state onto a remote backend, allowing to restore infrastructure and state of various services when required.
+[LocalStack’s persistence mechanism](https://docs.localstack.cloud/user-guide/state-management/persistence/) (enabled via `PERSISTENCE=1`) was useful for local development & testing needs. However, we further wanted to leverage state snapshots that can be stored, versioned, and shared across different development & testing environments. [Cloud Pods](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/) are a mechanism to save LocalStack state onto a remote backend, allowing to restore infrastructure and state of various services when required.
 
 // picture
 
-Using Cloud Pods, we were able to cut down the total infrastructure deployment time from a minute to less than 10 seconds, both locally and in our CI pipelines. To maintain an up-to-date version of the cloud pod, we have a GitHub action which creates a pod with the latest infrastructure, that’s triggered on each merge to the `main` branch. We then use that pod in combination with our auto-loading Cloud Pods feature, which allows us to load cloud pods on the start-up of LocalStack automatically.
+Using Cloud Pods, we were able to cut down the total infrastructure deployment time from a minute to less than 10 seconds, both locally and in our CI pipelines. To maintain an up-to-date version of the Cloud Pod, we have a GitHub action which creates a pod with the latest infrastructure, that’s triggered on each merge to the `main` branch. We then use that pod in combination with our auto-loading Cloud Pods feature, which allows us to load cloud pods on the start-up of LocalStack automatically.
 
 ```yaml
 AUTO_LOAD_POD=localstack-backend-pod
@@ -157,7 +162,7 @@ Now, when LocalStack starts up, our whole backend will be loaded from the pod, a
 
 ### Continuous Integration (CI) Analytics
 
-With the LocalStack v3 release, we released a private preview of our CI Analytics offering. CI Analytics allow us to collect, analyze, and visualize critical metrics from our CI pipelines, helping us understand the impact of cloud infrastructure changes on CI builds.
+With the LocalStack v3 release, we released a private preview of our [CI Analytics](https://docs.localstack.cloud/user-guide/ci/ci-analytics/) offering. CI Analytics allow us to collect, analyze, and visualize critical metrics from our CI pipelines, helping us understand the impact of cloud infrastructure changes on CI builds.
 
 // banner  
 
@@ -183,7 +188,7 @@ Additionally, we can now instrument the important paths and processes, capture t
 
 The next step in our SDLC after local development/testing and running our test suite in CI, are acceptance tests through application previews, and e2e tests including our web UI. After running our integration tests, both locally and in CI, the next step was to deploy the CDK stack in our staging environment. The staging environment allowed us to run our end-to-end (E2E) integration test suite, which rely on the Playwright framework, and further use it for acceptance testing, to get alignment across cross-departmental projects. It allowed us to achieve the final degree of validation before we shipped a new release to production.
 
-With the LocalStack v3 release, we released a private preview of Ephemeral Instances. These ephemeral instances allow us to run a short-lived encapsulated instance of LocalStack in the cloud. It allows us to run our E2E tests, preview features in our cloud application, and collaborate asynchronously within and across the team.
+With the LocalStack v3 release, we released a private preview of [Ephemeral Instances](https://docs.localstack.cloud/user-guide/cloud-sandbox/ephemeral-instance/). These ephemeral instances allow us to run a short-lived encapsulated instance of LocalStack in the cloud. It allows us to run our E2E tests, preview features in our cloud application, and collaborate asynchronously within and across the team.
 
 // picture
 
