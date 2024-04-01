@@ -1,7 +1,7 @@
 ---
 title: Building LocalStack with LocalStack
-description: Building LocalStack with LocalStack
-lead: Building LocalStack with LocalStack
+description: LocalStack Web Application allows developers to turbocharge their feedback cycles for their inner development processes. We're increasingly building various parts of the LocalStack Web Application using our core cloud emulator, leveraging various features for local multi-cloud development. In this blog, we share how we are dogfooding our own software to promote faster feature development and reduce inefficient testing loops.
+lead: LocalStack Web Application allows developers to turbocharge their feedback cycles for their inner development processes. We're increasingly building various parts of the LocalStack Web Application using our core cloud emulator, leveraging various features for local multi-cloud development. In this blog, we share how we are dogfooding our own software to promote faster feature development and reduce inefficient testing loops.
 date: 2024-03-19T9:21:02+05:30
 lastmod: 2024-03-19T9:21:02+05:30
 images: []
