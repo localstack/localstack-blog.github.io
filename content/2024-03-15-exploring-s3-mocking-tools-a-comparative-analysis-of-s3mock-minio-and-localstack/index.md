@@ -168,6 +168,7 @@ It is a critical feature to test as it ensures the systems' ability to handle a 
         - `file%2Fname`
         - `a/%F0%9F%98%80/`
         - `test+key`
+        - `test key//`
     - MinIO:
         - `test key//`
 
