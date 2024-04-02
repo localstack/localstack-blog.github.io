@@ -1,7 +1,7 @@
 ---
 title: Ephemeral environments with LocalStack & Shipyard
-description: We're excited to announce our partnership with Shipyard ephemeral environments. This integration empowers you to test your cloud applications in a short-lived, encapsulated deployment — allowing you to shift left by fixing things before they break your production.
-lead: We're excited to announce our partnership with Shipyard ephemeral environments. This integration empowers you to test your cloud applications in a short-lived, encapsulated deployment — allowing you to shift left by fixing things before they break your production.
+description: We're excited to announce our partnership with Shipyard. This integration empowers you to test your cloud applications in a short-lived, encapsulated deployment — allowing you to shift left by fixing things before they break your production.
+lead: We're excited to announce our partnership with Shipyard. This integration empowers you to test your cloud applications in a short-lived, encapsulated deployment — allowing you to shift left by fixing things before they break your production.
 date: 2024-04-01T9:41:21+05:30
 lastmod: 2024-04-01T9:41:21+05:30
 images: []
@@ -11,7 +11,7 @@ tags: ['showcase']
 
 ## Introduction
 
-We’re excited to announce our partnership with Shipyard, the ephemeral environment Self-Service platform, that allows you to spin up on-demand deployments via Kubernetes clusters to turbocharge your application lifecycle. With Shipyard, you can now deploy your cloud applications in a short-lived environment to enable developer teams to run tests, preview features, and get alignment with cross-departmental projects. Shipyard also enables application previews on every pull request and simplifies monitoring, debugging, and deployment all from one dashboard!
+We’re excited to announce our partnership with Shipyard, the ephemeral environment self-service platform, that allows you to spin up on-demand preview deployments via Kubernetes clusters to turbocharge your application lifecycle. With Shipyard, you can now deploy your cloud applications in in short-lived environments to enable developer teams to run tests, preview features, and get alignment with cross-departmental projects. Shipyard also enables application previews on every pull request and simplifies monitoring, debugging, and deployment all from one dashboard!
 
 LocalStack’s core cloud emulator enables developers to build, test, and deploy cloud & serverless applications locally. Shipped as a Docker image, you can use various integrations such as the `docker` CLI, Docker Compose, or Helm to start LocalStack in a developer environment. Shipyard allows developers to use Docker Compose configurations which are then automatically transpiled into Kubernetes manifests enabling you a pre-production preview of how your applications work! As such, LocalStack does not require any additional configurations and just enables you to start with a pre-defined Docker Compose setup.
 
@@ -29,11 +29,11 @@ In addition, you can use Shipyard for:
 -   Creating snapshots for each named volume in your application setup.
 -   Monitoring your deployment while tracking build details & application history.
 
-LocalStack has been in active partnership with Shipyard and both companies are on a mission to streamline the Software Development Life Cycle (SDLC) and provide frictionless development experience. This partnership is in line with our shared vision of bolstering the DevOps methodologies while providing an improved testing process, quicker release cycles, and optimized cost utilization — all while adhering to the best security practices.
+LocalStack has been in active partnership with Shipyard and both companies are on a mission to streamline the Software Development Life Cycle (SDLC) and provide frictionless developer experience. This partnership is in line with our shared vision of bolstering the DevOps methodologies while providing an improved testing process, quicker release cycles, and optimized cost utilization — all while adhering to the best security practices.
 
 {{< tweet 1670858503693402139 >}}
 
-LocalStack’s cloud emulation capabilities, allow you to create resources such as S3 buckets, DynamoDB tables, OpenSearch clusters, and more to replicate cloud environments. With significant enhancements to these services, you can now preview features in your cloud applications, and use additional features such as Cloud Pods to pre-seed your infrastructure state automatically. Upon creating a pull request, Shipyard automatically creates an ephemeral environment that allows you to test your application alongside infrastructure, making it easy to collaborate asynchronously within and across your team!
+LocalStack’s cloud emulation capabilities allow you to create resources such as S3 buckets, DynamoDB tables, OpenSearch clusters, and more to replicate cloud environments. With significant enhancements to these services, you can now preview features in your cloud applications, and use additional features such as Cloud Pods to pre-seed your infrastructure state automatically. Upon creating a pull request, Shipyard automatically creates an ephemeral environment that allows you to test your application in a state that is infrastructure-identical to production, making it easy to collaborate asynchronously within and across your team!
 
 ## How to use Shipyard with LocalStack?
 
@@ -47,7 +47,7 @@ For this walkthrough, you’ll need to have the following prerequisites installe
 -   LocalStack Web Application account
 -   `localstack` CLI with `LOCALSTACK_AUTH_TOKEN`
 
-### Setup up the application on your local machine
+### Setup the application on your local machine
 
 The code for the solution in this post is in this repository on GitHub. Clone the LocalStack Samples repository that contains the full-stack application and other associated configurations, such as the Docker Compose file.
 
@@ -168,7 +168,7 @@ awslocal dynamodb scan --table-name doc-example-work-item-tracker
 
 In the output, you will find the persisted data available.
 
-### Configure Shipyard for your application
+### Configure your application on Shipyard
 
 You can now create an ephemeral environment for your cloud application on Shipyard. Navigate to your dashboard and click on **+ Application**. Choose the GitHub repository you have forked and choose the `main` branch to start.
 
@@ -180,7 +180,7 @@ Click on the **Select services** to add services that you would like to deploy. 
 
 Click on the **Add environment variables** to go to the next step, and add any environment variables that you want to configure. Finally, click on **Create application** to get started with the first build of your application! After a successful build, you can now click on the **Visit** button on your application dashboard to navigate to the deployed application. 
 
-You can start interacting with the application, and review the run logs for your application services.
+You can start interacting with the application, and review the run logs for your application's services.
 
 {{< img-simple src="localstack-container-logs.png" alt="LocalStack Container logs on Shipyard">}}
 
@@ -264,7 +264,7 @@ index 4712182..c38cf12 100644
      networks:
 ```
 
-Commit and push this on the `main` branch of the repository. You can rebuild the ephemeral environment by clicking the **Rebuild** button. After a successful build & deployment, you can now visit the newly deployed application, to find the DynamoDB table successfully seeded in the application setup, which is further reflected in the web client.
+Commit and push this on the `main` branch of the repository. After a successful build & deployment, you can now visit the newly deployed application, to find the DynamoDB table successfully seeded in the application setup, which is further reflected in the web client.
 
 {{< img-simple src="application-cloud-pods.png" alt="Application pre-seeded with the Cloud Pods">}}
 
@@ -283,7 +283,7 @@ There are several key benefits of using Shipyard and LocalStack to develop & tes
 
 ## Conclusion
 
-Congratulations! You’ve successfully deployed an AWS-powered cloud application on an ephemeral environment using LocalStack & Shipyard. With LocalStack, you don’t have to worry about deleting your ephemeral environment after a quick round of testing — LocalStack’s core emulation layer allows you to persist the resources created on the host machine for extensive testing and further use Cloud Pods to pre-seed the infrastructure state as and when required!
+Congratulations! You’ve successfully deployed an AWS-powered cloud application on an ephemeral environment using LocalStack & Shipyard. With LocalStack, you don't have to worry about losing your infrastructure state after spinning down your ephemeral environments after a quick round of testing. LocalStack allows you to persist the resources created on the host machine for extensive testing and further use Cloud Pods to pre-seed the infrastructure state as and when required!
 
 You can further explore Shipyard and their offering for various use cases such as:
 
