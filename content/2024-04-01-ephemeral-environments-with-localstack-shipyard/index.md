@@ -21,8 +21,6 @@ In this blog, we’ll detail why you should be using ephemeral environments and 
 
 Shipyard is a platform that allows you to create on-demand ephemeral environments to run your tests against a production-like setup. It simplifies pre-production testing, compliance, and collaboration by generating an ephemeral environment preview for your full-stack application on every pull request (PR) to give you a near-production experience while building and testing features. Every environment is a single-tenant cluster, protected by Single Sign-On (SSO). This ensures that not only developers but also other stakeholders can quickly access and work on developing features with a simple click.
 
-<picture-of-shipyard-dashboard.png>
-
 In addition, you can use Shipyard for:
 
 -   Gaining terminal access into your running containers for active debugging.
@@ -182,8 +180,6 @@ Click on the **Select services** to add services that you would like to deploy. 
 
 Click on the **Add environment variables** to go to the next step, and add any environment variables that you want to configure. Finally, click on **Create application** to get started with the first build of your application! After a successful build, you can now click on the **Visit** button on your application dashboard to navigate to the deployed application. 
 
-
-
 You can start interacting with the application, and review the run logs for your application services.
 
 {{< img-simple src="localstack-container-logs.png" alt="LocalStack Container logs on Shipyard">}}
@@ -197,13 +193,30 @@ You can now create previews for your ephemeral application deployed on Shipyard.
 
 The sample repository above has already been configured with a sample GitHub Action workflow. The workflow looks like this:
 
-<code-for-github-action-workflow>
+```yaml
+name: Deploy on Shipyard
+
+on: [pull_request]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Integrate Shipyard
+        uses: shipyard/shipyard-action@1.0.0
+        env:
+          SHIPYARD_API_TOKEN: ${{ secrets.SHIPYARD_API_TOKEN }}
+          SHIPYARD_APP_NAME: "localstack-shipyard-item-tracker"
+```
 
 The workflow uses the `SHIPYARD_API_TOKEN`. Add it to your forked GitHub repository using secrets in GitHub Actions.
 
 Now create a new branch in your local repository, and make a small change. After making the changes, stage it, push the commits into the branch and create a new pull request. Shipyard will automatically start a new ephemeral deployment. You can see the workflow's status and logs in the `checks` section of the pull request. After a few seconds, the workflow will add the preview URL. Click on it to see your changes in real-time.
 
-<graphic-showing-the-pr-comment-by-shipyard.png>
+{{< img-simple src="shipyard-pr-previews.png" alt="Shipyard spinning up another environment for the new Pull request">}}
 
 ### Use Cloud Pods to pre-seed infrastructure state
 
@@ -225,15 +238,35 @@ localstack pod save item-tracker-application
 
 You will see the following output in your terminal:
 
-<snippet-of-the-command-output>
+```bash
+Cloud Pod `item-tracker-application` successfully created ✅
+Version: 1
+Remote: platform
+Services: dynamodb,ses
+```
 
 You can also navigate to the Cloud Pods browser, where you can find the newly created Cloud Pod stored on the LocalStack Web Application. Navigate to the local application setup, and add the following to your Docker Compose configuration file to auto-load the Cloud Pod and remove the initialization hook. This will ensure that on the LocalStack container startup, the Cloud Pod will be loaded automatically (using the `AUTO_LOAD_POD` configuration) thus pre-seeding your infrastructure state.
 
-<snippet-of-the-docker-compose-configuration>
+```yaml
+diff --git a/docker-compose.yml b/docker-compose.yml
+index 4712182..c38cf12 100644
+--- a/docker-compose.yml
++++ b/docker-compose.yml
+@@ -14,8 +14,8 @@ services:
+       - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
+       - DOCKER_HOST=unix:///var/run/docker.sock
+       - EXTRA_CORS_ALLOWED_ORIGINS='*'
++      - AUTO_LOAD_POD=item-tracker-application
+     volumes:
+-      - "./init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh"
+       - "localstack:/var/lib/localstack"
+       - "/var/run/docker.sock:/var/run/docker.sock"
+     networks:
+```
 
 Commit and push this on the `main` branch of the repository. You can rebuild the ephemeral environment by clicking the **Rebuild** button. After a successful build & deployment, you can now visit the newly deployed application, to find the DynamoDB table successfully seeded in the application setup, which is further reflected in the web client.
 
-<banner-showing-the-application-running-with-cloud-pods.png>
+{{< img-simple src="application-cloud-pods.png" alt="Application pre-seeded with the Cloud Pods">}}
 
 In addition to preseeding your Shipyard environment, Cloud Pods can also be used at the “other end” of a pipeline, namely to store and push the state of the LocalStack instance after an ephemeral run has been completed. This allows you to replicate the same state onto the local machine, in case your integration test suite fails on the ephemeral environment.
 
