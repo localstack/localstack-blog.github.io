@@ -142,7 +142,7 @@ docker-compose up
 
 This will start the `localstack`, `backend`, and `frontend` services, exposing the user client to `localhost:3000`. You can navigate to the local user client to start interacting with the application by adding items which are fully persisted using the emulated DynamoDB table.
 
-<graphic-showing-the-application-working-locally.png>
+{{< img-simple src="item-tracker-application.png" alt="Picture showing the item tracker application working">}}
 
 You can also use the REST API client to add items to the application by performing a `POST` request. Here is an example:
 
@@ -160,7 +160,7 @@ curl -X GET http://localhost:8080/api/items?archived=false
 
 You can fetch an email report by adding `[hello@example.com](mailto:hello@example.com)` in the **Email Report** tab and clicking **Send report**. Navigate to the LocalStack Web Application, and you’ll be able to find the sent emails on the SES Resource Browser.
 
-<graphic-showing-the-localstack-ses-resource-browser>
+{{< img-simple src="ses-resource-browser.png" alt="LocalStack SES Resource Browser">}}
 
 You can also scan the DynamoDB table you have deployed using the following command:
 
@@ -174,17 +174,19 @@ In the output, you will find the persisted data available.
 
 You can now create an ephemeral environment for your cloud application on Shipyard. Navigate to your dashboard and click on **+ Application**. Choose the GitHub repository you have forked and choose the `main` branch to start.
 
-<graphic-showing-the-setup.png>
+{{< img-simple src="create-application-shipyard.png" alt="Create an application on Shipyard">}}
 
 Click on the **Select services** to add services that you would like to deploy. These services are automatically selected from the Docker Compose configuration.
 
-Click on the **Add environment variables** to go to the next step, and add any environment variables that you want to configure. Finally, click on **Create application** to get started with the first build of your application!
+{{< img-simple src="shipyard-select-services.png" alt="Selecting Docker Compose services on Shipyard">}}
 
-<graphic-showing-the-build-queue.png>
+Click on the **Add environment variables** to go to the next step, and add any environment variables that you want to configure. Finally, click on **Create application** to get started with the first build of your application! After a successful build, you can now click on the **Visit** button on your application dashboard to navigate to the deployed application. 
 
-After a successful build, you can now click on the **Visit** button on your application dashboard to navigate to the deployed application. You can start interacting with the application, and review the run logs for your application services.
 
-<graphic-showing-the-localstack-run-logs.png>
+
+You can start interacting with the application, and review the run logs for your application services.
+
+{{< img-simple src="localstack-container-logs.png" alt="LocalStack Container logs on Shipyard">}}
 
 ### Create a GitHub Action workflow for previews
 
