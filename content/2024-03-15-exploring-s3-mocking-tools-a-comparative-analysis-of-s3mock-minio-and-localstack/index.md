@@ -131,11 +131,11 @@ By understanding the maturity of supported operations for each emulator, develop
 
 ## Test results
 
-For comparable tests we went for the S3 integration test suite from the LocalStack repository. Those tests are verified and validated against AWS S3, allowing for a good set of representative use cases.
+For comparable tests we went for the [S3 integration test suite from the LocalStack repository](https://github.com/localstack/localstack/tree/s3-benchmarking/tests/aws/services/s3). Those tests are verified and validated against AWS S3, allowing for a good set of representative use cases.
 
 The tests first targeted MinIO and then S3Mock to evaluate how well these S3-compatible tools could handle the tests designed for the S3 service.
 
-It’s important to note that we purposely excluded any tests that validate the integration with other services (like Lambda or SQS). We can assume that those integrations are not (fully) working.
+It’s important to note that we purposely excluded any tests that validate the integration with other services (like Lambda or SQS). We can assume that those integrations are not (fully) working with the other tools.
 
 In this testing phase, we encountered a significant number of tests that had failed. Consequently, we took it upon ourselves to thoroughly analyze the results of these tests.
 
@@ -164,10 +164,12 @@ The timestamp is a crucial aspect of data handling and, in this case, it's not r
 
 - `test_put_get_object_special_character`: This parametrized test explores the potential for uploading objects that contain special characters within their keys. 
 It is a critical feature to test as it ensures the systems' ability to handle a variety of object key inputs. Some examples of the keys rejected by MinIO and S3Mock:
-    - `file%2Fname`
-    - `test key//`
-    - `a/%F0%9F%98%80/`
-    - `test+key`
+    - S3mock:
+        - `file%2Fname`
+        - `a/%F0%9F%98%80/`
+        - `test+key`
+    - MinIO:
+        - `test key//`
 
 - `test_multipart_and_list_parts`: This is a unique circumstance where other tools give the impression of supporting the feature. 
 However, when the integrity of the object and its parts is verified, these tools fail.
