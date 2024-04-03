@@ -57,8 +57,8 @@ For example, with just a few lines of code, our CDK stack can be enabled to use 
 
 ```python
 if enable_hot_reloading():
-    lambda_bucket = s3.Bucket.from_bucket_name(scope, f"lambda_name_local", "hot-reload")
-    lambda_code = lambda_.Code.from_bucket(bucket=lambda_bucket, key=HOT_RELOADED_CODE_PATH) # path pointing to our root project directory
+lambda_bucket = s3.Bucket.from_bucket_name(scope, f"lambda_name_local", "hot-reload")
+lambda_code = lambda_.Code.from_bucket(bucket=lambda_bucket, key=HOT_RELOADED_CODE_PATH) # path pointing to our root project directory
 ```
 
 This is especially useful during development, as well as our extensive integration and acceptance test suite, where developers can iterate quickly without the need to wait for code changes to be applied.
