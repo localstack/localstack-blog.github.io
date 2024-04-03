@@ -52,7 +52,7 @@ This makes it perfect for users needing a lightweight, efficient, and successful
 2. Start the S3Mock container: `docker run -p 9090:9090 --name s3mock -d adobe/s3mock`
 3. Configure your AWS client to use the S3Mock server:
     - Set the endpoint URL: `http://localhost:9090`
-    - 1.  -   Provide any access key and secret key. As per their example, you can use `foo` as the access key and `bar` as the secret key.
+    - Provide any access key and secret key. As per their example, you can use `foo` as the access key and `bar` as the secret key.
 
 ### LocalStack
 
@@ -64,11 +64,11 @@ This makes it perfect for users needing a lightweight, efficient, and successful
 
 You can also use `localstack/localstack:latest` if you need other services or use integrations with S3 like SNS or SQS.
 
-## API compliance with S3
+## Supported operations
 
 This section presents a comparison of the S3 operations supported by the three selected local S3 mocking tools: LocalStack, MinIO, and S3Mock.
 
-The table is sorted by functionality and reveals which operations are fully supported and also compliant with AWS S3 standards.
+The table is sorted by functionality and reveals which operations are supported.
 
 By understanding the maturity of supported operations for each emulator, developers can choose the tool that best meets the need for local development and testing.
 
@@ -86,52 +86,52 @@ By understanding the maturity of supported operations for each emulator, develop
 | [`HeadObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html) | ✅ | ✅ | ✅ |
 | [`CopyObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html) | ✅ | ✅ | ✅ |
 | [`DeleteObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html) | ✅ | ✅ | ✅ |
-| [`DeleteObjects`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html) | ✅ | ❌ | ✅ |
+| [`DeleteObjects`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html) | ✅ | ✅ | ✅ |
 | [`GetObjectAttributes`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAttributes.html) | ✅ | ✅ | ✅ |
 | [`RestoreObject`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html) | ✅ | ❌ | ❌ |
 | [`ListObjects`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html) | ✅ | ✅ | ✅ |
 | [`ListObjectsV2`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html) | ✅ | ✅ | ✅ |
 | [`ListObjectVersions`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectVersions.html) | ✅ | ✅ | ✅ |
-| [`CreateMultipartUpload`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html) | ✅ | ❌ | ✅ |
+| [`CreateMultipartUpload`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html) | ✅ | ✅ | ✅ |
 | [`AbortMultipartUpload`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html) | ✅ | ✅ | ✅ |
 | [`CompleteMultipartUpload`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html) | ✅ | ✅ | ✅ |
 | [`ListMultipartUploads`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html) | ✅ | ✅ | ✅ |
-| [`UploadPart`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html) | ✅ | ❌ | ✅ |
+| [`UploadPart`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html) | ✅ | ✅ | ✅ |
 | [`UploadPartCopy`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html) | ✅ | ❌ | ✅ |
 | [`ListParts`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html) | ✅ | ❌ | ✅ |
 | [`SelectObjectContent`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html) | ✅ | ✅ | ❌ |
 | [`WriteGetObjectResponse`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_WriteGetObjectResponse.html) | ❌ | ❌ | ❌ |
 | **Bucket features** |  |  |  |
-| [`PutBucketAccelerateConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAccelerateConfiguration.html) | ✅ | ❌ | ❌ |
-| [`PutBucketAcl`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAcl.html) | ✅ | ✅ | ❌ |
-| [`PutBucketAnalyticsConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAnalyticsConfiguration.html) | ✅ | ❌ | ❌ |
-| [`PutBucketCors`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html) | ✅ | ❌ | ❌ |
-| [`PutBucketEncryption`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html) | ✅ | ✅ | ❌ |
-| [`PutBucketIntelligentTieringConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html) | ✅ | ❌ | ❌ |
-| [`PutBucketInventoryConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketInventoryConfiguration.html) | ✅ | ❌ | ❌ |
-| [`PutBucketLifecycleConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html) | ✅ | ✅ | ✅ |
-| [`PutBucketLogging`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html) | ✅ | ❌ | ❌ |
-| [`PutBucketMetricsConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html) | ❌ | ❌ | ❌ |
-| [`PutBucketNotificationConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html) | ✅ | ✅ | ❌ |
-| [`PutBucketOwnershipControls`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketOwnershipControls.html) | ✅ | ❌ | ❌ |
-| [`PutBucketPolicy`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html) | ✅ | ❌ | ❌ |
-| [`PutBucketReplication`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketReplication.html) | ✅ | ✅ | ❌ |
-| [`PutBucketRequestPayment`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketRequestPayment.html) | ✅ | ❌ | ❌ |
-| [`PutBucketTagging`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html) | ✅ | ✅ | ❌ |
-| [`PutBucketVersioning`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html) | ✅ | ✅ | ❌ |
-| [`PutBucketWebsite`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketWebsite.html) | ✅ | ❌ | ❌ |
-| [`PutPublicAccessBlock`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutPublicAccessBlock.html) | ✅ | ❌ | ❌ |
-| [`PutObjectLockConfiguration`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLockConfiguration.html) | ✅ | ✅ | ✅ |
+| [`Bucket Accelerate`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAccelerateConfiguration.html) | ✅ | ❌ | ❌ |
+| [`Bucket ACL`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAcl.html) | ✅ | ❌ | ❌ |
+| [`Bucket Analytics`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAnalyticsConfiguration.html) | ✅ | ❌ | ❌ |
+| [`Bucket Cors`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html) | ✅ | ❌ | ❌ |
+| [`Bucket Encryption`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html) | ✅ | ✅ | ❌ |
+| [`Bucket Intelligent Tiering`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketIntelligentTieringConfiguration.html) | ✅ | ❌ | ❌ |
+| [`Bucket Inventory`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketInventoryConfiguration.html) | ✅ | ❌ | ❌ |
+| [`Bucket Lifecycle`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html) | ✅ | ✅ | ✅ |
+| [`Bucket Logging`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLogging.html) | ✅ | ❌ | ❌ |
+| [`Bucket Metrics`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html) | ❌ | ❌ | ❌ |
+| [`Bucket Notification`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html) | ✅ | ✅ | ❌ |
+| [`Bucket Ownership Controls`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketOwnershipControls.html) | ✅ | ❌ | ❌ |
+| [`Bucket Policy`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html) | ✅ | ❌ | ❌ |
+| [`Bucket Replication`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketReplication.html) | ✅ | ✅ | ❌ |
+| [`Bucket Request Payment`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketRequestPayment.html) | ✅ | ❌ | ❌ |
+| [`Bucket Tagging`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html) | ✅ | ✅ | ❌ |
+| [`Bucket Versioning`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html) | ✅ | ✅ | ❌ |
+| [`Bucket Website`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketWebsite.html) | ✅ | ❌ | ❌ |
+| [`Bucket Public Access Block`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutPublicAccessBlock.html) | ✅ | ❌ | ❌ |
+| [`Bucket Object Lock`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLockConfiguration.html) | ✅ | ✅ | ✅ |
 | **Object features** |  |  |  |
-| [`PutObjectAcl`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html) | ✅ | ✅ | ✅ |
-| [`PutObjectLegalHold`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLegalHold.html) | ✅ | ✅ | ✅ |
-| [`PutObjectRetention`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectRetention.html) | ✅ | ✅ | ✅ |
-| [`PutObjectTagging`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html) | ✅ | ✅ | ✅ |
-| [`GetObjectTorrent`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTorrent.html) | ❌ | ❌ | ❌ |
+| [`Object ACL`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectAcl.html) | ✅ | ✅ | ✅ |
+| [`Object Legal Hold`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLegalHold.html) | ✅ | ✅ | ✅ |
+| [`Object Retention`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectRetention.html) | ✅ | ✅ | ✅ |
+| [`Object Tagging`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html) | ✅ | ✅ | ✅ |
+| [`Object Torrent`](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTorrent.html) | ❌ | ❌ | ❌ |
 
 ## Test results
 
-For comparable tests we went for the [S3 integration test suite from the LocalStack repository](https://github.com/localstack/localstack/tree/s3-benchmarking/tests/aws/services/s3). Those tests are verified and validated against AWS S3, allowing for a good set of representative use cases.
+For comparable tests we went for the [S3 integration test suite from the LocalStack repository](https://github.com/localstack/localstack/tree/master/tests/aws/services/s3). Those tests are verified and validated against AWS S3, allowing for a good set of representative use cases.
 
 The tests first targeted MinIO and then S3Mock to evaluate how well these S3-compatible tools could handle the tests designed for the S3 service.
 
@@ -184,7 +184,7 @@ Effectively, this allowed us to measure and understand the impact of each tool a
 
 {{< img-simple src="performance-comparison.png" alt="" width="800">}}
 
-> The benchmarks were executed on a MacBook Pro M3 Max.
+_The benchmarks were executed on a MacBook Pro M3 Max._
 
 For the comparison, we divided the tests into two categories:
 
