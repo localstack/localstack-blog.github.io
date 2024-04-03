@@ -76,7 +76,7 @@ Here is an example, where we register a task definition, mounting a host path `/
 Our development & testing workflows make use of the [Stripe](https://pypi.org/project/localstack-extension-stripe/) and [Mailhog](https://pypi.org/project/localstack-extension-Mailhog/) extensions - both locally and in CI. We configure LocalStack to start with these extensions automatically by setting the following environment variable:
 
 ```bash
-EXTENSION_AUTO_INSTALL=localstack-extension-Mailhog, localstack-extension-stripe
+EXTENSION_AUTO_INSTALL=localstack-extension-mailhog, localstack-extension-stripe
 ```
 
 // picture
