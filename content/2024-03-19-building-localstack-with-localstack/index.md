@@ -56,7 +56,6 @@ With just a few of many LocalStack features, we streamline our developer experie
 For example, with just a few lines of code, our CDK stack can be enabled to use the Hot Reloading feature mentioned above:
 
 ```python
-if enable_hot_reloading():
 lambda_bucket = s3.Bucket.from_bucket_name(scope, f"lambda_name_local", "hot-reload")
 lambda_code = lambda_.Code.from_bucket(bucket=lambda_bucket, key=HOT_RELOADED_CODE_PATH) # path pointing to our root project directory
 ```
