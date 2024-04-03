@@ -108,7 +108,10 @@ This means that any mails we send from our application logic, ends up in the mai
 After instructing LocalStack to start with the Mailhog extension, it automatically starts the Mailhog service on port 25. Then, we just need to adjust our application to connect to the SMTP host running on port 25 locally.
 
 ```python 
-smtp_host = "localhost:25"
+config.smtp_host = "localhost:25"
+...
+s = self._connect_smtp(config.smtp_host, config.smtp_user, config.smtp_pass)
+s.sendmail()
 ```
 
 // picture
