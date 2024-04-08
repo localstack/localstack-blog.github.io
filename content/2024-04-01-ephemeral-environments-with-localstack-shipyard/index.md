@@ -19,7 +19,7 @@ In this blog, we’ll detail why you should be using ephemeral environments and 
 
 ## What is Shipyard?
 
-Shipyard is a platform that allows you to create on-demand ephemeral environments to run your tests against a production-like setup. It simplifies pre-production testing, compliance, and collaboration by generating an ephemeral environment preview for your full-stack application on every pull request (PR) to give you a near-production experience while building and testing features. Every environment is a single-tenant cluster, protected by Single Sign-On (SSO). This ensures that not only developers but also other stakeholders can quickly access and work on developing features with a simple click.
+Shipyard is a platform that allows you to create on-demand ephemeral environments to run your tests against a production-like setup. It simplifies pre-production testing, compliance, and collaboration by generating an ephemeral environment preview for your full-stack application on every pull request (PR) to give you a near-production experience while building and testing features. Every environment is a single-tenant cluster, enabling Single Sign-On (SSO) authentication. This ensures that not only developers but also other stakeholders can quickly access and work on developing features with a simple click.
 
 In addition, you can use Shipyard for:
 
