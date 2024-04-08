@@ -156,7 +156,7 @@ You can also use the REST API to get any existing active items using the followi
 curl -X GET http://localhost:8080/api/items?archived=false
 ```
 
-You can fetch an email report by adding `[hello@example.com](mailto:hello@example.com)` in the **Email Report** tab and clicking **Send report**. Navigate to the LocalStack Web Application, and you’ll be able to find the sent emails on the SES Resource Browser.
+You can fetch an email report by adding [`hello@example.com`](mailto:hello@example.com) in the **Email Report** tab and clicking **Send report**. Navigate to the LocalStack Web Application, and you’ll be able to find the sent emails on the SES Resource Browser.
 
 {{< img-simple src="ses-resource-browser.png" alt="LocalStack SES Resource Browser">}}
 
