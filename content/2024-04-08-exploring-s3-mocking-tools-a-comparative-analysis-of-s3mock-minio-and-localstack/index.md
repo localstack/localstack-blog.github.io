@@ -2,8 +2,8 @@
 title: Exploring S3 Mocking Tools — A Comparative Analysis of S3Mock, MinIO, and LocalStack
 description: In this blog post, we conduct a comparison of S3Mock, MinIO, and LocalStack for local development and testing. We evaluate how these tools stack up in terms of API parity with AWS S3 standards, aiming to identify the optimal choice for local S3 development & testing.
 lead: In this blog post, we conduct a comparison of S3Mock, MinIO, and LocalStack for local development and testing. We evaluate how these tools stack up in terms of API parity with AWS S3 standards, aiming to identify the optimal choice for local S3 development & testing.
-date: 2024-03-15T2:34:20+05:30
-lastmod: 2024-03-15T2:34:20+05:30
+date: 2024-04-08
+lastmod: 2024-04-08
 images: ["explore-s3-mocking-tools-banner.png"]
 leadimage: "explore-s3-mocking-tools-banner.png"
 tags: ['showcase']
