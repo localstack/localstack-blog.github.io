@@ -122,7 +122,7 @@ volumes:
 
 In the above Docker Compose configuration, we have created:
 
--   A `localstack` service which pulls the `localstack/localstack` Docker image and sets up an initialization hook that creates the AWS resources on the host machine.
+-   A `localstack` service which pulls the `localstack/localstack-pro` Docker image and sets up an initialization hook that creates the AWS resources on the host machine.
 -   A `frontend` service that installs the dependencies & builds the ReactJS application served on port 3000 using the `Dockerfile` in the `frontend` directory.
 -   A `backend` service that installs the dependencies and starts a development Flask server on port 8080 using the `Dockerfile` in the `backend` directory.
 -   An `ls` Docker network that allows the `backend` service to use LocalStack as its DNS server and ensure that it can access the LocalStack container.
