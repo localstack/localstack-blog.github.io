@@ -283,7 +283,7 @@ There are several key benefits of using Shipyard and LocalStack to develop & tes
 
 ## Conclusion
 
-Congratulations! You’ve successfully deployed an AWS-powered cloud application on an ephemeral environment using LocalStack & Shipyard. With LocalStack, you don't have to worry about losing your infrastructure state after spinning down your ephemeral environments after a quick round of testing. LocalStack allows you to persist the resources created on the host machine for extensive testing and further use Cloud Pods to pre-seed the infrastructure state as and when required!
+Congratulations! You’ve successfully deployed an AWS-powered cloud application on an ephemeral environment using LocalStack & Shipyard. With LocalStack, you don't have to worry about losing your infrastructure state after tearing down your ephemeral environments after a quick round of testing. LocalStack allows you to persist the resources created on the host machine for extensive testing and further use Cloud Pods to pre-seed the infrastructure state as and when required!
 
 You can further explore Shipyard and their offering for various use cases such as:
 
