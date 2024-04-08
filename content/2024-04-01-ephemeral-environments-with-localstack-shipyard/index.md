@@ -47,7 +47,7 @@ For this walkthrough, you’ll need to have the following prerequisites installe
 -   LocalStack Web Application account
 -   `localstack` CLI with `LOCALSTACK_AUTH_TOKEN`
 
-### Setup the application on your local machine
+### Set up the application on your local machine
 
 The code for the solution in this post is in this repository on GitHub. Clone the LocalStack Samples repository that contains the full-stack application and other associated configurations, such as the Docker Compose file.
 
