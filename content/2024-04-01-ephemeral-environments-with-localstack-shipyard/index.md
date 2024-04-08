@@ -291,4 +291,4 @@ You can further explore Shipyard and their offering for various use cases such a
 -   Using Shipyard’s volume management to revert the data in case of regression and load them across sibling environments.
 -   Monitoring key infrastructure metrics such as an overview of build and deploy times, CPU/Memory usage, and deployment timeline.
 
-If you have any questions about configuring and running your project, drop by Shipyard Slack Community or LocalStack Slack Community. We would love to hear your feedback about this integration!
+If you have any questions about configuring and running your project, drop by Shipyard's or LocalStack's Slack Community. We would love to hear your feedback about this integration. Happy cloud testing!
