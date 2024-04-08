@@ -33,7 +33,7 @@ LocalStack has been in active partnership with Shipyard and both companies are o
 
 {{< tweet 1670858503693402139 >}}
 
-LocalStack’s cloud emulation capabilities allow you to create resources such as S3 buckets, DynamoDB tables, OpenSearch clusters, and more to replicate cloud environments. With significant enhancements to these services, you can now preview features in your cloud applications, and use additional features such as Cloud Pods to pre-seed your infrastructure state automatically. Upon creating a pull request, Shipyard automatically creates an ephemeral environment that allows you to test your application in a state that is infrastructure-identical to production, making it easy to collaborate asynchronously within and across your team!
+LocalStack’s cloud emulation capabilities allow you to create resources such as S3 buckets, DynamoDB tables, OpenSearch clusters, and more to replicate cloud environments. With significant recent enhancements to these services, you can now preview features in your cloud applications, and use additional features such as Cloud Pods to pre-seed your infrastructure state automatically. Upon creating a pull request, Shipyard automatically creates an ephemeral environment that allows you to test your application in a state that is infrastructure-identical to production, making it easy to collaborate asynchronously within and across your team!
 
 ## How to use Shipyard with LocalStack?
 
