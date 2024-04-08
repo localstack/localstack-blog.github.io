@@ -23,7 +23,7 @@ Shipyard is a platform that allows you to create on-demand ephemeral environment
 
 In addition, you can use Shipyard for:
 
--   Gaining terminal access into your running containers for active debugging.
+-   Gaining terminal access into your running containers for live debugging.
 -   Adding private container registries for pulling images during the build.
 -   Integrating with GitHub Actions, CircleCI, Datadog, Slack, and more.
 -   Creating snapshots for each named volume in your application setup.
