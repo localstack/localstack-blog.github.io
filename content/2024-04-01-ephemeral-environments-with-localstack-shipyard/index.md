@@ -29,7 +29,7 @@ In addition, you can use Shipyard for:
 -   Creating snapshots for each named volume in your application setup.
 -   Monitoring your deployment while tracking build details & application history.
 
-LocalStack has been in active partnership with Shipyard and both companies are on a mission to streamline the Software Development Life Cycle (SDLC) and provide frictionless developer experience. This partnership is in line with our shared vision of bolstering the DevOps methodologies while providing an improved testing process, quicker release cycles, and optimized cost utilization — all while adhering to the best security practices.
+LocalStack has been in active partnership with Shipyard and both companies are on a mission to streamline the Software Development Life Cycle (SDLC) and provide frictionless developer experience. This partnership is in line with our shared vision of bolstering the DevOps methodologies while providing an improved testing process, quicker release cycles, and optimized cost utilization — all while adhering to security best practices.
 
 {{< tweet 1670858503693402139 >}}
 
