@@ -37,7 +37,7 @@ LocalStack’s cloud emulation capabilities allow you to create resources such a
 
 ## How to use Shipyard with LocalStack?
 
-In this section, we’ll run a basic item tracker application on Shipyard using DynamoDB & SES provisioned by LocalStack. The item tracker application allows users to submit data to a DynamoDB table using a ReactJS client and a Flask backend, using the AWS SDK for Python (`boto3`) using a basic CRUD interface. It then uses the Simple Email Service to mock the process of sending email reports of work items.
+In this section, we’ll run a basic item tracker application on Shipyard using DynamoDB & Simple Email Service (SES) provisioned by LocalStack. The item tracker application allows users to submit data to a DynamoDB table using a ReactJS client and a Flask backend, using the AWS SDK for Python (`boto3`) using a basic CRUD interface. It then uses SES to mock the process of sending email reports of work items.
 
 For this walkthrough, you’ll need to have the following prerequisites installed on your local machine:
 
