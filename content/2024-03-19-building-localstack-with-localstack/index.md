@@ -73,7 +73,24 @@ Our team can furthermore benefit from hot-reloading qualities by incorporating L
 
 Here is an example, where we register a task definition, mounting a host path `/host/path` into the container under `/container/path`:
 
-// code
+```python3
+task_def = ecs.TaskDefinition(
+        ...
+        volumes=[
+                ecs.Volume(name="test-volume", host=ecs.Host(source_path="./localstack_platform"))
+        ]
+)
+
+platform_container = task_def.add_container(...)
+
+platform_container.add_mount_points(
+        ecs.MountPoint(
+                container_path="/app/localstack_platform",
+                source_volume="test-volume",
+                read_only=False,
+        ),
+)
+```
 
 ### LocalStack Extensions
 
