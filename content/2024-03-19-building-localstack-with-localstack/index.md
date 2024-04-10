@@ -18,6 +18,11 @@ tags: ['showcase']
 
 In this blog, we highlight how we use the LocalStack core cloud emulator and other novel solutions, to build, test, and integrate new features in our LocalStack Web Application. We’ll also detail some of the lessons we have learned, recommendations for success, and how our experience has further helped us improve the base emulation layer.
 
+- [How do we enable local cloud development?](#how-do-we-enable-local-cloud-development)
+- [How do we use LocalStack in CI?](#how-do-we-use-localstack-in-ci)
+- [How do we use LocalStack to enable application previews and E2E testing?](#how-do-we-use-localstack-to-enable-application-previews-and-e2e-testing)
+- [Conclusion](#conclusion)
+
 ## How do we enable local cloud development?
 
 The LocalStack Web Application comprises two central components — the client application and the related backend. Our whole infrastructure is hosted on [Amazon Web Services (AWS)](https://aws.amazon.com/) and is deployed using the [Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/). We use various AWS services, such as [Lambda](https://aws.amazon.com/lambda/), [S3](https://aws.amazon.com/s3/), [SNS](https://aws.amazon.com/sns/), [SQS](https://aws.amazon.com/sqs/), [CloudFront](https://aws.amazon.com/cloudfront/), [DynamoDB](https://aws.amazon.com/dynamodb/), [ECS](https://aws.amazon.com/ecs/), [EC2](https://aws.amazon.com/ec2/), [Cognito](https://aws.amazon.com/cognito/), [Secrets Manager](https://aws.amazon.com/secrets-manager/), to name just a few. We use [ReactJS](https://react.dev/) & Typescript for our client application while using [Flask](https://flask.palletsprojects.com/en/3.0.x/) & Python for the backend.
@@ -40,6 +45,8 @@ cdklocal deploy --require-approval=never
 ```
 
 The key tenet of our local cloud development model is agility — deploying our CDK stack on AWS for development & testing **used to take around 15 minutes**. With LocalStack, we were able to cut it down to **less than sixty seconds**. It enables a quick feedback loop and confidence with *our app runs locally!* while ensuring we are not handcuffed, as we deploy our applications dozens of times a day locally.
+
+{{< img-simple src="localstack-web-app-running-locally.png" alt="LocalStack Web App running locally">}}
 
 We also run our integration test suite against the locally deployed cloud infrastructure. This includes testing E2E flows encompassing Lambdas & SQS queues, Cognito triggers and authentication flows, alongside a DynamoDB-powered persistence layer with asynchronous stream handlers. The local integration suite enables us to further get rid of cloud-based developer environments, and use emulated resources to test our infrastructure locally, with the highest level of fidelity.
 
@@ -78,8 +85,6 @@ Our development & testing workflows make use of the [Stripe](https://pypi.org/pr
 EXTENSION_AUTO_INSTALL=localstack-extension-mailhog, localstack-extension-stripe
 ```
 
-// picture
-
 The LocalStack Web Application handles various aspects around account management, such as Purchases, Subscriptions, Billing, and more. The Stripe extension fully allows us to test these flows, using an emulated Stripe service that runs on our machines locally. With the Stripe extension, we can now test user flows like purchasing a subscription or updating billing details, and other Stripe API operations. 
 
 Routing the calls to the locally running Stripe emulator is achieved by simply overriding the API endpoint of the [Stripe SDK](https://docs.stripe.com/libraries), depending on whether we’re running locally.
@@ -114,13 +119,11 @@ s = self._connect_smtp(config.smtp_host, config.smtp_user, config.smtp_pass)
 s.sendmail()
 ```
 
-// picture
+{{< img-simple src="localstack-mailhog-extension.png" alt="LocalStack Mailhog extension">}}
 
 ## How do we use LocalStack in CI?
 
 By running our cloud deployment & test suite locally, we were able to demystify critical pain points of the local cloud developer experience, which further helped us improve the parity, performance, and robustness of our core cloud emulator. However, we wanted to extend that improved developer experience across continuous integration (CI) pipelines with LocalStack. While it is easy just to use LocalStack as a drop-in replacement for AWS, and run tests just like we would do it locally, it is hard to retrieve detailed API telemetry, critical CI analytics, and discover flaky tests that need remediation.
-
-// picture
 
 This led us to embark on a journey to identify the missing puzzle pieces in the LocalStack CI experience. It made us build internal homegrown systems, which have now spun into critical LocalStack features that we continue to leverage for our CI pipelines.
 
@@ -186,7 +189,7 @@ With CI Analytics we can drill down into the request & response traces for every
 
 Additionally, we can now instrument the important paths and processes, capture the infrastructure state which can be restored locally, and enrich our API telemetry to capture relevant data that help our developers understand flaky CI tests. 
 
-// picture
+{{< img-simple src="ci-analytics-request-reponse-traces.png" alt="CI Analytics Page showing the request/response traces">}}
 
 ## How do we use LocalStack to enable application previews and E2E testing?
 
@@ -232,6 +235,8 @@ This enables us to:
 -   Foster active collaboration with GTM, RevOps, and DevRel teams to demonstrate new features to prospective customers.
 -   Remove the need for staging environments, by giving every engineer an isolated environment, essentially unblocking ourselves.
 -   Cut down costs around our staging environment by tearing down environments automatically, which avoids unnecessary cloud costs.
+
+{{< img-simple src="ephemeral-preview-pull-request-comment.png" alt="A PR comment displaying the Ephemeral Instance URL">}}
     
 With the help of auto-loaded Cloud Pods to pre-seed the infrastructure state, we have achieved a game-changing improvement to our pre-release testing due to faster application spin-ups & resource allocation.
 
