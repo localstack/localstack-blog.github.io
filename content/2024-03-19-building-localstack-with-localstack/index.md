@@ -44,6 +44,12 @@ cd ../frontend
 cdklocal deploy --require-approval=never
 ```
 
+This set of commands is wrapped up in a single Makefile target, which can then be invoked with one CLI command:
+
+```bash 
+make deploy-local
+```
+
 The key tenet of our local cloud development model is agility — deploying our CDK stack on AWS for development & testing **used to take around 15 minutes**. With LocalStack, we were able to cut it down to **less than sixty seconds**. It enables a quick feedback loop and confidence with *our app runs locally!* while ensuring we are not handcuffed, as we deploy our applications dozens of times a day locally.
 
 {{< img-simple src="localstack-web-app-running-locally.png" alt="LocalStack Web App running locally">}}
@@ -233,12 +239,7 @@ steps:
       preview-cmd: |
         npm install -g aws-cdk-local aws-cdk
         pip install awscli-local[ver1]
-        cd backend
-        export AWS_ACCOUNT_ID=000000000000 AWS_DEFAULT_REGION=eu-central-1
-        cdklocal bootstrap aws://$$AWS_ACCOUNT_ID/$$AWS_DEFAULT_REGION
-        cdklocal deploy --require-approval=never 
-        cd ../frontend
-        cdklocal deploy --require-approval=never
+        make deploy-local
 
   - name: Finalize PR comment
     uses: LocalStack/setup-localstack/finish@main
