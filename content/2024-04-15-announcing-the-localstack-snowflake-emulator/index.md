@@ -5,13 +5,26 @@ lead: We are excited to announce the LocalStack Snowflake emulator which enables
 date: 2024-04-15T5:41:46+05:30
 lastmod: 2024-04-15T5:41:46+05:30
 images: []
-contributors: []
+contributors: ["LocalStack Team"]
 tags: ['news']
 ---
 
-Start writing your blog here. Use Markdown syntax to write your blogs. If you are new to Markdown or unfamiliar with it, please refer to the [Markdown Guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) for more information. 
-To add images to your blog, download them inside the specific folder and add the path to the images in the blog. Make sure that the images have alternative text and a caption for accessibility. We also recommend meaningfully naming the images for future references.
-Before starting to work on the blog, make sure to add yourself as an author. You can do this by adding yourself as a contributor to the blog in the **content/contributors** folder by creating a new sub-folder and adding an **index.md** file inside it.
+## Introduction
 
-While writing, keep the blogs concise, crisp and to the point. Avoid a biased opinion on a topic, mention both sides of the argument. After finishing the blog, make sure to raise a pull request where the maintainers can review and approve the blog. Ideally the maintainers might suggest some changes to the blog.
-Once the changes are implemented, the maintainers will merge the pull request and the blog would be automatically published through the GitHub Pages.
+We’re excited to announce that we have released a first version of the LocalStack Snowflake emulator. The LocalStack Snowflake emulator allows you to develop and test your data pipelines locally using a Docker container which can be plugged into integrations, such as [Snowpark](https://docs.snowflake.com/en/developer-guide/snowpark/index), [client libraries](https://developers.snowflake.com/drivers-and-libraries/), and various other toolings in the [Snowflake ecosystem](https://docs.snowflake.com/en/user-guide/ecosystem). The Snowflake emulator supports various key features, such as:
+
+-   Basic operations on warehouses, databases, schemas, and tables.
+-   Storing files in [user/data/named stages](https://docs.snowflake.com/en/user-guide/data-load-local-file-system-create-stage).
+-   [Tasks](https://docs.snowflake.com/en/user-guide/tasks-intro) for scheduled execution.
+-   Snowpipe streaming with [Kafka connector](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-streaming-kafka).
+-   JavaScript and Python [UDFs](https://docs.snowflake.com/en/developer-guide/udf/udf-overview).
+-   [Table streams](https://docs.snowflake.com/en/user-guide/streams-intro) for change data capture (CDC) and audit logs.
+-   Cross-Database [Resource Sharing](https://docs.snowflake.com/en/user-guide/data-sharing-intro).
+-   Testing infrastructure-as-code with [Terraform](https://snowflake.localstack.cloud/user-guide/integrations/terraform/) & [Pulumi](https://snowflake.localstack.cloud/user-guide/integrations/pulumi/).
+-   [Continuous integration](https://snowflake.localstack.cloud/user-guide/continuous-integration/) with GitHub Actions, CircleCI & GitLab CI.
+
+This allows you to bypass the need to rely on the live version for local development & testing while enabling a high velocity, high quality, agile test-driven development for your data applications. With this release, we’re underscoring our commitment to go multi-cloud and build a complete suite of emulators that allow you to achieve efficiency and cost savings by putting development and testing closer together.
+
+The Snowflake emulator is currently in public preview, and you can reach out to us to get access! This post explores how we reached this point, what it means for our users, and provides a quickstart to help you get started.
+
+TL;DR — Navigate to our [LocalStack Snowflake emulator documentation](https://snowflake.localstack.cloud/introduction/) to get started!
