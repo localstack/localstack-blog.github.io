@@ -36,3 +36,17 @@ Software development organizations need a fast build lifecycle, quick continuous
 The LocalStack platform addresses these challenges head-on! LocalStack’s core cloud emulator supports over 100 AWS services, such as Lambda, S3, EKS, ECS, RDS, and more. This enables a high-fidelity local developer environment ​​that allows you to run integration tests of cloud solutions locally and in CI environments. While expanding to 100K users worldwide and over 220M+ Docker pulls, we gathered a lot of learnings that further expanded our vision of providing a comprehensive developer platform that facilitates local multi-cloud development across different providers and services.
 
 The demand for a local version of the Snowflake has been on the rise, across [Stack Overflow](https://stackoverflow.com/questions/75820814/is-it-possible-to-run-a-local-snowflake-instance-using-docker), the [Snowflake community](https://community.snowflake.com/s/question/0D50Z00008Li3DTSAZ/has-anyone-come-up-with-a-local-version-of-snowflake-that-allows-for-development-testing-locally), and [Twitter/X](https://twitter.com/criccomini/status/1618782276267163652). A [local testing framework](https://docs.snowflake.com/en/developer-guide/snowpark/python/testing-locally) from Snowflake is available, which provides mock-only support for running integration tests - but that isn’t enough for more expansive use cases. The existing tooling available in the LocalStack core cloud emulator, which included our RDS Postgres utilities, snapshot testing library, analytics service client, and more allowed us to build an initial experimental preview [which was announced on our Discuss forum](https://discuss.localstack.cloud/t/introducing-the-localstack-snowflake-extension-experimental/665/7), gaining significant community traction.
+
+## How did we build this?
+
+At its core, we utilize PostgreSQL as the database engine to store the user data and execute queries. The SQL syntax of Snowflake queries is overall fairly similar to PostgreSQL, but there are several more or less subtle differences. The figure below outlines some of the main components used in our implementation:
+
+// picture
+
+Query Processors are the main building blocks that collectively comprise the core engine that processes incoming user queries. We distinguish 3 main types of query processors:
+
+-   DB initializers are pieces of logic that are applied only once upon creation of a database (e.g., creating custom SQL functions).
+-   Query pre-processors operate on the abstract syntax tree (AST) of SQL queries and transform incoming queries in Snowflake format to target queries that can be executed in the DB engine (Postgres).
+-   Result post-processors take care of applying additional custom logic and converting the DB engine query results to Snowflake API-compatible result sets — either as JSON blobs or in Apache Arrow table format.
+
+Auxiliary Services encompass additional pieces of logic to handle file stages, session states, table streams, tasks, as well as other integrations and functions.
