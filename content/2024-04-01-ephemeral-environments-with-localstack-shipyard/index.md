@@ -4,10 +4,13 @@ description: We're excited to announce our partnership with Shipyard. This integ
 lead: We're excited to announce our partnership with Shipyard. This integration empowers you to test your cloud applications in a short-lived, encapsulated deployment — allowing you to shift left by fixing things before they break your production.
 date: 2024-04-01T9:41:21+05:30
 lastmod: 2024-04-01T9:41:21+05:30
-images: []
+images: ['ephemeral-environments-with-localstack-shipyard-banner.png']
+leadimage: 'ephemeral-environments-with-localstack-shipyard-banner.png'
 contributors: ["Harsh Mishra", "Natalie Lunbeck"]
 tags: ['showcase']
 ---
+
+{{< img-simple src="ephemeral-environments-with-localstack-shipyard-banner.png" width=300 alt="Banner image for the blog: Ephemeral environments with LocalStack & Shipyard">}}
 
 ## Introduction
 
