@@ -16,7 +16,7 @@ tags: ['showcase']
 
 We’re excited to announce our partnership with [Shipyard](https://shipyard.build), the ephemeral environment self-service platform, that allows you to spin up on-demand preview deployments via Kubernetes clusters to turbocharge your application lifecycle. With Shipyard, you can now deploy your cloud applications in short-lived environments to enable developer teams to run tests, preview features, and get alignment with cross-departmental projects. Shipyard also enables application previews on every pull request and simplifies monitoring, debugging, and deployment all from one dashboard!
 
-LocalStack’s core cloud emulator enables developers to build, test, and deploy cloud & serverless applications locally. Shipped as a Docker image, you can use various integrations such as the `docker` CLI, Docker Compose, or Helm to start LocalStack in a developer environment. Shipyard allows developers to use Docker Compose configurations which are then automatically transpiled into Kubernetes manifests enabling you a pre-production preview of how your applications work! As such, LocalStack does not require any additional configurations and just enables you to start with a pre-defined Docker Compose setup.
+LocalStack’s core cloud emulator enables developers to build, test, and deploy cloud & serverless applications locally. Shipped as a Docker image, you can use various integrations such as the `docker` CLI, Docker Compose, or Helm to start LocalStack in a developer environment. Shipyard allows developers to use [Docker Compose configurations](https://docs.docker.com/compose/) which are then automatically transpiled into Kubernetes manifests enabling you a pre-production preview of how your applications work! As such, LocalStack does not require any additional configurations and just enables you to start with a pre-defined Docker Compose setup.
 
 In this blog, we’ll detail why you should be using ephemeral environments and how you can use LocalStack alongside Shipyard. We’ll also go through setting up an AWS-powered application on Shipyard & LocalStack, and how you can pre-seed infrastructure state using Cloud Pods!
 
@@ -40,19 +40,19 @@ LocalStack’s cloud emulation capabilities allow you to create resources such a
 
 ## How to use Shipyard with LocalStack?
 
-In this section, we’ll run a basic item tracker application on Shipyard using DynamoDB & Simple Email Service (SES) provisioned by LocalStack. The item tracker application allows users to submit data to a DynamoDB table using a ReactJS client and a Flask backend, using the AWS SDK for Python (`boto3`) using a basic CRUD interface. It then uses SES to mock the process of sending email reports of work items.
+In this section, we’ll run a basic item tracker application on Shipyard using DynamoDB & Simple Email Service (SES) provisioned by LocalStack. The item tracker application allows users to submit data to a DynamoDB table using a ReactJS client and a Flask backend, using the [AWS SDK for Python (`boto3`)](https://aws.amazon.com/sdk-for-python/) using a basic CRUD interface. It then uses SES to mock the process of sending email reports of work items.
 
 For this walkthrough, you’ll need to have the following prerequisites installed on your local machine:
 
--   Docker & Docker Compose
--   AWS CLI & `awslocal` wrapper script
--   Shipyard account with an active subscription (sign up for a free trial)
--   LocalStack Web Application account
--   `localstack` CLI with `LOCALSTACK_AUTH_TOKEN`
+-   [Docker](https://docs.docker.com/engine/install/) & [Docker Compose](https://docs.docker.com/compose/install/)
+-   AWS CLI & [`awslocal` wrapper script](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
+-   [Shipyard account](https://shipyard.build/signup) with an active subscription (sign up for a free trial)
+-   [LocalStack Web Application account](https://app.localstack.cloud/sign-up)
+-   [`localstack` CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) with [`LOCALSTACK_AUTH_TOKEN`](https://docs.localstack.cloud/getting-started/auth-token/)
 
 ### Set up the application on your local machine
 
-The code for the solution in this post is in this repository on GitHub. Clone the LocalStack Samples repository that contains the full-stack application and other associated configurations, such as the Docker Compose file.
+The code for the solution in this post is in [this repository on GitHub](). Clone the LocalStack Samples repository that contains the full-stack application and other associated configurations, such as the Docker Compose file.
 
 To get started, fork the repository on GitHub on your account. You can now use `git clone` to clone the repository onto your local developer machine:
 
@@ -76,6 +76,7 @@ services:
       - "127.0.0.1:4510-4559:4510-4559"  # external services port range
       - "127.0.0.1:443:443"
     environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
       - DEBUG=1
       - DOCKER_HOST=unix:///var/run/docker.sock
       - EXTRA_CORS_ALLOWED_ORIGINS='*'
@@ -159,7 +160,7 @@ You can also use the REST API to get any existing active items using the followi
 curl -X GET http://localhost:8080/api/items?archived=false
 ```
 
-You can fetch an email report by adding [`hello@example.com`](mailto:hello@example.com) in the **Email Report** tab and clicking **Send report**. Navigate to the LocalStack Web Application, and you’ll be able to find the sent emails on the SES Resource Browser.
+You can fetch an email report by adding [`hello@example.com`](mailto:hello@example.com) in the **Email Report** tab and clicking **Send report**. Navigate to the LocalStack Web Application, and you’ll be able to find the sent emails on the [SES Resource Browser](https://app.localstack.cloud/inst/default/resources/ses/identities).
 
 {{< img-simple src="ses-resource-browser.png" alt="LocalStack SES Resource Browser">}}
 
@@ -223,7 +224,7 @@ Now create a new branch in your local repository, and make a small change. After
 
 ### Use Cloud Pods to pre-seed infrastructure state
 
-In various testing scenarios, you might often feel the need to create test fixtures or additional resources to bootstrap your testing environment and test your application. LocalStack’s Cloud Pods can facilitate and dramatically simplify this task. Cloud Pods allow you to take a snapshot of the state at any point in time, and then selectively restore, merge, and inject it into your LocalStack container.
+In various testing scenarios, you might often feel the need to create test fixtures or additional resources to bootstrap your testing environment and test your application. [LocalStack’s Cloud Pods](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/) can facilitate and dramatically simplify this task. Cloud Pods allow you to take a snapshot of the state at any point in time, and then selectively restore, merge, and inject it into your LocalStack container.
 
 In this scenario, you can pre-seed your previews with the DynamoDB state using a Cloud Pod that contains the state and configuration of the DynamoDB table. This Cloud Pod would be available in the Cloud Pod storage space on the LocalStack Web Application and can be used in CI to bootstrap the testing environment where the application is then deployed and tested. Moreover, each developer can pull the same Cloud Pod and run some local tests.
 
@@ -248,7 +249,7 @@ Remote: platform
 Services: dynamodb,ses
 ```
 
-You can also navigate to the Cloud Pods browser, where you can find the newly created Cloud Pod stored on the LocalStack Web Application. Navigate to the local application setup, and add the following to your Docker Compose configuration file to auto-load the Cloud Pod and remove the initialization hook. This will ensure that on the LocalStack container startup, the Cloud Pod will be loaded automatically (using the `AUTO_LOAD_POD` configuration) thus pre-seeding your infrastructure state.
+You can also navigate to the [Cloud Pods browser](https://app.localstack.cloud/pods), where you can find the newly created Cloud Pod stored on the LocalStack Web Application. Navigate to the local application setup, and add the following to your Docker Compose configuration file to auto-load the Cloud Pod and remove the initialization hook. This will ensure that on the LocalStack container startup, the Cloud Pod will be loaded automatically (using the [`AUTO_LOAD_POD` configuration](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#environmental-variables)) thus pre-seeding your infrastructure state.
 
 ```yaml
 diff --git a/docker-compose.yml b/docker-compose.yml
@@ -290,8 +291,8 @@ Congratulations! You’ve successfully deployed an AWS-powered cloud application
 
 You can further explore Shipyard and their offering for various use cases such as:
 
--   Adding Datadog logging and integrating with LocalStack’s serverless resources, such as Lambda, EventBridge, SQS, and more.
--   Using Shipyard’s volume management to revert the data in case of regression and load them across sibling environments.
--   Monitoring key infrastructure metrics such as an overview of build and deploy times, CPU/Memory usage, and deployment timeline.
+-   Adding [Datadog logging](https://docs.shipyard.build/docs/datadog) and integrating with LocalStack’s serverless resources, such as [Lambda](https://docs.localstack.cloud/user-guide/aws/lambda/), [EventBridge](https://docs.localstack.cloud/user-guide/aws/eventbridge/), [SQS](https://docs.localstack.cloud/user-guide/aws/sqs/), and more.
+-   Using [Shipyard’s volume management](https://docs.shipyard.build/docs/volume-management) to revert the data in case of regression and load them across sibling environments.
+-   Monitoring key infrastructure metrics such as an overview of [build and deploy times, CPU/Memory usage, and deployment timeline](https://docs.shipyard.build/docs/build-details).
 
-If you have any questions about configuring and running your project, drop by Shipyard's or LocalStack's Slack Community. We would love to hear your feedback about this integration. Happy cloud testing!
+If you have any questions about configuring and running your project, drop by [Shipyard](https://shipyardcommunity.slack.com/join/shared_invite/zt-1y44cpq6u-rJT~kg9wArqxP~N1F3K_pA#/shared-invite/email) or [LocalStack](https://localstack.cloud/slack) community. We would love to hear your feedback about this integration. Happy cloud testing!
