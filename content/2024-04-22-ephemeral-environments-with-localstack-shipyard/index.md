@@ -172,7 +172,7 @@ In the output, you will find the persisted data available.
 
 ### Configure your application on Shipyard
 
-You can now create an ephemeral environment for your cloud application on Shipyard. Navigate to your Shipyard dashboard and click on **+ Application**. Choose the GitHub repository you have forked and choose the `main` branch to start.
+You can now create an ephemeral environment for your cloud application on Shipyard. Navigate to your Shipyard dashboard and click on **+ Application**. Choose the GitHub repository you have forked and the `main` branch to start.
 
 {{< img-simple src="create-application-shipyard.png" alt="Create an application on Shipyard">}}
 
