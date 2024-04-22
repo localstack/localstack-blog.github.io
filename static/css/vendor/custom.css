@@ -360,3 +360,9 @@ li::marker {
 .blog.single > section a {
   font-weight: bold;
 }
+
+.twitter-tweet-rendered {
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
