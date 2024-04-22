@@ -52,7 +52,7 @@ For this walkthrough, you’ll need to have the following prerequisites installe
 
 ### Set up the application on your local machine
 
-The code for the solution in this post is in [this repository on GitHub](https://github.com/localstack-samples/sample-item-tracker-shipyard-application). To get started, fork the repository on GitHub on your account. You can now use `git clone` to clone the repository onto your local developer machine:
+The code for the solution in this post is in [this repository on GitHub](https://github.com/localstack-samples/sample-item-tracker-shipyard-application). To get started, fork the repository on GitHub. You can now use `git clone` to clone the repository onto your local developer machine:
 
 ```bash
 git clone https://github.com/localstack-samples/sample-item-tracker-shipyard-application
@@ -172,7 +172,7 @@ In the output, you will find the persisted data available.
 
 ### Configure your application on Shipyard
 
-You can now create an ephemeral environment for your cloud application on Shipyard. Navigate to your dashboard and click on **+ Application**. Choose the GitHub repository you have forked and choose the `main` branch to start.
+You can now create an ephemeral environment for your cloud application on Shipyard. Navigate to your Shipyard dashboard and click on **+ Application**. Choose the GitHub repository you have forked and choose the `main` branch to start.
 
 {{< img-simple src="create-application-shipyard.png" alt="Create an application on Shipyard">}}
 
