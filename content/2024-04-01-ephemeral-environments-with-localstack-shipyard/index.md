@@ -52,9 +52,7 @@ For this walkthrough, you’ll need to have the following prerequisites installe
 
 ### Set up the application on your local machine
 
-The code for the solution in this post is in [this repository on GitHub](). Clone the LocalStack Samples repository that contains the full-stack application and other associated configurations, such as the Docker Compose file.
-
-To get started, fork the repository on GitHub on your account. You can now use `git clone` to clone the repository onto your local developer machine:
+The code for the solution in this post is in [this repository on GitHub](https://github.com/localstack-samples/sample-item-tracker-shipyard-application). To get started, fork the repository on GitHub on your account. You can now use `git clone` to clone the repository onto your local developer machine:
 
 ```bash
 git clone https://github.com/localstack-samples/sample-item-tracker-shipyard-application
@@ -182,13 +180,13 @@ Click on the **Select services** to add services that you would like to deploy. 
 
 {{< img-simple src="shipyard-select-services.png" alt="Selecting Docker Compose services on Shipyard">}}
 
-Click on the **Add environment variables** to go to the next step, and add any environment variables that you want to configure. Finally, click on **Create application** to get started with the first build of your application! After a successful build, you can now click on the **Visit** button on your application dashboard to navigate to the deployed application. 
+Click on the **Add environment variables** to go to the next step, and add the `LOCALSTACK_AUTH_TOKEN` as an environment variable to authenticate with LocalStack. Finally, click on **Create application** to get started with the first build of your application! After a successful build, you can now click on the **Visit** button on your application dashboard to navigate to the deployed application. 
 
 You can start interacting with the application, and review the run logs for your application's services.
 
 {{< img-simple src="localstack-container-logs.png" alt="LocalStack Container logs on Shipyard">}}
 
-### Create a GitHub Action workflow for previews
+### Enable previews for your ephemeral environments
 
 You can now create previews for your ephemeral application deployed on Shipyard. The preview follows the lifecycle of a pull request (PR), and makes sure that:
 
@@ -218,7 +216,7 @@ jobs:
 
 The workflow uses the `SHIPYARD_API_TOKEN`. Add it to your forked GitHub repository using secrets in GitHub Actions.
 
-Now create a new branch in your local repository, and make a small change. After making the changes, stage it, push the commits into the branch and create a new pull request. Shipyard will automatically start a new ephemeral deployment. You can see the workflow's status and logs in the `checks` section of the pull request. After a few seconds, the workflow will add the preview URL. Click on it to see your changes in real-time.
+Now create a new branch in your local repository, and make a small change. After making the changes, stage it, push the commits into the branch and create a new pull request. Shipyard will automatically start a new ephemeral deployment. You can see the workflow's status and logs in the `checks` section of the pull request. After a few seconds, the workflow will add the preview URL. Click on it to see your changes in real time.
 
 {{< img-simple src="shipyard-pr-previews.png" alt="Shipyard spinning up another environment for the new Pull request">}}
 
@@ -249,23 +247,24 @@ Remote: platform
 Services: dynamodb,ses
 ```
 
-You can also navigate to the [Cloud Pods browser](https://app.localstack.cloud/pods), where you can find the newly created Cloud Pod stored on the LocalStack Web Application. Navigate to the local application setup, and add the following to your Docker Compose configuration file to auto-load the Cloud Pod and remove the initialization hook. This will ensure that on the LocalStack container startup, the Cloud Pod will be loaded automatically (using the [`AUTO_LOAD_POD` configuration](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#environmental-variables)) thus pre-seeding your infrastructure state.
+You can also navigate to the [Cloud Pods browser](https://app.localstack.cloud/pods), where you can find the newly created Cloud Pod stored on the LocalStack Web Application. Navigate to the local application setup, and add the following to your Docker Compose configuration file to auto-load the Cloud Pod, using the [`AUTO_LOAD_POD` configuration](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#environmental-variables), and remove the initialization hook. 
 
 ```yaml
-diff --git a/docker-compose.yml b/docker-compose.yml
-index 4712182..c38cf12 100644
---- a/docker-compose.yml
-+++ b/docker-compose.yml
-@@ -14,8 +14,8 @@ services:
-       - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
-       - DOCKER_HOST=unix:///var/run/docker.sock
-       - EXTRA_CORS_ALLOWED_ORIGINS='*'
-+      - AUTO_LOAD_POD=item-tracker-application
-     volumes:
--      - "./init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh"
-       - "localstack:/var/lib/localstack"
-       - "/var/run/docker.sock:/var/run/docker.sock"
-     networks:
+AUTO_LOAD_POD=item-tracker-application
+```
+
+This will ensure that on the LocalStack container startup, the Cloud Pod will be loaded automatically thus pre-seeding your infrastructure state. The Docker Compose configuration will look like this:
+
+```yaml
+environment:
+  - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
+  - DEBUG=1
+  - DOCKER_HOST=unix:///var/run/docker.sock
+  - EXTRA_CORS_ALLOWED_ORIGINS='*'
+  - AUTO_LOAD_POD=item-tracker-application
+volumes:
+  - "localstack:/var/lib/localstack"
+  - "/var/run/docker.sock:/var/run/docker.sock"
 ```
 
 Commit and push this on the `main` branch of the repository. After a successful build & deployment, you can now visit the newly deployed application, to find the DynamoDB table successfully seeded in the application setup, which is further reflected in the web client.
