@@ -1,5 +1,5 @@
 ---
-title: Ephemeral environments with LocalStack & Shipyard
+title: Ephemeral Environments with LocalStack & Shipyard
 description: We're excited to announce our partnership with Shipyard. This integration empowers you to test your cloud applications in a short-lived, encapsulated deployment — allowing you to shift left by fixing things before they break your production.
 lead: We're excited to announce our partnership with Shipyard. This integration empowers you to test your cloud applications in a short-lived, encapsulated deployment — allowing you to shift left by fixing things before they break your production.
 date: 2024-04-01T9:41:21+05:30
@@ -57,7 +57,7 @@ The code for the solution in this post is in [this repository on GitHub](). Clon
 To get started, fork the repository on GitHub on your account. You can now use `git clone` to clone the repository onto your local developer machine:
 
 ```bash
-git clone <>
+git clone https://github.com/localstack-samples/sample-item-tracker-shipyard-application
 cd sample-item-tracker-shipyard-application
 ```
 
