@@ -18,18 +18,21 @@ tags: ['showcase']
 
 In this blog, we highlight how we use the LocalStack core cloud emulator and other novel solutions, to build, test, and integrate new features in our LocalStack Web Application. We’ll also detail some of the lessons we have learned, recommendations for success, and how our experience has further helped us improve the base emulation layer.
 
+- [Application Overview](#application-overview)
 - [How do we enable local cloud development?](#how-do-we-enable-local-cloud-development)
 - [How do we use LocalStack in CI?](#how-do-we-use-localstack-in-ci)
 - [How do we use LocalStack to enable application previews and E2E testing?](#how-do-we-use-localstack-to-enable-application-previews-and-e2e-testing)
 - [Conclusion](#conclusion)
 
-## How do we enable local cloud development?
+## Application overview
 
 The LocalStack Web Application comprises two central components — the client application and the related backend. Our whole infrastructure is hosted on [Amazon Web Services (AWS)](https://aws.amazon.com/) and is deployed using the [Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/). We use various AWS services, such as [Lambda](https://aws.amazon.com/lambda/), [S3](https://aws.amazon.com/s3/), [SNS](https://aws.amazon.com/sns/), [SQS](https://aws.amazon.com/sqs/), [CloudFront](https://aws.amazon.com/cloudfront/), [DynamoDB](https://aws.amazon.com/dynamodb/), [ECS](https://aws.amazon.com/ecs/), [EC2](https://aws.amazon.com/ec2/), [Cognito](https://aws.amazon.com/cognito/), [Secrets Manager](https://aws.amazon.com/secrets-manager/), to name just a few. We use [ReactJS](https://react.dev/) & Typescript for our client application while using [Flask](https://flask.palletsprojects.com/en/3.0.x/) & Python for the backend.
 
 {{< img-simple src="web-application-architecture.png" alt="LocalStack Web Application architecture">}}
 
 The complexity of our cloud infrastructure and various managed dependencies mean that there is no straightforward way of testing it. While [AWS’s official recommendations](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/development-best-practices.html) push us forward to using assertions and snapshot tests, there are inherent limitations and hurdles such as protracted deployment periods and expensive cloud resources.
+
+## How do we enable local cloud development?
 
 ### Infrastructure deployments & testing
   
