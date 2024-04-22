@@ -24,27 +24,50 @@ In this blog, we highlight how we use the LocalStack core cloud emulator and oth
 - [How do we use LocalStack to enable application previews and E2E testing?](#how-do-we-use-localstack-to-enable-application-previews-and-e2e-testing)
 - [Conclusion](#conclusion)
 
-## Application overview
+## Application Overview
 
 The LocalStack Web Application comprises two central components — the client application and the related backend. Our whole infrastructure is hosted on [Amazon Web Services (AWS)](https://aws.amazon.com/) and is deployed using the [Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/). We use various AWS services, such as [Lambda](https://aws.amazon.com/lambda/), [S3](https://aws.amazon.com/s3/), [SNS](https://aws.amazon.com/sns/), [SQS](https://aws.amazon.com/sqs/), [CloudFront](https://aws.amazon.com/cloudfront/), [DynamoDB](https://aws.amazon.com/dynamodb/), [ECS](https://aws.amazon.com/ecs/), [EC2](https://aws.amazon.com/ec2/), [Cognito](https://aws.amazon.com/cognito/), [Secrets Manager](https://aws.amazon.com/secrets-manager/), to name just a few. We use [ReactJS](https://react.dev/) & Typescript for our client application while using [Flask](https://flask.palletsprojects.com/en/3.0.x/) & Python for the backend.
 
 {{< img-simple src="web-application-architecture.png" alt="LocalStack Web Application architecture">}}
 
-The complexity of our cloud infrastructure and various managed dependencies mean that there is no straightforward way of testing it. While [AWS’s official recommendations](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/development-best-practices.html) push us forward to using assertions and snapshot tests, there are inherent limitations and hurdles such as protracted deployment periods and expensive cloud resources.
+The complexity of our cloud infrastructure and various managed dependencies mean that there is no straightforward way of testing it. While [AWS’s official recommendations](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/development-best-practices.html) push us forward to using fine-grained assertions and snapshot tests, there are inherent limitations and hurdles such as protracted deployment periods and expensive cloud resources.
 
 ## How do we enable local cloud development?
 
-### Infrastructure deployments & testing
+At the inception of our cloud application we had a lengthy test & release process, which revolved around a dedicated staging environment, where we would test the lastest changes, and make necessary adjustments, before shipping them to production. By enabling us to develop our application fully on our developer machines, we have managed to cut down the time waiting for feedback to a minimum, since there's no real resources and deployment involved.  
+This section will highlight parts of our setup, which should allow you to adopt a similar local dev flow.
+
+### Boto3 Configuration
+Since our flask backend connects to various AWS resources via boto3, one of the central pieces to adopt LocalStack is a simple configuration that's used when instantiating the boto3 client.
+This configuration determines whether boto3 will make calls to LocalStack during development, or to real AWS in staging/production environments.
+
+We are using [Dynaconf](https://www.dynaconf.com/) for configuration management, which allows us to specify settings for different environments.
+Below example shows the default aws settings, which are used in production:
+```
+[default]
+aws.endpoint_url = ""
+```
+
+For local development we simply point boto3 to LocalStack, by setting the aws endpoint url:
+```
+[development]
+aws.endpoint_url = "http://localhost.localstack.cloud:4566"
+```
+
+This way all boto3 calls made in our backend will be made against LocalStack, instead of the real AWS services, when developing locally.
+
+### Infrastructure deployment & testing
+
+With the configuration described in the previous section we were able to connect the python backend to local resources running on LocalStack, such as DynamoDB.
+However, since our infrastructure also includes serverless services, such as Lambdas, ECS, and EC2, the next logical step was to deploy the whole infrastructure onto LocalStack, to be able to develop and test the whole application more efficiently.
   
-With our core cloud emulator, we can run our entire cloud application - including its infrastructure - on our local machine. We are using [`cdklocal`](https://github.com/localstack/aws-cdk-local), our open-source wrapper script around the CDK library, to run our CDK deployments against LocalStack. Here are the commands we execute to bootstrap the local developer environment and deploy both our frontend and backend stacks on developer machines.
+We are using [`cdklocal`](https://github.com/localstack/aws-cdk-local), our open-source wrapper script around the CDK library, to deploy our CDK stacks against LocalStack - our core cloud emulator. To achieve this, we first bootstrap the environment, and deploy the backend stack afterwards.
 
 ```bash
 cd backend
 export AWS_ACCOUNT_ID=000000000000 AWS_DEFAULT_REGION=eu-central-1
 cdklocal bootstrap aws://$$AWS_ACCOUNT_ID/$$AWS_DEFAULT_REGION
 cdklocal deploy --require-approval=never 
-cd ../frontend
-cdklocal deploy --require-approval=never
 ```
 
 This set of commands is wrapped up in a single Makefile target, which can then be invoked with one CLI command:
@@ -53,34 +76,75 @@ This set of commands is wrapped up in a single Makefile target, which can then b
 make deploy-local
 ```
 
+To deploy the frontend to LocalStack as well, we have a similar sequence of commands:
+```bash
+cd ../frontend
+cdklocal deploy --require-approval=never
+```
+
 The key tenet of our local cloud development model is agility — deploying our CDK stack on AWS for development & testing **used to take around 15 minutes**. With LocalStack, we were able to cut it down to **less than sixty seconds**. It enables a quick feedback loop and confidence with *our app runs locally!* while ensuring we are not handcuffed, as we deploy our applications dozens of times a day locally.
 
 {{< img-simple src="localstack-web-app-running-locally.png" alt="LocalStack Web App running locally">}}
 
-We also run our integration test suite against the locally deployed cloud infrastructure. This includes testing E2E flows encompassing Lambdas & SQS queues, Cognito triggers and authentication flows, alongside a DynamoDB-powered persistence layer with asynchronous stream handlers. The local integration suite enables us to further get rid of cloud-based developer environments, and use emulated resources to test our infrastructure locally, with the highest level of fidelity.
+With the ability to deploy our application locally we are able to develop and test various flows manually, for example if one can sign up, which involves Cognito and a few Lambdas.
+However, the locally deployed application also allows us to run our integration test suite against it. This includes testing E2E flows encompassing Lambdas & SQS queues, Cognito triggers and authentication flows, alongside a DynamoDB-powered persistence layer with asynchronous stream handlers. The local integration suite enables us further to get rid of cloud-based developer environments, and use emulated resources to test our infrastructure locally, with the highest level of fidelity.
+
+In the example of signing up, our application logic does the following: 
+* Create a new user in the database
+* Create a user in Cognito
+* Send an email to the user to confirm their account creation
+
+With our deployed infrastructure, which we deploy before running our test suite, we implement tests with pytest to assert above behavior like this:
+
+```python
+def test_signup_user(self, smtp_server):
+    user_email = f"{short_uid()}@localstack.cloud"
+
+    response = requests.post(
+        url=API_PATH_SIGNUP, # path that points to signup endpoint
+        json=dict(
+            email=user_email,
+            password="TestingPassword123!",
+        ),
+    )
+
+    assert response.status_code == 200
+    assert response.json["id"] is not None
+    assert response.json["email"] == user_email
+
+    user_exists = cognito_client.admin_get_user(
+      UserPoolId=USER_POOL_ID, # user pool id for cognito
+      Username=user_email
+    )
+    assert user_exists is not None
+
+    messages = smtp_server.list_messages()
+    assert len(messages) == 1
+    assert messages[0]['Subject'] == 'LocalStack Account Activation'
+```
 
 ### Development & debugging
 
-Apart from this, we further wished to leverage LocalStack’s debugging tools in our development process. We were able to incorporate [Lambda Hot Reloading](https://docs.localstack.cloud/user-guide/lambda-tools/hot-reloading/) & [ECS Code Mounting](https://docs.localstack.cloud/user-guide/aws/ecs/#mounting-local-directories-for-ecs-tasks).
+Apart from this, we further wanted to leverage LocalStack’s debugging tools in our development process. We were able to incorporate [Lambda Hot Reloading](https://docs.localstack.cloud/user-guide/lambda-tools/hot-reloading/) & [ECS Code Mounting](https://docs.localstack.cloud/user-guide/aws/ecs/#mounting-local-directories-for-ecs-tasks).
 
-With just a few of many LocalStack features, we streamline our developer experience and make the setup independent of the cloud:
+With just a few of many LocalStack features, we streamline our developer experience and improve the local development setup even further:
 
 -   Our infrastructure, containing our Lambdas, is deployed in hot-reload mode, which makes LocalStack watch the Lambdas for any changes.
 -   We can trigger these Lambda either during integration tests or by invoking them manually — or through the locally running web application.
 -   We can make on-the-fly changes to the function and subsequent executions of the affected Lambda will change depending on the adjustments made.
 
-For example, with just a few lines of code, our CDK stack can be enabled to use the Hot Reloading feature mentioned above:
+This is especially useful during development, as well as our extensive integration test suites, where developers can iterate quickly without the need to wait for code changes to be applied.
+
+With the following lines of code, our CDK stack can be enabled to use the Hot Reloading feature mentioned above:
 
 ```python
 lambda_bucket = s3.Bucket.from_bucket_name(scope, f"lambda_name_local", "hot-reload")
 lambda_code = lambda_.Code.from_bucket(bucket=lambda_bucket, key=HOT_RELOADED_CODE_PATH) # path pointing to our root project directory
 ```
 
-This is especially useful during development, as well as our extensive integration and acceptance test suite, where developers can iterate quickly without the need to wait for code changes to be applied.
+Our team furthermore benefits from hot-reloading qualities by incorporating LocalStack’s ECS features. We can mount our backend code from the host filesystem into the ECS containers. Similar to Lambda hot reloading it makes development a breeze, enabling faster development loops and increased debuggability where the changes are made without having to build and (re-) deploy any infrastructural changes or even Docker images each time. 
 
-Our team can furthermore benefit from hot-reloading qualities by incorporating LocalStack’s ECS features. We can mount our backend code from the host filesystem into the ECS containers. Similar to Lambda hot reloading it makes development a breeze, enabling faster development loops and increased debuggability where the changes are made without having to build and (re-) deploy any infrastructural changes or even Docker images each time. 
-
-Here is an example, where we register a task definition, mounting a host path `./localstack_platform` into the container under `/app/localstack_platform`:
+Here is an example, where we register a task definition, mounting the host path `./localstack_platform` into the container under `/app/localstack_platform`:
 
 ```python3
 task_def = ecs.TaskDefinition(
@@ -101,6 +165,14 @@ platform_container.add_mount_points(
 )
 ```
 
+Above CDK enhancements are wrapped in what we call "if-local blocks", which are only executed when cdk finds itself in a local environment.
+```python
+if is_local_development:
+  # Do something that's only needed for the local deployment
+```
+
+Of course we don't want similar mount points for ECS tasks, or buckets called "hot-reload" in production, so be sure to make use of "if-local blocks" as well!
+
 ### LocalStack Extensions
 
 [LocalStack Extensions](https://docs.localstack.cloud/user-guide/extensions/) provide a straightforward way to start custom service emulators together with LocalStack. As part of our effort to improve the user experience for extensions, we have released a couple of new extensions that we also actively use internally. 
@@ -113,14 +185,19 @@ EXTENSION_AUTO_INSTALL=localstack-extension-mailhog,localstack-extension-stripe
 
 The LocalStack Web Application handles various aspects around account management, such as Purchases, Subscriptions, Billing, and more. The Stripe extension fully allows us to test these flows, using an emulated Stripe service that runs on our machines locally. With the Stripe extension, we can now test user flows like purchasing a subscription or updating billing details, and other Stripe API operations. 
 
-Routing the calls to the locally running Stripe emulator is achieved by simply overriding the API endpoint of the [Stripe SDK](https://docs.stripe.com/libraries), depending on whether we’re running locally.
+Routing the calls to the locally running Stripe emulator is achieved by making use of Dynaconf again, which sets the API endpoint of the [Stripe SDK](https://docs.stripe.com/libraries) to the locall running stripe extension, during development.
 
 ```python
-stripe_sdk.api_base = “http://localhost:8420” if is_local_development else “https://api.stripe.com”
-stripe_sdk.Customer.create(...)
+[default]
+stripe.api_base = "https://api.stripe.com"
+
+[development]
+stripe.api_base = "http://localhost.localstack.cloud:8420"
 ```
 
-In the case of testing our checkout flow, which means purchasing a subscription, calls to Stripe are automatically routed to the locally running extension, and we can afterwards check whether postconditions are fulfilled - all fully locally.
+When initializing our stripe provider, we simply override the API endpoint of the [Stripe SDK](https://docs.stripe.com/libraries) with the value in our DynaConf config, and hence are able to split the application code from different environments.
+
+In the case of testing our checkout flow, which means purchasing a subscription, calls to Stripe are automatically routed to the locally running extension, and we can afterwards check whether postconditions are fulfilled - all done locally.
 
 ```python
 def test_subscribe(self):
@@ -136,16 +213,24 @@ The Mailhog extension allows us to emulate a local email server for testing user
 
 This means that any mails we send from our application logic ends up in the mailbox of Mailhog, which we can then either view via the UI or fetch via the API that comes with the extension.
 
-After instructing LocalStack to start with the Mailhog extension, it automatically starts the Mailhog service on port 25. Then, we just need to adjust our application to connect to the SMTP host running on port 25 locally.
+After instructing LocalStack to start with the Mailhog extension, it automatically starts the Mailhog service on port 25. Then, we just need to adjust our application to connect to the SMTP host running on port 25 locally, again with the help of DynaConf.
 
 ```python 
-config.smtp_host = "localhost:25"
-...
-s = self._connect_smtp(config.smtp_host, config.smtp_user, config.smtp_pass)
+[default]
+smpt_host = "email-smtp.eu-central-1.amazonaws.com:587"
+
+[development]
+smpt_host = "localhost.localstack.cloud:25"
+
+# used in application code:
+
+s = self._connect_smtp(smtp_host, smtp_user, smtp_pass)
 s.sendmail()
 ```
 On below image you can see the UI of the mailhog extension, displaying the email which is sent when signing up for an account.
 {{< img-simple src="localstack-mailhog-extension.png" alt="LocalStack Mailhog extension">}}
+
+An example on how we write tests against MailHog has been given in the previous section called [Infrastructure deployment & testing](##infrastructure-deployments--testing)
 
 ## How do we use LocalStack in CI?
 
