@@ -2,8 +2,8 @@
 title: Ephemeral Environments with LocalStack & Shipyard
 description: We're excited to announce our partnership with Shipyard. This integration empowers you to test your cloud applications in a short-lived, encapsulated deployment — allowing you to shift left by fixing things before they break your production.
 lead: We're excited to announce our partnership with Shipyard. This integration empowers you to test your cloud applications in a short-lived, encapsulated deployment — allowing you to shift left by fixing things before they break your production.
-date: 2024-04-01T9:41:21+05:30
-lastmod: 2024-04-01T9:41:21+05:30
+date: 2024-04-22
+lastmod: 2024-04-22
 images: ['ephemeral-environments-with-localstack-shipyard-banner.png']
 leadimage: 'ephemeral-environments-with-localstack-shipyard-banner.png'
 contributors: ["Harsh Mishra", "Natalie Lunbeck"]
