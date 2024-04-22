@@ -80,7 +80,7 @@ This is especially useful during development, as well as our extensive integrati
 
 Our team can furthermore benefit from hot-reloading qualities by incorporating LocalStack’s ECS features. We can mount our backend code from the host filesystem into the ECS containers. Similar to Lambda hot reloading it makes development a breeze, enabling faster development loops and increased debuggability where the changes are made without having to build and (re-) deploy any infrastructural changes or even Docker images each time. 
 
-Here is an example, where we register a task definition, mounting a host path `/host/path` into the container under `/container/path`:
+Here is an example, where we register a task definition, mounting a host path `./localstack_platform` into the container under `/app/localstack_platform`:
 
 ```python3
 task_def = ecs.TaskDefinition(
@@ -108,7 +108,7 @@ platform_container.add_mount_points(
 Our development & testing workflows make use of the [Stripe](https://pypi.org/project/localstack-extension-stripe/) and [Mailhog](https://pypi.org/project/localstack-extension-Mailhog/) extensions - both locally and in CI. We configure LocalStack to start with these extensions automatically by setting the following environment variable:
 
 ```bash
-EXTENSION_AUTO_INSTALL=localstack-extension-mailhog, localstack-extension-stripe
+EXTENSION_AUTO_INSTALL=localstack-extension-mailhog,localstack-extension-stripe
 ```
 
 The LocalStack Web Application handles various aspects around account management, such as Purchases, Subscriptions, Billing, and more. The Stripe extension fully allows us to test these flows, using an emulated Stripe service that runs on our machines locally. With the Stripe extension, we can now test user flows like purchasing a subscription or updating billing details, and other Stripe API operations. 
@@ -120,7 +120,7 @@ stripe_sdk.api_base = “http://localhost:8420” if is_local_development else �
 stripe_sdk.Customer.create(...)
 ```
 
-In the case of testing our checkout flow, which means purchasing a subscription, we can make the necessary calls to the Stripe extension, and check whether postconditions are fulfilled.
+In the case of testing our checkout flow, which means purchasing a subscription, calls to Stripe are automatically routed to the locally running extension, and we can afterwards check whether postconditions are fulfilled - all fully locally.
 
 ```python
 def test_subscribe(self):
@@ -132,9 +132,9 @@ def test_subscribe(self):
     ...
 ```
 
-The Mailhog extension allows us to emulate a local email server for testing user flows that require our platform to send emails, such as account activation, trial expiry notifications, and much more. Using this extension automatically configures LocalStack to use the Mailhog SMTP server when sending emails. 
+The Mailhog extension allows us to emulate a local email server for testing user flows that require our platform to send emails, such as account activation, trial expiry notifications, and much more. Using this extension automatically configures LocalStack to use the Mailhog SMTP server when sending emails over SES. 
 
-This means that any mails we send from our application logic, ends up in the mailbox of Mailhog, which we can then either view via the UI or fetch via the API that comes with the extension.
+This means that any mails we send from our application logic ends up in the mailbox of Mailhog, which we can then either view via the UI or fetch via the API that comes with the extension.
 
 After instructing LocalStack to start with the Mailhog extension, it automatically starts the Mailhog service on port 25. Then, we just need to adjust our application to connect to the SMTP host running on port 25 locally.
 
@@ -144,7 +144,7 @@ config.smtp_host = "localhost:25"
 s = self._connect_smtp(config.smtp_host, config.smtp_user, config.smtp_pass)
 s.sendmail()
 ```
-
+On below image you can see the UI of the mailhog extension, displaying the email which is sent when signing up for an account.
 {{< img-simple src="localstack-mailhog-extension.png" alt="LocalStack Mailhog extension">}}
 
 ## How do we use LocalStack in CI?
