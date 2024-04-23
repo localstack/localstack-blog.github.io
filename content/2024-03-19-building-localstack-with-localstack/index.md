@@ -48,18 +48,18 @@ Below example shows the default aws settings, which are used in production:
 aws.endpoint_url = ""
 ```
 
-For local development we simply point boto3 to LocalStack, by setting the aws endpoint url:
+For local development we simply point boto3 to LocalStack, by setting the aws endpoint url to that of LocalStack:
 ```
 [development]
 aws.endpoint_url = "http://localhost.localstack.cloud:4566"
 ```
 
-This way all boto3 calls made in our backend will be made against LocalStack, instead of the real AWS services, when developing locally.
+This way all boto3 calls made in our backend will be routed to LocalStack, instead of the real AWS services, when developing locally.
 
 ### Infrastructure deployment & testing
 
 With the configuration described in the previous section we were able to connect the python backend to local resources running on LocalStack, such as DynamoDB.
-However, since our infrastructure also includes serverless services, such as Lambdas, ECS, and EC2, the next logical step was to deploy the whole infrastructure onto LocalStack, to be able to develop and test the whole application more efficiently.
+However, since our infrastructure also includes serverless services, such as Lambdas, ECS, and EC2, the next logical step was to deploy the whole infrastructure onto LocalStack, to be able to develop and test the whole application locally.
   
 We are using [`cdklocal`](https://github.com/localstack/aws-cdk-local), our open-source wrapper script around the CDK library, to deploy our CDK stacks against LocalStack - our core cloud emulator. To achieve this, we first bootstrap the environment, and deploy the backend stack afterwards.
 
@@ -130,7 +130,7 @@ Apart from this, we further wanted to leverage LocalStack’s debugging tools in
 With just a few of many LocalStack features, we streamline our developer experience and improve the local development setup even further:
 
 -   Our infrastructure, containing our Lambdas, is deployed in hot-reload mode, which makes LocalStack watch the Lambdas for any changes.
--   We can trigger these Lambda either during integration tests or by invoking them manually — or through the locally running web application.
+-   We can trigger these Lambdas either during integration tests or by invoking them manually — or through the locally running web application.
 -   We can make on-the-fly changes to the function and subsequent executions of the affected Lambda will change depending on the adjustments made.
 
 This is especially useful during development, as well as our extensive integration test suites, where developers can iterate quickly without the need to wait for code changes to be applied.
@@ -171,7 +171,7 @@ if is_local_development:
   # Do something that's only needed for the local deployment
 ```
 
-Of course we don't want similar mount points for ECS tasks, or buckets called "hot-reload" in production, so be sure to make use of "if-local blocks" as well!
+Of course we don't want similar mount points for ECS tasks, or buckets called "hot-reload" in production, so be sure to make use of "if-local blocks" where necessary!
 
 ### LocalStack Extensions
 
