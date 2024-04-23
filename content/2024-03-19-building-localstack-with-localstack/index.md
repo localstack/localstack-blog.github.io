@@ -234,7 +234,7 @@ An example on how we write tests against MailHog has been given in the previous 
 
 ## How do we use LocalStack in CI?
 
-By running our cloud deployment & test suite locally, we were able to demystify critical pain points of the local cloud developer experience, which further helped us improve the parity, performance, and robustness of our core cloud emulator. However, we wanted to extend that improved developer experience across continuous integration (CI) pipelines with LocalStack. While it is easy just to use LocalStack as a drop-in replacement for AWS, and run tests just like we would do it locally, it is hard to retrieve detailed API telemetry, critical CI analytics, and discover flaky tests that need remediation.
+By running our cloud deployment & test suite locally, we were able to demystify critical pain points of the local cloud developer experience, which further helped us improve the parity, performance, and robustness of our core cloud emulator. However, we wanted to extend that improved developer experience across continuous integration (CI) pipelines with LocalStack. While it is easy just to use LocalStack as a drop-in replacement for AWS, and run our test suites just like we do it locally, it is hard to retrieve detailed API telemetry, critical CI analytics, and discover flaky tests that need remediation.
 
 This led us to embark on a journey to identify the missing puzzle pieces in the LocalStack CI experience. It made us build internal homegrown systems, which have now spun into critical LocalStack features that we continue to leverage for our CI pipelines.
 
@@ -246,7 +246,7 @@ We primarily use [GitHub Actions](https://github.com/features/actions) to build,
 -   Installs the `localstack` CLI alongside setting up configurations & wrapper scripts 
 -   Starts the LocalStack container with or without the pro capabilities, depending on whether a valid CI Key is provided
 
-The GitHub Action allowed us to migrate from our existing Docker Compose setup to using the following workflow step:
+The GitHub Action allowed us to set up LocalStack and related tooling for running our test suite in CI by using the following simple workflow step:
 
 ```yaml
 - name: Start LocalStack
@@ -261,7 +261,7 @@ The GitHub Action allowed us to migrate from our existing Docker Compose setup t
 
 ### State Snapshots with Cloud Pods
 
-LocalStack is ephemeral, which means that all state is gone when the container is stopped. However, we wanted to leverage our mechanism that can restore the emulator to a particular state before we run our tests against it. This is possible with two options:
+LocalStack is ephemeral, which means that all state is gone when the container is stopped. However, we wanted to leverage our mechanism that can restore the emulator to a particular state before we run our tests against it to enable various test scenarios. This is possible with two options:
 
 -   Running an initialization hook or an infrastructure-as-code (IaC) deployment against the emulator.
 -   Using a state snapshot that restores a previously-created state and pre-seed it in a test environment.
@@ -270,21 +270,24 @@ LocalStack is ephemeral, which means that all state is gone when the container i
 
 {{< img-simple src="persistence-state-cloud-pods.png" alt="LocalStack Persistence vs Cloud Pods">}}
 
-Using Cloud Pods, we were able to cut down the total infrastructure deployment time from a minute to less than 10 seconds, both locally and in our CI pipelines. To maintain an up-to-date version of the Cloud Pod, we have a GitHub action which creates a pod with the latest infrastructure, that’s triggered on each merge to the `main` branch. We then use that pod in combination with our auto-loading Cloud Pods feature, which allows us to load cloud pods on the start-up of LocalStack automatically.
+Using Cloud Pods, we were able to cut down the total infrastructure deployment time from a minute to less than 10 seconds, both locally and in our CI pipelines. To maintain an up-to-date version of the Cloud Pod, we have a GitHub action which creates a pod with the latest infrastructure, that’s triggered on each merge to the `main` branch. We then use that pod in combination with our [auto-loading Cloud Pods](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#environmental-variables) feature, which allows us to load cloud pods on the start-up of LocalStack automatically.
 
 ```yaml
 AUTO_LOAD_POD=localstack-backend-pod
 ```
 
-Now, when LocalStack starts up, our whole backend will be loaded from the pod, and we can immediately run our integration test suite against it. 
+Now, when LocalStack starts up, our whole backend will be loaded from the pod, and we can use the deployed application to perform various tests both locally and in CI.
+
+This is furthermore tremendously useful for our frontend engineers, as they do not have to start or install any dependencies for the backend on their machine. They simply make use of our up-to-date pod, and LocalStack, against which they can develop the customer facing UI.
+
 
 ### Continuous Integration (CI) Analytics
 
-With the LocalStack v3 release, we released a private preview of our [CI Analytics](https://docs.localstack.cloud/user-guide/ci/ci-analytics/) offering. CI Analytics allow us to collect, analyze, and visualize critical metrics from our CI pipelines, helping us understand the impact of cloud infrastructure changes on CI builds.
+With the LocalStack v3 release, we released a private preview of our [CI Analytics](https://docs.localstack.cloud/user-guide/ci/ci-analytics/) offering. CI Analytics allow us to collect, analyze, and visualize critical metrics from our CI pipelines, helping us understand the execution of our test suites in CI builds and related outcomes.
 
 {{< img-simple src="ci-analytics.png" alt="LocalStack CI Analytics">}}
 
-This allowed us to get detailed insights and traceability across the CI pipeline run by:
+This allowed us to get detailed insights and traceability across our CI pipeline run by:
 
 -   Recording all interactions throughout a CI build to get a detailed timeline of API calls using Stack Insights.
 -   Select and drill into the infrastructure & application state at a particular point of execution using Cloud Pods.
