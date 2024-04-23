@@ -19,7 +19,7 @@ With the LocalStack 1.0 General Availability going live last month, we announced
 LocalStack Extensions is part of our Pro offering. To get started with using LocalStack Extensions, first log in to your account using the LocalStack CLI:
 
 ```bash
-$ localstack login
+$ localstack auth login
 Please provide your login credentials below
 Username: ...
 ```
