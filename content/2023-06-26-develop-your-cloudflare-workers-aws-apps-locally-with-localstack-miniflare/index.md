@@ -115,7 +115,7 @@ In the following, we describe the detailed installation steps to run the sample 
 To install the LocalStack Cloudflare Extension, we first install the `localstack` CLI on your development machine. To use Extensions with LocalStack, you must have an API key configured (you can [sign-up for a free trial](https://app.localstack.cloud/) to get your API key). Before installing the Extension, log in to your LocalStack account using your username and password:
 
 ```sh
-$ localstack login
+$ localstack auth login
 Please provide your login credentials below
 Username: …
 Password: …
