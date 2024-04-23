@@ -307,13 +307,13 @@ Additionally, we can now instrument the important paths and processes, capture t
 
 ## How do we use LocalStack to enable application previews and E2E testing?
 
-The next step in our SDLC after local development/testing and running our test suite in CI, are acceptance tests through application previews, and e2e tests including our web UI. After running our integration tests, both locally and in CI, the next step was to deploy the CDK stack in our staging environment. The staging environment allowed us to run our end-to-end (E2E) integration test suite, which rely on the Playwright framework, and further use it for acceptance testing, to get alignment across cross-departmental projects. It allowed us to achieve the final degree of validation before we shipped a new release to production.
+After running our integration tests, both locally and in CI, the next step was to deploy the CDK stack in our staging environment. The staging environment allowed us to run our end-to-end (E2E) integration test suite, which rely on the Playwright framework, and further use it for acceptance testing, to get alignment across cross-departmental projects. It allowed us to achieve the final degree of validation before we shipped a new release to production.
 
 With the LocalStack v3 release, we released a private preview of [Ephemeral Instances](https://docs.localstack.cloud/user-guide/cloud-sandbox/ephemeral-instance/). These ephemeral instances allow us to run a short-lived encapsulated instance of LocalStack in the cloud. It allows us to run our E2E tests, preview features in our cloud application, and collaborate asynchronously within and across the team.
 
 {{< img-simple src="ephemeral-instances.png" alt="LocalStack Ephemeral Instances">}}
 
-With these ephemeral instances, we can now deploy our entire application (frontend, backend, and infrastructure) on an ephemeral instance, and expose the instance to us internally, which allows us to test our changes with every pull request. This has allowed us to replace our staging environments with ephemeral instances, which we use to continuously run automated tests and check out individual features in parallel manually.
+With these ephemeral instances, we can now deploy our entire application (frontend, backend, and infrastructure) on an ephemeral instance, and expose the instance to us internally, which allows us to test our changes with every pull request. This has allowed us to replace our staging environment with ephemeral instances, which we use to continuously run automated tests and check out individual features in parallel manually.
 
 Here is how we configured our GitHub Action pipeline to spin up an ephemeral instance for our application changes with every pull request:
 
@@ -347,8 +347,6 @@ This enables us to:
 
 {{< img-simple src="ephemeral-preview-pull-request-comment.png" alt="A PR comment displaying the Ephemeral Instance URL">}}
     
-With the help of auto-loaded Cloud Pods to pre-seed the infrastructure state, we have achieved a game-changing improvement to our pre-release testing due to faster application spin-ups & resource allocation.
-
 Though application previews have been ubiquitous in the frontend space, LocalStack can now spin up your entire application, including any infrastructure relying on AWS services, and ship you a live deployment with every change. This first-class preview-on-pull request support is instrumental in helping LocalStack become a true cloud development platform — not only for developers, but also for QA & management, to fully become the backbone of cloud development throughout the entire SDLC.
 
 ## Conclusion
