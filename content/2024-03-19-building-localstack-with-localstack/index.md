@@ -77,7 +77,7 @@ class LambdaClient(AWSClient):
 
 This setup routes all boto3 calls in our backend to LocalStack instead of real AWS services when developing locally.
 
-### Infrastructure deployment & testing
+### Infrastructure deployment
 
 With the configuration described earlier, we connected the Python backend to local resources on LocalStack, such as DynamoDB. However, our infrastructure includes serverless services like Lambdas, ECS, and EC2. The next logical step was to deploy the entire infrastructure onto LocalStack to develop and test the whole application locally.
   
@@ -106,9 +106,11 @@ The key tenet of our local cloud development model is agility — deploying our 
 
 {{< img-simple src="localstack-web-app-running-locally.png" alt="LocalStack Web App running locally">}}
 
+### Testing
+
 With the ability to deploy our application locally we are able to develop and test various flows manually, for example if one can sign up, which involves Cognito and a few Lambdas.
 
-Deploying the application locally allows us to run our integration test suite against it. This includes testing end-to-end flows that involve Lambdas and SQS queues, Cognito triggers and authentication flows, and a DynamoDB-powered persistence layer with asynchronous stream handlers. The local integration suite enables us to eliminate cloud-based developer environments and use emulated resources to test our infrastructure locally with the highest level of fidelity.
+Deploying the application locally further allows us to run our integration test suite against it. This includes testing end-to-end flows that involve Lambdas and SQS queues, Cognito triggers and authentication flows, and a DynamoDB-powered persistence layer with asynchronous stream handlers. The local integration suite enables us to eliminate cloud-based developer environments and use emulated resources to test our infrastructure locally with the highest level of fidelity.
 
 For example, in the signup process, our application logic performs the following steps:
 
