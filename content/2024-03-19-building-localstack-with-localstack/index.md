@@ -56,6 +56,25 @@ For local development, we point `boto3` to LocalStack by setting the AWS endpoin
 aws.endpoint_url = "http://localhost.localstack.cloud:4566"
 ```
 
+These variables are used when creating the boto3 client as follows:
+
+```
+def get_aws_config(self) -> AWSClientConfig:
+    endpoint_url = None
+
+    if settings.get("aws.endpoint_url"):
+        endpoint_url = settings.get("aws.endpoint_url")
+
+    return AWSClientConfig(
+        endpoint_url=endpoint_url,
+    )
+
+class LambdaClient(AWSClient):
+    def __init__(self, config: AWSClientConfig):
+        config = get_aws_config()
+        self.client = boto3.client("lambda", config.dict())
+```
+
 This setup routes all boto3 calls in our backend to LocalStack instead of real AWS services when developing locally.
 
 ### Infrastructure deployment & testing
