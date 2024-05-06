@@ -1,7 +1,7 @@
 ---
 title: Building LocalStack with LocalStack
-description: We are increasingly building various parts of the LocalStack Web Application using our core cloud emulator, leveraging various features for local multi-cloud development. In this blog, we share how we are dogfooding our own software to promote faster feature development and reduce inefficient testing loops.
-lead: We are increasingly building various parts of the LocalStack Web Application using our core cloud emulator, leveraging various features for local multi-cloud development. In this blog, we share how we are dogfooding our own software to promote faster feature development and reduce inefficient testing loops.
+description: We are increasingly building various parts of the LocalStack Web Application using our core cloud emulator, leveraging numerous features for local cloud development. In this blog, we share how we are dogfooding our own software to promote faster feature development and reduce inefficient testing loops.
+lead: We are increasingly building various parts of the LocalStack Web Application using our core cloud emulator, leveraging numerous features for local cloud development. In this blog, we share how we are dogfooding our own software to promote faster feature development and reduce inefficient testing loops.
 date: 2024-03-19T9:21:02+05:30
 lastmod: 2024-03-19T9:21:02+05:30
 images: []
@@ -26,7 +26,7 @@ In this blog, we highlight how we use the LocalStack core cloud emulator and oth
 
 ## Application Overview
 
-The LocalStack Web Application comprises two central components — the client application and the related backend. Our whole infrastructure is hosted on [Amazon Web Services (AWS)](https://aws.amazon.com/) and is deployed using the [Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/). We use various AWS services, such as [Lambda](https://aws.amazon.com/lambda/), [S3](https://aws.amazon.com/s3/), [SNS](https://aws.amazon.com/sns/), [SQS](https://aws.amazon.com/sqs/), [CloudFront](https://aws.amazon.com/cloudfront/), [DynamoDB](https://aws.amazon.com/dynamodb/), [ECS](https://aws.amazon.com/ecs/), [EC2](https://aws.amazon.com/ec2/), [Cognito](https://aws.amazon.com/cognito/), [Secrets Manager](https://aws.amazon.com/secrets-manager/), to name just a few. We use [ReactJS](https://react.dev/) & Typescript for our client application while using [Flask](https://flask.palletsprojects.com/en/3.0.x/) & Python for the backend.
+The LocalStack Web Application comprises two central components — the client Web application and the related backend. Our whole infrastructure is hosted on [Amazon Web Services (AWS)](https://aws.amazon.com/) and is deployed using the [Cloud Development Kit (CDK)](https://aws.amazon.com/cdk/). We use various AWS services, such as [Lambda](https://aws.amazon.com/lambda/), [S3](https://aws.amazon.com/s3/), [SNS](https://aws.amazon.com/sns/), [SQS](https://aws.amazon.com/sqs/), [CloudFront](https://aws.amazon.com/cloudfront/), [DynamoDB](https://aws.amazon.com/dynamodb/), [ECS](https://aws.amazon.com/ecs/), [EC2](https://aws.amazon.com/ec2/), [Cognito](https://aws.amazon.com/cognito/), [Secrets Manager](https://aws.amazon.com/secrets-manager/), to name just a few. We use [ReactJS](https://react.dev/) & Typescript for our client application while using [Flask](https://flask.palletsprojects.com/en/3.0.x/) & Python for the backend.
 
 {{< img-simple src="web-application-architecture.png" alt="LocalStack Web Application architecture">}}
 
@@ -40,7 +40,7 @@ This section will detail parts of our setup to help you implement a similar loca
 
 ### Boto3 Configuration
 
-Our Flask backend connects to various AWS resources using `boto3`. To integrate LocalStack, we use a simple configuration when creating the `boto3` client. This configuration determines if `boto3` connects to LocalStack during development or to actual AWS services in staging/production environments.
+Our Flask backend connects to various AWS resources using `boto3` - the official python AWS SDK. To integrate LocalStack, we use a simple configuration when creating the `boto3` client. This configuration determines if `boto3` connects to LocalStack during development or to actual AWS services in staging/production environments.
 
 We use [Dynaconf](https://www.dynaconf.com/) for configuration management, enabling us to set different settings for each environment. The following example shows the default AWS settings for production:
 
@@ -86,7 +86,7 @@ We are using [`cdklocal`](https://github.com/localstack/aws-cdk-local), our open
 ```bash
 cd backend
 export AWS_ACCOUNT_ID=000000000000 AWS_DEFAULT_REGION=eu-central-1
-cdklocal bootstrap aws://$$AWS_ACCOUNT_ID/$$AWS_DEFAULT_REGION
+cdklocal bootstrap aws://$AWS_ACCOUNT_ID/$AWS_DEFAULT_REGION
 cdklocal deploy --require-approval=never 
 ```
 
@@ -210,7 +210,7 @@ EXTENSION_AUTO_INSTALL=localstack-extension-mailhog,localstack-extension-stripe
 
 The LocalStack Web Application handles various aspects around account management, such as Purchases, Subscriptions, Billing, and more. The Stripe extension fully allows us to test these flows, using an emulated Stripe service that runs on our machines locally. With the Stripe extension, we can now test user flows like purchasing a subscription or updating billing details, and other Stripe API operations. 
 
-Routing the calls to the locally running Stripe emulator is achieved by making use of Dynaconf again, which sets the API endpoint of the [Stripe SDK](https://docs.stripe.com/libraries) to the locall running stripe extension, during development.
+Routing the calls to the locally running Stripe emulator is achieved by making use of Dynaconf again, which sets the API endpoint of the [Stripe SDK](https://docs.stripe.com/libraries) to the local Stripe extension, during development.
 
 ```python
 [default]
@@ -220,7 +220,7 @@ stripe.api_base = "https://api.stripe.com"
 stripe.api_base = "http://localhost.localstack.cloud:8420"
 ```
 
-When initializing our stripe provider, we simply override the API endpoint of the [Stripe SDK](https://docs.stripe.com/libraries) with the value in our Dynaconf config, and hence are able to split the application code from different environments.
+When initializing our Stripe provider, we simply override the API endpoint of the [Stripe SDK](https://docs.stripe.com/libraries) with the value in our Dynaconf config, and hence are able to split the application code from different environments.
 
 In the case of testing our checkout flow, which means purchasing a subscription, calls to Stripe are automatically routed to the locally running extension, and we can afterwards check whether postconditions are fulfilled - all done locally.
 
@@ -286,7 +286,7 @@ The GitHub Action allowed us to set up LocalStack and related tooling for runnin
 
 ### State Snapshots with Cloud Pods
 
-LocalStack is ephemeral, which means that all state is gone when the container is stopped. However, we wanted to leverage our mechanism that can restore the emulator to a particular state before we run our tests against it to enable various test scenarios. This is possible with two options:
+LocalStack by default is ephemeral, which means that all state is gone when the container is stopped. However, we wanted to leverage our mechanism that can restore the emulator to a particular state before we run our tests against it to enable various test scenarios. This is possible with two options:
 
 -   Running an initialization hook or an infrastructure-as-code (IaC) deployment against the emulator.
 -   Using a state snapshot that restores a previously-created state and pre-seed it in a test environment.
@@ -377,6 +377,6 @@ Though application previews have been ubiquitous in the frontend space, LocalSta
 
 That’s the long and short of how we are building LocalStack with LocalStack. LocalStack has enabled rapid design and development of sophisticated solutions by reducing the number of test and UAT environments while improving the quality and lead time. The best way we can improve our product is to iteratively adopt it, and ensure we can leverage the same features as our customers do and continue to nail down the developer experience. Over many months, we have continued to ship improvements to enable teams, like ours, to scale and mitigate common bottlenecks while developing on the cloud.
 
-As we continue our work in fleshing out the LocalStack experience, we aim to further support enterprise compliance & insights, with features like Chaos engineering, Productivity metrics, Cost optimizations, and more. This will allow us to expand from our initial focus on the inner dev loop to an outer dev loop experience, to accelerate your cloud journey and to put developers back in charge. Building a cloud emulator is hard, and this sets us up towards solving larger problems at hand — state management, SDLC, collaboration, and more.
+As we continue our work in fleshing out the LocalStack experience, we aim to further support enterprise compliance & insights, with features like Chaos engineering, Productivity metrics, Cost optimizations, and more. This will allow us to expand from our initial focus on the inner dev loop to an outer dev loop experience, to accelerate your cloud journey and to put developers back in charge. Building a high-fidelity cloud emulator has been a challenging undertaking, but this strong foundation sets us up towards solving larger problems at hand — state management, SDLC, collaboration, and more.
 
 Stay tuned for more news and awesome features in the upcoming months — or if you would like to get access to some of the features we’ve been using, get in touch with us.
