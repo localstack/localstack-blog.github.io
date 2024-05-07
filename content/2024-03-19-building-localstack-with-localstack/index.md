@@ -4,11 +4,14 @@ description: We are increasingly building various parts of the LocalStack Web Ap
 lead: We are increasingly building various parts of the LocalStack Web Application using our core cloud emulator, leveraging numerous features for local cloud development. In this blog, we share how we are dogfooding our own software to promote faster feature development and reduce inefficient testing loops.
 date: 2024-03-19T9:21:02+05:30
 lastmod: 2024-03-19T9:21:02+05:30
-images: []
+images: ['building-localstack-with-localstack.png']
 show_cta_1: true
 contributors: ["Lukas Pichler", "Harsh Mishra", "Vlad Gramuzov"]
 tags: ['showcase']
+leadimage: 'building-localstack-with-localstack.png'
 ---
+
+{{< img-simple src="building-localstack-with-localstack.png" width=300 alt="Banner image for the blog: Building LocalStack with LocalStack">}}
 
 ## Introduction
 
@@ -40,7 +43,7 @@ This section will detail parts of our setup to help you implement a similar loca
 
 ### Boto3 Configuration
 
-Our Flask backend connects to various AWS resources using `boto3` - the official python AWS SDK. To integrate LocalStack, we use a simple configuration when creating the `boto3` client. This configuration determines if `boto3` connects to LocalStack during development or to actual AWS services in staging/production environments.
+Our Flask backend connects to various AWS resources using `boto3` - the [official AWS SDK for Python](https://aws.amazon.com/sdk-for-python/). To integrate LocalStack, we use a simple configuration when creating the `boto3` client. This configuration determines if `boto3` connects to LocalStack during development or to actual AWS services in staging/production environments.
 
 We use [Dynaconf](https://www.dynaconf.com/) for configuration management, enabling us to set different settings for each environment. The following example shows the default AWS settings for production:
 
@@ -75,7 +78,7 @@ class LambdaClient(AWSClient):
         self.client = boto3.client("lambda", config.dict())
 ```
 
-This setup routes all boto3 calls in our backend to LocalStack instead of real AWS services when developing locally.
+This setup routes all `boto3` calls in our backend to LocalStack instead of real AWS services when developing locally.
 
 ### Infrastructure deployment
 
@@ -253,9 +256,10 @@ s = self._connect_smtp(smtp_host, smtp_user, smtp_pass)
 s.sendmail()
 ```
 On below image you can see the user interface of the Mailhog extension, displaying the email which is sent when signing up for an account.
+
 {{< img-simple src="localstack-mailhog-extension.png" alt="LocalStack Mailhog extension">}}
 
-An example on how we write tests against Mailhog has been given in the previous section called [Infrastructure deployment & testing](##infrastructure-deployments--testing).
+An example on how we write tests against Mailhog has been given in the previous section called [Infrastructure deployment & testing](#testing).
 
 ## How do we use LocalStack in CI?
 
@@ -295,7 +299,7 @@ LocalStack by default is ephemeral, which means that all state is gone when the 
 
 {{< img-simple src="persistence-state-cloud-pods.png" alt="LocalStack Persistence vs Cloud Pods">}}
 
-Using Cloud Pods, we were able to cut down the total infrastructure deployment time from a minute to less than 10 seconds, both locally and in our CI pipelines. To maintain an up-to-date version of the Cloud Pod, we have a GitHub action which creates a pod with the latest infrastructure, that’s triggered on each merge to the `main` branch. We then use that pod in combination with our [auto-loading Cloud Pods](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#environmental-variables) feature, which allows us to load cloud pods on the start-up of LocalStack automatically.
+Using Cloud Pods, we were able to cut down the total infrastructure deployment time **from a minute to less than 10 seconds**, both locally and in our CI pipelines. To maintain an up-to-date version of the Cloud Pod, we have a GitHub action which creates a pod with the latest infrastructure, that’s triggered on each merge to the `main` branch. We then use that pod in combination with our [auto-loading Cloud Pods](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#environmental-variables) feature, which allows us to load cloud pods on the start-up of LocalStack automatically.
 
 ```yaml
 AUTO_LOAD_POD=localstack-backend-pod
@@ -307,7 +311,7 @@ This setup is also extremely beneficial for our frontend engineers, as they don'
 
 ### Continuous Integration (CI) Analytics
 
-With the LocalStack v3 release, we released a private preview of our [CI Analytics](https://docs.localstack.cloud/user-guide/ci/ci-analytics/) offering. CI Analytics allow us to collect, analyze, and visualize critical metrics from our CI pipelines, helping us understand the execution of our test suites in CI builds and related outcomes.
+With the LocalStack v3 release, we released a private preview of our [CI Analytics](https://docs.localstack.cloud/user-guide/ci/ci-analytics/) feature. CI Analytics allow us to collect, analyze, and visualize critical metrics from our CI pipelines, helping us understand the execution of our test suites in CI builds and related outcomes.
 
 {{< img-simple src="ci-analytics.png" alt="LocalStack CI Analytics">}}
 
@@ -379,4 +383,4 @@ That’s the long and short of how we are building LocalStack with LocalStack. L
 
 As we continue our work in fleshing out the LocalStack experience, we aim to further support enterprise compliance & insights, with features like Chaos engineering, Productivity metrics, Cost optimizations, and more. This will allow us to expand from our initial focus on the inner dev loop to an outer dev loop experience, to accelerate your cloud journey and to put developers back in charge. Building a high-fidelity cloud emulator has been a challenging undertaking, but this strong foundation sets us up towards solving larger problems at hand — state management, SDLC, collaboration, and more.
 
-Stay tuned for more news and awesome features in the upcoming months — or if you would like to get access to some of the features we’ve been using, get in touch with us.
+Stay tuned for more news and awesome features in the upcoming months — or if you would like to get access to some of the features we’ve been using, [get in touch with us](https://localstack.cloud/contact/)!
