@@ -2,8 +2,8 @@
 title: Building LocalStack with LocalStack
 description: We are increasingly building various parts of the LocalStack Web Application using our core cloud emulator, leveraging numerous features for local cloud development. In this blog, we share how we are dogfooding our software to promote faster feature development and reduce inefficient testing loops.
 lead: We are increasingly building various parts of the LocalStack Web Application using our core cloud emulator, leveraging numerous features for local cloud development. In this blog, we share how we are dogfooding our software to promote faster feature development and reduce inefficient testing loops.
-date: 2024-03-19T9:21:02+05:30
-lastmod: 2024-03-19T9:21:02+05:30
+date: 2024-05-08
+lastmod: 2024-05-08
 images: ['building-localstack-with-localstack.png']
 show_cta_1: true
 contributors: ["Lukas Pichler", "Harsh Mishra", "Vlad Gramuzov"]
