@@ -82,9 +82,9 @@ conn = sf.connect(
 )
 ```
 
-Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred DB visualization tool (see more details in our docs here).
+Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred DB visualization tool (see more details in our [documentation](https://snowflake.localstack.cloud/introduction/)).
 
-You can create a warehouse named test_warehouse, a database named testdb, and a schema named testschema:
+You can create a warehouse named `test_warehouse`, a database named `testdb`, and a schema named `testschema`:
 
 ```python
 conn.cursor().execute("CREATE WAREHOUSE IF NOT EXISTS test_warehouse")
@@ -92,7 +92,9 @@ conn.cursor().execute("CREATE DATABASE IF NOT EXISTS testdb") conn.cursor().exec
 conn.cursor().execute("CREATE SCHEMA IF NOT EXISTS testschema")
 ```
 
-You can navigate to the LocalStack logs via localstack logs to see the Snowflake emulator in action. To connect your existing Snowflake app to the emulator, all you need to do is add the Snowflake Host name as snowflake.localhost.localstack.cloud while specifying mock credentials for your Snowflake user, password, and account. Note that LocalStack at no point talks to the real Snowflake instance — Everything runs locally, giving you the full power and flexibility to develop and test your data applications locally, without depending on real cloud resources.!
+You can navigate to the LocalStack logs via localstack logs to see the Snowflake emulator in action. To connect your existing Snowflake app to the emulator, all you need to do is add the Snowflake Host name as `snowflake.localhost.localstack.cloud` while specifying mock credentials for your Snowflake user, password, and account. 
+
+Note that LocalStack at no point talks to the real Snowflake instance — Everything runs locally, giving you the full power and flexibility to develop and test your data applications locally, without depending on real cloud resources.
 
 For a more detailed, real-world example check out our sample application on GitHub (WIP).
 
