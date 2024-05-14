@@ -23,12 +23,13 @@ We’re excited to announce that we have released a first version of the LocalSt
 -   Basic support to run [Streamlit](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit) applications locally.
 -   Infrastructure-as-code with [Terraform](https://snowflake.localstack.cloud/user-guide/integrations/terraform/) & [Pulumi](https://snowflake.localstack.cloud/user-guide/integrations/pulumi/).
 -   [Continuous integration](https://snowflake.localstack.cloud/user-guide/continuous-integration/) with GitHub Actions, CircleCI & GitLab CI.
+- Enterprise-tested features like [Cloud Pods and Persistence](https://snowflake.localstack.cloud/user-guide/state-management/) for state snapshots.
 
 This allows you to bypass the need to rely on the live version for local development & testing while enabling a high velocity, high quality, agile test-driven development for your data applications. With this release, we’re underscoring our commitment to go multi-cloud and build a complete suite of emulators that allow you to achieve efficiency and cost savings by putting development and testing closer together.
 
 The Snowflake emulator is currently in public preview, and you can reach out to us to get access! This post explores how we reached this point, what it means for our users, and provides a quickstart to help you get started.
 
-TL;DR — Navigate to our [LocalStack Snowflake emulator documentation](https://snowflake.localstack.cloud/introduction/) to get started!
+Navigate to our [LocalStack Snowflake emulator documentation](https://snowflake.localstack.cloud/introduction/) to get started!
 
 ## How did we get here?
 
