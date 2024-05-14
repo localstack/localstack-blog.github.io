@@ -27,7 +27,7 @@ We’re excited to announce that we have released a first version of the LocalSt
 
 This allows you to bypass the need to rely on the live version for local development & testing while enabling a high velocity, high quality, agile test-driven development for your data applications. With this release, we’re underscoring our commitment to go multi-cloud and build a complete suite of emulators that allow you to achieve efficiency and cost savings by putting development and testing closer together.
 
-The Snowflake emulator is currently in public preview, and you can reach out to us to get access! This post explores how we reached this point, what it means for our users, and provides a quickstart to help you get started.
+The Snowflake emulator is currently in **public preview**, and [you can reach out to us](https://localstack.cloud/contact) to get access! This blog explores how we reached this point, what it means for our users, and provides a quickstart to help you get started.
 
 Navigate to our [LocalStack Snowflake emulator documentation](https://snowflake.localstack.cloud/introduction/) to get started!
 
@@ -68,7 +68,7 @@ export LOCALSTACK_AUTH_TOKEN=<your-auth-token>
 IMAGE_NAME=localstack/snowflake localstack start
 ```
 
-It will start the emulator on snowflake.localhost.localstack.cloud, which is a DNS name that resolves to a local IP address (127.0.0.1) to make sure the connector interacts with the local APIs.
+It will start the emulator on snowflake.localhost.localstack.cloud, which is a DNS name that resolves to a local IP address (`127.0.0.1`) to make sure the connector interacts with the local APIs.
 
 If you’re using [Snowflake Drivers](https://docs.snowflake.com/en/developer-guide/drivers), such as the Snowflake Connector for Python, you can use the following code to connect to the local Snowflake instance:
 
@@ -94,7 +94,7 @@ conn.cursor().execute("CREATE DATABASE IF NOT EXISTS testdb") conn.cursor().exec
 conn.cursor().execute("CREATE SCHEMA IF NOT EXISTS testschema")
 ```
 
-You can navigate to the LocalStack logs via localstack logs to see the Snowflake emulator in action. To connect your existing Snowflake app to the emulator, all you need to do is add the Snowflake Host name as `snowflake.localhost.localstack.cloud` while specifying mock credentials for your Snowflake user, password, and account. 
+You can navigate to the LocalStack logs via `localstack logs` to see the Snowflake emulator in action. To connect your existing Snowflake app to the emulator, all you need to do is add the Snowflake Host name as `snowflake.localhost.localstack.cloud` while specifying mock credentials for your Snowflake user, password, and account.
 
 Note that LocalStack at no point talks to the real Snowflake instance — Everything runs locally, giving you the full power and flexibility to develop and test your data applications locally, without depending on real cloud resources.
 
