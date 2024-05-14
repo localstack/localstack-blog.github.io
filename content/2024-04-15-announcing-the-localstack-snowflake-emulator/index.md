@@ -84,7 +84,7 @@ conn = sf.connect(
 )
 ```
 
-Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred DB visualization tool (see more details in our [documentation](https://snowflake.localstack.cloud/introduction/)).
+Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred DB visualization tool.
 
 You can create a warehouse named `test_warehouse`, a database named `testdb`, and a schema named `testschema`:
 
