@@ -106,19 +106,18 @@ As an early adopter of the LocalStack Snowflake emulator, we’ll be banking on 
 
 Stay tuned for more news and awesome features in the upcoming months! We're diligently refining and enhancing our current offering, and here are some features you can expect in the upcoming months:
 
--   Support for data persistence & state snapshots with Cloud Pods
 -   Full emulation of DB roles, role-based access control, and row-level security policies
 -   Enhanced support for table streams and CDC use cases
--    Advanced integration with other storage/streaming cloud services in LocalStack (AWS Glue, Kinesis Firehose, S3, AppFlow, etc)
+-   Advanced integration with other storage/streaming cloud services in LocalStack (AWS Glue, Kinesis Firehose, S3, AppFlow, etc)
 -   Tooling for test data management and preseeding the emulator with data from a real Snowflake instance
 
 We are excited to have the privilege of working with our community to accelerate cloud and data development processes. LocalStack is poised to change the cloud development landscape, and we are looking forward to your continued support and feedback!
 
 ## Learn more
 
--   Check out our demo video on running Snowflake applications locally.
--   Watch the webinar on testing data pipelines with the Snowflake emulator.
--   Navigate to our [documentation](https://snowflake.localstack.cloud/introduction/) & [tutorials](https://snowflake.localstack.cloud/tutorials/) to try out various features.
+-   Check out our [demo video]() on running Snowflake applications locally.
+-   Watch the [webinar recording](https://youtu.be/fWYRfuNMxuU) on testing data pipelines with the Snowflake emulator.
+-   Navigate to our [documentation](https://snowflake.localstack.cloud/introduction/) & [tutorials](https://snowflake.localstack.cloud/tutorials/) to try out the various features.
 -   Have questions? Join the [LocalStack Slack Community](https://localstack.cloud/slack) to get help.
 
 New to LocalStack? Create a [free account today](https://app.localstack.cloud/sign-up) and [get started](https://snowflake.localstack.cloud/getting-started/installation/)!
