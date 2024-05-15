@@ -29,13 +29,13 @@ This allows you to bypass the need to rely on the live version for local develop
 
 The Snowflake emulator is currently in **public preview**, and [you can reach out to us](https://localstack.cloud/contact) to get access! This blog explores how we reached this important milestone, what it means for our users, and provides a quick introduction to help you get started.
 
-Navigate to our [LocalStack Snowflake emulator documentation](https://snowflake.localstack.cloud/introduction/) to get started!
+For guidance, please navigate to our [LocalStack Snowflake emulator documentation](https://snowflake.localstack.cloud/introduction/).
 
 ## How did we get here?
 
 Software development organizations need a fast build lifecycle, quick continuous integration workflows, and a smoother developer experience — all this while optimizing cost, putting security in the forefront, and testing all application logic at the same time. However, adopting modern cloud-based solutions has been challenging due to a slow dev&test loop that massively undercuts the promise given to us by proprietary providers. The centralized, remote execution model of cloud providers is a limitation & liability, as developers continue to juggle around live development environments, long build times, inefficient CI pipelines, and cumbersome developer experience.
 
-The LocalStack platform addresses these challenges head-on! LocalStack’s core cloud emulator supports over 100 AWS services, such as Lambda, S3, EKS, ECS, RDS, and more. This enables a high-fidelity local developer environment ​​that allows you to run integration tests of cloud solutions locally and in CI environments. While expanding to 100K users worldwide and over 220M+ Docker pulls, we gathered a lot of learnings that further expanded our vision of providing a comprehensive developer platform that facilitates local multi-cloud development across different providers and services.
+LocalStack has responded to these challenges by providing a robust cloud emulator that supports over 100 AWS services, allowing for integration tests to be run locally and in CI environments. This capability has positioned LocalStack as a critical tool for developers seeking to improve efficiency and reduce dependencies on remote cloud environments.
 
 As LocalStack's user base expanded, so did the demand for similar capabilities with Snowflake. Although a [local testing framework](https://docs.snowflake.com/en/developer-guide/snowpark/python/testing-locally) from Snowflake is available, it only provides mock support for running integration tests, which falls short for more complex use cases. Leveraging the existing toolset in the LocalStack core cloud emulator—including our RDS Postgres utilities, snapshot testing library, analytics service client, and more allowed us to build an initial experimental preview. This new extension was [announced on our Discuss forum](https://discuss.localstack.cloud/t/introducing-the-localstack-snowflake-extension-experimental/665/7), where it quickly gained significant traction within the community.
 
