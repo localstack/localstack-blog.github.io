@@ -86,7 +86,7 @@ conn = sf.connect(
 
 Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred DB visualization tool.
 
-You can create a warehouse named `test_warehouse`, a database named `testdb`, and a schema named `testschema`:
+Once connected, you can set up your development environment by executing commands to establish core components. Create a warehouse named `test_warehouse`, a database named `testdb`, and a schema named `testschema` with the following commands:
 
 ```python
 conn.cursor().execute("CREATE WAREHOUSE IF NOT EXISTS test_warehouse")
