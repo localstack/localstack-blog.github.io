@@ -61,7 +61,7 @@ To get started with the LocalStack Snowflake emulator, pull our Docker image fro
 docker pull localstack/snowflake:latest
 ```
 
-You can start the emulator using the `localstack` CLI after exporting your LocalStack Auth Token (`LOCALSTACK_AUTH_TOKEN`) in your terminal session:
+You can start the emulator using the `localstack` CLI after exporting your [LocalStack Auth Token](https://docs.localstack.cloud/getting-started/auth-token/) (`LOCALSTACK_AUTH_TOKEN`) in your terminal session:
 
 ```bash
 export LOCALSTACK_AUTH_TOKEN=<your-auth-token>
