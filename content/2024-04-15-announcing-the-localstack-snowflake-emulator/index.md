@@ -90,7 +90,8 @@ Once connected, you can set up your development environment by executing command
 
 ```python
 conn.cursor().execute("CREATE WAREHOUSE IF NOT EXISTS test_warehouse")
-conn.cursor().execute("CREATE DATABASE IF NOT EXISTS testdb") conn.cursor().execute("USE DATABASE testdb")
+conn.cursor().execute("CREATE DATABASE IF NOT EXISTS testdb") 
+conn.cursor().execute("USE DATABASE testdb")
 conn.cursor().execute("CREATE SCHEMA IF NOT EXISTS testschema")
 ```
 
