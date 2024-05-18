@@ -111,6 +111,8 @@ Stay tuned for more news and awesome features in the upcoming months! We're dili
 -   Enhanced support for table streams and CDC use cases
 -   Advanced integration with other storage/streaming cloud services in LocalStack (AWS Glue, Kinesis Firehose, S3, AppFlow, etc)
 -   Tooling for test data management and preseeding the emulator with data from a real Snowflake instance
+-   A Web user experience to inspect the state of your local Snowflake resources and help with common day-to-day tasks
+-   A connection proxy that allows mirroring data from real Snowflake cloud into the local emulator, to easily flip the switch between local and remote query execution
 
 We are excited to have the privilege of working with our community to accelerate cloud and data development processes. LocalStack is poised to change the cloud development landscape, and we are looking forward to your continued support and feedback!
 
