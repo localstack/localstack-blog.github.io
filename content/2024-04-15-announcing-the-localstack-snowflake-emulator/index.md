@@ -13,15 +13,15 @@ tags: ['news']
 
 We are excited to announce that we have released a first version of the LocalStack Snowflake emulator. The LocalStack Snowflake emulator allows you to develop and test your data pipelines locally and CI pipelines, using a Docker container which can be easily plugged into your Snowflake integrations, such as [Snowpark](https://docs.snowflake.com/en/developer-guide/snowpark/index), [client libraries](https://developers.snowflake.com/drivers-and-libraries/), among others. The Snowflake emulator supports various key features, such as:
 
--   Operations on warehouses, databases, schemas, and tables.
--   Storing files in [Snowflake stages](https://docs.snowflake.com/en/user-guide/data-load-local-file-system-create-stage).
--   [Tasks](https://docs.snowflake.com/en/user-guide/tasks-intro) for scheduled execution.
--   Snowpipe streaming with [Kafka connector](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-streaming-kafka).
--   JavaScript and Python [UDFs](https://docs.snowflake.com/en/developer-guide/udf/udf-overview).
--   [Table streams](https://docs.snowflake.com/en/user-guide/streams-intro) for change data capture (CDC) and audit logs.
--   Cross-Database [Resource Sharing](https://docs.snowflake.com/en/user-guide/data-sharing-intro).
--   Basic support to run [Streamlit](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit) applications locally.
--   Infrastructure-as-code with [Terraform](https://snowflake.localstack.cloud/user-guide/integrations/terraform/) & [Pulumi](https://snowflake.localstack.cloud/user-guide/integrations/pulumi/).
+-   Operations on warehouses, databases, schemas, and tables;
+-   Storing files in [Snowflake stages](https://docs.snowflake.com/en/user-guide/data-load-local-file-system-create-stage);
+-   [Tasks](https://docs.snowflake.com/en/user-guide/tasks-intro) for scheduled execution;
+-   Snowpipe streaming with [Kafka connector](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-streaming-kafka);
+-   JavaScript and Python [UDFs](https://docs.snowflake.com/en/developer-guide/udf/udf-overview);
+-   [Table streams](https://docs.snowflake.com/en/user-guide/streams-intro) for change data capture (CDC) and audit logs;
+-   Cross-Database [Resource Sharing](https://docs.snowflake.com/en/user-guide/data-sharing-intro);
+-   Basic support to run [Streamlit](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit) applications locally;
+-   Infrastructure-as-code with [Terraform](https://snowflake.localstack.cloud/user-guide/integrations/terraform/) & [Pulumi](https://snowflake.localstack.cloud/user-guide/integrations/pulumi/);
 -   [Continuous integration](https://snowflake.localstack.cloud/user-guide/continuous-integration/) with GitHub Actions, CircleCI & GitLab CI.
 - Enterprise-tested features like [Cloud Pods and Persistence](https://snowflake.localstack.cloud/user-guide/state-management/) for state snapshots.
 
