@@ -56,7 +56,7 @@ Auxiliary Services encompass additional pieces of logic to handle file stages, s
 
 ## How do I start?
 
-To get started with the Snowflake emulator, pull our Docker image from DockerHub:
+To get started with the Snowflake emulator, pull our [Docker image](https://hub.docker.com/r/localstack/snowflake) from DockerHub:
 
 ```bash
 docker pull localstack/snowflake:latest
@@ -103,7 +103,16 @@ You can navigate to the LocalStack logs via `localstack logs` to see the Snowfla
 
 Note that LocalStack at no point talks to the real Snowflake instance — Everything runs locally, giving you the full power and flexibility to develop and test your data applications without relying on real cloud resources.
 
-For more detailed, real-world examples check out our [**Snowflake samples repository**](https://github.com/localstack-samples/localstack-snowflake-samples) on GitHub to explore a variety of use cases that you can run locally.
+### Running a Snowflake Data Application locally
+
+To demonstrate a complete scenario, we used the [Building a Data Application](https://quickstarts.snowflake.com/guide/data_app) Snowflake quickstart app and deployed it against the local emulator.
+
+The code for this application is available on [GitHub](https://github.com/localstack-samples/localstack-snowflake-samples/tree/main/citi-bike-data-app). After following the installation instructions (`make install`) and seeding the data into local Snowflake (`make seed`) using Snow CLI, you can start the app locally and interact with the local tables via the web user-interface (`make start-web`).
+
+The screenshot below shows how the Web app queries NYC Citibike trips data and displays the distribution of trips by month and weekday.
+
+{{< img-simple src="citi-bike-data-app.png" alt="Web app querying NYC Citibike trips data and displaying the distribution of trips by month and weekday" width="600">}}
+<br>
 
 ## Next steps
 
@@ -124,6 +133,7 @@ We are excited to have the privilege of working with our community to accelerate
 
 -   Watch the [webinar recording](https://youtu.be/fWYRfuNMxuU) on testing data pipelines with the Snowflake emulator.
 -   Navigate to our [documentation](https://snowflake.localstack.cloud/introduction/) & [tutorials](https://snowflake.localstack.cloud/tutorials/) to try out the various features.
+- Check out our [Snowflake samples](https://github.com/localstack-samples/localstack-snowflake-samples) to explore a variety of use cases that you can run locally.
 -   Have questions? Join the [LocalStack Slack Community](https://localstack.cloud/slack) to get help.
 
 New to LocalStack? Create a [free account today](https://app.localstack.cloud/sign-up) and [get started](https://snowflake.localstack.cloud/getting-started/installation/)!
