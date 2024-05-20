@@ -7,6 +7,7 @@ lastmod: 2024-04-15T5:41:46+05:30
 images: []
 contributors: ["LocalStack Team"]
 tags: ['news']
+show_cta_1: true
 ---
 
 ## Introduction
@@ -103,22 +104,21 @@ For a more detailed, real-world example check out our sample application on GitH
 
 ## Next steps
 
-As an early adopter of the LocalStack Snowflake emulator, we’ll be banking on essential feedback as we continue to push out new features & enhancements. The foundation for our next steps in the development of the Snowflake emulator lies in **parity**, **performance**, and **developer experience**, and our promise to provide the best tooling to empower data engineers across the entire software development lifecycle (SDLC).
+The foundation for our next steps in the development of the Snowflake emulator lies in **parity**, **performance**, and **developer experience**, and our promise to provide the best tooling to empower data engineers across the entire software development lifecycle (SDLC).
 
-Stay tuned for more news and awesome features in the upcoming months! We're diligently refining and enhancing our current offering, and here are some features you can expect in the upcoming months:
+Join our preview program today - we're working very closely with our community of early adopters to understand your use cases, and we can prioritize feature development during this current stage of development, to ensure our implementation properly supports your requirements. Here are some features you can expect in the upcoming months:
 
--   Full emulation of DB roles, role-based access control, and row-level security policies
--   Enhanced support for table streams and CDC use cases
--   Advanced integration with other storage/streaming cloud services in LocalStack (AWS Glue, Kinesis Firehose, S3, AppFlow, etc)
--   Tooling for test data management and preseeding the emulator with data from a real Snowflake instance
--   A Web user experience to inspect the state of your local Snowflake resources and help with common day-to-day tasks
--   A connection proxy that allows mirroring data from real Snowflake cloud into the local emulator, to easily flip the switch between local and remote query execution
+-   Full emulation of database roles, role-based access control, and row-level security policies
+-   Enhanced support for table streams and CDC use cases.
+-   Advanced integration with other storage/streaming cloud services in LocalStack (AWS Glue, Kinesis Firehose, S3, AppFlow, etc).
+-   Tooling for test data management and preseeding the emulator with data from a real Snowflake instance.
+-   A Web user experience to inspect the state of your local Snowflake resources and help with common day-to-day tasks.
+-   A connection proxy that allows mirroring data from real Snowflake cloud into the local emulator, to easily flip the switch between local and remote query execution.
 
 We are excited to have the privilege of working with our community to accelerate cloud and data development processes. LocalStack is poised to change the cloud development landscape, and we are looking forward to your continued support and feedback!
 
 ## Learn more
 
--   Check out our [demo video]() on running Snowflake applications locally.
 -   Watch the [webinar recording](https://youtu.be/fWYRfuNMxuU) on testing data pipelines with the Snowflake emulator.
 -   Navigate to our [documentation](https://snowflake.localstack.cloud/introduction/) & [tutorials](https://snowflake.localstack.cloud/tutorials/) to try out the various features.
 -   Have questions? Join the [LocalStack Slack Community](https://localstack.cloud/slack) to get help.
