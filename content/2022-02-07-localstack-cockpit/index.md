@@ -12,6 +12,11 @@ leadimage: "localstack-cockpit-banner.png"
 
 {{< img src="localstack-cockpit-banner.png" >}}
 
+{{< alert title="Note" >}}
+📢 LocalStack Cockpit has been deprecated and isn’t available or maintained anymore and we recommend you to use [LocalStack Desktop](https://docs.localstack.cloud/user-guide/tools/localstack-desktop/) instead.
+{{< /alert >}}
+<br>
+
 The new [LocalStack Cockpit](https://localstack.cloud/products/cockpit/) is now available. LocalStack Cockpit is a fully-integrated desktop experience for our LocalStack users. It allows our users to control, access, and manage LocalStack with a click of a button. No matter if you are a seasoned LocalStack user or just starting up to use LocalStack, Cockpit helps you use LocalStack more effectively!
 
 ## Getting started
