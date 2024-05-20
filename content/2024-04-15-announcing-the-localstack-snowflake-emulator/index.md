@@ -69,7 +69,7 @@ export LOCALSTACK_AUTH_TOKEN=<your-auth-token>
 IMAGE_NAME=localstack/snowflake localstack start
 ```
 
-This command starts the emulator on `snowflake.localhost.localstack.cloud`, a DNS name that resolves to the local IP address 127.0.0.1. This setup ensures that the connector interacts seamlessly with the local APIs.
+This command starts the emulator on `snowflake.localhost.localstack.cloud`, a DNS name that resolves to the local IP address `127.0.0.1`. This setup ensures that the connector interacts seamlessly with the local APIs.
 
 If you’re using [Snowflake Drivers](https://docs.snowflake.com/en/developer-guide/drivers), such as the [Snowflake Connector for Python](https://docs.snowflake.com/en/developer-guide/python-connector/python-connector), you can use the following code to connect to the local Snowflake instance:
 
