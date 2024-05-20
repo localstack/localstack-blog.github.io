@@ -85,11 +85,6 @@ conn = sf.connect(
 )
 ```
 
-Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred database visualization tool.
-
-{{< img-simple src="dbeaver-localstack-snowflake-emulator.png" alt="Running Snowflake SQL queries on DBeaver connected to LocalStack Snowflake emulator" width="800">}}
-<br>
-
 Once connected, you can set up your development environment by executing commands to establish core components. Create a warehouse named `test_warehouse`, a database named `testdb`, and a schema named `testschema` with the following commands:
 
 ```python
@@ -98,6 +93,11 @@ conn.cursor().execute("CREATE DATABASE IF NOT EXISTS testdb")
 conn.cursor().execute("USE DATABASE testdb")
 conn.cursor().execute("CREATE SCHEMA IF NOT EXISTS testschema")
 ```
+Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred database visualization tool - see screenshot below.
+
+{{< img-simple src="dbeaver-localstack-snowflake-emulator.png" alt="Running Snowflake SQL queries on DBeaver connected to LocalStack Snowflake emulator" width="600">}}
+<br>
+
 
 You can navigate to the LocalStack logs via `localstack logs` to see the Snowflake emulator in action. To connect your existing Snowflake app to the emulator, all you need to do is add the Snowflake Host name as `snowflake.localhost.localstack.cloud` while specifying mock credentials for your Snowflake user, password, and account.
 
