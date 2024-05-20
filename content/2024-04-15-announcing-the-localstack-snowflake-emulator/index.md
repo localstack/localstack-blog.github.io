@@ -13,7 +13,7 @@ tags: ['news']
 
 We are excited to announce that we have released a first version of the LocalStack Snowflake emulator. The LocalStack Snowflake emulator allows you to develop and test your data pipelines locally and CI pipelines, using a Docker container which can be easily plugged into your Snowflake integrations, such as [Snowpark](https://docs.snowflake.com/en/developer-guide/snowpark/index), [client libraries](https://developers.snowflake.com/drivers-and-libraries/), among others. The Snowflake emulator supports various key features, such as:
 
--   Operations on warehouses, databases, schemas, and tables;
+-   DDL/DML/DQL operations on **warehouses**, **databases**, **schemas**, and **tables**;
 -   Storing files in [Snowflake **stages**](https://docs.snowflake.com/en/user-guide/data-load-local-file-system-create-stage);
 -   [**Tasks**](https://docs.snowflake.com/en/user-guide/tasks-intro) for scheduled execution;
 -   Snowpipe **streaming** with [Kafka connector](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-streaming-kafka);
