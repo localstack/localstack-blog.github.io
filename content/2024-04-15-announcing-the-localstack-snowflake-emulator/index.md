@@ -22,15 +22,15 @@ We are excited to announce that we have released a first version of the LocalSta
 -   [Table **streams**](https://docs.snowflake.com/en/user-guide/streams-intro) for change data capture (CDC) and audit logs;
 -   Cross-database [**resource sharing**](https://docs.snowflake.com/en/user-guide/data-sharing-intro);
 -   Basic support to run [**Streamlit**](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit) applications locally;
--   Infrastructure-as-code with [**Terraform**](https://snowflake.localstack.cloud/user-guide/integrations/terraform/) & [Pulumi](https://snowflake.localstack.cloud/user-guide/integrations/pulumi/);
--   Test your data applications in [**Continuous Integration**](https://snowflake.localstack.cloud/user-guide/continuous-integration/) (CI) pipelines with GitHub Actions, CircleCI & GitLab CI (among others).
-- Enterprise-tested features like [**Cloud Pods** and Persistence](https://snowflake.localstack.cloud/user-guide/state-management/) for state snapshots.
+-   Infrastructure-as-code with [**Terraform**](https://snowflake.localstack.cloud/user-guide/integrations/terraform/) & [**Pulumi**](https://snowflake.localstack.cloud/user-guide/integrations/pulumi/);
+-   Test your data applications in [**Continuous Integration**](https://snowflake.localstack.cloud/user-guide/continuous-integration/) (CI) pipelines with GitHub Actions, CircleCI & GitLab CI (among others);
+- Enterprise-tested features like [**Cloud Pods** and **Persistence**](https://snowflake.localstack.cloud/user-guide/state-management/) for state snapshots.
 
 This allows you to bypass the need to rely on the live version for local development and testing, while also enabling high-velocity, high-quality, agile test-driven development for your data applications. With this release, we are demonstrating our commitment to go multi-cloud and build a complete suite of developer tools that will allow you to achieve efficiency and cost savings by bringing development and testing closer together.
 
 The Snowflake emulator is currently in **public preview**, and [you can reach out to us](https://localstack.cloud/contact) to get access! This blog explores how we've reached this important milestone, outlines what it means for our users, and provides a quick introduction to help you get started.
 
-For guidance, please navigate to our [LocalStack Snowflake emulator documentation](https://snowflake.localstack.cloud/introduction/).
+For guidance, please navigate to our [**LocalStack Snowflake emulator documentation**](https://snowflake.localstack.cloud/introduction/).
 
 ## How did we get here?
 
@@ -71,7 +71,7 @@ IMAGE_NAME=localstack/snowflake localstack start
 
 This command starts the emulator on `snowflake.localhost.localstack.cloud`, a DNS name that resolves to the local IP address 127.0.0.1. This setup ensures that the connector interacts seamlessly with the local APIs.
 
-If you’re using [Snowflake Drivers](https://docs.snowflake.com/en/developer-guide/drivers), such as the Snowflake Connector for Python, you can use the following code to connect to the local Snowflake instance:
+If you’re using [Snowflake Drivers](https://docs.snowflake.com/en/developer-guide/drivers), such as the [Snowflake Connector for Python](https://docs.snowflake.com/en/developer-guide/python-connector/python-connector), you can use the following code to connect to the local Snowflake instance:
 
 ```python
 import snowflake.connector as sf
@@ -85,7 +85,7 @@ conn = sf.connect(
 )
 ```
 
-Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred DB visualization tool.
+Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred database visualization tool.
 
 Once connected, you can set up your development environment by executing commands to establish core components. Create a warehouse named `test_warehouse`, a database named `testdb`, and a schema named `testschema` with the following commands:
 
@@ -100,7 +100,7 @@ You can navigate to the LocalStack logs via `localstack logs` to see the Snowfla
 
 Note that LocalStack at no point talks to the real Snowflake instance — Everything runs locally, giving you the full power and flexibility to develop and test your data applications without relying on real cloud resources.
 
-For a more detailed, real-world example check out our sample application on GitHub (WIP).
+For more detailed, real-world examples check out our [**Snowflake samples repository**](https://github.com/localstack-samples/localstack-snowflake-samples) on GitHub to explore a variety of use cases that you can run locally.
 
 ## Next steps
 
