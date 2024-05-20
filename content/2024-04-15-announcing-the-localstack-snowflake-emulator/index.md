@@ -93,7 +93,7 @@ conn.cursor().execute("CREATE DATABASE IF NOT EXISTS testdb")
 conn.cursor().execute("USE DATABASE testdb")
 conn.cursor().execute("CREATE SCHEMA IF NOT EXISTS testschema")
 ```
-Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred database visualization tool - see screenshot below.
+Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred database visualization tool. Here is an example of running Snowflake SQL queries on DBeaver connected to the LocalStack Snowflake emulator:
 
 {{< img-simple src="dbeaver-localstack-snowflake-emulator.png" alt="Running Snowflake SQL queries on DBeaver connected to LocalStack Snowflake emulator" width="600">}}
 <br>
