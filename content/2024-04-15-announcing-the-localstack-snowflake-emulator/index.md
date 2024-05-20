@@ -26,7 +26,7 @@ We are excited to announce that we have released a first version of the LocalSta
 -   Test your data applications in [**Continuous Integration**](https://snowflake.localstack.cloud/user-guide/continuous-integration/) (CI) pipelines with GitHub Actions, CircleCI & GitLab CI (among others);
 - Enterprise-tested features like [**Cloud Pods** and **Persistence**](https://snowflake.localstack.cloud/user-guide/state-management/) for state snapshots.
 
-This allows you to bypass the need to rely on the live version for local development and testing, while also enabling high-velocity, high-quality, agile test-driven development for your data applications. With this release, we are demonstrating our commitment to go multi-cloud and build a complete suite of developer tools that will allow you to achieve efficiency and cost savings by bringing development and testing closer together.
+This allows you to bypass the need to rely on the live version for local development and testing, while enabling high-velocity and agile test-driven development for your data applications. With this release, we are demonstrating our commitment to go multi-cloud and build a complete suite of developer tools that will allow you to achieve efficiency and cost savings by bringing development and testing closer together.
 
 The Snowflake emulator is currently in **public preview**, and [you can reach out to us](https://localstack.cloud/contact) to get access! This blog explores how we've reached this important milestone, outlines what it means for our users, and provides a quick introduction to help you get started.
 
