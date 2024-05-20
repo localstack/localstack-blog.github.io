@@ -38,8 +38,8 @@ Let's take a look at our latest release's new features and enhancements to see h
 * [New ElastiCache provider](#new-elasticache-provider)
 * [New features for Chaos Engineering](#new-features-for-chaos-engineering)
 * [IAM Policy Stream on Web Application](#iam-policy-stream-on-web-application)
-* [Ephemeral Environments for LocalStack](#ephemeral-environments-for-localstack-beta) (**Beta**)
-* [CI Analytics for LocalStack](#ci-analytics-for-localstack-beta) (**Beta**)
+* [Ephemeral Environments for LocalStack](#ephemeral-environments-for-localstack-preview) (**Preview**)
+* [CI Analytics for LocalStack](#ci-analytics-for-localstack-preview) (**Preview**)
 * [All-new LocalStack Desktop Application](#all-new-localstack-desktop-application)
 * [Multi-region and Multi-account support](#multi-region-and-multi-account-support)
 * [LocalStack Networking initiative](#localstack-networking-initiative)
@@ -103,7 +103,7 @@ The features include:
 
 Check out our [documentation](https://docs.localstack.cloud/user-guide/security-testing/iam-policy-stream/) on getting started with the IAM Policy Stream.
 
-### Ephemeral Environments for LocalStack (**Beta**)
+### Ephemeral Environments for LocalStack (**Preview**)
 
 We have launched **Ephemeral Instances**, which allows you to run a LocalStack sandbox in the cloud, instead of your local machine. This ephemeral environment is a short-lived, encapsulated deployment of LocalStack which will be terminated after 90 minutes. With these sandboxes, you can run your tests, preview features in your AWS-powered applications, and collaborate asynchronously within and across your team!
 
@@ -111,9 +111,9 @@ With Ephemeral Instances, you can use the same set of features that you use whil
 
 {{< img-simple src="localstack-ephemeral-environments.png" width=300 alt="Image of LocalStack Ephemeral environments with a LocalStack Sandbox running in the cloud">}}
 
-Check out our [documentation](https://docs.localstack.cloud/user-guide/cloud-sandbox/ephemeral-instance/) on getting started with Ephemeral Instances. The feature is in **private beta**, and you can reach out to us to get early access!
+Check out our [documentation](https://docs.localstack.cloud/user-guide/cloud-sandbox/ephemeral-instance/) on getting started with Ephemeral Instances. The feature is in **private preview**, and you can reach out to us to get early access!
 
-### CI Analytics for LocalStack (**Beta**)
+### CI Analytics for LocalStack (**Preview**)
 
 We're excited to introduce **CI Analytics**, a new feature for comprehensive state browsing and analysis of historical continuous integration (CI) builds. This feature integrates into your LocalStack CI workflow, offering insights and supporting our goal to enhance the cloud developer experience throughout the software development lifecycle (SDLC). With CI Analytics, you can collect, analyze, and visualize critical metrics from your software CI pipelines, helping you understand the impact of cloud infrastructure changes on CI builds. It facilitates root cause analysis for build failures, supports data-driven decisions for continuous improvement, and more.
 
@@ -127,7 +127,7 @@ CI Analytics combines a number of existing features in the LocalStack platform, 
 
 {{< img-simple src="localstack-ci-analytics.png" width=300 alt="Image of LocalStack CI Analytics dashboard">}}
 
-Check out our [documentation](https://docs.localstack.cloud/user-guide/ci/ci-analytics/) on getting started with CI Analytics. The feature is in **private beta**, and you can reach out to us to get early access!
+Check out our [documentation](https://docs.localstack.cloud/user-guide/ci/ci-analytics/) on getting started with CI Analytics. The feature is in **private preview**, and you can reach out to us to get early access!
 
 ### All-new LocalStack Desktop Application
 

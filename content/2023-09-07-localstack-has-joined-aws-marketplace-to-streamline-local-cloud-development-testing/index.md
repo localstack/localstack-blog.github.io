@@ -8,7 +8,6 @@ contributors: ["LocalStack Team"]
 tags: ['news']
 leadimage: "localstack-joins-aws-marketplace.png"
 show_cta_1: true
-weight: 5
 ---
 
 {{< img-simple src="localstack-joins-aws-marketplace.png" >}}
