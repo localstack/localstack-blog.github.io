@@ -30,7 +30,7 @@ This allows you to bypass the need to rely on the live version for local develop
 
 The Snowflake emulator is currently in **public preview**, and [you can reach out to us](https://localstack.cloud/contact) to get access! This blog explores how we've reached this important milestone, outlines what it means for our users, and provides a quick introduction to help you get started.
 
-For guidance, please navigate to our [**LocalStack Snowflake emulator documentation**](https://snowflake.localstack.cloud/introduction/).
+For more detailed guidance, please navigate to our [**LocalStack Snowflake emulator documentation**](https://snowflake.localstack.cloud/introduction/).
 
 ## How did we get here?
 
