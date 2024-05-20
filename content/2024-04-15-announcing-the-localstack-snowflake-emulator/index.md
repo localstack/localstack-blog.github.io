@@ -21,7 +21,7 @@ We are excited to announce that we have released a first version of the LocalSta
 -   [User-defined **functions**](https://docs.snowflake.com/en/developer-guide/udf/udf-overview) (UDFs) in JavaScript and Python;
 -   [Table **streams**](https://docs.snowflake.com/en/user-guide/streams-intro) for change data capture (CDC) and audit logs;
 -   Cross-database [**resource sharing**](https://docs.snowflake.com/en/user-guide/data-sharing-intro);
--   Basic support to run [**Streamlit**](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit) applications locally;
+-   Basic support for running [**Streamlit**](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit) applications locally;
 -   Infrastructure-as-code with [**Terraform**](https://snowflake.localstack.cloud/user-guide/integrations/terraform/) & [**Pulumi**](https://snowflake.localstack.cloud/user-guide/integrations/pulumi/);
 -   Test your data applications in [**Continuous Integration**](https://snowflake.localstack.cloud/user-guide/continuous-integration/) (CI) pipelines with GitHub Actions, CircleCI & GitLab CI (among others);
 - Enterprise-tested features like [**Cloud Pods** and **Persistence**](https://snowflake.localstack.cloud/user-guide/state-management/) for state snapshots.
