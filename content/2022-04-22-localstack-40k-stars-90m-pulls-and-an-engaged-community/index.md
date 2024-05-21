@@ -72,7 +72,7 @@ To further support team collaboration, the next exciting product we are pushing 
 
 We are supporting seamless integrations across your CI/CD systems, and LocalStack is compatible with all major CI providers like GitHub Actions, TravisCI, CircleCI, GitLab CI and Jenkins. Soon you will also be able to sync the state and test data from production directly into your development/CI environments. Development teams can then  capitalize on the Local Cloud Pods storage backend by pushing or pulling the application state and collaborating with team members on the shared state.
 
-We now also feature beta releases of the LocalStack Cockpit as well as our new CI Time Travel Analytics product, which allows you to visualize your CI runs directly in your browser. The [LocalStack Cockpit](https://localstack.cloud/products/cockpit/) brings a Desktop experience for managing your LocalStack instance to your local machine. In the Cockpit, you can inspect the service status, debug logs, define configuration profiles, and more. Try it out by downloading LocalStack Cockpit!
+We now also feature preview release of the LocalStack Cockpit as well as our new CI Time Travel Analytics product, which allows you to visualize your CI runs directly in your browser. The [LocalStack Cockpit](https://localstack.cloud/products/cockpit/) brings a Desktop experience for managing your LocalStack instance to your local machine. In the Cockpit, you can inspect the service status, debug logs, define configuration profiles, and more. Try it out by downloading LocalStack Cockpit!
 
 {{< img src="localstack-cockpit.png" >}}
 

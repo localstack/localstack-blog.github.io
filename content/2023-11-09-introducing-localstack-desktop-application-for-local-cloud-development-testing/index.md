@@ -19,7 +19,7 @@ We are excited to announce that we have released an all-new [Desktop Application
 
 ## What's new?
 
-Last year, we released [LocalStack Cockpit](https://localstack.cloud/blog/2022-02-07-localstack-cockpit/) — our first iteration towards building a fully integrated desktop client to control, access, and manage LocalStack with a click of a button. We received a lot of feedback from the community during the beta phase, and after spending months working on it, we formulated a new product for our users to use LocalStack more efficiently.
+Last year, we released [LocalStack Cockpit](https://localstack.cloud/blog/2022-02-07-localstack-cockpit/) — our first iteration towards building a fully integrated desktop client to control, access, and manage LocalStack with a click of a button. We received a lot of feedback from the community during the preview phase, and after spending months working on it, we formulated a new product for our users to use LocalStack more efficiently.
 
 To further streamline our product offering, we've made the decision to deprecate LocalStack Cockpit for new users. Going forward, we will help migrate our existing users and get our new users started with to the LocalStack Desktop Application.
 

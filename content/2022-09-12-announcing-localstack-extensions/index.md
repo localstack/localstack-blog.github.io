@@ -151,6 +151,6 @@ The sky is the limit!
 
 ## Conclusion
 
-LocalStack Extensions is currently in Beta and is continually evolving. We use the [Discussion Pages](https://discuss.localstack.cloud/) to share updates on our product and to communicate the roadmap. We look forward to working closely with our growing community and engaging via Discussion Pages on all the upcoming exciting upcoming topics and upcoming updates.
+LocalStack Extensions is currently in preview and is continually evolving. We use the [Discussion Pages](https://discuss.localstack.cloud/) to share updates on our product and to communicate the roadmap. We look forward to working closely with our growing community and engaging via Discussion Pages on all the upcoming exciting upcoming topics and upcoming updates.
 
 Let’s work together to create a superb developer experience and make cloud development fun! 🚀
