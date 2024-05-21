@@ -44,7 +44,7 @@ As LocalStack's user base expanded, so did the demand for similar capabilities w
 
 At its core, we utilize PostgreSQL as the database engine to store the user data and execute queries. The SQL syntax of Snowflake queries is overall fairly similar to PostgreSQL, but there are several more or less subtle differences. The figure below outlines some of the main components used in our implementation:
 
-// picture
+{{< img-simple src="snowflake-emulator-architecture.png" alt="Snowflake emulator architecture" width="600">}}
 
 Query Processors are the main building blocks that collectively comprise the core engine that processes incoming user queries. We distinguish 3 main types of query processors:
 
