@@ -99,8 +99,10 @@ conn.cursor().execute("CREATE SCHEMA IF NOT EXISTS testschema")
 ```
 Similarly, you can utilize the JDBC driver to connect to the Snowflake emulator from your preferred database visualization tool. Here is an example of running Snowflake SQL queries on DBeaver connected to the Snowflake emulator:
 
-{{< img-simple src="dbeaver-localstack-snowflake-emulator.png" alt="Running Snowflake SQL queries on DBeaver connected to the Snowflake emulator" width="600">}}
-<br>
+<div style="text-align: center;">
+    <img src="dbeaver-localstack-snowflake-emulator.png" alt="Running Snowflake SQL queries on DBeaver connected to the Snowflake emulator" style="width: 80%;">
+</div>
+<br><br>
 
 
 You can navigate to the LocalStack logs via `localstack logs` to see the Snowflake emulator in action. To connect your existing Snowflake app to the emulator, all you need to do is add the Snowflake Host name as `snowflake.localhost.localstack.cloud` while specifying mock credentials for your Snowflake user, password, and account.
@@ -115,8 +117,10 @@ The code for this application is available on [GitHub](https://github.com/locals
 
 The screenshot below shows how the Web app queries [NYC Citibike trips data](https://citibikenyc.com/system-data) and displays the distribution of trips by month and weekday.
 
-{{< img-simple src="citi-bike-data-app.png" alt="Web app querying NYC Citibike trips data and displaying the distribution of trips by month and weekday" width="600">}}
-<br>
+<div style="text-align: center;">
+    <img src="citi-bike-data-app.png" alt="Web app querying NYC Citibike trips data and displaying the distribution of trips by month and weekday" style="width: 80%;">
+</div>
+<br><br>
 
 ## Next steps
 
@@ -124,7 +128,7 @@ The foundation for our next steps in the development of the Snowflake emulator l
 
 Join our preview program today! We're working very closely with our community of early adopters to understand your use cases, and we can prioritize feature development during this current stage of development, to ensure our implementation properly supports your requirements. Here are some features you can expect in the upcoming months:
 
--   Full emulation of database roles, role-based access control, and row-level security policies
+-   Full emulation of database roles, role-based access control, and row-level security policies.
 -   Enhanced support for table streams and CDC use cases.
 -   Advanced integration with other storage/streaming cloud services in LocalStack (AWS Glue, Kinesis Firehose, S3, AppFlow, etc).
 -   Tooling for test data management and preseeding the emulator with data from a real Snowflake instance.
