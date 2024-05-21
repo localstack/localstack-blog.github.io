@@ -125,7 +125,7 @@ Over the past few months, we have introduced & improved LocalStack Tools to make
 
 We have launched the [Developer Hub](https://docs.localstack.cloud/developer-hub/), a new Web experience enabling developers to find up-to-date LocalStack samples spanning various use cases: Serverless, Containers, Big Data, Identity, and much more! The Developer Hub offers a consolidated view of [LocalStack sample applications](https://docs.localstack.cloud/applications) that educate developers to build and run cloud and serverless applications. With additional [tutorials](https://docs.localstack.cloud/tutorials), we strive to keep the gap between LocalStack and AWS as small as possible and focus on getting users, step by step, started with LocalStack!
 
-The Developer Hub is currently in beta and available on our [documentation website](https://docs.localstack.cloud/developer-hub/).
+The Developer Hub is currently in preview and available on our [documentation website](https://docs.localstack.cloud/developer-hub/).
 We are increasingly improving our sample applications' quality and service coverage while actively seeking user feedback.
 In the future, we would like to expand this concept to include explainer videos, lab environments, broader code samples, and more blog posts, making it the resource go-to for our community.
 To learn more about the Developer Hub and the purpose it serves, check out our [discuss post](https://discuss.localstack.cloud/t/introducing-the-localstack-developer-hub/264).

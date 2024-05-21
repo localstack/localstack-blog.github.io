@@ -12,11 +12,16 @@ leadimage: "localstack-cockpit-banner.png"
 
 {{< img src="localstack-cockpit-banner.png" >}}
 
+{{< alert title="Note" >}}
+📢 LocalStack Cockpit has been deprecated and isn’t available or maintained anymore and we recommend you to use [LocalStack Desktop](https://docs.localstack.cloud/user-guide/tools/localstack-desktop/) instead.
+{{< /alert >}}
+<br>
+
 The new [LocalStack Cockpit](https://localstack.cloud/products/cockpit/) is now available. LocalStack Cockpit is a fully-integrated desktop experience for our LocalStack users. It allows our users to control, access, and manage LocalStack with a click of a button. No matter if you are a seasoned LocalStack user or just starting up to use LocalStack, Cockpit helps you use LocalStack more effectively!
 
 ## Getting started
 
-You can now download the LocalStack Cockpit from our [website](https://localstack.cloud) by signing up for our v0.1.0 beta release. You can choose the platform you would like to try LocalStack Cockpit on and enter the email address so that we can send you the download link. After downloading LocalStack Cockpit, you can get started with running it on your machine and increase your development productivity.
+You can now download the LocalStack Cockpit from our [website](https://localstack.cloud) by signing up for our v0.1.0 preview release. You can choose the platform you would like to try LocalStack Cockpit on and enter the email address so that we can send you the download link. After downloading LocalStack Cockpit, you can get started with running it on your machine and increase your development productivity.
 
 {{< img src="localstack-cockpit-start.gif" >}}
 
@@ -33,6 +38,6 @@ Navigate to our [documentation](https://docs.localstack.cloud/get-started/cockpi
 
 ## What's next?
 
-We’re excited to share the beta version of LocalStack Cockpit with you, while we work on iterating further, adding new features, fixing bugs and helping your LocalStack workflow become as seamless as possible. We are planning to extend the functionality over the initial version, over the next couple of months - stay tuned!
+We’re excited to share the preview version of LocalStack Cockpit with you, while we work on iterating further, adding new features, fixing bugs and helping your LocalStack workflow become as seamless as possible. We are planning to extend the functionality over the initial version, over the next couple of months - stay tuned!
 
 You can read more about our product on the LocalStack Cockpit product page and send us your bug reports, feature requests and your general feedback on our [GitHub repository](https://github.com/localstack/cockpit/issues). We’re looking forward to getting your feedback!

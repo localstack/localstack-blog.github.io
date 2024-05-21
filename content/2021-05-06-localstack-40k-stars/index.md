@@ -161,7 +161,7 @@ one-click-deployments of LocalStack on Shipyard in a follow-up blog post soon.
 We're excited to announce that we are going multi-cloud - focusing on
 Azure APIs as the next cloud layer, based on all the learnings we have
 gathered in our journey so far. If you'd like to participate in our
-*Azure beta program*, please get in touch with us directly.
+*Azure preview program*, please get in touch with us directly.
 
 But it doesn't stop there. More and more of our users are asking
 for LocalStack to support AI apps - we feel the pain of AI engineers

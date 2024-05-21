@@ -9,7 +9,6 @@ contributors: ["Anca Ghenade"]
 tags: ['showcase']
 show_cta_1: true
 leadimage: '10-things-to-know.png'
-weight: 3
 ---
 
 
