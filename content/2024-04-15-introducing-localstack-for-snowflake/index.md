@@ -40,19 +40,19 @@ For more detailed guidance, please navigate to our [**LocalStack for Snowflake d
 
 Software development organizations need a fast build lifecycle, quick continuous integration workflows, and a smoother developer experience — all this while optimizing cost, putting security in the forefront, and testing all application logic at the same time. However, adopting modern cloud-based solutions has been challenging due to a slow dev&test loop that massively undercuts the promise given to us by proprietary providers. The centralized, remote execution model of cloud providers is a limitation & liability, as developers continue to juggle around live development environments, long build times, inefficient CI pipelines, and cumbersome developer experience.
 
-LocalStack has responded to these challenges by providing a robust cloud emulator that supports over 100 AWS services, allowing for integration tests to be run locally and in CI environments. This capability has positioned LocalStack as a critical tool for developers seeking to improve efficiency and reduce dependencies on remote cloud environments.
+LocalStack has responded to these challenges by providing a robust cloud emulator [that supports over 100 AWS services](https://docs.localstack.cloud/references/coverage/), allowing for integration tests to be run locally and in CI environments. This capability has positioned LocalStack as a critical tool for developers seeking to improve efficiency and reduce dependencies on remote cloud environments.
 
-As LocalStack's user base expanded, so did the demand for similar capabilities with Snowflake. Although a [local testing framework](https://docs.snowflake.com/en/developer-guide/snowpark/python/testing-locally) from Snowflake is available, it only provides mock support for running integration tests, which falls short of more complex use cases. Leveraging the existing toolset in the LocalStack core cloud emulator — including our RDS Postgres utilities, snapshot testing library, analytics service client, and more — allowed us to build an initial experimental preview. This new extension was [announced on our Discuss forum](https://discuss.localstack.cloud/t/introducing-the-localstack-snowflake-extension-experimental/665/7), where it quickly gained significant traction within the community.
+As LocalStack's user base expanded, so did the demand for similar capabilities with Snowflake. Although a [local testing framework from Snowflake](https://docs.snowflake.com/en/developer-guide/snowpark/python/testing-locally) is available, it only provides mock support for running integration tests, which falls short of more complex use cases. Leveraging the existing toolset in the LocalStack core cloud emulator — including our RDS Postgres utilities, snapshot testing library, analytics service client, and more — allowed us to build an initial experimental preview. This new extension was [announced on our Discuss forum](https://discuss.localstack.cloud/t/introducing-the-localstack-snowflake-extension-experimental/665), where it quickly gained significant traction within the community.
 
 ## How did we build this?
 
-At its core, we utilize PostgreSQL as the database engine to store the user data and execute queries. The SQL syntax of Snowflake queries is overall fairly similar to PostgreSQL, but there are several more or less subtle differences. The figure below outlines some of the main components used in our implementation:
+At its core, we utilize [PostgreSQL](https://www.postgresql.org/) as the database engine to store the user data and execute queries. The SQL syntax of Snowflake queries is overall fairly similar to PostgreSQL, but there are several more or less subtle differences. The figure below outlines some of the main components used in our implementation:
 
 {{< img-simple src="snowflake-emulator-architecture.png" alt="Snowflake emulator architecture" width="600">}}
 
 Query Processors are the main building blocks that collectively comprise the core engine that processes incoming user queries. We distinguish 3 main types of query processors:
 
--   DB initializers are pieces of logic that are applied only once upon creation of a database (e.g., creating custom SQL functions).
+-   Database initializers are pieces of logic that are applied only once upon creation of a database (e.g., creating custom SQL functions).
 -   Query pre-processors operate on the abstract syntax tree (AST) of SQL queries and transform incoming queries in Snowflake format to target queries that can be executed in the DB engine (Postgres).
 -   Result post-processors take care of applying additional custom logic and converting the DB engine query results to Snowflake API-compatible result sets — either as JSON blobs or in Apache Arrow table format.
 
@@ -113,7 +113,7 @@ To demonstrate a complete scenario, we used the [Building a Data Application](ht
 
 The code for this application is available on [GitHub](https://github.com/localstack-samples/localstack-snowflake-samples/tree/main/citi-bike-data-app). After following the installation instructions (`make install`) and seeding the data into local Snowflake (`make seed`) using Snow CLI, you can start the app locally and interact with the local tables via the web user-interface (`make start-web`).
 
-The screenshot below shows how the Web app queries NYC Citibike trips data and displays the distribution of trips by month and weekday.
+The screenshot below shows how the Web app queries [NYC Citibike trips data](https://citibikenyc.com/system-data) and displays the distribution of trips by month and weekday.
 
 {{< img-simple src="citi-bike-data-app.png" alt="Web app querying NYC Citibike trips data and displaying the distribution of trips by month and weekday" width="600">}}
 <br>
