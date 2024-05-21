@@ -16,7 +16,7 @@ leadimage: "introducing-localstack-for-snowflake.png"
 
 ## Introduction
 
-We are excited to announce the public preview of LocalStack for Snowflake. This new emulator enables you to develop and test your [Snowflake](https://snowflake.com) data applications locally and in CI pipelines, using a Docker container that can be easily plugged into your Snowflake integrations, such as [Snowpark](https://docs.snowflake.com/en/developer-guide/snowpark/index), different [client libraries](https://developers.snowflake.com/drivers-and-libraries/), or [Streamlit](https://docs.streamlit.io/develop/tutorials/databases/snowflake) applications, among others. This preview version of the Snowflake emulator supports various key features, such as:
+We are excited to announce the public preview of LocalStack for Snowflake ❄️. This new emulator enables you to develop and test your [Snowflake](https://snowflake.com) data applications locally and in CI pipelines, using a Docker container that can be easily plugged into your Snowflake integrations, such as [Snowpark](https://docs.snowflake.com/en/developer-guide/snowpark/index), different [client libraries](https://developers.snowflake.com/drivers-and-libraries/), or [Streamlit](https://docs.streamlit.io/develop/tutorials/databases/snowflake) applications, among others. This preview version of the Snowflake emulator supports various key features, such as:
 
 -   DDL/DML/DQL operations on **warehouses**, **databases**, **schemas**, and **tables**;
 -   Storing files in [Snowflake **stages**](https://docs.snowflake.com/en/user-guide/data-load-local-file-system-create-stage);
