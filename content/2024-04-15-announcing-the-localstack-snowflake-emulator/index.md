@@ -12,7 +12,7 @@ show_cta_1: true
 
 ## Introduction
 
-We are excited to announce the public preview of LocalStack for Snowflake. This new emulator allows you to develop and test your [Snowflake](https://snowflake.com) data applications locally and in CI pipelines, using a Docker container which can be easily plugged into your Snowflake integrations, such as [Snowpark](https://docs.snowflake.com/en/developer-guide/snowpark/index), different [client libraries](https://developers.snowflake.com/drivers-and-libraries/), or [Streamlit](https://docs.streamlit.io/develop/tutorials/databases/snowflake) applications, among others. This preview version of the Snowflake emulator supports various key features, such as:
+We are excited to announce the public preview of LocalStack for Snowflake. This new emulator enables you to develop and test your [Snowflake](https://snowflake.com) data applications locally and in CI pipelines, using a Docker container that can be easily plugged into your Snowflake integrations, such as [Snowpark](https://docs.snowflake.com/en/developer-guide/snowpark/index), different [client libraries](https://developers.snowflake.com/drivers-and-libraries/), or [Streamlit](https://docs.streamlit.io/develop/tutorials/databases/snowflake) applications, among others. This preview version of the Snowflake emulator supports various key features, such as:
 
 -   DDL/DML/DQL operations on **warehouses**, **databases**, **schemas**, and **tables**;
 -   Storing files in [Snowflake **stages**](https://docs.snowflake.com/en/user-guide/data-load-local-file-system-create-stage);
@@ -26,7 +26,7 @@ We are excited to announce the public preview of LocalStack for Snowflake. This 
 -   Test your data applications in [**Continuous Integration**](https://snowflake.localstack.cloud/user-guide/continuous-integration/) (CI) pipelines with GitHub Actions, CircleCI & GitLab CI (among others);
 - Enterprise-tested features like [**Cloud Pods** and **Persistence**](https://snowflake.localstack.cloud/user-guide/state-management/) for state snapshots.
 
-This allows you to bypass the need to rely on the live version for local development and testing while enabling high-velocity and agile test-driven development for your data applications. With this release, we are demonstrating our commitment to go multi-cloud and build a complete suite of developer tools that will allow you to achieve efficiency and cost savings by bringing development and testing closer together.
+The Snowflake emulator allows you to bypass the need to rely on the live version for local development and testing while enabling high-velocity and agile test-driven development for your data applications. With this release, we are demonstrating our commitment to go multi-cloud and build a complete suite of developer tools that will allow you to achieve efficiency and cost savings by bringing development and testing closer together.
 
 The Snowflake emulator is currently in **public preview**, and [you can reach out to us](https://localstack.cloud/contact) to get access! This blog explores how we've reached this important milestone, outlines what it means for our users, and provides a quick introduction to help you get started.
 
@@ -38,7 +38,7 @@ Software development organizations need a fast build lifecycle, quick continuous
 
 LocalStack has responded to these challenges by providing a robust cloud emulator that supports over 100 AWS services, allowing for integration tests to be run locally and in CI environments. This capability has positioned LocalStack as a critical tool for developers seeking to improve efficiency and reduce dependencies on remote cloud environments.
 
-As LocalStack's user base expanded, so did the demand for similar capabilities with Snowflake. Although a [local testing framework](https://docs.snowflake.com/en/developer-guide/snowpark/python/testing-locally) from Snowflake is available, it only provides mock support for running integration tests, which falls short for more complex use cases. Leveraging the existing toolset in the LocalStack core cloud emulator — including our RDS Postgres utilities, snapshot testing library, analytics service client, and more — allowed us to build an initial experimental preview. This new extension was [announced on our Discuss forum](https://discuss.localstack.cloud/t/introducing-the-localstack-snowflake-extension-experimental/665/7), where it quickly gained significant traction within the community.
+As LocalStack's user base expanded, so did the demand for similar capabilities with Snowflake. Although a [local testing framework](https://docs.snowflake.com/en/developer-guide/snowpark/python/testing-locally) from Snowflake is available, it only provides mock support for running integration tests, which falls short of more complex use cases. Leveraging the existing toolset in the LocalStack core cloud emulator — including our RDS Postgres utilities, snapshot testing library, analytics service client, and more — allowed us to build an initial experimental preview. This new extension was [announced on our Discuss forum](https://discuss.localstack.cloud/t/introducing-the-localstack-snowflake-extension-experimental/665/7), where it quickly gained significant traction within the community.
 
 ## How did we build this?
 
@@ -118,7 +118,7 @@ The screenshot below shows how the Web app queries NYC Citibike trips data and d
 
 The foundation for our next steps in the development of the Snowflake emulator lies in **parity**, **performance**, and **developer experience**, and our promise to provide the best tooling to empower data engineers across the entire software development lifecycle (SDLC).
 
-Join our preview program today - we're working very closely with our community of early adopters to understand your use cases, and we can prioritize feature development during this current stage of development, to ensure our implementation properly supports your requirements. Here are some features you can expect in the upcoming months:
+Join our preview program today! We're working very closely with our community of early adopters to understand your use cases, and we can prioritize feature development during this current stage of development, to ensure our implementation properly supports your requirements. Here are some features you can expect in the upcoming months:
 
 -   Full emulation of database roles, role-based access control, and row-level security policies
 -   Enhanced support for table streams and CDC use cases.
