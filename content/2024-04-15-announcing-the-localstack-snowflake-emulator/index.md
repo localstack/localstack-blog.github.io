@@ -8,7 +8,11 @@ images: []
 contributors: ["LocalStack Team"]
 tags: ['news']
 show_cta_1: true
+images: ["introducing-localstack-for-snowflake.png"]
+leadimage: "introducing-localstack-for-snowflake.png"
 ---
+
+{{< img-simple src="introducing-localstack-for-snowflake.png" width=300 alt="Banner image for the blog: Introducing LocalStack for Snowflake: The new emulator to build & test data pipelines locally">}}
 
 ## Introduction
 
