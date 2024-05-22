@@ -8,7 +8,7 @@ images: ['cloud-pods-2024.png']
 leadimage: 'cloud-pods-2024.png'
 contributors: ["Anca Ghenade"]
 tags: ['showcase']
-weight: 2
+weight: 3
 ---
 
 {{< img-simple src="cloud-pods-2024.png" width=300 alt="A LocalStack Cloud Pods banner">}}

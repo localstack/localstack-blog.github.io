@@ -8,7 +8,7 @@ images: []
 contributors: ["Stefanie", "Dominik", "Thomas"]
 tags: ['news']
 leadimage: "localstack-and-aws-parity-explained.png"
-weight: 4
+weight: 5
 ---
 
 {{< img src="localstack-and-aws-parity-explained.png" >}}
