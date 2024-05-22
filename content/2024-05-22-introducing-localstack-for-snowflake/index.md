@@ -2,9 +2,9 @@
 title: "Introducing LocalStack for Snowflake: The new emulator to build & test data pipelines locally"
 description: We are excited to announce LocalStack for Snowflake (preview) which enables a high-fidelity, fully local Snowflake experience to develop & test your data pipelines.
 lead: We are excited to announce LocalStack for Snowflake (preview), which provides a high-fidelity, completely local Snowflake experience for developing and testing your data pipelines.
-date: 2024-04-15T5:41:46+05:30
-lastmod: 2024-04-15T5:41:46+05:30
-images: []
+date: 2024-05-22
+lastmod: 2024-05-22
+images: ["introducing-localstack-for-snowflake.png", "snowflake-emulator-architecture.png", "dbeaver-localstack-snowflake-emulator.png", "citi-bike-data-app.png"]
 contributors: ["LocalStack Team"]
 tags: ['news']
 show_cta_1: true
