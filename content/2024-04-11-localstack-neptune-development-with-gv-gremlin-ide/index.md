@@ -24,7 +24,7 @@ G.V() is a Gremlin Integrated Development Environment (IDE for short) specially 
 
 It’s an easy-to-install desktop application compatible with Windows, macOS and Linux. It provides many features to assist with day-to-day development and production usage of graph databases, including:
 
--   Querying the graph database using Gremlin via a powerful smart editor offering code completion feature and embedded documentation for the Gremlin language and your data model.
+-   Querying the graph database using Gremlin via a powerful smart editor offering code completion and embedded documentation for the Gremlin language and your data model.
 -   Automatic discovery of your Graph data schema with visualisation and documentation features.
 -   Debugging Gremlin queries step-by-step and at an individual traversal level.
 -   Exploring graph data interactively in a low-code fashion.
@@ -39,13 +39,13 @@ A database connection in G.V() allows you to execute Gremlin queries, view your 
 
 ### Installing G.V()
 
-To install G.V(), head over to the [G.V() website](https://gdotv.com) and download the right executable for your operating system (Windows/macOS/Linux). Run the installer and follow the on -screen instructions, and you’ll be ready in just a few clicks.
+To install G.V(), head over to the [G.V() website](https://gdotv.com) and download the right executable for your operating system (Windows/macOS/Linux). Run the installer and follow the on-screen instructions, and you’ll be ready in just a few clicks.
 
 ### Connecting G.V() to your LocalStack Neptune Database
 
 On G.V(), click on Add New Database Connection. Select LocalStack as the Graph Technology Type.
 
-Enter localhost.localstack.cloud as the hostname and the port number returned when creating your Neptune instance using the AWS CLI, then click on Test Connection. G.V() will make sure it can connect to your LocalStack Neptune Database as expected.
+Enter `localhost.localstack.cloud` as the hostname and the port number returned when creating your Neptune instance using the AWS CLI, then click on Test Connection. G.V() will make sure it can connect to your LocalStack Neptune Database as expected.
 
 Once that’s confirmed, you’ll see a message indicating your connection is ready, simply click on Submit.
 
@@ -109,7 +109,7 @@ g.addV('person').as('38a15c92-5e45-4d13-9c96-1dc4582e223d').
 
 Run the query by clicking on the green play button, and you should see the graph output shown below:
 
-{{< img-simple src="graph-output-gdotv" alt="Graph output in gdotv" width="800">}}
+{{< img-simple src="graph-output-gdotv.png" alt="Graph output in gdotv" width="800">}}
 
 Feel free to have a play around the graph visualisation and the various tools available - once you’re done, we’ll check the Graph Data Schema.
 
@@ -131,7 +131,7 @@ You don’t always need to write a Gremlin query to explore your data - you can 
 
 There are many additional features directly in the Graph view. You can filter and navigate data interactively either using the search bar or the smart filter tool. You can also edit vertices and edges directly through the user interface, click on an element to view its properties and details, or edit them.
 
-We offer a wealth of customisation options to help you create unique visuals for your data. Make sure to explore all of those as they will be especially useful when reporting on data in your production database, for instance.
+G.V() offers a wealth of customisation options to help you create unique visuals for your data. Make sure to explore all of those as they will be especially useful when reporting on data in your production database, for instance.
 
 ## Conclusion
 
@@ -141,4 +141,4 @@ For more information, check out the following YouTube video, where we demonstrat
 
 {{< youtube id="MESmS-sJ-cM" >}}
 <br>
-If you have questions about configuring and running your project, you can find the G.V() team on the official [Apache TinkerPop Discord](https://discord.gg/tinkerpop) or the on LocalStack team on our [Slack Community](https://localstack.cloud/slack)!
+If you have questions about configuring and running your project, you can find the G.V() team on the official [Apache TinkerPop Discord](https://discord.gg/tinkerpop) or the LocalStack team on our [Slack Community](https://localstack.cloud/slack)!
