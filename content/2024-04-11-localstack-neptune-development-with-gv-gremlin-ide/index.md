@@ -4,10 +4,13 @@ description: We’re partnering with gdotv to simplify development with our Amaz
 lead: We’re partnering with gdotv to simplify development with our Amazon Neptune cloud emulator component. You can now easily query, visualise and model your graph data either interactively or using the Gremlin querying language with G.V() - Gremlin IDE.
 date: 2024-04-11T5:07:13+05:30
 lastmod: 2024-04-11T5:07:13+05:30
-images: []
+images: ['localstack-neptune-development-with-gv-gremlin-ide-banner.png']
+leadimage: 'localstack-neptune-development-with-gv-gremlin-ide-banner.png'
 contributors: ["Arthur Bigeard", "Harsh Mishra"]
 tags: ['showcase']
 ---
+
+{{< img-simple src="localstack-neptune-development-with-gv-gremlin-ide-banner.png" width=300 alt="LocalStack Neptune development with G.V() - Gremlin IDE">}}
 
 ## Introduction
 
@@ -134,4 +137,8 @@ We offer a wealth of customisation options to help you create unique visuals for
 
 With G.V(), you can considerably enhance your graph database development experience whilst gaining access to a powerful reporting and visualisation toolset for your production data. We’re just scratching the surface on what G.V() can do, and you can find out more on their documentation and their blog. Thanks to LocalStack’s core cloud emulator, parity is ensured between a local Neptune instance and AWS’s own, meaning Gremlin queries in your development environment will behave identically on Amazon Neptune.
 
+For more information, check out the following YouTube video, where we demonstrate how to use G.V() with LocalStack Neptune:
+
+{{< youtube id="MESmS-sJ-cM" >}}
+<br>
 If you have questions about configuring and running your project, you can find the G.V() team on the official [Apache TinkerPop Discord](https://discord.gg/tinkerpop) or the on LocalStack team on our [Slack Community](https://localstack.cloud/slack)!
