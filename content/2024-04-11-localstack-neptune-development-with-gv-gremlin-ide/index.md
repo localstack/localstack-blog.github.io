@@ -25,10 +25,10 @@ G.V() is a Gremlin Integrated Development Environment (IDE for short) specially 
 It’s an easy-to-install desktop application compatible with Windows, macOS and Linux. It provides many features to assist with day-to-day development and production usage of graph databases, including:
 
 -   Querying the graph database using Gremlin via a powerful smart editor offering code completion and embedded documentation for the Gremlin language and your data model.
--   Automatic discovery of your Graph data schema with visualisation and documentation features.
+-   Automatic discovery of your Graph data schema with visualization and documentation features.
 -   Debugging Gremlin queries step-by-step and at an individual traversal level.
 -   Exploring graph data interactively in a low-code fashion.
--   Multiple customisable results visualisation and navigation formats such as Graphs, Tables and JSON.
+-   Multiple customisable results visualization and navigation formats such as Graphs, Tables and JSON.
 -   Support for all major Apache TinkerPop Graph Database systems and the ability to manage many different database connections in a single user interface.
 
 With G.V(), developers and data analysts can drastically accelerate their graph database adoption and analyse their existing graph data effortlessly thanks to its data explorer, AI integration, graph visualisation capabilities and smart query editor.
