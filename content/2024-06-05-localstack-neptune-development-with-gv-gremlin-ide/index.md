@@ -1,7 +1,7 @@
 ---
-title: LocalStack Neptune development with G.V() - Gremlin IDE
-description: We’re partnering with G.V() to simplify development with our Amazon Neptune cloud emulator component. You can now easily query, visualise and model your graph data either interactively or using the Gremlin querying language with G.V() - Gremlin IDE.
-lead: We’re partnering with G.V() to simplify development with our Amazon Neptune cloud emulator component. You can now easily query, visualise and model your graph data either interactively or using the Gremlin querying language with G.V() - Gremlin IDE.
+title: LocalStack Neptune development with G.V() — Gremlin IDE
+description: We’re partnering with G.V() to simplify development with our Amazon Neptune cloud emulator component. You can now easily query, visualise and model your graph data either interactively or using the Gremlin querying language with G.V() — Gremlin IDE.
+lead: We’re partnering with G.V() to simplify development with our Amazon Neptune cloud emulator component. You can now easily query, visualise and model your graph data either interactively or using the Gremlin querying language with G.V() — Gremlin IDE.
 date: 2024-06-05
 lastmod: 2024-06-05
 images: ['localstack-neptune-development-with-gv-gremlin-ide-banner.png']
@@ -10,7 +10,7 @@ contributors: ["Arthur Bigeard", "Harsh Mishra"]
 tags: ['showcase']
 ---
 
-{{< img-simple src="localstack-neptune-development-with-gv-gremlin-ide-banner.png" width=300 alt="LocalStack Neptune development with G.V() - Gremlin IDE">}}
+{{< img-simple src="localstack-neptune-development-with-gv-gremlin-ide-banner.png" width=300 alt="LocalStack Neptune development with G.V() — Gremlin IDE">}}
 
 ## Introduction
 
@@ -35,7 +35,7 @@ With G.V(), developers and data analysts can drastically accelerate their graph 
 
 ## Configuring a LocalStack Neptune database connection on G.V()
 
-A database connection in G.V() allows you to execute Gremlin queries, view your graph data schema, explore your data interactively and much more. To get started you’ll first need to install G.V(). You’ll also need to have LocalStack running with at least one Neptune instance created and its port number, [as documented](https://docs.localstack.cloud/user-guide/aws/neptune/#getting-started).
+A database connection in G.V() allows you to execute Gremlin queries, view your graph data schema, explore your data interactively and much more. To get started you’ll first need to install G.V(). You’ll also need to have LocalStack running with at least one Neptune instance created and its port number ([follow our documentation to get started](https://docs.localstack.cloud/user-guide/aws/neptune/#getting-started)).
 
 ### Installing G.V()
 
@@ -45,11 +45,11 @@ To install G.V(), head over to the [G.V() website](https://gdotv.com) and downlo
 
 On G.V(), click on **Add New Database Connection**. Select **LocalStack** as the Graph Technology Type.
 
-Enter `localhost.localstack.cloud` as the hostname and the port number returned when creating your Neptune instance using the [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/), then click on **Test Connection**. G.V() will make sure it can connect to your LocalStack Neptune Database as expected.
+Enter `localhost.localstack.cloud` as the hostname and the port number returned when creating your Neptune instance using the [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/), then click on **Test Connection**. G.V() will ensure it can connect to your LocalStack Neptune Database as expected.
 
 Once that’s confirmed, you’ll see a message indicating your connection is ready, simply click on **Submit**.
 
-A new query tab will open where you’ll be prompted to sign up for a free 2 weeks trial of G.V() if you haven’t done so already - takes just a minute and then you’ll be all set!
+A new query tab will open where you’ll be prompted to sign up for a free 2-week trial of G.V() if you haven’t done so already — it takes just a minute and then you’ll be all set!
 
 ### Loading sample data to your LocalStack Neptune Database
 
@@ -111,21 +111,21 @@ Run the query by clicking on the green play button, and you should see the graph
 
 {{< img-simple src="graph-output-gdotv.png" alt="Graph output in gdotv" width="800">}}
 
-Feel free to have a play around the graph visualisation and the various tools available - once you’re done, we’ll check the **Graph Data Schema**.
+Feel free to have a play around the graph visualisation and the various tools available — once you’re done, we’ll check the **Graph Data Schema**.
 
 ### Viewing the Graph Data Schema
 
-G.V() automatically detects the structure of your graph database to power many of its features. It can also display it directly to you for reference - this is a great way of checking how the vertices and edges are defined in your graph.
+G.V() automatically detects the structure of your graph database to power many of its features. It can also display it directly to you for reference — this is a great way of checking how the vertices and edges are defined in your graph.
 
 In the Connections sidebar, under your LocalStack connection, simply click on **View Graph Data Model**.
 
-For the above sample data you’ll see the graph data schema below - it’s all generated automatically by G.V():
+For the above sample data, you’ll see the graph data schema below — it’s all generated automatically by G.V():
 
 {{< img-simple src="gdotv-graph-data-schema.png" alt="Graph data schema in gdotv" width="800">}}
 
 ### Exploring the Graph Data interactively
 
-You don’t always need to write a Gremlin query to explore your data - you can simply use G.V()’s Graph Data Explorer. You can design your query with a few quick filters and get straight to visualising your data.
+You don’t always need to write a Gremlin query to explore your data — you can simply use G.V()’s Graph Data Explorer. You can design your query with a few quick filters and get straight to visualising your data.
 
 {{< img-simple src="exploring-graph-data-interactively.png" alt="Exploring the Graph Data interactively" width="800">}}
 
