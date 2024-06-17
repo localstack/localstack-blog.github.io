@@ -25,6 +25,12 @@ Redpoint Ventures, renowned for backing transformative companies such as Snowfla
 landscape.
 <br>
 <br>
+
+{{< img-simple src="localstack-nasdaq-tower.jpg" width=300 alt="LocalStack on Nasdaq Tower">}}
+
+<br>
+<br>
+
 LocalStack’s COO, Gerta Sheganaku, will join other InfraRed 100 leaders at Nasdaq to discuss the evolving cloud ecosystem and share insights on 
 the future of the industry.
 
@@ -40,7 +46,7 @@ the future of the industry.
   </div>
 </div>
 
-For the complete list of companies and to read the full InfraRed industry report, [**click here**](INSERT LINK HERE).
+For the complete list of companies and to read the full InfraRed industry report [**click here**](https://www.redpoint.com/infrared/report/).
 
 #### About LocalStack
 
