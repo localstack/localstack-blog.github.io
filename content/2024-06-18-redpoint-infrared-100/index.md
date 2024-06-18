@@ -1,9 +1,9 @@
 ---
 title: LocalStack Named to Redpoint InfraRed 100 List
-description: LocalStack, a trailblazer for cloud infrastructure emulation, has been included in the inaugural Redpoint InfraRed 100 list, highlighting the demand for cloud infrastructure development tooling. This recognition honors companies poised to lead innovation in the cloud infrastructure market and underscores LocalStack's significant impact on the industry.
-lead: LocalStack, a trailblazer for cloud infrastructure emulation, has been included in the inaugural Redpoint InfraRed 100 list, highlighting the demand for cloud infrastructure development tooling. This recognition honors companies poised to lead innovation in the cloud infrastructure market and underscores LocalStack's significant impact on the industry.
-date: 2024-06-17
-lastmod: 2024-06-17
+description: LocalStack, a trailblazer for cloud infrastructure emulation, has been included in the Redpoint InfraRed 100 list, highlighting the demand for cloud infrastructure development tooling. This recognition honors companies poised to lead innovation in the cloud infrastructure market and underscores LocalStack's significant impact on the industry.
+lead: LocalStack, a trailblazer for cloud infrastructure emulation, has been included in the Redpoint InfraRed 100 list, highlighting the demand for cloud infrastructure development tooling. This recognition honors companies poised to lead innovation in the cloud infrastructure market and underscores LocalStack's significant impact on the industry.
+date: 2024-06-18
+lastmod: 2024-06-18
 images: ['localstack-redpoint-100.png']
 leadimage: 'localstack-redpoint-100.png'
 contributors: ["LocalStack Team"]
@@ -36,8 +36,7 @@ the future of the industry.
 
 <br>
 
-> _“We are honored to be included in the InfraRed 100 alongside such a remarkable group of companies. At LocalStack, we strive to offer developers 
-> what they need and empower them with the best tools and experience possible while also supporting companies to be performant. This recognition validates
+> _“We are honored to be included in the InfraRed 100 alongside such a remarkable group of companies. At LocalStack, our mission is to empower developers and engineering teams with top-tier tools and unparalleled experiences, driving performance and innovation across their organizations. This recognition validates
 > our efforts and vision. We listen to feedback and will go above and beyond to extend this experience to more platforms. We thank Redpoint Ventures for this
 > recognition and congratulate all the companies featured on the list!”_
   <div class="quote-author">
@@ -52,8 +51,9 @@ For the complete list of companies and to read the full InfraRed industry report
 
 [**LocalStack**](https://www.localstack.cloud/) provides a platform for local cloud development and testing, emulating a complete AWS environment on a developer’s local machine.
 This enables faster development cycles, cost savings, reduced dependency on live cloud environments, and improved testing capabilities.
-With over 52,000 GitHub stars, and 240 million Docker pulls, LocalStack has also partnered with AWS to make the tool available via its 
-Marketplace for seamless integration with existing business needs.
+With over 50K+ GitHub stars, and 250M+ Docker pulls, LocalStack has also partnered with AWS to make the tool available via
+the [**AWS Marketplace**](https://aws.amazon.com/marketplace/pp/prodview-lllzw3ywntoxg?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) for seamless integration with existing business needs.
+Now, LocalStack is extending, by adding support for Snowflake and other providers, further broadening its capabilities and versatility.
 
 #### Resources
 
@@ -61,6 +61,7 @@ Marketplace for seamless integration with existing business needs.
 - [**LocalStack Documentation**](https://docs.localstack.cloud/)
 - [**LocalStack Developer Hub**](https://docs.localstack.cloud/developer-hub/)
 - [**Contact LocalStack and Community**](https://www.localstack.cloud/contact)
+- Follow LocalStack on [**X**](https://x.com/localstack) and [**LinkedIn**](https://www.linkedin.com/company/localstack-cloud/)
 
 #### About Redpoint Ventures
 Redpoint has partnered with visionary founders to create new markets and redefine existing ones since 1999. We invest in startups across 
