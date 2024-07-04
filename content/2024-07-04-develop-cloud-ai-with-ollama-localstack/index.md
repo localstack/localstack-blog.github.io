@@ -74,7 +74,7 @@ Both tools are designed for local development, so using Ollama with LocalStack f
   local development environment closely matches the production environment. This reduces the risk of environment-specific bugs and
   improves the reliability of the application when deployed to the actual cloud.
 
-- Improved Testing Capabilities: LocalStack provides a robust platform for testing AWS services, including ECS and Fargate.
+- **Improved Testing Capabilities**: LocalStack provides a robust platform for testing AWS services, including ECS and Fargate.
   Running Ollama as a Fargate task on LocalStack allows for testing complex deployment scenarios and interactions with other AWS
   services, ensuring that the application behaves as expected before deploying to the cloud.
 
