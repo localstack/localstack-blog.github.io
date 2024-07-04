@@ -378,7 +378,7 @@ http://<bucket-name>.s3-website.us-east-1.amazonaws.com/
 {{< img-simple src=ollama-on-aws.png width=300 alt="App locally">}}
 
 
-## Conclusions
+## Conclusion
 
 Developing and testing cloud AI-powered applications can be complex, particularly when ensuring they perform reliably in a
 production-like environment without incurring high costs. This is where integrating Ollama and LocalStack provides a robust solution.
