@@ -101,7 +101,7 @@ export LOCALSTACK_AUTH_TOKEN=<your_auth_token>
 docker compose up
 ```
 
-#### Some important configs
+##### Some important configs
 
 All the following configuration flags can be found in the `docker-compose.yml` file, in the `localstack` folder:
 
@@ -211,6 +211,7 @@ export LB_ARN=$(awslocal elbv2 create-load-balancer \
   --subnets $SUBNET_ID1 $SUBNET_ID2 \
   --security-groups $SG_ID1 \
   --scheme internet-facing \
+  --type application \
   | jq -r '.LoadBalancers[0].LoadBalancerArn')
   
 export TG_ARN=$(awslocal elbv2 create-target-group \
@@ -230,7 +231,7 @@ awslocal elbv2 create-listener \
   --port 11434 \
   --default-actions Type=forward,TargetGroupArn=$TG_ARN
 ```
-Creates an internet-facing load balancer and a target group, and sets up a listener to forward traffic.
+Creates an internet-facing application load balancer and a target group, and sets up a listener to forward traffic.
 
 ```bash
 awslocal ecr create-repository --repository-name ollama-service
@@ -311,6 +312,7 @@ If you decide to use the AWS console to create all your resources, some of the c
 some services will be created as dependencies of other resources.
 
 You can run the full `commands.sh` script and watch the LocalStack logs for updated information on the resources, as they get created.
+If you choose to, you can also manually run these commands, one by one, as you go through this article.
 
 ```bash
 bash commands.sh
