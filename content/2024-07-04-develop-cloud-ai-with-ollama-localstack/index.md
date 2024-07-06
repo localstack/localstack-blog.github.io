@@ -16,10 +16,14 @@ weight: 2
 ## Introduction
 
 In today’s tech landscape, large language models (LLMs) and AI are transforming both tech-centric and traditional businesses.
-AI functionality is being integrated across various platforms to enhance user experience. A common application are chatbots — tools that
-allow users to query information in their natural language. For instance, on a government website, instead of navigating through numerous menus,
-you can simply ask a chatbot for the specific form you need. This tutorial will guide you through setting up such a chatbot using
-Ollama. We will start off by creating the entire stack locally  with LocalStack, and proceed to deploying it to the cloud.
+AI functionality is being integrated across various platforms to enhance user experience. However, developing and testing these AI 
+integrations often requires extensive infrastructure, leading to high costs. LocalStack enables developers to build and test 
+AI integrations locally, which accelerates the development process and avoids extra expenses.
+
+In this tutorial, we'll explore building an AI-powered chatbot using Ollama, a tool that lets users interact with information 
+through natural language. For instance, on a government website, rather than navigating complex menus, you could ask a chatbot to find 
+a specific form. We'll start by setting up the entire system locally with LocalStack, then move to deploying it in the cloud.
+
 
 ## Prerequisites
 
@@ -78,8 +82,11 @@ Both tools are designed for local development, so using Ollama with LocalStack f
   Running Ollama as a Fargate task on LocalStack allows for testing complex deployment scenarios and interactions with other AWS
   services, ensuring that the application behaves as expected before deploying to the cloud.
 
-**Tinyllama** is compact yet powerful, making it an ideal choice for development and testing, particularly with applications demanding a restricted
-computation and memory footprint. Depending on your needs, you can replace it with a more specialized model.
+**Tinyllama** is a compact AI language model that stands out due to its efficient size and robust training. It occupies just 637 MB
+and was trained on a trillion tokens, making it not only mobile-friendly but also powerful enough to surpass similar-sized 
+models. Designed as a smaller version of Meta's Llama 2, it shares the same architecture and tokenizer,
+making it an ideal choice for development and testing, particularly with applications demanding a restricted
+computation and memory footprint. Depending on your needs, you can also replace it with a different, or more specialized model.
 
 ## Running the application on LocalStack
 
@@ -95,6 +102,8 @@ docker compose up
 ```
 
 #### Some important configs
+
+All the following configuration flags can be found in the `docker-compose.yml` file, in the `localstack` folder:
 
 - **DEBUG=1** - This flag enables debug mode in LocalStack. When set to 1, LocalStack provides more detailed logs, making it easier to trace issues.
 - **ENFORCE_IAM=1** - This configuration enables the enforcement of AWS IAM policies in LocalStack. Normally, LocalStack runs with simplified or no security checks to facilitate development.
@@ -322,7 +331,7 @@ generate, and then it is fully received.
 
 {{< img-simple src=ollama-call.png width=300 alt="App locally">}}
 
-The backend call will be made to the **load balancer**, [**`http://ecs-load-balancer.elb.localhost.localstack.cloud:4566/api/generate/`**](http://ecs-load-balancer.elb.localhost.localstack.cloud:4566/api/generate/), so we don't have to worry
+The backend call will be made to the **load balancer**, at [**`http://ecs-load-balancer.elb.localhost.localstack.cloud:4566/api/generate/`**](http://ecs-load-balancer.elb.localhost.localstack.cloud:4566/api/generate/), so we don't have to worry
 about how we access the task containers.
 
 
