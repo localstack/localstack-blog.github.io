@@ -57,7 +57,7 @@ to the ECS service, which will run two tasks.
 
 {{< img-simple src=tinyllama.png width=200 alt="Tinyllama" style="float: right">}}
 
-**Ollama** is an open-source platform that allows users to run large language models (LLMs) locally on their devices.
+[**Ollama**](https://ollama.com/) is an open-source platform that allows users to run large language models (LLMs) locally on their devices.
 In its essence, Ollama streamlines the tasks of downloading, installing, and utilizing a broad spectrum of LLMs, enabling users to discover
 their potential without requiring deep technical skills or dependence on cloud-based platforms. Most importantly, Ollama
 allows users to run their own specialized LLMs with ease.
@@ -82,7 +82,7 @@ Both tools are designed for local development, so using Ollama with LocalStack f
   Running Ollama as a Fargate task on LocalStack allows for testing complex deployment scenarios and interactions with other AWS
   services, ensuring that the application behaves as expected before deploying to the cloud.
 
-**Tinyllama** is a compact AI language model that stands out due to its efficient size and robust training. It occupies just 637 MB
+[**Tinyllama**](https://arxiv.org/pdf/2401.02385) is a compact AI language model that stands out due to its efficient size and robust training. It occupies just 637 MB
 and was trained on a trillion tokens, making it not only mobile-friendly but also powerful enough to surpass similar-sized 
 models. Designed as a smaller version of Meta's Llama 2, it shares the same architecture and tokenizer,
 making it an ideal choice for development and testing, particularly with applications demanding a restricted
