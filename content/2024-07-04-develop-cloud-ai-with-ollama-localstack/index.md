@@ -2,8 +2,8 @@
 title: Developing cloud AI-powered apps with LocalStack and Ollama
 description: Integrating Ollama and LocalStack offers a powerful solution for developing and testing cloud AI applications cost-effectively. Ollama simplifies interactions with large language models, while LocalStack emulates AWS services locally, allowing developers to thoroughly test and validate AI functionalities in a controlled environment.
 lead: Integrating Ollama and LocalStack offers a powerful solution for developing and testing cloud AI applications cost-effectively. Ollama simplifies interactions with large language models, while LocalStack emulates AWS services locally, allowing developers to thoroughly test and validate AI functionalities in a controlled environment.
-date: 2024-07-04
-lastmod: 2024-07-04
+date: 2024-07-08
+lastmod: 2024-07-08
 images: ['localstack-ollama-banner.png']
 leadimage: 'localstack-ollama-banner.png'
 contributors: ["Anca Ghenade"]
