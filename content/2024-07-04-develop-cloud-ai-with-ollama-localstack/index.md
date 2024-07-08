@@ -333,7 +333,7 @@ generate, and then it is fully received.
 
 {{< img-simple src=ollama-call.png width=300 alt="App locally">}}
 
-The backend call will be made to the **load balancer**, at [**`http://ecs-load-balancer.elb.localhost.localstack.cloud:4566/api/generate/`**](http://ecs-load-balancer.elb.localhost.localstack.cloud:4566/api/generate/), so we don't have to worry
+The backend call will be made to the **load balancer**, at [`http://ecs-load-balancer.elb.localhost.localstack.cloud:4566/api/generate/`](http://ecs-load-balancer.elb.localhost.localstack.cloud:4566/api/generate/), so we don't have to worry
 about how we access the task containers.
 
 
