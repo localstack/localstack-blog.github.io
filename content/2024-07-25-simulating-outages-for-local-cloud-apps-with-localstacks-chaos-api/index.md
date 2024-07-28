@@ -126,7 +126,7 @@ docker-compose up
 Check the Docker Compose logs to verify that LocalStack is running and your local AWS infrastructure is set up correctly. 
 You should see the following output:
 
-```bash
+```text
 localstack  | 
 localstack  | LocalStack version: 3.6.1.dev20240725091954
 localstack  | LocalStack build date: 2024-07-26
@@ -161,7 +161,7 @@ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/pr
 
 The output should be:
 
-```bash
+```text
 Product added/updated successfully.
 ```
 
@@ -231,13 +231,13 @@ awslocal dynamodb scan \
 
 The output should be:
 
-```bash
+```text
 An error occurred (ServiceUnavailable) when calling the Scan operation (reached max retries: 2): Operation failed due to a simulated fault
 ```
 
 You can verify it in the LocalStack logs:
 
-```bash
+```text
 localstack  | 2024-07-26T09:14:31.250  INFO --- [et.reactor-2] localstack.request.aws     : AWS dynamodb.Scan => 503 (ServiceUnavailable)
 localstack  | 2024-07-26T09:14:32.255  INFO --- [et.reactor-0] localstack.request.aws     : AWS dynamodb.Scan => 503 (ServiceUnavailable)
 localstack  | 2024-07-26T09:14:34.225  INFO --- [et.reactor-2] localstack.request.aws     : AWS dynamodb.Scan => 503 (ServiceUnavailable)
@@ -251,7 +251,7 @@ curl --location --request GET 'http://localhost.localstack.cloud:4566/_localstac
 
 The output should be:
 
-```bash
+```json
 [{"service": "dynamodb", "region": "us-east-1"}]
 ```
 
@@ -278,7 +278,7 @@ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/pr
 
 The output should be:
 
-```bash
+```text
 A DynamoDB error occurred. Message sent to queue.
 ```
 
@@ -300,8 +300,7 @@ awslocal dynamodb scan \
 
 The output should be:
 
-```bash
-awslocal dynamodb scan --table-name Products
+```json
 {
     "Items": [
         {
@@ -387,7 +386,8 @@ Next, add the following helper functions to start, check, and stop the DynamoDB 
 ```python
 def initiate_dynamodb_outage():
     outage_payload = [{"service": "dynamodb", "region": "us-east-1"}]
-    requests.post(CHAOS_ENDPOINT, json=outage_payload)
+    response = requests.post(CHAOS_ENDPOINT, json=outage_payload)
+    assert response.ok
     return outage_payload
 
 def check_outage_status(expected_status):
@@ -395,7 +395,8 @@ def check_outage_status(expected_status):
     assert outage_status == expected_status
 
 def stop_dynamodb_outage():
-    requests.post(CHAOS_ENDPOINT, json=[])
+    response = requests.post(CHAOS_ENDPOINT, json=[])
+    assert response.ok
     check_outage_status([])
 ```
 
@@ -426,13 +427,13 @@ def test_dynamodb_outage(dynamodb_resource):
     stop_dynamodb_outage()
 
     # Wait for a few seconds
+    # Adding a better retry mechanism is left as an exercise
     time.sleep(60)
 
     # Query if there are items in DynamoDB table
     table = dynamodb_resource.Table(DYNAMODB_TABLE_NAME)
     response = table.scan()
     items = response["Items"]
-    print(items)
     assert any(item["name"] == "Super Widget" for item in items)
 ```
 
@@ -444,7 +445,7 @@ pytest -v
 
 The output should be:
 
-```bash
+```text
 collected 3 items                                                                               
 
 tests/test_outage.py::test_dynamodb_table_exists PASSED                                   [ 33%]
