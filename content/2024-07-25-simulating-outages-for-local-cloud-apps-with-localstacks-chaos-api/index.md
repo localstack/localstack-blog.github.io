@@ -218,7 +218,7 @@ curl --location --request POST 'http://localhost.localstack.cloud:4566/_localsta
 
 The output should be:
 
-```bash
+```json
 [{"service": "dynamodb", "region": "us-east-1"}]
 ```
 
