@@ -75,7 +75,7 @@ For an extended setup, include the following in your Docker Compose file:
 * Add another volume to copy the built Lambda functions specified as ZIP files during Lambda function creation.
 * Optionally, add the  `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT`  to wait for the runtime environment to start up, which may vary in speed based on your local machine.
 
-The final Docker Compose configuration is as follows (also [provided in the repository)](https://github.com/localstack-samples/sample-chaos-api-serverless/blob/main/docker-compose.yml):
+The final Docker Compose configuration is as follows (also [provided in the repository](https://github.com/localstack-samples/sample-chaos-api-serverless/blob/main/docker-compose.yml)):
 
 ```yaml
 version: "3.9"
