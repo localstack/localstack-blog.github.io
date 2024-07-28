@@ -257,7 +257,7 @@ The output should be:
 
 ### Error handling for the local outage
 
-Now that the experiment is started, the DynamoDB table is inaccessible, resulting in the user being unable to get or post any new product. 
+Now that the experiment is started, the DynamoDB table is inaccessible, resulting in the user being unable to retrieve or create products. 
 The API Gateway will return an `Internal Server Error`. To prevent this, include proper error handling and a mechanism to prevent data loss during a database outage.
 
 The solution includes an SNS topic, an SQS queue, and a Lambda function that picks up queued elements and retries the `PutItem` operation on the DynamoDB table. 
