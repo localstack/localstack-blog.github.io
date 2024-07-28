@@ -339,7 +339,7 @@ The test will:
 * Validate the ongoing outage and its appropriate cessation.
 * Query the DynamoDB table for new items and assert their presence.
 
-For integration testing, you can use the AWS SDK for Python (`boto3`) and the  `pytest`  framework. 
+For integration testing, you can use the [boto3](https://aws.amazon.com/sdk-for-python/) and the [pytest](https://pytest.org/) framework. 
 In a new directory named `tests`, create a file named `test_chaos.py`. 
 Add the necessary imports and `pytest` fixtures:
 
