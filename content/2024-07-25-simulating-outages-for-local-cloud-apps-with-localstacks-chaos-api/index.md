@@ -329,7 +329,7 @@ awslocal dynamodb scan --table-name Products
 }
 ```
 
-### Automating Chaos experiments using test suites
+### Automating Chaos Experiments using Pytest
 
 You can now implement a straightforward chaos test using `pytest` to start an outage. 
 The test will:
