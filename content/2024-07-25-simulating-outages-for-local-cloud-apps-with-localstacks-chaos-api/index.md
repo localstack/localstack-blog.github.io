@@ -20,7 +20,7 @@ One notable feature of LocalStack is its support for advanced disaster recovery 
 * Network faults
 
 All these testing scenarios can be efficiently executed within LocalStack, providing thorough coverage for critical situations in a matter of minutes rather than hours or days. 
-To simulate outages in LocalStack, you can use the [LocalStack Chaos API](https://docs.localstack.cloud/user-guide/chaos-engineering/chaos-api/) that enables you to run various chaos experiments on your local cloud application to monitor the system’s response in situations where the infrastructure is compromised.
+To simulate outages in LocalStack, you can use the [LocalStack Chaos API](https://docs.localstack.cloud/user-guide/chaos-engineering/chaos-api/) that enables you to run various chaos experiments on your local cloud application to monitor the system's response in situations where the infrastructure is compromised.
 
 This allows you to quickly experiment with different failure scenarios, allowing you to perform chaos testing at an early stage by introducing errors at the infrastructure level. 
 This is valuable as it enables you to replicate conditions that might not be feasible to mimic unless deployed to a production environment.
