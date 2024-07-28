@@ -14,7 +14,7 @@ tags: ['tutorial']
 LocalStack's core cloud emulator provides the capability to emulate various AWS services, including Lambda, DynamoDB, ECS, and more, directly on your local machine. 
 One notable feature of LocalStack is its support for advanced disaster recovery testing, including:
 
-* Region chaos
+* Region-wide outages
 * DNS failovers
 * Service failures
 * Network faults
