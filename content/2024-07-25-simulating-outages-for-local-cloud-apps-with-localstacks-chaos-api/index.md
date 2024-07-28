@@ -174,7 +174,7 @@ awslocal dynamodb scan \
 
 The output should be:
 
-```bash
+```json
 {
     "Items": [
         {
