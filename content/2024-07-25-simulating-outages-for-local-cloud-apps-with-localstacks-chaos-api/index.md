@@ -463,7 +463,7 @@ WIP
 LocalStack Chaos API allows you to further chaos test your other resources, such as Lambda functions, S3 buckets, and more to ascertain service continuity, user experience, and the system’s resilience to the failures introduced, and how far you can go on to fix them. 
 An ideal strategy is to design the experiments and group them in the categories of  **knowns**  and  **unknowns**, while analyzing whatever chaos your system might end up encountering.
 
-In the upcoming blog posts, we'll demonstrate how to perform more complex chaos testing scenarios, such as RDS & Route53 failovers, inject latency to every API call, and use AWS Resilience Testing Tools such as [AWS Fault Injection Simulator (FIS)](https://aws.amazon.com/fis/)  locally. 
+In the upcoming blog posts, we'll demonstrate how to perform more complex chaos testing scenarios, such as RDS & Route53 failovers, inject network latency to every API call, and use AWS Resilience Testing Tools such as [AWS Fault Injection Service (FIS)](https://aws.amazon.com/fis/)  locally. 
 Stay tuned for more blogs on how LocalStack is enhancing your chaos engineering experience!
 
 You can find the code in this [GitHub repository](https://github.com/localstack-samples/sample-chaos-api-serverless).
