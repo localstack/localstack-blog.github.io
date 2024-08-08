@@ -2,8 +2,8 @@
 title: Local Testing in the Cloud with Ephemeral Instances
 description: Ephemeral Instances enable developers to quickly spin up a temporary LocalStack instance running in the cloud for things like collaboration and application previews of pull requests.
 lead: We're excited to announce a preview of Ephemeral Instances. This new capability of LocalStack enables developers to quickly spin up a temporary LocalStack instance running in the cloud for things like collaboration and application previews of pull requests.
-date: 2024-08-07
-lastmod: 2024-08-07
+date: 2024-08-12
+lastmod: 2024-08-12
 images: ['ephemeral-environments-with-localstack-shipyard-banner.png']
 leadimage: 'ephemeral-environments-with-localstack-shipyard-banner.png'
 contributors: ["Brian Rinaldi"]
