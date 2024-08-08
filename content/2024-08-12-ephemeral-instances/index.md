@@ -132,7 +132,7 @@ jobs:
 
 This workflow is set to run on any PR and will add a comment to the PR with the preview running on a LocalStack instance automatically.
 
-SCREEN SHOT
+{{< img-simple src=github-preview.png width=800 alt="the preview URL displayed as a comment to a pull request">}}
 
 It's important to note that the steps in the `preview-cmd` are run _after_ the ephemeral instance is created. Therefore, the ephemeral instance exists even if the steps fail. You can always go to the list of running [ephemeral instances](https://app.localstack.cloud/instances/ephemeral) in the LocalStack web app to shut down a running instance. Another option is to use the Setup LocalStack GitHub Action to remove the ephemeral instance if the preview deploy fails. For details on how to do that, [check the documentation](https://docs.localstack.cloud/user-guide/cloud-sandbox/application-previews/).
 
