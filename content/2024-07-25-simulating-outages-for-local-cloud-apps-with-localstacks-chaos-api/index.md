@@ -11,19 +11,18 @@ tags: ['tutorial']
 
 ## Introduction
 
-LocalStack's core cloud emulator provides the capability to emulate various AWS services, including Lambda, DynamoDB, ECS, and more, directly on your local machine. 
-One notable feature of LocalStack is its support for advanced disaster recovery testing, including:
+Regardless of the precautions you take in developing your application and the reliability of cloud providers like AWS, incidents are unavoidable. They can be anything from as large-scale regional outage to as small as a request failing for reasons perhaps unknown. Common examples might include:
 
-* Region-wide outages
-* DNS failovers
-* Service failures
-* Network faults
+-   Region-wide outages
+-   DNS failovers
+-   Service failures
+-   Network faults
 
-All these testing scenarios can be efficiently executed within LocalStack, providing thorough coverage for critical situations in a matter of minutes rather than hours or days. 
-To simulate outages in LocalStack, you can use the [LocalStack Chaos API](https://docs.localstack.cloud/user-guide/chaos-engineering/chaos-api/) that enables you to run various chaos experiments on your local cloud application to monitor the system's response in situations where the infrastructure is compromised.
+The key is in building your application in such a way that it handles these situations gracefully. Chaos engineering is an approach that for testing these types of scenarios that can help you build a more resilient application.
 
-This allows you to quickly experiment with different failure scenarios, allowing you to perform chaos testing at an early stage by introducing errors at the infrastructure level. 
-This is valuable as it enables you to replicate conditions that might not be feasible to mimic unless deployed to a production environment.
+## Introducing the LocalStack Chaos API
+
+LocalStack's brand-new [Chaos API](https://docs.localstack.cloud/user-guide/chaos-engineering/chaos-api/) provide an easy way to implement chaos engineering experiments to test a wide variety of simulated outages and failures within your application safely, without impacting your production users. All the testing scenarios described above can be executed within LocalStack, providing thorough coverage for critical situations in a matter of minutes rather than hours or days.
 
 This blog will walk you through the process of setting up a cloud application on your local machine and leveraging the Chaos API to perform service failures in a local environment while using robust error handling to address and mitigate such issues. 
 Furthermore, we will explore how to shift-left your chaos testing by integrating automated testing directly into your continuous integration workflow.
@@ -41,18 +40,16 @@ Furthermore, we will explore how to shift-left your chaos testing by integrating
 
 This demo sets up an HTTP CRUD API functioning as a Product Management System. The components deployed include:
 
-* A DynamoDB table named  `Products`.
+* A DynamoDB table named `Products`.
 * Three Lambda functions:
-  * `add-product`  for product addition.
-  * `get-product`  for retrieving a product.
-  * `process-product-events`  for event processing and DynamoDB writes.
-* A locally hosted REST API named  `quote-api-gateway`.
-* SNS topic named  `ProductEventsTopic`  and SQS queue named  `ProductEventsQueue`.  
-* API Gateway resource named  `productApi`  with additional  `GET`  and  `POST`  methods.
+  * `add-product` for product addition.
+  * `get-product` for retrieving a product.
+* A locally hosted REST API named `product-api-gateway`.
+* API Gateway resource named `productApi` with additional `GET` and `POST` methods.
 
-Additionally, the applications set up a subscription between the SQS queue and the SNS topic, along with an event source mapping between the SQS queue and the  `process-product-events`  Lambda function.
+{{< img-simple src="sample-architecture.png" alt="Sample Architecture for Product Management System" width="800">}}
 
-All resources can be deployed using a [LocalStack Init Hook](https://docs.localstack.cloud/references/init-hooks/) via the [`init-resources.sh`](https://github.com/localstack-samples/sample-chaos-api-serverless/blob/main/init-resources.sh)  script in the repository. 
+All resources can be deployed using a [LocalStack Init Hook](https://docs.localstack.cloud/references/init-hooks/) via the [`init-resources.sh`](https://github.com/localstack-samples/sample-chaos-api-serverless/blob/main/init-resources.sh) script in the repository. 
 To begin, clone the repository on your local machine:
 
 ```bash
@@ -243,7 +240,7 @@ localstack  | 2024-07-26T09:14:32.255  INFO --- [et.reactor-0] localstack.reques
 localstack  | 2024-07-26T09:14:34.225  INFO --- [et.reactor-2] localstack.request.aws     : AWS dynamodb.Scan => 503 (ServiceUnavailable)
 ```
 
-You can retrieve the current outage configuration using the following  `GET`  request:
+You can retrieve the current outage configuration using the following `GET` request:
 
 ```bash
 curl --location --request GET 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults'
@@ -260,10 +257,50 @@ The output should be:
 Now that the experiment is started, the DynamoDB table is inaccessible, resulting in the user being unable to retrieve or create products. 
 The API Gateway will return an `Internal Server Error`. To prevent this, include proper error handling and a mechanism to prevent data loss during a database outage.
 
-The solution includes an SNS topic, an SQS queue, and a Lambda function that picks up queued elements and retries the `PutItem` operation on the DynamoDB table. 
-If DynamoDB is still unavailable, the item will be re-queued.
+You can add a solution that includes an SNS topic, an SQS queue, and a Lambda function that picks up queued elements and retries the `PutItem` operation on the DynamoDB table. 
+If DynamoDB is still unavailable, the item will be re-queued. The solution includes:
 
-Test this by executing the following command:
+* A `process-product-events` Lambda for event processing and DynamoDB writes.
+* SNS topic named `ProductEventsTopic` and SQS queue named `ProductEventsQueue`.  
+* Subscription between the SQS queue and the SNS topic. 
+* Event source mapping between the SQS queue and the `process-product-events` Lambda function.
+
+{{< img-simple src="error-handling-for-local-outage.png" alt="Error handling for the local outage" width="800">}}
+
+Run the following commands to create the necessary resources:
+
+```bash
+awslocal sns create-topic --name ProductEventsTopic
+
+awslocal sqs create-queue --queue-name ProductEventsQueue
+
+awslocal sqs get-queue-attributes --queue-url http://localhost:4566/000000000000/ProductEventsQueue --attribute-names QueueArn
+
+awslocal sns subscribe \
+    --topic-arn arn:aws:sns:us-east-1:000000000000:ProductEventsTopic \
+    --protocol sqs \
+    --notification-endpoint arn:aws:sqs:us-east-1:000000000000:ProductEventsQueue
+
+awslocal lambda create-function \
+  --function-name process-product-events \
+  --runtime java17 \
+  --handler lambda.DynamoDBWriterLambda::handleRequest \
+  --memory-size 1024 \
+  --zip-file fileb://lambda-functions/target/product-lambda.jar \
+  --region us-east-1 \
+  --role arn:aws:iam::000000000000:role/productRole
+
+awslocal lambda create-event-source-mapping \
+    --function-name process-product-events \
+    --batch-size 10 \
+    --event-source-arn arn:aws:sqs:us-east-1:000000000000:ProductEventsQueue
+
+awslocal sqs set-queue-attributes \
+    --queue-url http://localhost:4566/000000000000/ProductEventsQueue \
+    --attributes VisibilityTimeout=10
+```
+
+Test the solution by executing the following command:
 
 ```bash
 curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
@@ -282,7 +319,7 @@ The output should be:
 A DynamoDB error occurred. Message sent to queue.
 ```
 
-To stop the outage, send a  `POST`  request by using an empty list in the configuration. 
+To stop the outage, send a `POST` request by using an empty list in the configuration. 
 The following request will clear the current configuration:
 
 ```bash
@@ -455,14 +492,9 @@ tests/test_outage.py::test_dynamodb_outage PASSED                               
 ================================= 3 passed in 71.20s (0:01:11) ==================================
 ```
 
-## Key Benefits
-
-WIP
-
 ## Conclusion
 
-LocalStack Chaos API allows you to further chaos test your other resources, such as Lambda functions, S3 buckets, and more to ascertain service continuity, user experience, and the system's resilience to the failures introduced, and how far you can go on to fix them. 
-An ideal strategy is to design the experiments and group them in the categories of  **knowns**  and  **unknowns**, while analyzing whatever chaos your system might end up encountering.
+We've seen how LocalStack's Chaos API allowed us to quickly manually simulate a service outage to test our application's response and then adjust it to handle this type of incident gracefully rather than returning an error to our end user. Using tools like PyTest, we can even leverage this API to create tests within automations that can help us ensure that future updates to our application are resilient to failures and outages.
 
 In the upcoming blog posts, we'll demonstrate how to perform more complex chaos testing scenarios, such as RDS & Route53 failovers, inject network latency to every API call, and use AWS Resilience Testing Tools such as [AWS Fault Injection Service (FIS)](https://aws.amazon.com/fis/)  locally. 
 Stay tuned for more blogs on how LocalStack is enhancing your chaos engineering experience!
