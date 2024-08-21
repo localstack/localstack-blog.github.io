@@ -80,7 +80,7 @@ Once the application is running locally, the next step is to save the state into
 localstack pod save brian-ephemeral-instance
 ```
 
-Back in the LocalStack web app, I have several options for loading this instance into an ephemeral instance. For example, I can go directly to the Cloud Pods item on the left-hand navigation, click into the detail page for my `brian-ephemeral-instance` pod and simply click on the "Browse Version" button to create a new instance using the currently selected version of the Cloud Pod that will live for 30 minutes.
+Back in the LocalStack web app, I have several options for loading this instance into an ephemeral instance. For example, I can go directly to the Cloud Pods item on the left-hand navigation, click into the detail page for my `brian-ephemeral-instance` pod and simply click on the **Browse Version** button to create a new instance using the currently selected version of the Cloud Pod that will live for 30 minutes.
 
 {{< img-simple src=cloud-pods.png width=800 alt="Creating an ephemeral instance from a cloud pod">}}
 
