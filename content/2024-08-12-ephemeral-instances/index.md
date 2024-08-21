@@ -88,7 +88,7 @@ One thing to keep in mind is that ephemeral instances run the latest version of 
 
 Another option for populating an ephemeral instance is to use the "Load Into Instance" drop down to load the Cloud Pod into an already running instance. Or, lastly, I can go to the "Ephemeral Instances" and then create a new instance, choosing your Cloud Pod from the drop down when configuring the instance settings.
 
-## Add an Application Preview after Commits
+## Add automatic Application Previews to your Pull requests
 
 Launching ephemeral instances from your Cloud Pods via the web app is an easy way to preview and share a running version of your application. But what if we could automatically create an ephemeral instance to preview our application after each commit? As I'm sure you guessed...you can!
 
