@@ -131,6 +131,7 @@ jobs:
 ```
 
 This workflow is set to run on any PR and will add a comment to the PR with the preview running on a LocalStack instance automatically.
+Furthermore, each commit pushed to the PR will supersede the previous application preview, to ensure it's up to date.
 
 {{< img-simple src=github-preview.png width=800 alt="the preview URL displayed as a comment to a pull request">}}
 
