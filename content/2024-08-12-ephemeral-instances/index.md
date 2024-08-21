@@ -10,7 +10,7 @@ contributors: ["Brian Rinaldi"]
 tags: ['showcase']
 ---
 
-It's been said that there is a fine line between genius and insanity. Anyone who understands the scale and scope AWS services could have been forgiven for thinking that the idea of a local emulator for AWS rested more on the insanity side of that line. And yet, LocalStack exists.
+It's been said that there is a fine line between genius and insanity. Anyone who understands the scale and scope of AWS services could have been forgiven for thinking that the idea of a local emulator for AWS rested more on the insanity side of that line. And yet, LocalStack exists.
 
 This feat of engineering is apparently not enough for our team however. "What if we took the local emulator for cloud services and then put it back in the cloud?" they wondered.
 
