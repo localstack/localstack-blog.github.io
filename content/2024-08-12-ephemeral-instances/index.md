@@ -68,7 +68,7 @@ Creating all the services in your ephemeral instance manually probably isn't the
 
 ## Create an Ephemeral Instance from a Cloud Pod
 
-The easiest and most efficient way to create an ephemeral instance is via a [Cloud Pod](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/). Cloud Pods are essentially a snapshot of the state of a running LocalStack instance that can be stored, versioned, shared, and restored. This means that, rather than creating a new empty ephemeral instance, you can create the ephemeral instance with the services or data already deployed.
+The easiest and most efficient way to create an ephemeral instance is via a [Cloud Pod](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/). Cloud Pods are essentially a snapshot of the state of a running LocalStack instance that can be stored, versioned, shared, and restored. This means that, rather than creating a new empty ephemeral instance, you can create the ephemeral instance with the resources or data already deployed.
 
 Let's see how this works. I have an example application I've built using a combination of S3, CloudFront, Lambda, API Gateway and DynamoDB running locally via LocalStack. The message displayed at the bottom of the page is from data pre-loaded into DynamoDB.
 
