@@ -96,7 +96,7 @@ The [Setup LocalStack GitHub Action](https://github.com/localstack/setup-localst
 
 The workflow below starts by checking the code that we want to deploy out of the repository. Next it uses the Setup LocalStack GitHub Action to start an ephemeral instance. I will need a legacy [LocalStack API key](https://app.localstack.cloud/workspace/api-keys) in order for this to work (note that you may need your administrator's permission to create one of these keys). The GitHub Token will be automatically generated.
 
-The key element to understand is the `preview-cmd`, which runs all the steps that are required to build and deploy your application. As you can see below, this application needs the CDK as well as some npm dependencies installed before it can deploy the code to the ephemeral instance. It then adds a comment to the pull request with the preview URL (note that we are using `awslocal` to get the CloudFront distribution ID and overriding the preview URL with the public URL to access this distribution).
+The key element to understand is the `preview-cmd`, which runs all the steps that are required to build and deploy your application. As you can see below, this application needs CDK as well as some npm dependencies installed before it can deploy the code to the ephemeral instance. It then adds a comment to the pull request with the preview URL (note that we are using `awslocal` to get the CloudFront distribution ID and overriding the preview URL with the URL to access this distribution).
 
 ```yaml
 name: 'Create Preview on PR'
