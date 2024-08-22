@@ -40,15 +40,15 @@ Manually creating a new ephemeral instance can be done via the LocalStack web ap
 2. Choose LocalStack AWS.
 3. Set how long you'd like the ephemeral instance to live. After this time has passed, the ephemeral instance will automatically be shut down. Keep in mind that this consumes usage minutes. The number of minutes available to you depend on the type of subscription you have.
 4. If you'd like to start your instance off of one of your existing Cloud Pods, you can select it in the creation form (we'll also explore another option to do this later in this article). If you don't select one, the instance will start as a clean slate, with no services running.
-5. Optionally, you can choose any [extensions](https://docs.localstack.cloud/user-guide/extensions/extensions-library/) that you might want to have installed on the instance.
+5. Additionally, you can select any of our [extensions](https://docs.localstack.cloud/user-guide/extensions/extensions-library/) to be installed on startup of the instance.
 
 {{< img-simple src=web-app-setup.png width=800 alt="setting up an ephemeral instance manually via the LocalStack web app">}}
 
 Hit the **Launch** button and give it a couple minutes to work its magic.
 
-### Adding Services to a Running Instance
+### Adding resources to a Running Instance
 
-The easiest way to add and manage services running on your ephemeral instance is via the web app. Once the instance is finished deploying, you should see it listed under your LocalStack Instances on the left hand navigation and also listed on the ephemeral instances page.
+The easiest way to add and manage services running on your ephemeral instance is via the web app. Once the instance is finished booting up, you should see it listed under your LocalStack Instances on the left hand sidebar and also listed on the ephemeral instances page you've started it from.
 
 ![the running instance in the navigation](running-instance.png)
 
@@ -68,7 +68,7 @@ Returning to the web app, you should see your object stored in your bucket.
 
 Once you have all your services and state set, you can click the **State** tab for your instance and save the state locally or to a Cloud Pod.
 
-Creating all the services in your ephemeral instance manually probably isn't the ideal way to work, in part because you are consuming minutes as you do so and, depending on how long you chose for your instance to live, there's also a chance it shuts down before you are done. Instead, it is better to use your local version of LocalStack running on Docker and then use one of the options LocalStack provides for [state management](https://docs.localstack.cloud/user-guide/state-management/) to save the state and load your state into a new ephemeral instance. Let's see how to do that using Cloud Pods.
+Creating all the services in your ephemeral instance manually probably isn't the ideal way to work, in part because you are consuming minutes as you go along, and depending on how long you chose for your instance to live, there's also a chance it shuts down before you are done. Instead, it is better to use your local version of LocalStack running on Docker and then use one of the options LocalStack provides for [state management](https://docs.localstack.cloud/user-guide/state-management/) to save the state and load your state into a new ephemeral instance. Let's see how to do that using Cloud Pods.
 
 ## Create an Ephemeral Instance from a Cloud Pod
 
