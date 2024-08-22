@@ -4,10 +4,13 @@ description:
 lead:  
 date: 2024-07-25T9:17:34+05:30
 lastmod: 2024-07-25T9:17:34+05:30
-images: []
+images: ['simulating-outages-for-local-cloud-apps-with-localstack-chaos-api-cover.png']
 contributors: ["Harsh Mishra", "Anca Ghenade", "Viren Nadkarni"]
 tags: ['tutorial']
+leadimage: 'simulating-outages-for-local-cloud-apps-with-localstack-chaos-api-cover.png'
 ---
+
+{{< img-simple src="simulating-outages-for-local-cloud-apps-with-localstack-chaos-api-cover.png" >}}
 
 ## Introduction
 
