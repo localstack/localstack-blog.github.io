@@ -39,8 +39,8 @@ Manually creating a new ephemeral instance can be done via the LocalStack web ap
 1. Give the instance a name. It must be alphanumeric with no spaces, and may include hyphens.
 2. Choose LocalStack AWS.
 3. Set how long you'd like the ephemeral instance to live. After this time has passed, the ephemeral instance will automatically be shut down. Keep in mind that this consumes usage minutes. The number of minutes available to you depend on the type of subscription you have.
-4. If you'd like to start your instance off of one of your existing Cloud Pods, you can select it in the creation form (we'll also explore another option to do this later in this article). If you don't select one, the instance will start as a clean slate, with no services running.
-5. Additionally, you can select any of our [extensions](https://docs.localstack.cloud/user-guide/extensions/extensions-library/) to be installed on startup of the instance.
+4. If you'd like to start your instance off of one of your existing Cloud Pods, you can select it in the creation form (we'll also explore another option to do this later in this article). If you don't select one, the instance will start as a clean slate, with no existing resources.
+5. Additionally, you can select any of our [extensions](https://app.localstack.cloud/extensions/library) to be installed on startup of the instance.
 
 {{< img-simple src=web-app-setup.png width=800 alt="setting up an ephemeral instance manually via the LocalStack web app">}}
 
@@ -48,11 +48,11 @@ Hit the **Launch** button and give it a couple minutes to work its magic.
 
 ### Adding resources to a Running Instance
 
-The easiest way to add and manage services running on your ephemeral instance is via the web app. Once the instance is finished booting up, you should see it listed under your LocalStack Instances on the left hand sidebar and also listed on the ephemeral instances page you've started it from.
+The easiest way to add and manage resources running on your ephemeral instance is via the web app. Once the instance is finished booting up, you should see it listed under your LocalStack Instances on the left hand sidebar and also listed on the ephemeral instances page you've started it from.
 
 ![the running instance in the navigation](running-instance.png)
 
-If you choose the resource browser, you can add any of the services supported on your account to the running instance. For example, click on S3 and then, on the subsequent page, choose **Create**. You'll need to complete the bucket details via the form. At a minimum, choose a canned Access Control List (ACL) and a name. Once you submit the form, you should see your bucket created on the ephemeral instance.
+If you choose the resource browser, you can add any of the resources supported on your account to the running instance. For example, click on S3 and then, on the subsequent page, choose **Create**. You'll need to complete the bucket details via the form. At a minimum, choose a canned Access Control List (ACL) and a name. Once you submit the form, you should see your bucket created on the ephemeral instance.
 
 To manually upload resources into the bucket, you'll need the instance URL located at the top of the page.
 
@@ -61,14 +61,15 @@ To manually upload resources into the bucket, you'll need the instance URL locat
 We'll use the [AWS CLI](https://aws.amazon.com/cli/) to move objects into this S3 bucket with the following command (replacing the appropriate values with your ephemeral instance URL, file path and bucket name):
 
 ```bash
-aws --endpoint-url=<EPHEMERAL_INSTANCE_ENDPOINT_URL> s3 cp /path/to/file s3://bucket-name
+export AWS_ENDPOINT_URL=<EPHEMERAL_INSTANCE_ENDPOINT_URL>
+awslocal s3 cp /path/to/file s3://bucket-name
 ```
 
 Returning to the web app, you should see your object stored in your bucket.
 
-Once you have all your services and state set, you can click the **State** tab for your instance and save the state locally or to a Cloud Pod.
+Once you have all your resources and state set, you can click the **State** tab for your instance and save the state locally or to a Cloud Pod.
 
-Creating all the services in your ephemeral instance manually probably isn't the ideal way to work, in part because you are consuming minutes as you go along, and depending on how long you chose for your instance to live, there's also a chance it shuts down before you are done. Instead, it is better to use your local version of LocalStack running on Docker and then use one of the options LocalStack provides for [state management](https://docs.localstack.cloud/user-guide/state-management/) to save the state and load your state into a new ephemeral instance. Let's see how to do that using Cloud Pods.
+Creating all the resources in your ephemeral instance manually probably isn't the ideal way to work, in part because you are consuming minutes as you go along, and depending on how long you chose for your instance to live, there's also a chance it shuts down before you are done. Instead, it is better to use your local version of LocalStack running on Docker and then use one of the options LocalStack provides for [state management](https://docs.localstack.cloud/user-guide/state-management/) to save the state and load your state into a new ephemeral instance. Let's see how to do that using Cloud Pods.
 
 ## Create an Ephemeral Instance from a Cloud Pod
 
@@ -145,4 +146,4 @@ It's important to note that the steps in the `preview-cmd` are run _after_ the e
 
 As you can see, the idea of running a local emulator of a cloud environment on the cloud isn't crazy at all. In fact, it enables all sorts of useful capabilities including quick and painless environments for acceptance testing and collaboration and automatic application previews.
 
-But this is just the beginning. Ephemeral instances are still in the early public preview stage and we have a lot of ideas for how to take this feature even further, but we'd also love to hear from you. Give them a try and let us know what you think and share any ideas you may have for how we might make them even more valuable for you. You can always share feedback via our [community Slack]([localstack.cloud/slack](https://localstack.cloud/slack)).
+But this is just the beginning. Ephemeral instances are still in the early public preview stage and we have a lot of ideas for how to take this feature even further, but we'd also love to hear from you. Give them a try and let us know what you think and share any ideas you may have for how we might make them even more valuable for you. You can always share feedback via our [community Slack](https://localstack.cloud/slack).
