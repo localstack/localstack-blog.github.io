@@ -37,7 +37,7 @@ _Note: Ephemeral instances are in an early public preview. We'd love for you to 
 Manually creating a new ephemeral instance can be done via the LocalStack web app by navigating to *LocalStack Instances > [Ephemeral Instances](https://app.localstack.cloud/instances/ephemeral)* on the left hand sidebar.
 
 1. Give the instance a name. It must be alphanumeric with no spaces, and may include hyphens.
-2. Choose LocalStack AWS or the new preview of [LocalStack Snowflake](https://blog.localstack.cloud/2024-05-22-introducing-localstack-for-snowflake/).
+2. Choose LocalStack AWS.
 3. Set how long you'd like the ephemeral instance to live. After this time period is complete, the ephemeral instance will automatically be cleaned up. Keep in mind that this consumes minutes. The number of minutes available each month depends on the type of account you have.
 4. If you'd like to build your instance off of one of your existing Cloud Pods, you can choose it (we'll also explore another option to do this later in this article). If you don't choose one, the instance will start as an empty container with no services running.
 5. Optionally, you can choose any [extensions](https://docs.localstack.cloud/user-guide/extensions/extensions-library/) that you might want to have installed on the instance.
