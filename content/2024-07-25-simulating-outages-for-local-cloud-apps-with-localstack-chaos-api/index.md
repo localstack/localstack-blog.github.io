@@ -1,7 +1,7 @@
 ---
 title: Simulating outages for local cloud apps with LocalStack Chaos API
-description:  
-lead:  
+description: LocalStack Chaos API enables you to simulate outages in any AWS region or service. This blog guides you through setting up a cloud application locally and using the Chaos API to mimic service failures, helping ensure your application handles disruptions smoothly. Additionally, it discusses how to integrate chaos tests into continuous integration workflows, providing a detailed strategy for building and testing resilient systems.
+lead: LocalStack Chaos API enables you to simulate outages in any AWS region or service. This blog guides you through setting up a cloud application locally and using the Chaos API to mimic service failures, helping ensure your application handles disruptions smoothly. Additionally, it discusses how to integrate chaos tests into continuous integration workflows, providing a detailed strategy for building and testing resilient systems.
 date: 2024-07-25T9:17:34+05:30
 lastmod: 2024-07-25T9:17:34+05:30
 images: ['simulating-outages-for-local-cloud-apps-with-localstack-chaos-api-cover.png']
