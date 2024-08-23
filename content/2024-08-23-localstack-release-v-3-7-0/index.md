@@ -13,6 +13,10 @@ tags: ['news']
 
 ## What’s new in LocalStack 3.7.0?
 
+### New Lambda Debug Mode
+
+WIP
+
 ### State merging for Cloud Pods (**Teams & Enterprise**)
 
 LocalStack Cloud Pods now offer different strategies for state merging into your LocalStack container. The available strategies include:
@@ -24,7 +28,7 @@ LocalStack Cloud Pods now offer different strategies for state merging into your
 To activate these strategies, use `--strategy <strategy>` when loading the Cloud Pod, where `<strategy>` is one of the strategies mentioned above. For example, to use the `service-merge` strategy, run:
 
 ```bash
-localstack pod load my-test-pod --strategy service-merge
+$ localstack pod load my-test-pod --strategy service-merge
 ```
 
 To learn more about how it works, check out the [Cloud Pods documentation](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#example-scenario).
@@ -68,6 +72,24 @@ The LocalStack Extensions interface is now embedded in the LocalStack Web Applic
 
 To learn more about LocalStack Extensions, check out the [LocalStack documentation](https://docs.localstack.cloud/user-guide/extensions).
 
+### New Lambda Event Source Mapping implementation (Preview)
+
+LocalStack now supports a Event Source Mapping (ESM) implementation. You can use the `LAMBDA_EVENT_SOURCE_MAPPING=v2` configuration variable to use the new ESM implementation. The ESM v2 implementation is also compatible with the Java-based event pattern rule engine (`EVENT_RULE_ENGINE=java`). However, the new ESM implementation is still in preview and may not support all features. The current limitations include:
+
+-   Lambda Success Destinations are currently not supported.
+-   Lambda Failure Destinations have only a basic implementation available, such as FIFO queues may not be supported, and there is no SNS target yet.
+-   SQS Dead Letter Queue (DLQ) Messages do not match the AWS structure, using a `context` similar to EventBridge Pipes instead of `requestContext` and `responseContext`.
+-   Streaming Pollers for Kinesis & DynamoDB do not implement features like:
+    - `BisectBatchOnFunctionError`
+    - `MaximumBatchingWindowInSeconds`
+    - `ParallelizationFactor`
+    - `ScalingConfig`
+    - `TumblingWindowInSeconds`.
+-   ESM Lifecycle State Updates only provide basic support for state updates, such as no failure states, and `LastProcessingResult` is not consistently updated.
+-   Only very basic validations are performed upon creating and updating ESM.
+-   Source Managed Streaming for Apache Kafka (MSK) is not yet supported.
+-   Persistence is not yet supported.
+
 ### Support for SSE-C validation in S3
 
 LocalStack's S3 provider now supports SSE-C parameter validation for the following S3 APIs:
@@ -81,6 +103,17 @@ LocalStack's S3 provider now supports SSE-C parameter validation for the followi
 -   [**`UploadPart`**](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)
 
 However, it's important to note that LocalStack does not support the actual encryption and decryption of objects using SSE-C. Learn more about S3 in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/s3).
+
+### New `EKS_K8S_PROVIDER` environment variable
+
+A new configuration variable `EKS_K8S_PROVIDER` has been introduced with two options:
+
+- `k3s` (**default**, using k3d) 
+- `local` (using a mounted kubeconfig). 
+
+The kubeconfig at `/root/.kube/config` no longer influences provider selection, but a warning is issued if it's missing when using the `local` option. Kubeconfig files located at `~/.kube/config` are not automatically mounted; users must manually mount them if necessary.
+
+Learn more about EKS in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/eks).
 
 ### Tagging operations in the EventBridge Pipes provider (Pro)
 
@@ -99,3 +132,61 @@ LocalStack's CloudFormation provider now supports the following enhancements:
 - Users can now specify MFA configurations directly in the resource definition for `AWS::Cognito::UserPool`.
 - `ArchivePolicy` settings are now supported in `AWS::SNS::Topic` resources.
 - Default tags can now be configured for `AWS::EC2::SecurityGroup`.
+- Users can now import existing EC2 SSH key pairs using the `AWS::EC2::KeyPair` resource.
+
+Learn more about CloudFormation in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/cloudformation).
+
+### New template option for the LocalStack Extensions CLI (Pro)
+
+Support has been added for the `--template` option in the `localstack extensions dev new` command. This option allows users to specify a template to use from the selection available at [LocalStack Extensions Templates](https://github.com/localstack/localstack-extensions/tree/main/templates). Currently, the available templates include:
+
+- [`basic`](https://github.com/localstack/localstack-extensions/tree/main/templates/basic)
+- [`react`](https://github.com/localstack/localstack-extensions/tree/main/templates/react)
+
+To create a new extension using the `react` template, run:
+
+```bash
+$ localstack extensions dev new --template=react
+```
+
+The generated template will contain a simple Python distribution configuration, and some boilerplate extension code.
+
+### Dry run for loading Cloud Pods
+
+To preview the changes that would occur when loading a Cloud Pod, you can now use the `--dry-run` flag. The result will depend on the selected merge strategy. The result will be displayed in the console, and no changes will be made to the LocalStack state. Here is a quick example:
+
+```bash
+$ localstack pod load my-test-pod --dry-run
+
+This load operation modifies one or more resources in the application runtime.
+The result will depend on the selected merge strategy. Use the --help option to
+read more about it.
+
+This load operation will modify the runtime state as follows:
+
+──────────────────────────── sns ────────────────────────────
++ 2 resources added.
+~ 1 resources modified.
+
+──────────────────────── cognito-idp ────────────────────────
++ 1 resources added.
+~ 0 resources modified.
+
+──────────────────────────── sqs ────────────────────────────
++ 1 resources added.
+~ 1 resources modified.
+```
+
+### New enhancements in the EC2 Libvirt VM manager (Pro)
+
+The [EC2 Libvirt VM manager](https://docs.localstack.cloud/user-guide/aws/ec2/#libvirt-vm-manager) now supports the following enhancements:
+
+- You can use the `EC2_HYPERVISOR_URI` configuration variable to set the Libvirt connection URI, specifying the hypervisor host for the EC2 Libvirt VM manager. Currently, only QEMU drivers are supported.
+- You can set the `UserData` field of the [`RunInstances` API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) to a shell script that will be executed at the time of VM startup in the EC2 Libvirt VM manager.
+
+### Miscellaneous
+
+- Users should be able to use LocalStack in any region, encompassing standard AWS regions as well as specialized regions such as those in China, GovCloud, and ISO-partitions. (**Enterprise**).
+- Support for feedback campaign tags in the SES provider is now available.
+- Support for custom URL aliases for Lambda Function URLs is now available in LocalStack. This feature allows users to assign custom IDs to either the `$LATEST` version of a function or to an existing version alias.
+- LocalStack now supports prebuilding Lambda images before execution with the `LAMBDA_PREBUILD_IMAGES` configuration variable. This approach increases the cold start time but reduces the duration until the Lambda function becomes `ACTIVE`.
