@@ -25,7 +25,7 @@ tags: ['news']
 - [Tagging operations in the EventBridge Pipes provider](#tagging-operations-in-the-eventbridge-pipes-provider-pro)
 - [New enhancements in the CloudFormation provider](#new-enhancements-in-the-cloudformation-provider)
 - [New template option for the LocalStack Extensions CLI](#new-template-option-for-the-localstack-extensions-cli-pro)
-- [Dry run for loading Cloud Pods](#dry-run-for-loading-cloud-pods)
+- [Dry run for loading Cloud Pods](#dry-run-for-loading-cloud-pods-teams--enterprise)
 - [New enhancements in the EC2 Libvirt VM manager](#new-enhancements-in-the-ec2-libvirt-vm-manager-pro)
 - [New EC2 Kubernetes executor](#new-ec2-kubernetes-executor-enterprise-preview)
 - [New enhancements in the SES provider](#new-enhancements-in-the-ses-provider)
@@ -236,3 +236,5 @@ The SES provider now supports the following enhancements:
 - Support for custom URL aliases for Lambda Function URLs is now available in LocalStack. This feature allows users to assign custom IDs to either the `$LATEST` version of a function or to an existing version alias.
 - LocalStack now supports prebuilding Lambda images before execution with the `LAMBDA_PREBUILD_IMAGES` configuration variable. This approach increases the cold start time but reduces the duration until the Lambda function becomes `ACTIVE`.
 - LocalStack now supports idempotent [`StartExecution` operations](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) against already running `STANDARD` Step Functions state machines with identical input.
+
+## Conclusion
