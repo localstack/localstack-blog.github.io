@@ -13,11 +13,29 @@ tags: ['news']
 
 ## What’s new in LocalStack 3.7.0?
 
+- [New Lambda Debug Mode](#new-lambda-debug-mode)
+- [State merging for Cloud Pods](#state-merging-for-cloud-pods-teams--enterprise)
+- [Support for DMS Serverless](#support-for-dms-serverless-enterprise)
+- [Chaos Engineering dashboard now uses Chaos API](#chaos-engineering-dashboard-now-uses-chaos-api-enterprise)
+- [Support for fetching LocalStack logs for Ephemeral Instances](#support-for-fetching-localstack-logs-for-ephemeral-instances-pro)
+- [Extensions interface is now embedded in the Web Application](#extensions-interface-is-now-embedded-in-the-web-application-pro)
+- [New Lambda Event Source Mapping implementation](#new-lambda-event-source-mapping-implementation-preview)
+- [Support for SSE-C validation in S3](#support-for-sse-c-validation-in-s3)
+- [New `EKS_K8S_PROVIDER` environment variable](#new-eks_k8s_provider-environment-variable)
+- [Tagging operations in the EventBridge Pipes provider](#tagging-operations-in-the-eventbridge-pipes-provider-pro)
+- [New enhancements in the CloudFormation provider](#new-enhancements-in-the-cloudformation-provider)
+- [New template option for the LocalStack Extensions CLI](#new-template-option-for-the-localstack-extensions-cli-pro)
+- [Dry run for loading Cloud Pods](#dry-run-for-loading-cloud-pods)
+- [New enhancements in the EC2 Libvirt VM manager](#new-enhancements-in-the-ec2-libvirt-vm-manager-pro)
+- [New EC2 Kubernetes executor](#new-ec2-kubernetes-executor-enterprise-preview)
+- [New enhancements in the SES provider](#new-enhancements-in-the-ses-provider)
+- [Miscellaneous](#miscellaneous)
+
 ### New Lambda Debug Mode
 
 WIP
 
-### State merging for Cloud Pods (**Teams & Enterprise**)
+### State merging for Cloud Pods (Teams & Enterprise)
 
 LocalStack Cloud Pods now offer different strategies for state merging into your LocalStack container. The available strategies include:
 
@@ -104,7 +122,7 @@ LocalStack's S3 provider now supports SSE-C parameter validation for the followi
 
 However, it's important to note that LocalStack does not support the actual encryption and decryption of objects using SSE-C. Learn more about S3 in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/s3).
 
-### New `EKS_K8S_PROVIDER` environment variable
+### New `EKS_K8S_PROVIDER` environment variable (Pro)
 
 A new configuration variable `EKS_K8S_PROVIDER` has been introduced with two options:
 
@@ -119,11 +137,14 @@ Learn more about EKS in the [LocalStack documentation](https://docs.localstack.c
 
 The following tagging operations for EventBridge Pipes have now been implemented:
 
--   [`TagResource`](https://docs.aws.amazon.com/eventbridge/latest/pipes-reference/API_TagResource.html)
--   [`UntagResource`](https://docs.aws.amazon.com/eventbridge/latest/pipes-reference/API_UntagResource.html)
--   [`ListTagsForResource`](https://docs.aws.amazon.com/eventbridge/latest/pipes-reference/API_ListTagsForResource.html)
+| API               | Notes                                  |
+| :---------------------- | :------------------------------------- |
+| [**`TagResource`**](https://docs.aws.amazon.com/eventbridge/latest/pipes-reference/API_TagResource.html)   | Adds or overwrites tags for a resource |
+| [**`UntagResource`**](https://docs.aws.amazon.com/eventbridge/latest/pipes-reference/API_UntagResource.html) | Removes tags from a resource           |
+| [**`ListTagsForResource`**](https://docs.aws.amazon.com/eventbridge/latest/pipes-reference/API_ListTagsForResource.html) | Lists tags for a resource              |
 
-Learn more about EventBridge in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/pipes).
+
+Learn more about EventBridge Pipes in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/pipes).
 
 ### New enhancements in the CloudFormation provider
 
@@ -151,7 +172,7 @@ $ localstack extensions dev new --template=react
 
 The generated template will contain a simple Python distribution configuration, and some boilerplate extension code.
 
-### Dry run for loading Cloud Pods
+### Dry run for loading Cloud Pods (Teams & Enterprise)
 
 To preview the changes that would occur when loading a Cloud Pod, you can now use the `--dry-run` flag. The result will depend on the selected merge strategy. The result will be displayed in the console, and no changes will be made to the LocalStack state. Here is a quick example:
 
@@ -184,9 +205,34 @@ The [EC2 Libvirt VM manager](https://docs.localstack.cloud/user-guide/aws/ec2/#l
 - You can use the `EC2_HYPERVISOR_URI` configuration variable to set the Libvirt connection URI, specifying the hypervisor host for the EC2 Libvirt VM manager. Currently, only QEMU drivers are supported.
 - You can set the `UserData` field of the [`RunInstances` API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) to a shell script that will be executed at the time of VM startup in the EC2 Libvirt VM manager.
 
+### New EC2 Kubernetes executor (Enterprise) (Preview)
+
+You can now run EC2 instances on Kubernetes. You can do so by setting the `EC2_VM_MANAGER` environment variable to `kubernetes` in the LocalStack container. Each EC2 instance in the Kubernetes VM manager is backed by a Pod.
+
+The following operations are supported:
+
+| API            | Notes                                  |
+| :------------------- | :------------------------------------- |
+| [**`DescribeInstances`**](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html)  | Returns all EC2 instances              |
+| [**`RunInstances`**](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html)       | Defines and starts an EC2 instance     |
+| [**`StartInstances`**](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_StartInstances.html)     | Starts an already defined EC2 instance |
+| [**`StopInstances`**](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_StopInstances.html)      | Stops a running EC2 instance           |
+| [**`TerminateInstances`**](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html) | Stops and undefines a EC2 instance     |
+
+The current implementation is in preview and does not support volumes, custom AMIs, or networking features available in other [VM managers](https://docs.localstack.cloud/user-guide/aws/ec2/#vm-managers).
+
+### New enhancements in the SES provider
+
+The SES provider now supports the following enhancements:
+
+-   Improved SES provider to match AWS functionality more closely.
+-   `DescribeActiveReceiptRuleSet` now handles absent rule sets appropriately.
+-   `DeleteReceiptRuleSet` now requires prior deactivation.
+-   Enhanced error messaging and input validation for `SetActiveReceiptRuleSet`.
+
 ### Miscellaneous
 
 - Users should be able to use LocalStack in any region, encompassing standard AWS regions as well as specialized regions such as those in China, GovCloud, and ISO-partitions. (**Enterprise**).
-- Support for feedback campaign tags in the SES provider is now available.
 - Support for custom URL aliases for Lambda Function URLs is now available in LocalStack. This feature allows users to assign custom IDs to either the `$LATEST` version of a function or to an existing version alias.
 - LocalStack now supports prebuilding Lambda images before execution with the `LAMBDA_PREBUILD_IMAGES` configuration variable. This approach increases the cold start time but reduces the duration until the Lambda function becomes `ACTIVE`.
+- LocalStack now supports idempotent [`StartExecution` operations](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) against already running `STANDARD` Step Functions state machines with identical input.
