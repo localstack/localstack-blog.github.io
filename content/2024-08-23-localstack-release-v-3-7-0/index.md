@@ -26,7 +26,8 @@ $ localstack update all
 If using LocalStack with Docker CLI or Docker Compose, update the Docker image by running:
 
 ```bash
-$ docker pull localstack/localstack:3.7.0
+$ docker pull localstack/localstack:3.7.0 # Community Edition
+$ docker pull localstack/localstack-pro:3.7.0 # Pro Edition
 ```
 
 Pin the LocalStack version in your `docker run` command or Docker Compose file to `3.7.0`.
@@ -35,6 +36,7 @@ Pin the LocalStack version in your `docker run` command or Docker Compose file t
 
 - [New Lambda Debug Mode](#new-lambda-debug-mode)
 - [State merging for Cloud Pods](#state-merging-for-cloud-pods-teams--enterprise)
+- [Dry run for loading Cloud Pods](#dry-run-for-loading-cloud-pods-teams--enterprise)
 - [Support for DMS Serverless](#support-for-dms-serverless-enterprise)
 - [Chaos Engineering dashboard now uses Chaos API](#chaos-engineering-dashboard-now-uses-chaos-api-enterprise)
 - [Support for fetching LocalStack logs for Ephemeral Instances](#support-for-fetching-localstack-logs-for-ephemeral-instances-pro)
@@ -45,7 +47,6 @@ Pin the LocalStack version in your `docker run` command or Docker Compose file t
 - [Tagging operations in the EventBridge Pipes provider](#tagging-operations-in-the-eventbridge-pipes-provider-pro)
 - [New enhancements in the CloudFormation provider](#new-enhancements-in-the-cloudformation-provider)
 - [New template option for the LocalStack Extensions CLI](#new-template-option-for-the-localstack-extensions-cli-pro)
-- [Dry run for loading Cloud Pods](#dry-run-for-loading-cloud-pods-teams--enterprise)
 - [New enhancements in the EC2 Libvirt VM manager](#new-enhancements-in-the-ec2-libvirt-vm-manager-pro)
 - [New EC2 Kubernetes executor](#new-ec2-kubernetes-executor-enterprise-preview)
 - [New enhancements in the SES provider](#new-enhancements-in-the-ses-provider)
@@ -70,6 +71,32 @@ $ localstack pod load my-test-pod --strategy service-merge
 ```
 
 To learn more about how it works, check out the [Cloud Pods documentation](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/#example-scenario).
+
+### Dry run for loading Cloud Pods (Teams & Enterprise)
+
+To preview the changes that would occur when loading a Cloud Pod, you can now use the `--dry-run` flag. The result will depend on the selected merge strategy. The result will be displayed in the console, and no changes will be made to the LocalStack state. Here is a quick example:
+
+```bash
+$ localstack pod load my-test-pod --dry-run
+
+This load operation modifies one or more resources in the application runtime.
+The result will depend on the selected merge strategy. Use the --help option to
+read more about it.
+
+This load operation will modify the runtime state as follows:
+
+──────────────────────────── sns ────────────────────────────
++ 2 resources added.
+~ 1 resources modified.
+
+──────────────────────── cognito-idp ────────────────────────
++ 1 resources added.
+~ 0 resources modified.
+
+──────────────────────────── sqs ────────────────────────────
++ 1 resources added.
+~ 1 resources modified.
+```
 
 ### Support for DMS Serverless (Enterprise)
 
@@ -191,32 +218,6 @@ $ localstack extensions dev new --template=react
 ```
 
 The generated template will contain a simple Python distribution configuration, and some boilerplate extension code.
-
-### Dry run for loading Cloud Pods (Teams & Enterprise)
-
-To preview the changes that would occur when loading a Cloud Pod, you can now use the `--dry-run` flag. The result will depend on the selected merge strategy. The result will be displayed in the console, and no changes will be made to the LocalStack state. Here is a quick example:
-
-```bash
-$ localstack pod load my-test-pod --dry-run
-
-This load operation modifies one or more resources in the application runtime.
-The result will depend on the selected merge strategy. Use the --help option to
-read more about it.
-
-This load operation will modify the runtime state as follows:
-
-──────────────────────────── sns ────────────────────────────
-+ 2 resources added.
-~ 1 resources modified.
-
-──────────────────────── cognito-idp ────────────────────────
-+ 1 resources added.
-~ 0 resources modified.
-
-──────────────────────────── sqs ────────────────────────────
-+ 1 resources added.
-~ 1 resources modified.
-```
 
 ### New enhancements in the EC2 Libvirt VM manager (Pro)
 
