@@ -21,7 +21,7 @@ tags: ['news']
 - [Extensions interface is now embedded in the Web Application](#extensions-interface-is-now-embedded-in-the-web-application-pro)
 - [New Lambda Event Source Mapping implementation](#new-lambda-event-source-mapping-implementation-preview)
 - [Support for SSE-C validation in S3](#support-for-sse-c-validation-in-s3)
-- [New `EKS_K8S_PROVIDER` environment variable](#new-eks_k8s_provider-environment-variable)
+- [New `EKS_K8S_PROVIDER` environment variable](#new-eks_k8s_provider-environment-variable-pro)
 - [Tagging operations in the EventBridge Pipes provider](#tagging-operations-in-the-eventbridge-pipes-provider-pro)
 - [New enhancements in the CloudFormation provider](#new-enhancements-in-the-cloudformation-provider)
 - [New template option for the LocalStack Extensions CLI](#new-template-option-for-the-localstack-extensions-cli-pro)
@@ -53,7 +53,7 @@ To learn more about how it works, check out the [Cloud Pods documentation](https
 
 ### Support for DMS Serverless (Enterprise)
 
-LocalStack now supports AWS Database Migration Service (DMS) Serverless. DMS Serverless can be used with sources and targets supported by both LocalStack and AWS. To simulate the different states that a replication config experiences during provisioning, you can set the `DMS_SERVERLESS_STATUS_CHANGE_WAITING_TIME` environment variable. This setting delays each state change for the configured number of seconds until the replication is actively running. Refer to the official documentation for details on the different states.
+LocalStack now supports AWS Database Migration Service (DMS) Serverless. DMS serverless can be used for the sources and targets that LocalStack already supports, and that are also supported by AWS. To simulate the different states that a replication config experiences during provisioning, you can set the `DMS_SERVERLESS_STATUS_CHANGE_WAITING_TIME` environment variable. This setting delays each state change for the configured number of seconds until the replication is actively running. Refer to the official documentation for details on the different states.
 
 Note that on AWS, replication table statistics are automatically deleted after the replication finishes and the configuration is deprovisioned. For parity, the same applies in LocalStack. To delay this deprovisioning process, you can set the `DMS_SERVERLESS_DEPROVISIONING_DELAY` environment variable, which defaults to 60 seconds.
 
