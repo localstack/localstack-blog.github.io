@@ -41,6 +41,7 @@ Pin the LocalStack version in your `docker run` command or Docker Compose file t
 - [Chaos Engineering dashboard now uses Chaos API](#chaos-engineering-dashboard-now-uses-chaos-api-enterprise)
 - [Support for fetching LocalStack logs for Ephemeral Instances](#support-for-fetching-localstack-logs-for-ephemeral-instances-pro)
 - [Extensions interface is now embedded in the Web Application](#extensions-interface-is-now-embedded-in-the-web-application-pro)
+- [Support for LocalStack managed DevContainer Templates](#support-for-localstack-related-and-managed-devcontainer-templates)
 - [New Lambda Event Source Mapping implementation](#new-lambda-event-source-mapping-implementation-preview)
 - [Support for SSE-C validation in S3](#support-for-sse-c-validation-in-s3)
 - [New `EKS_K8S_PROVIDER` environment variable](#new-eks_k8s_provider-environment-variable-pro)
@@ -136,6 +137,17 @@ The LocalStack Extensions interface is now embedded in the LocalStack Web Applic
 {{< img-simple src="embedded-extension-web-application-interface.png" alt="LocalStack Extensions interface in the Web Application" width="600">}}
 
 To learn more about LocalStack Extensions, check out the [LocalStack documentation](https://docs.localstack.cloud/user-guide/extensions).
+
+### Support for LocalStack managed DevContainer Templates
+
+LocalStack now offers a set of managed DevContainer Templates. The following templates are available:
+
+- **LocalStack Docker-in-Docker**: Set up a DevContainer with LocalStack operating within an internal Docker service.
+- **LocalStack Docker-outside-of-Docker**: Set up a DevContainer that communicates with a separate LocalStack instance running on the same Docker network.
+
+Both variations of the Templates automatically add the official LocalStack DevContainer Feature, which installs the CLI and, on demand, the most popular local toolings (`cdklocal`, `tflocal`, `awslocal`, etc). Currently, this requires a Debian-based DevContainer image.
+
+To learn more about LocalStack DevContainer Templates, check out the [LocalStack documentation](https://docs.localstack.cloud/user-guide/integrations/devcontainers).
 
 ### New Lambda Event Source Mapping implementation (Preview)
 
