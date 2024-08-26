@@ -8,7 +8,6 @@ images: ['50k-github-stars-localstack.png']
 leadimage: '50k-github-stars-localstack.png'
 tags: ['news']
 contributors: ["Waldemar Hummer", "Harsh Mishra"]
-weight: 4
 ---
 
 {{< img-simple src="50k-github-stars-localstack.png" width=300 alt="A LocalStack banner indicating 50k stars">}}

@@ -8,7 +8,6 @@ contributors: ["LocalStack Team"]
 tags: ['news']
 show_cta_1: true
 leadimage: 'introducing-localstack-desktop.png'
-weight: 3
 ---
 
 {{< img-simple src="introducing-localstack-desktop.png" >}}

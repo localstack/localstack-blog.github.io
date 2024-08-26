@@ -8,7 +8,6 @@ images: ['localstack-redpoint-100.png']
 leadimage: 'localstack-redpoint-100.png'
 contributors: ["LocalStack Team"]
 tags: ['news']
-weight: 2
 ---
 
 {{< img-simple src="localstack-redpoint-100.png" width=300 alt="LocalStack Named to Redpoint InfraRed 100 List">}}
