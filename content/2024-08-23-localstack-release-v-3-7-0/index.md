@@ -5,11 +5,31 @@ lead: LocalStack Release v3.7.0
 date: 2024-08-23T3:59:43+05:30
 lastmod: 2024-08-23T3:59:43+05:30
 images: []
-contributors: []
+contributors: ['Harsh Mishra']
 tags: ['news']
 ---
 
 ## Introduction
+
+LocalStack 3.7.0 is now available! This release introduces several new features, enhancements, and bug fixes. The highlights include a new Lambda Debug Mode, state merging for Cloud Pods, support for DMS Serverless, and a new Lambda Event Source Mapping implementation. 
+
+Additionally, the Chaos Engineering dashboard now uses the Chaos API, and LocalStack now supports fetching logs for Ephemeral Instances. The Extensions interface is now embedded in the Web Application, and the CloudFormation provider has received new enhancements. The EC2 Libvirt VM manager and SES provider have also been updated with new features.
+
+## How to upgrade?
+
+To upgrade to LocalStack 3.7.0 using the LocalStack CLI, run the following command to update both the LocalStack Docker image and CLI to the latest version:
+
+```bash
+$ localstack update all
+```
+
+If using LocalStack with Docker CLI or Docker Compose, update the Docker image by running:
+
+```bash
+$ docker pull localstack/localstack:3.7.0
+```
+
+Pin the LocalStack version in your `docker run` command or Docker Compose file to `3.7.0`.
 
 ## What’s new in LocalStack 3.7.0?
 
@@ -238,3 +258,13 @@ The SES provider now supports the following enhancements:
 - LocalStack now supports idempotent [`StartExecution` operations](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) against already running `STANDARD` Step Functions state machines with identical input.
 
 ## Conclusion
+
+This minor release underpins our commitment to providing a robust and feature-rich local cloud environment for developers, with a strong focus on improving parity with AWS, introduce new DevEx features, and bring new local developer tools to the LocalStack ecosystem. Upgrade to LocalStack 3.7.0 today to take advantage of these new features and enhancements!
+
+To learn more about LocalStack, check out the following:
+
+* [LocalStack Documentation](https://docs.localstack.cloud)
+* New to LocalStack? [Create an account](https://app.localstack.cloud/sign-up)!
+* Join our [Slack community](https://localstack.cloud/slack) to ask questions and share feedback.
+* Navigate to our [Developer Hub](https://docs.localstack.cloud/developer-hub/) and try out sample applications to get started.
+* Register for our [upcoming events](https://meetup.com/localstack-community) to learn more about LocalStack.
