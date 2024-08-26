@@ -1,7 +1,7 @@
 ---
 title: LocalStack Release v3.7.0
-description: LocalStack Release v3.7.0
-lead: LocalStack Release v3.7.0
+description: LocalStack 3.7.0 is now available! This minor release introduces several new features, enhancements, and bug fixes, with a focus on improved parity with AWS, new DevX features, and enhanced local developer tooling.
+lead: LocalStack 3.7.0 is now available! This minor release introduces several new features, enhancements, and bug fixes, with a focus on improved parity with AWS, new DevX features, and enhanced local developer tooling.
 date: 2024-08-23T3:59:43+05:30
 lastmod: 2024-08-23T3:59:43+05:30
 images: []
@@ -11,7 +11,7 @@ tags: ['news']
 
 ## Introduction
 
-LocalStack 3.7.0 is now available! This release introduces several new features, enhancements, and bug fixes. The highlights include a new Lambda Debug Mode, state merging for Cloud Pods, support for DMS Serverless, and a new Lambda Event Source Mapping implementation. 
+LocalStack 3.7.0 is now available! This minor release introduces several new features, enhancements, and bug fixes. The highlights include a new Lambda Debug Mode, state merging for Cloud Pods, support for DMS Serverless, and a new Lambda Event Source Mapping implementation. 
 
 Additionally, the Chaos Engineering dashboard now uses the Chaos API, and LocalStack now supports fetching logs for Ephemeral Instances. The Extensions interface is now embedded in the Web Application, and the CloudFormation provider has received new enhancements. The EC2 Libvirt VM manager and SES provider have also been updated with new features.
 
@@ -259,7 +259,7 @@ The SES provider now supports the following enhancements:
 
 ## Conclusion
 
-This minor release underpins our commitment to providing a robust and feature-rich local cloud environment for developers, with a strong focus on improving parity with AWS, introduce new DevEx features, and bring new local developer tools to the LocalStack ecosystem. Upgrade to LocalStack 3.7.0 today to take advantage of these new features and enhancements!
+This minor release underpins our commitment to providing a robust and feature-rich local cloud environment for developers, with a strong focus on improving parity with AWS, introduce new DevX features, and bring new local developer tools to the LocalStack ecosystem. Upgrade to LocalStack 3.7.0 today to take advantage of these new features and enhancements!
 
 To learn more about LocalStack, check out the following:
 
