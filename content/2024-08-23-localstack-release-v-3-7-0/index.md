@@ -253,9 +253,9 @@ The SES provider now supports the following enhancements:
 
 ### Miscellaneous
 
-- Users should be able to use LocalStack in any region, encompassing standard AWS regions as well as specialized regions such as those in China, GovCloud, and ISO-partitions. (**Enterprise**).
+- Users should be able to use LocalStack in any region, encompassing standard AWS regions as well as specialized regions such as those in China, GovCloud, and ISO-partitions. (**Enterprise**)
 - Support for custom URL aliases for Lambda Function URLs is now available in LocalStack. This feature allows users to assign custom IDs to either the `$LATEST` version of a function or to an existing version alias.
-- LocalStack now supports prebuilding Lambda images before execution with the `LAMBDA_PREBUILD_IMAGES` configuration variable. This approach increases the cold start time but reduces the duration until the Lambda function becomes `ACTIVE`.
+- LocalStack now supports prebuilding Lambda images before execution with the `LAMBDA_PREBUILD_IMAGES` configuration variable. This approach increases the cold start time but reduces the duration until the Lambda function becomes `ACTIVE`. (**Preview**)
 - LocalStack now supports idempotent [`StartExecution` operations](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) against already running `STANDARD` Step Functions state machines with identical input.
 
 ## Conclusion
