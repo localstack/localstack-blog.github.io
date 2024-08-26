@@ -149,7 +149,7 @@ A new configuration variable `EKS_K8S_PROVIDER` has been introduced with two opt
 - `k3s` (**default**, using k3d) 
 - `local` (using a mounted kubeconfig). 
 
-The kubeconfig at `/root/.kube/config` no longer influences provider selection, but a warning is issued if it's missing when using the `local` option. Kubeconfig files located at `~/.kube/config` are not automatically mounted; users must manually mount them if necessary.
+The kubeconfig inside the LocalStack container at `/root/.kube/config` no longer influences provider selection, but a warning is issued if it's missing when using the `local` option. Kubeconfig files located on the host at `~/.kube/config` are not automatically mounted; users must manually mount them if necessary.
 
 Learn more about EKS in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/eks).
 
