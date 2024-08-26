@@ -1,0 +1,268 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=stylesheet href=/css/vendor/custom.css><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><link rel=stylesheet href=/main.b93f21975a8c509862bc461126163a533d1083c67ad9fe8621b9b49c72f22af2f868498b9be3305e5c0243d5b194d4e9df7ec3a49e44fa797de7700c870708a0.css integrity="sha512-uT8hl1qMUJhivEYRJhY6Uz0Qg8Z62f6GIbm0nHLyKvL4aEmLm+MwXlwCQ9WxlNTp337DpJ5E+nl953AMhwcIoA==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>Simulating outages for local cloud apps with LocalStack Chaos API - LocalStack</title><meta name=description content="LocalStack Chaos API enables you to simulate outages in any AWS region or service. This blog guides you through setting up a cloud application locally and using the Chaos API to mimic service failures, helping ensure your application handles disruptions smoothly. Additionally, it discusses how to write chaos tests, providing a detailed strategy for testing resilient systems."><link rel=canonical href=/2024-08-26-simulating-outages-for-local-cloud-apps-with-localstack-chaos-api/><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://blog.localstack.cloud/2024-08-26-simulating-outages-for-local-cloud-apps-with-localstack-chaos-api/simulating-outages-for-local-cloud-apps-with-localstack-chaos-api-cover.png"><meta name=twitter:title content="Simulating outages for local cloud apps with LocalStack Chaos API"><meta name=twitter:description content="LocalStack Chaos API enables you to simulate outages in any AWS region or service. This blog guides you through setting up a cloud application locally and using the Chaos API to mimic service failures, helping ensure your application handles disruptions smoothly. Additionally, it discusses how to write chaos tests, providing a detailed strategy for testing resilient systems."><meta name=twitter:site content="@localstack"><meta name=twitter:creator content="@localstack"><meta property="og:title" content="Simulating outages for local cloud apps with LocalStack Chaos API"><meta property="og:description" content="LocalStack Chaos API enables you to simulate outages in any AWS region or service. This blog guides you through setting up a cloud application locally and using the Chaos API to mimic service failures, helping ensure your application handles disruptions smoothly. Additionally, it discusses how to write chaos tests, providing a detailed strategy for testing resilient systems."><meta property="og:type" content="article"><meta property="og:url" content="/2024-08-26-simulating-outages-for-local-cloud-apps-with-localstack-chaos-api/"><meta property="og:image" content="/2024-08-26-simulating-outages-for-local-cloud-apps-with-localstack-chaos-api/simulating-outages-for-local-cloud-apps-with-localstack-chaos-api-cover.png"><meta property="article:published_time" content="2024-08-26T00:00:00+00:00"><meta property="article:modified_time" content="2024-08-26T00:00:00+00:00"><meta property="og:site_name" content="LocalStack"><meta property="article:publisher" content="https://www.facebook.com/"><meta property="article:author" content="https://www.facebook.com/"><meta property="og:locale" content="en_US"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/blog.localstack.cloud\/"},{"@type":"ListItem","position":3,"name":"2024 08 26 Simulating Outages for Local Cloud Apps With Localstack Chaos API","item":"https:\/\/blog.localstack.cloud\/\/2024-08-26-simulating-outages-for-local-cloud-apps-with-localstack-chaos-api\/"}]}</script><meta name=theme-color content="#fff"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#6b7cf5><link rel=manifest href=/site.webmanifest><script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-101988473-1','auto'),ga('send','pageview')</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-QRFTZPWGB7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-QRFTZPWGB7')</script><script defer src=https://unpkg.com/@tinybirdco/flock.js data-host=https://api.tinybird.co data-token=p.eyJ1IjogIjAwZDRjYzRjLTg4N2UtNGNmZS05YzY4LTJjNzMyNjE5ODdjMCIsICJpZCI6ICI2YzRhMDViNi1iZjVlLTRkY2QtODNlZS1jMmFjYjg5ZjQ1NzAifQ.EPdBzyAb28wUbtZacobblsMi42IwTd7d2amppDfw-jE></script><script type=text/javascript id=hs-script-loader async defer src=//js-eu1.hs-scripts.com/26596507.js></script><script type=text/javascript src=//js-eu1.hsforms.net/forms/embed/v2.js></script><script>function toggleTag(b){const c='tag-'+b;if(c!=='tag-all'){const a=document.getElementsByClassName('tag-all');for(let b=0;b<a.length;b++){const c=a[b];c.classList.add('d-none')}}const d=document.getElementsByClassName(c);for(let a=0;a<d.length;a++){const b=d[a];b.classList.remove('d-none')}const e=document.getElementsByClassName('filterButton');for(let a=0;a<e.length;a++){const b=e[a];b.classList.remove('bg-purple'),b.classList.remove('btn-primary'),b.classList.add('btn-outline-primary')}const f=b+"FilterButton",a=document.getElementById(f);a.classList.add('bg-purple'),a.classList.add('btn-primary'),a.classList.remove('btn-outline-primary')}</script></head><body class="page single"><header></header><section class="section section-sm bg-gradient-dark"><div class="position-absolute w-100 section pb-7 pt-7 d-none d-md-block"><div class=container><div class="row justify-content-center align-items-center"><div class=col-2><img class=w-100 style=transform:scale(2);opacity:.65 src=/images/heroes/blog.svg></div><div class=col-2></div><div class=col-2></div><div class=col-2><img class=w-100 style=transform:rotate(35deg)scale(1.4);opacity:.9 src=/images/heroes/blog.svg></div><div class=col-2><img class=w-100 style=transform:rotate(-45deg)scaleX(-1)scale(1.5);opacity:.75 src=/images/heroes/blog.svg></div></div></div></div><div class="container pb-5 pt-6 pb-md-7 pt-sm-7"><div class="row justify-content-center align-items-center text-white"><h1 class="text-center m-0 pt-lg-5">Simulating outages for local cloud apps with LocalStack Chaos API</h1></div></div></section><section class="section section-sm mb-6"><div class="container px-lg-8"><div class="row justify-content-center"><div class=col-12><article><div class=blog-header><div class="d-flex align-items-center flex-wrap card-footer-text"><p class=mb-0><img src=/images/common/clock.svg>
+10&nbsp;MIN READ&nbsp;&#8212;&nbsp;
+posted August 26, 2024 by <a class="stretched-link position-relative">Harsh Mishra</a> and <a class="stretched-link position-relative">Anca Ghenade</a> and <a class="stretched-link position-relative">Viren Nadkarni</a></p><p></div></div><p class=lead>LocalStack Chaos API enables you to simulate outages in any AWS region or service. This blog guides you through setting up a cloud application locally and using the Chaos API to mimic service failures, helping ensure your application handles disruptions smoothly. Additionally, it discusses how to write chaos tests, providing a detailed strategy for testing resilient systems.</p><img class="img-simple img-fluid lazyload blur-up" src=/2024-08-26-simulating-outages-for-local-cloud-apps-with-localstack-chaos-api/_hu58b5086157d897c3a8b54fb679033807_412361_d3ce4a22f9114678233e93af5484bfcc.png data-src=/2024-08-26-simulating-outages-for-local-cloud-apps-with-localstack-chaos-api/simulating-outages-for-local-cloud-apps-with-localstack-chaos-api-cover.png width=1920 height=1080><h2 id=introduction>Introduction</h2><p>Regardless of the precautions you take in developing your application and the reliability of cloud providers like AWS, incidents are unavoidable. They can be anything from as large-scale regional outage to as small as a request failing for reasons perhaps unknown. Common examples might include:</p><ul><li>Region-wide outages</li><li>DNS failovers</li><li>Service failures</li><li>Network faults</li></ul><p>The key is in building your application in such a way that it handles these situations gracefully. Chaos engineering is an approach that for testing these types of scenarios that can help you build a more resilient application.</p><h2 id=introducing-the-localstack-chaos-api>Introducing the LocalStack Chaos API</h2><p>LocalStack&rsquo;s brand-new <a href=https://docs.localstack.cloud/user-guide/chaos-engineering/chaos-api/>Chaos API</a> provide an easy way to implement chaos engineering experiments to test a wide variety of simulated outages and failures within your application safely, without impacting your production users. All the testing scenarios described above can be executed within LocalStack, providing thorough coverage for critical situations in a matter of minutes rather than hours or days.</p><p>This blog will walk you through the process of setting up a cloud application on your local machine and leveraging the Chaos API to perform service failures in a local environment while using robust error handling to address and mitigate such issues.
+Furthermore, we will explore how to shift-left your chaos testing by integrating automated testing directly into your continuous integration workflow.</p><h2 id=prerequisites>Prerequisites</h2><ul><li><a href=https://docs.localstack.cloud/references/docker-images/#localstack-pro-image>LocalStack Docker image</a> & <a href=https://docs.localstack.cloud/getting-started/auth-token/><code>LOCALSTACK_AUTH_TOKEN</code></a></li><li><a href=https://docs.docker.com/compose/install/>Docker Compose</a></li><li><a href=https://docs.aws.amazon.com/cli/v1/userguide/cli-chap-install.html>AWS CLI</a> & <a href=https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal><code>awslocal</code> wrapper</a></li><li><a href=https://maven.apache.org/install.html>Maven 3.8.5</a> & <a href=https://www.java.com/en/download/help/download_options.html>Java 17</a></li><li><a href=https://www.python.org/downloads/>Python</a> & <a href=https://docs.pytest.org/en/8.0.x/><code>pytest</code> framework</a></li><li><a href=https://curl.se/docs/install.html><code>cURL</code></a></li></ul><h2 id=product-management-system-with-lambda-api-gateway-and-dynamodb>Product Management System with Lambda, API Gateway, and DynamoDB</h2><p>This demo sets up an HTTP CRUD API functioning as a Product Management System. The components deployed include:</p><ul><li>A DynamoDB table named <code>Products</code>.</li><li>Three Lambda functions:<ul><li><code>add-product</code> for product addition.</li><li><code>get-product</code> for retrieving a product.</li></ul></li><li>A locally hosted REST API named <code>product-api-gateway</code>.</li><li>API Gateway resource named <code>productApi</code> with additional <code>GET</code> and <code>POST</code> methods.</li></ul><img class="img-simple img-fluid lazyload blur-up" src=/2024-08-26-simulating-outages-for-local-cloud-apps-with-localstack-chaos-api/sample-architecture_hu21a5db1ca6ff24779afe14d65c9c69df_89139_20x0_resize_box_2.png data-src=/2024-08-26-simulating-outages-for-local-cloud-apps-with-localstack-chaos-api/sample-architecture.png width=1920 height=1080 alt="Sample Architecture for Product Management System"><p>All resources can be deployed using a <a href=https://docs.localstack.cloud/references/init-hooks/>LocalStack Init Hook</a> via the <a href=https://github.com/localstack-samples/sample-chaos-api-serverless/blob/main/init-resources.sh><code>init-resources.sh</code></a> script in the repository.
+To begin, clone the repository on your local machine:</p><pre><code class=language-bash>git clone https://github.com/localstack-samples/sample-chaos-api-serverless.git
+cd sample-chaos-api-serverless
+</code></pre><p>Let&rsquo;s create a Docker Compose configuration for simulating a local outage in the running Product Management System.</p><h3 id=set-up-the-docker-compose>Set Up the Docker Compose</h3><p>To start LocalStack and use the Chaos API, create a new Docker Compose configuration.
+You can find the official Docker Compose file for starting the LocalStack container in <a href=https://docs.localstack.cloud/getting-started/installation/#docker-compose>our documentation</a>.</p><p>For an extended setup, include the following in your Docker Compose file:</p><ul><li>Include the <code>LOCALSTACK_HOST=localstack</code> environment variable to ensure LocalStack services are accessible from other containers.</li><li>Create the <code>ls_network</code> network to use LocalStack as its DNS server and enable the resolution of the domain name to the LocalStack container (also specify it via <code>LAMBDA_DOCKER_NETWORK</code> environment variable).</li><li>Add a new volume attached to the LocalStack container. This volume holds the <code>init-resources.sh</code> file, which is copied to the LocalStack container and executed when the container is ready.</li><li>Add another volume to copy the built Lambda functions specified as ZIP files during Lambda function creation.</li><li>Optionally, add the <code>LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT</code> to wait for the runtime environment to start up, which may vary in speed based on your local machine.</li></ul><p>The final Docker Compose configuration is as follows (also <a href=https://github.com/localstack-samples/sample-chaos-api-serverless/blob/main/docker-compose.yml>provided in the repository</a>):</p><pre><code class=language-yaml>version: &quot;3.9&quot;
+
+services:
+  localstack:
+    networks:
+      - ls_network
+    container_name: localstack
+    image: localstack/localstack-pro:latest
+    ports:
+      - &quot;127.0.0.1:4566:4566&quot;            
+      - &quot;127.0.0.1:4510-4559:4510-4559&quot;  
+      - &quot;127.0.0.1:443:443&quot;
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - LOCALSTACK_HOST=localstack
+      - LAMBDA_DOCKER_NETWORK=ls_network
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
+      - LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT=600
+    volumes:
+      - &quot;./volume:/var/lib/localstack&quot;
+      - &quot;/var/run/docker.sock:/var/run/docker.sock&quot;
+      - &quot;./lambda-functions/target/product-lambda.jar:/etc/localstack/init/ready.d/target/product-lambda.jar&quot;
+      - &quot;./init-resources.sh:/etc/localstack/init/ready.d/init-resources.sh&quot;
+
+networks:
+  ls_network:
+    name: ls_network
+</code></pre><h3 id=deploy-the-local-aws-infrastructure>Deploy the local AWS infrastructure</h3><p>Before deploying the demo application locally, build the Lambda functions to ensure they can be copied over during Docker Compose startup. Execute the following command:</p><pre><code class=language-bash>cd lambda-functions &amp;&amp; mvn clean package shade:shade
+</code></pre><p>The built Lambda function is now available at <code>lambda-functions/target/product-lambda.jar</code>.
+Start the Docker Compose configuration, which automatically creates the local deployment using AWS CLI and the <code>awslocal</code> script inside the LocalStack container:</p><pre><code class=language-bash>export LOCALSTACK_AUTH_TOKEN=&lt;your-auth-token&gt;
+docker-compose up
+</code></pre><p>Check the Docker Compose logs to verify that LocalStack is running and your local AWS infrastructure is set up correctly.
+You should see the following output:</p><pre><code class=language-text>localstack  | 
+localstack  | LocalStack version: 3.6.1.dev20240725091954
+localstack  | LocalStack build date: 2024-07-26
+localstack  | LocalStack build git hash: d536652
+localstack  | 
+localstack  | 2024-07-26T08:55:12.280  INFO --- [  MainThread] l.p.c.b.licensingv2        : Successfully activated cached license a61ce6c3-2f7f-4a18-bc50-b69184a29a4a:enterprise from /var/lib/localstack/cache/license.json 🔑✅
+localstack  | 2024-07-26T08:55:13.680  INFO --- [  MainThread] l.p.c.extensions.platform  : loaded 0 extensions
+...
+localstack  | 2024-07-26T08:55:21.526  INFO --- [et.reactor-2] localstack.request.aws     : AWS sns.CreateTopic =&gt; 200
+localstack  | {
+localstack  |     &quot;TopicArn&quot;: &quot;arn:aws:sns:us-east-1:000000000000:ProductEventsTopic&quot;
+localstack  | }
+localstack  | 2024-07-26T08:55:21.827  INFO --- [et.reactor-3] localstack.request.aws     : AWS sqs.CreateQueue =&gt; 200
+localstack  | {
+localstack  |     &quot;QueueUrl&quot;: &quot;http://sqs.us-east-1.localstack:4566/000000000000/ProductEventsQueue&quot;
+localstack  | }
+</code></pre><p>After deployment, use <code>cURL</code> to create a product entity.
+Execute the following command:</p><pre><code class=language-bash>curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
+--header 'Content-Type: application/json' \
+--data '{
+  &quot;id&quot;: &quot;prod-2004&quot;,
+  &quot;name&quot;: &quot;Ultimate Gadget&quot;,
+  &quot;price&quot;: &quot;49.99&quot;,
+  &quot;description&quot;: &quot;The Ultimate Gadget is the perfect tool for tech enthusiasts looking for the next level in gadgetry. Compact, powerful, and loaded with features.&quot;
+}'
+</code></pre><p>The output should be:</p><pre><code class=language-text>Product added/updated successfully.
+</code></pre><p>You can verify the successful addition by scanning the DynamoDB table:</p><pre><code class=language-bash>awslocal dynamodb scan \
+    --table-name Products
+</code></pre><p>The output should be:</p><pre><code class=language-json>{
+    &quot;Items&quot;: [
+        {
+            &quot;name&quot;: {
+                &quot;S&quot;: &quot;Ultimate Gadget&quot;
+            },
+            &quot;description&quot;: {
+                &quot;S&quot;: &quot;The Ultimate Gadget is the perfect tool for tech enthusiasts looking for the next level in gadgetry. Compact, powerful, and loaded with features.&quot;
+            },
+            &quot;id&quot;: {
+                &quot;S&quot;: &quot;prod-2004&quot;
+            },
+            &quot;price&quot;: {
+                &quot;N&quot;: &quot;49.99&quot;
+            }
+        }
+    ],
+    &quot;Count&quot;: 1,
+    &quot;ScannedCount&quot;: 1,
+    &quot;ConsumedCapacity&quot;: null
+}
+</code></pre><h3 id=injecting-chaos-in-the-local-infrastructure>Injecting Chaos in the local infrastructure</h3><p>You can now use the Chaos API for chaos testing of your locally deployed infrastructure. You can access the Chaos API through the REST API at <a href=http://localhost.localstack.cloud:4566/_localstack/chaos/faults><code>http://localhost.localstack.cloud:4566/_localstack/chaos/faults</code></a>, accepting standard HTTP requests.</p><p>To create an outage, taking down the DynamoDB table in the <code>us-east-1</code> region, execute the following command:</p><pre><code class=language-bash>curl --location --request POST 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults' \
+  --header 'Content-Type: application/json' \
+  --data '
+  [
+    {
+      &quot;service&quot;: &quot;dynamodb&quot;,
+      &quot;region&quot;: &quot;us-east-1&quot;
+    }
+  ]'
+</code></pre><p>The output should be:</p><pre><code class=language-json>[{&quot;service&quot;: &quot;dynamodb&quot;, &quot;region&quot;: &quot;us-east-1&quot;}]
+</code></pre><p>This command creates an outage in the locally mocked <code>us-east-1</code> DynamoDB tables. Verify by scanning the <code>Products</code> table:</p><pre><code class=language-bash>awslocal dynamodb scan \
+    --table-name Products
+</code></pre><p>The output should be:</p><pre><code class=language-text>An error occurred (ServiceUnavailable) when calling the Scan operation (reached max retries: 2): Operation failed due to a simulated fault
+</code></pre><p>You can verify it in the LocalStack logs:</p><pre><code class=language-text>localstack  | 2024-07-26T09:14:31.250  INFO --- [et.reactor-2] localstack.request.aws     : AWS dynamodb.Scan =&gt; 503 (ServiceUnavailable)
+localstack  | 2024-07-26T09:14:32.255  INFO --- [et.reactor-0] localstack.request.aws     : AWS dynamodb.Scan =&gt; 503 (ServiceUnavailable)
+localstack  | 2024-07-26T09:14:34.225  INFO --- [et.reactor-2] localstack.request.aws     : AWS dynamodb.Scan =&gt; 503 (ServiceUnavailable)
+</code></pre><p>You can retrieve the current outage configuration using the following <code>GET</code> request:</p><pre><code class=language-bash>curl --location --request GET 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults'
+</code></pre><p>The output should be:</p><pre><code class=language-json>[{&quot;service&quot;: &quot;dynamodb&quot;, &quot;region&quot;: &quot;us-east-1&quot;}]
+</code></pre><h3 id=error-handling-for-the-local-outage>Error handling for the local outage</h3><p>Now that the experiment is started, the DynamoDB table is inaccessible, resulting in the user being unable to retrieve or create products.
+The API Gateway will return an <code>Internal Server Error</code>. To prevent this, include proper error handling and a mechanism to prevent data loss during a database outage.</p><p>You can add a solution that includes an SNS topic, an SQS queue, and a Lambda function that picks up queued elements and retries the <code>PutItem</code> operation on the DynamoDB table.
+If DynamoDB is still unavailable, the item will be re-queued. The solution includes:</p><ul><li>A <code>process-product-events</code> Lambda for event processing and DynamoDB writes.</li><li>SNS topic named <code>ProductEventsTopic</code> and SQS queue named <code>ProductEventsQueue</code>.</li><li>Subscription between the SQS queue and the SNS topic.</li><li>Event source mapping between the SQS queue and the <code>process-product-events</code> Lambda function.</li></ul><img class="img-simple img-fluid lazyload blur-up" src=/2024-08-26-simulating-outages-for-local-cloud-apps-with-localstack-chaos-api/error-handling-for-local-outage_hu0a21d4f9e046ac2eefac73fc9e703b51_103064_20x0_resize_box_2.png data-src=/2024-08-26-simulating-outages-for-local-cloud-apps-with-localstack-chaos-api/error-handling-for-local-outage.png width=1920 height=1080 alt="Error handling for the local outage"><p>Run the following commands to create the necessary resources:</p><pre><code class=language-bash>awslocal sns create-topic --name ProductEventsTopic
+
+awslocal sqs create-queue --queue-name ProductEventsQueue
+
+awslocal sqs get-queue-attributes --queue-url http://localhost:4566/000000000000/ProductEventsQueue --attribute-names QueueArn
+
+awslocal sns subscribe \
+    --topic-arn arn:aws:sns:us-east-1:000000000000:ProductEventsTopic \
+    --protocol sqs \
+    --notification-endpoint arn:aws:sqs:us-east-1:000000000000:ProductEventsQueue
+
+awslocal lambda create-function \
+  --function-name process-product-events \
+  --runtime java17 \
+  --handler lambda.DynamoDBWriterLambda::handleRequest \
+  --memory-size 1024 \
+  --zip-file fileb://lambda-functions/target/product-lambda.jar \
+  --region us-east-1 \
+  --role arn:aws:iam::000000000000:role/productRole
+
+awslocal lambda create-event-source-mapping \
+    --function-name process-product-events \
+    --batch-size 10 \
+    --event-source-arn arn:aws:sqs:us-east-1:000000000000:ProductEventsQueue
+
+awslocal sqs set-queue-attributes \
+    --queue-url http://localhost:4566/000000000000/ProductEventsQueue \
+    --attributes VisibilityTimeout=10
+</code></pre><p>Test the solution by executing the following command:</p><pre><code class=language-bash>curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
+     --header 'Content-Type: application/json' \
+     --data '{
+       &quot;id&quot;: &quot;prod-1003&quot;,
+       &quot;name&quot;: &quot;Super Widget&quot;,
+       &quot;price&quot;: &quot;29.99&quot;,
+       &quot;description&quot;: &quot;A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable.&quot;
+     }'
+</code></pre><p>The output should be:</p><pre><code class=language-text>A DynamoDB error occurred. Message sent to queue.
+</code></pre><p>To stop the outage, send a <code>POST</code> request by using an empty list in the configuration.
+The following request will clear the current configuration:</p><pre><code class=language-bash>curl --location --request POST 'http://localhost.localstack.cloud:4566/_localstack/chaos/faults' \
+--header 'Content-Type: application/json' \
+--data '[]'
+</code></pre><p>Now, scan the DynamoDB table and verify that the <code>Super Widget</code> item has been inserted:</p><pre><code class=language-bash>awslocal dynamodb scan \
+    --table-name Products
+</code></pre><p>The output should be:</p><pre><code class=language-json>{
+    &quot;Items&quot;: [
+        {
+            &quot;name&quot;: {
+                &quot;S&quot;: &quot;Super Widget&quot;
+            },
+            ...
+            &quot;price&quot;: {
+                &quot;N&quot;: &quot;29.99&quot;
+            }
+        },
+        {
+            &quot;name&quot;: {
+                &quot;S&quot;: &quot;Ultimate Gadget&quot;
+            },
+            ...
+            &quot;price&quot;: {
+                &quot;N&quot;: &quot;49.99&quot;
+            }
+        }
+    ],
+    &quot;Count&quot;: 2,
+    &quot;ScannedCount&quot;: 2,
+    &quot;ConsumedCapacity&quot;: null
+}
+</code></pre><h3 id=automating-chaos-experiments-using-pytest>Automating Chaos Experiments using Pytest</h3><p>You can now implement a straightforward chaos test using <code>pytest</code> to start an outage.
+The test will:</p><ul><li>Validate the availability of Lambda functions and the DynamoDB table.</li><li>Start a local outage and verify if DynamoDB API calls throw an error.</li><li>Validate the ongoing outage and its appropriate cessation.</li><li>Query the DynamoDB table for new items and assert their presence.</li></ul><p>For integration testing, you can use the <a href=https://aws.amazon.com/sdk-for-python/>boto3</a> and the <a href=https://pytest.org/>pytest</a> framework.
+In a new directory named <code>tests</code>, create a file named <code>test_chaos.py</code>.
+Add the necessary imports and <code>pytest</code> fixtures:</p><pre><code class=language-python>import pytest
+import time
+import boto3
+import requests
+
+# Replace with your LocalStack endpoint
+LOCALSTACK_ENDPOINT = &quot;http://localhost.localstack.cloud:4566&quot;
+CHAOS_ENDPOINT = f&quot;{LOCALSTACK_ENDPOINT}/_localstack/chaos/faults&quot;
+
+# Replace with your LocalStack DynamoDB table name
+DYNAMODB_TABLE_NAME = &quot;Products&quot;
+
+# Replace with your Lambda function names
+LAMBDA_FUNCTIONS = [&quot;add-product&quot;, &quot;get-product&quot;, &quot;process-product-events&quot;]
+
+@pytest.fixture(scope=&quot;module&quot;)
+def dynamodb_resource():
+    return boto3.resource(&quot;dynamodb&quot;, endpoint_url=LOCALSTACK_ENDPOINT)
+
+@pytest.fixture(scope=&quot;module&quot;)
+def lambda_client():
+    return boto3.client(&quot;lambda&quot;, endpoint_url=LOCALSTACK_ENDPOINT)
+</code></pre><p>Add the following code to perform a simple smoke test ensuring the availability of Lambda functions and the DynamoDB table:</p><pre><code class=language-python>def test_dynamodb_table_exists(dynamodb_resource):
+    tables = dynamodb_resource.tables.all()
+    table_names = [table.name for table in tables]
+    assert DYNAMODB_TABLE_NAME in table_names
+
+def test_lambda_functions_exist(lambda_client):
+    functions = lambda_client.list_functions()[&quot;Functions&quot;]
+    function_names = [func[&quot;FunctionName&quot;] for func in functions]
+    assert all(func_name in function_names for func_name in LAMBDA_FUNCTIONS)
+</code></pre><p>Next, add the following helper functions to start, check, and stop the DynamoDB outage:</p><pre><code class=language-python>def initiate_dynamodb_outage():
+    outage_payload = [{&quot;service&quot;: &quot;dynamodb&quot;, &quot;region&quot;: &quot;us-east-1&quot;}]
+    response = requests.post(CHAOS_ENDPOINT, json=outage_payload)
+    assert response.ok
+    return outage_payload
+
+def check_outage_status(expected_status):
+    outage_status = requests.get(CHAOS_ENDPOINT).json()
+    assert outage_status == expected_status
+
+def stop_dynamodb_outage():
+    response = requests.post(CHAOS_ENDPOINT, json=[])
+    assert response.ok
+    check_outage_status([])
+</code></pre><p>Now, add the following code to chaos test the locally deployed DynamoDB table:</p><pre><code class=language-python>def test_dynamodb_outage(dynamodb_resource):
+    # Initiate DynamoDB outage
+    outage_payload = initiate_dynamodb_outage()
+
+    # Make a request to DynamoDB and assert an error
+    url = &quot;http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi&quot;
+    headers = {&quot;Content-Type&quot;: &quot;application/json&quot;}
+    data = {
+        &quot;id&quot;: &quot;prod-1002&quot;,
+        &quot;name&quot;: &quot;Super Widget&quot;,
+        &quot;price&quot;: &quot;29.99&quot;,
+        &quot;description&quot;: &quot;A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable.&quot;,
+    }
+
+    response = requests.post(url, headers=headers, json=data)
+    assert &quot;error&quot; in response.text
+
+    # Check if outage is running
+    check_outage_status(outage_payload)
+
+    # Stop the outage
+    stop_dynamodb_outage()
+
+    # Wait for a few seconds
+    # Adding a better retry mechanism is left as an exercise
+    time.sleep(60)
+
+    # Query if there are items in DynamoDB table
+    table = dynamodb_resource.Table(DYNAMODB_TABLE_NAME)
+    response = table.scan()
+    items = response[&quot;Items&quot;]
+    assert any(item[&quot;name&quot;] == &quot;Super Widget&quot; for item in items)
+</code></pre><p>Run the test locally using the following command:</p><pre><code class=language-bash>pytest -v
+</code></pre><p>The output should be:</p><pre><code class=language-text>collected 3 items                                                                               
+
+tests/test_outage.py::test_dynamodb_table_exists PASSED                                   [ 33%]
+tests/test_outage.py::test_lambda_functions_exist PASSED                                  [ 66%]
+tests/test_outage.py::test_dynamodb_outage PASSED                                         [100%]
+
+================================= 3 passed in 71.20s (0:01:11) ==================================
+</code></pre><h2 id=conclusion>Conclusion</h2><p>We&rsquo;ve seen how LocalStack&rsquo;s Chaos API allowed us to quickly manually simulate a service outage to test our application&rsquo;s response and then adjust it to handle this type of incident gracefully rather than returning an error to our end user. Using tools like PyTest, we can even leverage this API to create tests within automations that can help us ensure that future updates to our application are resilient to failures and outages.</p><p>In the upcoming blog posts, we&rsquo;ll demonstrate how to perform more complex chaos testing scenarios, such as RDS & Route53 failovers, inject network latency to every API call, and use AWS Resilience Testing Tools such as <a href=https://aws.amazon.com/fis/>AWS Fault Injection Service (FIS)</a> locally.
+Stay tuned for more blogs on how LocalStack is enhancing your chaos engineering experience!</p><p>You can find the code in this <a href=https://github.com/localstack-samples/sample-chaos-api-serverless>GitHub repository</a>.</p><div class="blog-cta-1 text-center"><div class="ls-badge text-uppercase d-inline-block">Get in Touch</div><h2 class=heading>Ready to get started developing and testing your cloud apps offline?</h2><a class="btn btn-white text-uppercase" data-bs-toggle=collapse href=#collapseContact role=button aria-expanded=false aria-controls=collapseContact>Request a Demo</a><div class=collapse id=collapseContact><div class="overlay-card h-100 p-4 p-md-5 p-lg-6 mt-4"><script>hbspt.forms.create({region:"eu1",portalId:"26596507",formId:"fcc8c7e6-09cf-4364-8fe6-b6e616130bfa"})</script></div></div></div></article></div></div></div></section><section class="section bg-gradient-light"><div class=container><div class="row justify-content-center"><div class="d-flex flex-column gap-4 col-lg-12 text-white"><h2 class="h2 text-center">Stay in the loop</h2><p>We'd love to get in touch with you.
+Please subscribe with your email to stay tuned for release notes and product updates.
+We promise never to send an excessive amount of emails (we hate spam, too).</p><script>hbspt.forms.create({region:"eu1",portalId:"26596507",formId:"1cc99237-4ce0-4d65-abdf-f87ac2724717"})</script></div></div></div></section><footer class="footer pt-6 bg-gradient-dark"><div class="footer-main pb-5"><div class=container><div class="row justify-content-between"><div class="col-12 col-lg-4"><img style=width:243px src=/images/header-logo-new.svg alt="LocalStack Logo"></div><div class="col-12 col-lg-8 mt-4 mt-lg-0"><div class="row gap-4"><div class=col><ul class="list-unstyled gap-4 d-flex flex-column"><li><a class=footer-text href=https://localstack.cloud/contact>Contact</a></li><li><a class=footer-text href=https://localstack.cloud/careers>Careers</a></li><li><a class=footer-text href=https://blog.localstack.cloud>Blog</a></li><li><a class=footer-text href=https://docs.localstack.cloud>Docs</a></li></ul></div><div class=col><ul class="list-unstyled gap-4 d-flex flex-column"><li><a class=footer-text href=https://docs.localstack.cloud/tutorials/>Tutorials</a></li><li><a class=footer-text href=https://docs.localstack.cloud/applications/>Applications</a></li><li><a class=footer-text href=https://docs.localstack.cloud/academy/>LocalStack Academy</a></li></ul></div><div class=col><ul class="list-unstyled gap-4 d-flex flex-column"><li><a class=footer-text href=https://www.localstack.cloud/legal/tos>Terms and Conditions</a></li><li><a class=footer-text href=https://www.localstack.cloud/legal/privacy-policy>Privacy Policy</a></li><li><a class=footer-text href=https://assets-global.website-files.com/6539036f80ddc9e9a467134e/657b15a7f5ba23e41984d5dd_LocalStack%20DPA.pdf>Data Processing Addendum</a></li></ul></div><div class=col><ul class="list-unstyled gap-4 d-flex flex-column"><li class=footer-text>Follow us</li><li class="d-flex gap-3"><a class=footer-text href=https://twitter.com/localstack><span><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M25 13.25c0 6.9036-5.5964 12.5-12.5 12.5C5.59644 25.75.0 20.1536.0 13.25.0 6.34644 5.59644.75 12.5.75 19.4036.75 25 6.34644 25 13.25zm-6.56-3.0468C19.0443 10.1315 19.6205 9.97084 20.1562 9.73331 19.7558 10.3325 19.2493 10.8586 18.6651 11.2797 18.6709 11.4076 18.6738 11.5366 18.6738 11.6661c0 3.9487-3.0055 8.5014-8.5012 8.5014C8.48534 20.1675 6.91443 19.6731 5.59285 18.825 5.82615 18.8528 6.06457 18.8669 6.30522 18.8669 7.70545 18.8669 8.9936 18.3894 10.0164 17.5879 8.70861 17.5636 7.6054 16.6997 7.22527 15.5129 7.40754 15.5477 7.59449 15.5662 7.78745 15.5662 8.05952 15.5662 8.32401 15.5299 8.57447 15.4612c-1.36658-.2743-2.39692-1.4817-2.39692-2.9294C6.17755 12.5193 6.17755 12.5066 6.17777 12.4939 6.58041 12.7183 7.04144 12.8526 7.53098 12.868 6.7297 12.3323 6.20183 11.4174 6.20183 10.3811c0-.547520000000001.14751-1.06113.40465-1.50232C8.08024 10.687 10.282 11.8764 12.7651 12.001 12.7139 11.7822 12.6874 11.5542 12.6874 11.32c0-1.64975 1.338-2.98781 2.9878-2.98781.8599.0 1.6364.36276 2.1815.94322C18.5369 9.14149 19.1767 8.89304 19.754 8.55056 19.5305 9.24867 19.057 9.83358 18.44 10.2032z" fill="#fff"/></svg></span></a><a class=footer-text href=https://www.linkedin.com/company/localstack-cloud><span><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 26c7.1797.0 13-5.8203 13-13S20.1797.0 13 0 0 5.8203.0 13 5.8203 26 13 26zM9.35126 10.5024C9.97963 10.5024 10.489 9.993 10.489 9.36463S9.97963 8.22687 9.35126 8.22687 8.2135 8.73626 8.2135 9.36463s.50939 1.13777 1.13776 1.13777zm2.21194.8622v6.3122h1.9599V14.5553C13.5231 13.7316 13.6781 12.9339 14.6993 12.9339c1.0073.0 1.0198.941700000000001 1.0198 1.6734v3.0701H17.68V14.2157C17.68 12.5153 17.3139 11.2086 15.3265 11.2086c-.9542.0-1.5938.5236-1.8554 1.0192H13.4446V11.3646H11.5632zm-3.19382.0H10.3324v6.3122H8.36938V11.3646z" fill="#fff"/></svg></span></a></li></ul></div></div></div></div></div></div><div class=footer-bottom><div class="container mb-2"><hr><div class="row pt-4"><div class=col style=color:#fff;opacity:.5>Copyright &copy; LocalStack</div><div class="col text-end"><ul class=list-inline></ul></div></div></div></div></footer><script src=/js/bootstrap.min.51b4083a09e54138d5bbe9c42a5f5f71af6e60a417f276d5620cbde3b15eb1a07c9ea17a889bc58074adf9b19641039a77521d3131f039300d2fe29ffa532aa8.js integrity="sha512-UbQIOgnlQTjVu+nEKl9fca9uYKQX8nbVYgy947FesaB8nqF6iJvFgHSt+bGWQQOad1IdMTHwOTANL+Kf+lMqqA==" crossorigin=anonymous defer></script><script src=/js/highlight.min.8cdbefd08ec63ef25f4b2510ae50c13b3d9ed43e25a15ddb55f14c33130e68cf8be3131ccf2d087c49f5f21fe88c2f0e2715a21f936047d0d0b85dc48cb864b9.js integrity="sha512-jNvv0I7GPvJfSyUQrlDBOz2e1D4loV3bVfFMMxMOaM+L4xMczy0IfEn18h/ojC8OJxWiH5NgR9DQuF3EjLhkuQ==" crossorigin=anonymous defer></script><script src=/main.min.8933efb6bcdc37606a11f732d52c6f65d7fc1d082b89d56516f6a1bfb528ee7c40c3430bb80214cdd129ec7d69d4cadd74e693da54a9ba6f08c44771204d4468.js integrity="sha512-iTPvtrzcN2BqEfcy1SxvZdf8HQgridVlFvahv7Uo7nxAw0MLuAIUzdEp7H1p1MrddOaT2lSpum8IxEdxIE1EaA==" crossorigin=anonymous defer></script><script src=/index.min.28297aad85d5f5902201eb4ef84e7012a37d4a34824e2256df80cd91e547bf155df22029e5596951d6f2692dd1fee54c76721b407e5ac526bd33bedc636a87e5.js integrity="sha512-KCl6rYXV9ZAiAetO+E5wEqN9SjSCTiJW34DNkeVHvxVd8iAp5VlpUdbyaS3R/uVMdnIbQH5axSa9M77cY2qH5Q==" crossorigin=anonymous defer></script></body></html>
