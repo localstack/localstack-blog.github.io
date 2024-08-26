@@ -9,7 +9,6 @@ contributors: ["LocalStack Team"]
 tags: ['news']
 show_cta_1: true
 leadimage: 'localstack-3.0.png'
-weight: 1
 ---
 
 {{< img-simple src="localstack-3.0.png" >}}

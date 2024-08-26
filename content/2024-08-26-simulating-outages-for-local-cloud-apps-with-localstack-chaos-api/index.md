@@ -9,7 +9,6 @@ contributors: ["Harsh Mishra", "Anca Ghenade", "Viren Nadkarni"]
 tags: ['tutorial']
 leadimage: 'simulating-outages-for-local-cloud-apps-with-localstack-chaos-api-cover.png'
 show_cta_1: true
-weight: 2
 ---
 
 {{< img-simple src="simulating-outages-for-local-cloud-apps-with-localstack-chaos-api-cover.png" >}}

@@ -8,7 +8,6 @@ images: ['localstack-ollama-banner.png']
 leadimage: 'localstack-ollama-banner.png'
 contributors: ["Anca Ghenade"]
 tags: ['showcase']
-weight: 2
 ---
 
 {{< img-simple src="localstack-ollama-banner.png" width=300 alt="LocalStack and Ollama">}}
