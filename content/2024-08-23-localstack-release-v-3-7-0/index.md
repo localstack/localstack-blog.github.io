@@ -39,16 +39,16 @@ Pin the LocalStack version in your `docker run` command or Docker Compose file t
 - [Dry run for loading Cloud Pods](#dry-run-for-loading-cloud-pods-teams--enterprise)
 - [Support for DMS Serverless](#support-for-dms-serverless-enterprise)
 - [Chaos Engineering dashboard now uses Chaos API](#chaos-engineering-dashboard-now-uses-chaos-api-enterprise)
-- [Support for fetching LocalStack logs for Ephemeral Instances](#support-for-fetching-localstack-logs-for-ephemeral-instances-pro)
-- [Extensions interface is now embedded in the Web Application](#extensions-interface-is-now-embedded-in-the-web-application-pro)
-- [Support for LocalStack managed DevContainer Templates](#support-for-localstack-related-and-managed-devcontainer-templates)
+- [Support for fetching LocalStack Ephemeral Instances logs](#support-for-fetching-localstack-ephemeral-instances-logs-starter-teams--enterprise)
+- [Extensions interface is now embedded in the Web Application](#extensions-interface-is-now-embedded-in-the-web-application-starter-teams--enterprise)
+- [Support for LocalStack managed DevContainer Templates](#support-for-localstack-managed-devcontainer-templates)
 - [New Lambda Event Source Mapping implementation](#new-lambda-event-source-mapping-implementation-preview)
 - [Support for SSE-C validation in S3](#support-for-sse-c-validation-in-s3)
-- [New `EKS_K8S_PROVIDER` environment variable](#new-eks_k8s_provider-environment-variable-pro)
-- [Tagging operations in the EventBridge Pipes provider](#tagging-operations-in-the-eventbridge-pipes-provider-pro)
+- [New `EKS_K8S_PROVIDER` environment variable](#new-eks_k8s_provider-environment-variable-starter-teams--enterprise)
+- [Tagging operations in the EventBridge Pipes provider](#tagging-operations-in-the-eventbridge-pipes-provider-starter-teams--enterprise)
 - [New enhancements in the CloudFormation provider](#new-enhancements-in-the-cloudformation-provider)
-- [New template option for the LocalStack Extensions CLI](#new-template-option-for-the-localstack-extensions-cli-pro)
-- [New enhancements in the EC2 Libvirt VM manager](#new-enhancements-in-the-ec2-libvirt-vm-manager-pro)
+- [New template option for the LocalStack Extensions CLI](#new-template-option-for-the-localstack-extensions-cli-starter-teams--enterprise)
+- [New enhancements in the EC2 Libvirt VM manager](#new-enhancements-in-the-ec2-libvirt-vm-manager-starter-teams--enterprise)
 - [New EC2 Kubernetes executor](#new-ec2-kubernetes-executor-enterprise-preview)
 - [New enhancements in the SES provider](#new-enhancements-in-the-ses-provider)
 - [Miscellaneous](#miscellaneous)
@@ -122,7 +122,7 @@ The LocalStack Chaos Engineering dashboard now leverages the Chaos API to provid
 
 Learn more about the Chaos Engineering Dashboard in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/chaos-engineering/chaos-application-dashboard/).
 
-### Support for fetching LocalStack logs for Ephemeral Instances (Pro)
+### Support for fetching LocalStack Ephemeral Instances logs (Starter, Teams & Enterprise)
 
 Ephemeral Instances in LocalStack now support fetching logs from the LocalStack container. You can navigate to the [Ephemeral Instances page](https://app.localstack.cloud/instances/ephemeral) on the [LocalStack Web Application](https://app.localstack.cloud) and click on the **Logs** tab to view the logs for the running instance.
 
@@ -130,7 +130,7 @@ Ephemeral Instances in LocalStack now support fetching logs from the LocalStack 
 
 The logs are not automatically streamed, but you can manually refresh them by clicking the **Refresh** icon on the **Log output** window. To learn more about Ephemeral Instances, check out the [LocalStack documentation](https://docs.localstack.cloud/user-guide/cloud-sandbox/ephemeral-instance).
 
-### Extensions interface is now embedded in the Web Application (Pro)
+### Extensions interface is now embedded in the Web Application (Starter, Teams & Enterprise)
 
 The LocalStack Extensions interface is now embedded in the LocalStack Web Application. You can now use extensions, such as AWS Replicator and Mailhog, directly from our Web Application, consolidating all necessary tools in one interface. You can access the Extensions library by navigating to the **Extensions** section on the Web Application.
 
@@ -193,7 +193,7 @@ LocalStack's S3 provider now supports SSE-C parameter validation for the followi
 
 However, it's important to note that LocalStack does not support the actual encryption and decryption of objects using SSE-C. Learn more about S3 in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/s3).
 
-### New `EKS_K8S_PROVIDER` environment variable (Pro)
+### New `EKS_K8S_PROVIDER` environment variable (Starter, Teams & Enterprise)
 
 A new configuration variable `EKS_K8S_PROVIDER` has been introduced with two options:
 
@@ -204,7 +204,7 @@ The kubeconfig inside the LocalStack container at `/root/.kube/config` no longer
 
 Learn more about EKS in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/eks).
 
-### Tagging operations in the EventBridge Pipes provider (Pro)
+### Tagging operations in the EventBridge Pipes provider (Starter, Teams & Enterprise)
 
 The following tagging operations for EventBridge Pipes have now been implemented:
 
@@ -228,7 +228,7 @@ LocalStack's CloudFormation provider now supports the following enhancements:
 
 Learn more about CloudFormation in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/cloudformation).
 
-### New template option for the LocalStack Extensions CLI (Pro)
+### New template option for the LocalStack Extensions CLI (Starter, Teams & Enterprise)
 
 Support has been added for the `--template` option in the `localstack extensions dev new` command. This option allows users to specify a template to use from the selection available at [LocalStack Extensions Templates](https://github.com/localstack/localstack-extensions/tree/main/templates). Currently, the available templates include:
 
@@ -243,7 +243,7 @@ $ localstack extensions dev new --template=react
 
 The generated template will contain a simple Python distribution configuration, and some boilerplate extension code.
 
-### New enhancements in the EC2 Libvirt VM manager (Pro)
+### New enhancements in the EC2 Libvirt VM manager (Starter, Teams & Enterprise)
 
 The [EC2 Libvirt VM manager](https://docs.localstack.cloud/user-guide/aws/ec2/#libvirt-vm-manager) now supports the following enhancements:
 
