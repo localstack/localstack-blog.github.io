@@ -1,5 +1,5 @@
 ---
-title: LocalStack Release v3.7.0
+title: Announcing the LocalStack 3.7 release!
 description: LocalStack 3.7.0 is now available! This minor release introduces several new features, enhancements, and bug fixes, with a focus on improved parity with AWS, new DevX features, and enhanced local developer tooling.
 lead: LocalStack 3.7.0 is now available! This minor release introduces several new features, enhancements, and bug fixes, with a focus on improved parity with AWS, new DevX features, and enhanced local developer tooling.
 date: 2024-08-23T3:59:43+05:30
@@ -14,6 +14,8 @@ tags: ['news']
 LocalStack 3.7.0 is now available! This minor release introduces several new features, enhancements, and bug fixes. The highlights include a new Lambda Debug Mode, state merging for Cloud Pods, support for DMS Serverless, and a new Lambda Event Source Mapping implementation. 
 
 Additionally, the Chaos Engineering dashboard now uses the Chaos API, and LocalStack now supports fetching logs for Ephemeral Instances. The Extensions interface is now embedded in the Web Application, and the CloudFormation provider has received new enhancements. The EC2 Libvirt VM manager and SES provider have also been updated with new features.
+
+**[Get your free LocalStack account](https://app.localstack.cloud/sign-up)** to access the latest features and enhancements in LocalStack 3.7.0!
 
 ## How to upgrade?
 
@@ -128,7 +130,7 @@ Ephemeral Instances in LocalStack now support fetching logs from the LocalStack 
 
 {{< img-simple src="ephemeral-instances-logs.png" alt="Fetching logs for Ephemeral Instances" width="600">}}
 
-The logs are not automatically streamed, but you can manually refresh them by clicking the **Refresh** icon on the **Log output** window. To learn more about Ephemeral Instances, check out the [LocalStack documentation](https://docs.localstack.cloud/user-guide/cloud-sandbox/ephemeral-instance).
+To learn more about Ephemeral Instances, check out the [LocalStack documentation](https://docs.localstack.cloud/user-guide/cloud-sandbox/ephemeral-instance).
 
 ### Extensions interface is now embedded in the Web Application (Starter, Teams & Enterprise)
 
@@ -287,11 +289,3 @@ The SES provider now supports the following enhancements:
 ## Conclusion
 
 This minor release underpins our commitment to providing a robust and feature-rich local cloud environment for developers, with a strong focus on improving parity with AWS, introduce new DevX features, and bring new local developer tools to the LocalStack ecosystem. Upgrade to LocalStack 3.7.0 today to take advantage of these new features and enhancements!
-
-To learn more about LocalStack, check out the following:
-
-* [LocalStack Documentation](https://docs.localstack.cloud)
-* New to LocalStack? [Create an account](https://app.localstack.cloud/sign-up)!
-* Join our [Slack community](https://localstack.cloud/slack) to ask questions and share feedback.
-* Navigate to our [Developer Hub](https://docs.localstack.cloud/developer-hub/) and try out sample applications to get started.
-* Register for our [upcoming events](https://meetup.com/localstack-community) to learn more about LocalStack.
