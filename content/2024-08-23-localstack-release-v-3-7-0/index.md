@@ -42,14 +42,14 @@ Pin the LocalStack version in your `docker run` command or Docker Compose file t
 - [Support for fetching LocalStack Ephemeral Instances logs](#support-for-fetching-localstack-ephemeral-instances-logs-starter-teams--enterprise)
 - [Extensions interface is now embedded in the Web Application](#extensions-interface-is-now-embedded-in-the-web-application-starter-teams--enterprise)
 - [Support for LocalStack managed DevContainer Templates](#support-for-localstack-managed-devcontainer-templates)
-- [New Lambda Event Source Mapping implementation](#new-lambda-event-source-mapping-implementation-preview)
+- [New Lambda Event Source Mapping implementation](#new-lambda-event-source-mapping-implementation) (**Preview**)
 - [Support for SSE-C validation in S3](#support-for-sse-c-validation-in-s3)
 - [New `EKS_K8S_PROVIDER` environment variable](#new-eks_k8s_provider-environment-variable-starter-teams--enterprise)
 - [Tagging operations in the EventBridge Pipes provider](#tagging-operations-in-the-eventbridge-pipes-provider-starter-teams--enterprise)
 - [New enhancements in the CloudFormation provider](#new-enhancements-in-the-cloudformation-provider)
 - [New template option for the LocalStack Extensions CLI](#new-template-option-for-the-localstack-extensions-cli-starter-teams--enterprise)
 - [New enhancements in the EC2 Libvirt VM manager](#new-enhancements-in-the-ec2-libvirt-vm-manager-starter-teams--enterprise)
-- [New EC2 Kubernetes executor](#new-ec2-kubernetes-executor-enterprise-preview)
+- [New EC2 Kubernetes executor](#new-ec2-kubernetes-executor-enterprise) (**Preview**)
 - [New enhancements in the SES provider](#new-enhancements-in-the-ses-provider)
 - [Miscellaneous](#miscellaneous)
 
@@ -149,19 +149,21 @@ Both variations of the Templates automatically add the official LocalStack DevCo
 
 To learn more about LocalStack DevContainer Templates, check out the [LocalStack documentation](https://docs.localstack.cloud/user-guide/integrations/devcontainers).
 
-### New Lambda Event Source Mapping implementation (Preview)
+### New Lambda Event Source Mapping implementation
 
 LocalStack now supports a new implementation for [Lambda Event Source Mapping](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) (ESM) with improved reliability, performance, and AWS parity.
 You can use the `LAMBDA_EVENT_SOURCE_MAPPING=v2` configuration variable to use the new ESM implementation.
 The ESM v2 implementation is also compatible with the Java-based event pattern rule engine (`EVENT_RULE_ENGINE=java`).
-However, the new ESM implementation is still in preview and may not support all features.
+However, the new ESM implementation is still in **preview** and may not support all features.
 
 The improvements over ESM v1 include:
+
 - Improved reliability through internal retries and separation of concern such that single exceptions or timeouts don't affect other event source mappings.
 - Improved performance by enabling concurrent event source mappings rather than having a single thread handling everything.
 - Improved AWS parity, for example related to filtering and SQS polling.
 
 The limitations compared to ESM v1 include:
+
 - Lambda Failure Destinations do not yet support FIFO SQS queues and SNS topics.
 - Lambda Failure Destination Messages do not yet match the AWS structure, using a `context` similar to EventBridge Pipes instead of `requestContext` and `responseContext`.
 - Partial Batch Responses using `FunctionResponseTypes` are not yet fully supported.
@@ -250,7 +252,7 @@ The [EC2 Libvirt VM manager](https://docs.localstack.cloud/user-guide/aws/ec2/#l
 - You can use the `EC2_HYPERVISOR_URI` configuration variable to set the Libvirt connection URI, specifying the hypervisor host for the EC2 Libvirt VM manager. Currently, only QEMU drivers are supported.
 - You can set the `UserData` field of the [`RunInstances` API](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) to a shell script that will be executed at the time of VM startup in the EC2 Libvirt VM manager.
 
-### New EC2 Kubernetes executor (Enterprise) (Preview)
+### New EC2 Kubernetes executor (Enterprise)
 
 You can now run EC2 instances on Kubernetes. You can do so by setting the `EC2_VM_MANAGER` environment variable to `kubernetes` in the LocalStack container. Each EC2 instance in the Kubernetes VM manager is backed by a Pod.
 
@@ -264,7 +266,7 @@ The following operations are supported:
 | [**`StopInstances`**](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_StopInstances.html)      | Stops a running EC2 instance           |
 | [**`TerminateInstances`**](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html) | Stops and undefines a EC2 instance     |
 
-The current implementation is in preview and does not support volumes, custom AMIs, or networking features available in other [VM managers](https://docs.localstack.cloud/user-guide/aws/ec2/#vm-managers).
+The current implementation is in **preview** and does not support volumes, custom AMIs, or networking features available in other [VM managers](https://docs.localstack.cloud/user-guide/aws/ec2/#vm-managers).
 
 ### New enhancements in the SES provider
 
