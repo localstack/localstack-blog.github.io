@@ -36,7 +36,7 @@ Pin the LocalStack version in your `docker run` command or Docker Compose file t
 
 ## What’s new in LocalStack 3.7.0?
 
-- [New Lambda Debug Mode](#new-lambda-debug-mode)
+- [New Lambda Debug Mode](#new-lambda-debug-mode) (**Preview**)
 - [State merging for Cloud Pods](#state-merging-for-cloud-pods-teams--enterprise)
 - [Dry run for loading Cloud Pods](#dry-run-for-loading-cloud-pods-teams--enterprise)
 - [Support for DMS Serverless](#support-for-dms-serverless-enterprise)
@@ -57,7 +57,20 @@ Pin the LocalStack version in your `docker run` command or Docker Compose file t
 
 ### New Lambda Debug Mode
 
-WIP
+You can now access a specialized set of features for debugging Lambda functions through the new Lambda Debug Mode, currently available in **preview**. This execution mode for LocalStack can be activated by setting `LAMBDA_DEBUG_MODE=1`.
+
+The new Lambda Debug Mode introduces several enhancements aimed at improving the debugging experience for Lambda functions. These enhancements include automatic management of execution timeouts, integration with API Gateway, and the ability to assign specific ports to each Lambda function version for remote debugging. This setup allows for simultaneous debugging of multiple Lambda functions within the same runtime environment.
+
+To configure your debugging session, use a configuration file that LocalStack will recognize when you set `LAMBDA_DEBUG_MODE_CONFIG_PATH` to the file's path. This configuration is effective only when Lambda Debug Mode is active. To begin, specify the qualified ARN of the Lambda function versions you wish to debug and assign each a dedicated debug port. For example:
+
+```yaml
+functions:
+    arn:aws:lambda:eu-central-1:000000000000:function:function-name:1
+        debug-port: 19891
+    ...
+```
+
+Learn more about Lambda Debug Mode in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/lambda-tools/debugging/).
 
 ### State merging for Cloud Pods (Teams & Enterprise)
 
