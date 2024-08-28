@@ -20,6 +20,8 @@ tags: ['news']
 - [Improved parity with Snowflake](#improved-parity-with-snowflake)
 - [Support for Snowpipe](#support-for-snowpipe)
 - [Support for Iceberg tables](#support-for-iceberg-tables)
+- [Support for Hybrid tables](#support-for-hybrid-tables)
+- [Support for Dynamic Tables](#support-for-dynamic-tables)
 
 ### New Web User Interface
 
@@ -75,5 +77,26 @@ LocalStack for Snowflake now includes support for Iceberg tables, enabling you t
 
 For more detailed information on using Iceberg tables, refer to our [documentation](https://snowflake.localstack.cloud/user-guide/iceberg-tables/).
 
+### Support for Hybrid tables
+Snowflake Hybrid tables, also known as Unistore hybrid tables, facilitate fast, single-row operations by enforcing unique constraints on primary keys and incorporating indexes to expedite data retrieval. These tables are tailored to support both analytical and transactional workloads concurrently, forming the backbone of Snowflake's Unistore architecture.
+
+LocalStack for Snowflake now includes support for Hybrid tables, enabling the creation and management of these tables locally. The supported SQL statements for managing Hybrid tables include:
+
+-   [`CREATE HYBRID TABLE`](https://docs.snowflake.com/en/sql-reference/sql/create-hybrid-table.html)
+-   [`DROP HYBRID TABLE`](https://docs.snowflake.com/en/sql-reference/sql/drop-hybrid-table.html)
+-   [`SHOW HYBRID TABLES`](https://docs.snowflake.com/en/sql-reference/sql/show-hybrid-tables.html)
+
+For more detailed information on using Hybrid tables, refer to our [documentation](https://snowflake.localstack.cloud/user-guide/hybird-tables/).
+
+### Support for Dynamic Tables
+
+Snowflake Dynamic Tables allow a background process to continuously load new data from sources into the table, accommodating both delta and full load operations. These tables automatically update to reflect query results, eliminating the need for a separate target table and custom data transformation code. They are regularly updated through scheduled refreshes by an automated process.
+
+LocalStack for Snowflake now supports Dynamic tables, enabling you to create and manage them locally. The supported SQL statements for managing Dynamic tables include:
+
+* [`CREATE DYNAMIC TABLE`](https://docs.snowflake.com/en/sql-reference/sql/create-dynamic-table.html)
+* [`DROP DYNAMIC TABLE`](https://docs.snowflake.com/en/sql-reference/sql/drop-dynamic-table.html)
+
+For more detailed information on using Dynamic tables, refer to our [documentation](https://snowflake.localstack.cloud/user-guide/dynamic-tables/).
 
 ## Conclusion
