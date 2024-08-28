@@ -72,7 +72,7 @@ Creating all the resources in your ephemeral instance manually probably isn't th
 
 ## Create an Ephemeral Instance from a Cloud Pod
 
-The easiest and most efficient way to create an ephemeral instance is via a [Cloud Pod](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/). Cloud Pods are essentially a snapshot of the state of a running LocalStack instance that can be stored, versioned, shared, and restored. This means that, rather than creating a new empty ephemeral instance, you can create the ephemeral instance with the resources or data already deployed.
+The easiest and most efficient way to create an ephemeral instance is via a [Cloud Pod](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/). Cloud Pods are essentially a snapshot of the state of a running LocalStack instance that can be stored, versioned, shared, and restored. This means that, rather than creating an empty ephemeral instance, you can create the ephemeral instance with the resources or data ready to be used.
 
 Let's see how this works. I have an example application I've built using a combination of S3, CloudFront, Lambda, API Gateway and DynamoDB running locally via LocalStack. The message displayed at the bottom of the page is from data pre-loaded into DynamoDB.
 
@@ -84,7 +84,7 @@ Once the application is running locally, the next step is to save the state into
 localstack pod save brian-ephemeral-instance
 ```
 
-Back in the LocalStack web app, I have several options for loading this instance into an ephemeral instance. For example, I can go directly to the **Cloud Pods** item on the left-hand navigation, click into the detail page for my `brian-ephemeral-instance` pod and then click on the **Browse Version** button to create a new instance using the currently selected version of the Cloud Pod that will live for 30 minutes.
+Back in the LocalStack web app, I have several options for loading this Cloud Pod into an ephemeral instance. For example, I can go directly to the **Cloud Pods** item on the left-hand sidebar, access the detail page for my `brian-ephemeral-instance` pod by clicking on it and then press on the **Browse Version** button to create a new instance using the currently selected version of the Cloud Pod that will live for 30 minutes.
 
 {{< img-simple src=cloud-pods.png width=800 alt="Creating an ephemeral instance from a Cloud Pod in the LocalStack web app">}}
 
