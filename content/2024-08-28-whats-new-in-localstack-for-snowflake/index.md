@@ -13,6 +13,15 @@ tags: ['news']
 
 ## How to upgrade?
 
+To upgrade your LocalStack for Snowflake installation to the latest version, run the following commands:
+
+```bash
+$ docker pull localstack/snowflake:latest
+$ IMAGE_NAME=localstack/snowflake:latest localstack start
+```
+
+Note that installing the Snowflake emulator through the LocalStack Extension mechanism is now **deprecated** and may not be compatible with all versions of LocalStack. It is recommended to use the custom LocalStack Snowflake Docker image for the best experience.
+
 ## New features
 
 - [Support for new functions](#support-for-new-functions)
