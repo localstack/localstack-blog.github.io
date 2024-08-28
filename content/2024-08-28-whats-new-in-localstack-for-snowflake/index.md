@@ -17,6 +17,7 @@ tags: ['news']
 
 - [New Web User Interface](#new-web-user-interface) (**Preview**)
 - [Support for LocalStack Ephemeral Instances](#support-for-localstack-ephemeral-instances) (**Preview**)
+- [Improved parity with Snowflake](#improved-parity-with-snowflake)
 - [Support for Snowpipe](#support-for-snowpipe)
 - [Support for Iceberg tables](#support-for-iceberg-tables)
 
@@ -43,6 +44,15 @@ We have launched Ephemeral Instances, enabling you to run a LocalStack for Snowf
 After launching an ephemeral instance, you can switch the Snowflake host in your application to the ephemeral instance's hostname. This change enables you to interact with the Snowflake emulator running in the cloud as if it were on your local machine. Additionally, Ephemeral Instances allow you to generate a preview environment from GitHub Pull Request (PR) builds.
 
 The feature is in **preview**, and you can learn more about it in our [documentation](https://snowflake.localstack.cloud/user-guide/ephemeral-instances/).
+
+### Improved parity with Snowflake
+
+We have made several enhancements to LocalStack for Snowflake to improve compatibility with the Snowflake service. These improvements include:
+
+-   Metadata queries and schema lookups can now utilize fully qualified table names.
+-   Support for ID placeholders in JDBC prepared statements to incorporate query parameters.
+-   Functions returning VARIANT values, including those that encode dictionary and list values, are now supported.
+-   Enhanced parsing of parameters in `CREATE STAGE` statements now supports alternative formats such as `s3compat://...`.
 
 ### Support for Snowpipe
 
