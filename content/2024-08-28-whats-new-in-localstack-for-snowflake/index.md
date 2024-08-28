@@ -16,7 +16,8 @@ tags: ['news']
 ## New features
 
 - [New Web User Interface](#new-web-user-interface) (**Preview**)
-- [LocalStack Ephemeral Instances support](#localstack-ephemeral-instances-support) (**Preview**)
+- [Support for LocalStack Ephemeral Instances](#support-for-localstack-ephemeral-instances) (**Preview**)
+- [Support for Snowpipe](#support-for-snowpipe)
 
 ### New Web User Interface
 
@@ -32,7 +33,7 @@ You can access the Web User Interface by navigating to [https://snowflake.localh
 
 The Web User Interface is still in **preview**, and we are actively working on adding new features and improving the user experience. Learn more about the new Web User Interface in our [documentation](https://snowflake.localstack.cloud/user-guide/web-user-interface/).
 
-### LocalStack Ephemeral Instances support
+### Support for LocalStack Ephemeral Instances
 
 We have launched Ephemeral Instances, enabling you to run a LocalStack for Snowflake sandbox in the cloud rather than on your local machine. This ephemeral environment is a short-lived, encapsulated deployment of the Snowflake emulator in the cloud. With these sandboxes, you can run tests, preview features in your Snowflake applications, and collaborate asynchronously within and across your team!
 
@@ -41,5 +42,18 @@ We have launched Ephemeral Instances, enabling you to run a LocalStack for Snowf
 After launching an ephemeral instance, you can switch the Snowflake host in your application to the ephemeral instance's hostname. This change enables you to interact with the Snowflake emulator running in the cloud as if it were on your local machine. Additionally, Ephemeral Instances allow you to generate a preview environment from GitHub Pull Request (PR) builds.
 
 The feature is in **preview**, and you can learn more about it in our [documentation](https://snowflake.localstack.cloud/user-guide/ephemeral-instances/).
+
+### Support for Snowpipe
+
+Snowpipe enables data loading into Snowflake tables from files in an external stage, continuously processing files as they become available. It uses a queue to manage this near real-time data loading.
+
+LocalStack for Snowflake now includes support for Snowpipe, allowing you to create and manage Snowpipe objects within the emulator. This functionality lets you load data into Snowflake tables from files stored either in a local directory or an S3 bucket, both locally and remotely. The supported SQL statements for managing Snowpipe include:
+
+-   [`CREATE PIPE`](https://docs.snowflake.com/en/sql-reference/sql/create-pipe.html)
+-   [`DESCRIBE PIPE`](https://docs.snowflake.com/en/sql-reference/sql/describe-pipe.html)
+-   [`DROP PIPE`](https://docs.snowflake.com/en/sql-reference/sql/drop-pipe.html)
+-   [`SHOW PIPES`](https://docs.snowflake.com/en/sql-reference/sql/show-pipes.html)
+
+Learn more about Snowpipe support in our [documentation](https://snowflake.localstack.cloud/user-guide/snowpipe/).
 
 ## Conclusion
