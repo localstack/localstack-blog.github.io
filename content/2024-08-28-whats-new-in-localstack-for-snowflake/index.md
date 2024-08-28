@@ -15,4 +15,31 @@ tags: ['news']
 
 ## New features
 
+- [New Web User Interface](#new-web-user-interface) (**Preview**)
+- [LocalStack Ephemeral Instances support](#localstack-ephemeral-instances-support) (**Preview**)
+
+### New Web User Interface
+
+We have released a new Web User Interface for LocalStack for Snowflake. This interface is accessible via a web browser and provides a user-friendly experience for managing your local Snowflake resources. The interface includes a dashboard that allows you to:
+
+-   Run Snowflake SQL queries and view the results using a Query Editor.
+-   View detailed request/response traces of API calls made to Snowflake.
+-   Forward queries from the Snowflake emulator to a real Snowflake instance using a proxy.
+
+You can access the Web User Interface by navigating to [https://snowflake.localhost.localstack.cloud](https://snowflake.localhost.localstack.cloud) in your web browser.
+
+// picture of the new web UI
+
+The Web User Interface is still in **preview**, and we are actively working on adding new features and improving the user experience. Learn more about the new Web User Interface in our [documentation](https://snowflake.localstack.cloud/user-guide/web-user-interface/).
+
+### LocalStack Ephemeral Instances support
+
+We have launched Ephemeral Instances, enabling you to run a LocalStack for Snowflake sandbox in the cloud rather than on your local machine. This ephemeral environment is a short-lived, encapsulated deployment of the Snowflake emulator in the cloud. With these sandboxes, you can run tests, preview features in your Snowflake applications, and collaborate asynchronously within and across your team!
+
+// picture
+
+After launching an ephemeral instance, you can switch the Snowflake host in your application to the ephemeral instance's hostname. This change enables you to interact with the Snowflake emulator running in the cloud as if it were on your local machine. Additionally, Ephemeral Instances allow you to generate a preview environment from GitHub Pull Request (PR) builds.
+
+The feature is in **preview**, and you can learn more about it in our [documentation](https://snowflake.localstack.cloud/user-guide/ephemeral-instances/).
+
 ## Conclusion
