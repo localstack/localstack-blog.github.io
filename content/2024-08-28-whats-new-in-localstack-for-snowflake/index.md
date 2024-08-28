@@ -15,6 +15,7 @@ tags: ['news']
 
 ## New features
 
+- [Support for new functions](#support-for-new-functions)
 - [New Web User Interface](#new-web-user-interface) (**Preview**)
 - [Support for LocalStack Ephemeral Instances](#support-for-localstack-ephemeral-instances) (**Preview**)
 - [Improved parity with Snowflake](#improved-parity-with-snowflake)
@@ -22,6 +23,42 @@ tags: ['news']
 - [Support for Iceberg tables](#support-for-iceberg-tables)
 - [Support for Hybrid tables](#support-for-hybrid-tables)
 - [Support for Dynamic Tables](#support-for-dynamic-tables)
+
+### Support for new functions
+
+We have added support for several new functions in LocalStack for Snowflake. The new functions include:
+
+| Function | Notes |
+|----------|-------|
+| [DATEDIFF](https://docs.snowflake.com/en/sql-reference/functions/datediff.html) | Returns the difference between two dates or timestamps. |
+| [TIMEDIFF](https://docs.snowflake.com/en/sql-reference/functions/timediff.html) | Returns the difference between two time values. |
+| [LEAD](https://docs.snowflake.com/en/sql-reference/functions/lead.html) | Accesses the value of a subsequent row in a result set without the use of a self-join. |
+| [LAG](https://docs.snowflake.com/en/sql-reference/functions/lag.html) | Accesses the value of a previous row in a result set without the use of a self-join. |
+| [INITCAP](https://docs.snowflake.com/en/sql-reference/functions/initcap.html) | Converts the first letter of each word in a string to uppercase and the rest to lowercase. |
+| [LAST_QUERY_ID](https://docs.snowflake.com/en/sql-reference/functions/last_query_id.html) | Returns the query ID of the last executed query in the session. |
+| [DESCRIBE FUNCTION](https://docs.snowflake.com/en/sql-reference/sql/desc-function) | Describes a user-defined function. |
+| [SPLIT](https://docs.snowflake.com/en/sql-reference/functions/split.html) | Splits a string into an array based on a specified delimiter. |
+| [DATE_FROM_PARTS](https://docs.snowflake.com/en/sql-reference/functions/date_from_parts.html) | Constructs a date from individual year, month, and day parts. |
+| [FLOOR](https://docs.snowflake.com/en/sql-reference/functions/floor.html) | Rounds down a numeric value to the nearest integer. |
+| [MIN](https://docs.snowflake.com/en/sql-reference/functions/min.html) | Returns the smallest value in a set of values. |
+| [MIN_BY](https://docs.snowflake.com/en/sql-reference/functions/min_by.html) | Returns the minimum value of a specified column, grouped by another column. |
+| [MAX](https://docs.snowflake.com/en/sql-reference/functions/max.html) | Returns the largest value in a set of values. |
+| [MAX_BY](https://docs.snowflake.com/en/sql-reference/functions/max_by.html) | Returns the maximum value of a specified column, grouped by another column. |
+| [COALESCE](https://docs.snowflake.com/en/sql-reference/functions/coalesce.html) | Returns the first non-null value in a list of arguments. |
+| [DIV0](https://docs.snowflake.com/en/sql-reference/functions/div0.html) | Returns zero if the divisor is zero; otherwise, it performs division. |
+| [LEAST](https://docs.snowflake.com/en/sql-reference/functions/least.html) | Returns the smallest value from a list of expressions. |
+| [GREATEST](https://docs.snowflake.com/en/sql-reference/functions/greatest.html) | Returns the largest value from a list of expressions. |
+| [NVL2](https://docs.snowflake.com/en/sql-reference/functions/nvl2.html) | Returns one value if a specified expression is not null, otherwise returns another value. |
+| [IS_NULL_VALUE](https://docs.snowflake.com/en/sql-reference/functions/is_null_value.html) | Checks if a value is null and returns a boolean result. |
+| [PARSE_IP](https://docs.snowflake.com/en/sql-reference/functions/parse_ip.html) | Parses an IP address and returns its components. |
+| [OBJECT_KEYS](https://docs.snowflake.com/en/sql-reference/functions/object_keys.html) | Returns the keys of an object as an array. |
+| [OBJECT_CONSTRUCT_KEEP_NULL](https://docs.snowflake.com/en/sql-reference/functions/object_construct_keep_null.html) | Constructs an object and keeps null values. |
+| [DATE_TRUNC](https://docs.snowflake.com/en/sql-reference/functions/date_trunc.html) | Truncates a date or timestamp to a specified precision. |
+| [TIMESTAMP_LTZ](https://docs.snowflake.com/en/sql-reference/data-types-datetime#timestamp-ltz-timestamp-ntz-timestamp-tz) | Returns the current timestamp in local time zone. |
+| [AS_DOUBLE](https://docs.snowflake.com/en/sql-reference/functions/as_double-real) | Converts a value to double precision. |
+| [AS_INTEGER](https://docs.snowflake.com/en/sql-reference/functions/as_integer.html) | Converts a value to an integer. |
+| [AS_NUMBER](https://docs.snowflake.com/en/sql-reference/functions/as_decimal-number) | Converts a value to a numeric type. |
+| [AS_CHAR](https://docs.snowflake.com/en/sql-reference/functions/as_char-varchar) | Converts a value to a character string. |
 
 ### New Web User Interface
 
