@@ -18,6 +18,7 @@ tags: ['news']
 - [New Web User Interface](#new-web-user-interface) (**Preview**)
 - [Support for LocalStack Ephemeral Instances](#support-for-localstack-ephemeral-instances) (**Preview**)
 - [Support for Snowpipe](#support-for-snowpipe)
+- [Support for Iceberg tables](#support-for-iceberg-tables)
 
 ### New Web User Interface
 
@@ -55,5 +56,14 @@ LocalStack for Snowflake now includes support for Snowpipe, allowing you to crea
 -   [`SHOW PIPES`](https://docs.snowflake.com/en/sql-reference/sql/show-pipes.html)
 
 Learn more about Snowpipe support in our [documentation](https://snowflake.localstack.cloud/user-guide/snowpipe/).
+
+### Support for Iceberg tables
+
+Iceberg tables utilize the Apache Iceberg open table format specification, providing an abstraction layer over data files stored in open formats. In Snowflake, Iceberg tables enable schema evolution, partitioning, and snapshot isolation for efficient table data management.
+
+LocalStack for Snowflake now includes support for Iceberg tables, enabling you to create and manage these tables locally. You can use Iceberg tables to query data in Snowflake using the Iceberg format, with data stored in external volumes or local/remote S3 buckets.
+
+For more detailed information on using Iceberg tables, refer to our [documentation](https://snowflake.localstack.cloud/user-guide/iceberg-tables/).
+
 
 ## Conclusion
