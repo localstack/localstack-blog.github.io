@@ -43,7 +43,7 @@ Manually creating a new ephemeral instance can be done via the LocalStack web ap
 
 {{< img-simple src=web-app-setup.png width=800 alt="setting up an ephemeral instance manually via the LocalStack web app">}}
 
-Hit the **Launch** button and give it a couple minutes to work its magic.
+Hit the **Launch** button and give it just a little bit of time to work its magic.
 
 ### Adding resources to a Running Instance
 
@@ -51,7 +51,7 @@ The easiest way to add and manage resources running on your ephemeral instance i
 
 ![the running instance in the navigation](running-instance.png)
 
-If you choose the resource browser, you can add any of the resources supported on your account to the running instance. For example, click on S3 and then, on the subsequent page, choose **Create**. You'll need to complete the bucket details via the form. At a minimum, choose a canned Access Control List (ACL) and a name. Once you submit the form, you should see your bucket created on the ephemeral instance.
+If you choose the resource browser, you can add any of the resources supported on your account to the running instance. For example, click on S3 and then, on the subsequent page, choose **Create**. You'll need to complete the bucket details via the form. At a minimum, give the bucket a name. Once you submit the form, you should see your bucket created on the ephemeral instance.
 
 To manually upload resources into the bucket, you'll need the instance URL located at the top of the page.
 
