@@ -5,10 +5,13 @@ lead: LocalStack 3.7 is now available! This minor release introduces several new
 date: 2024-08-29
 lastmod: 2024-08-29
 images: ['localstack-3.7-banner-image.png']
-leadimage: ['localstack-3.7-banner-image.png']
+leadimage: 'localstack-3.7-banner-image.png'
 contributors: ['Harsh Mishra']
 tags: ['news']
+show_cta_1: true
 ---
+
+{{< img-simple src="localstack-3.7-banner-image.png" >}}
 
 ## Introduction
 
@@ -48,6 +51,7 @@ Pin the LocalStack version in your `docker run` command or Docker Compose file t
 - [New Lambda Event Source Mapping implementation](#new-lambda-event-source-mapping-implementation) (**Preview**)
 - [Support for SSE-C validation in S3](#support-for-sse-c-validation-in-s3)
 - [New `EKS_K8S_PROVIDER` environment variable](#new-eks_k8s_provider-environment-variable-starter-teams--enterprise)
+- [New operations in the Resource Access Manager (RAM) provider](#new-operations-in-the-resource-access-manager-ram-provider-starter-teams--enterprise)
 - [Tagging operations in the EventBridge Pipes provider](#tagging-operations-in-the-eventbridge-pipes-provider-starter-teams--enterprise)
 - [New enhancements in the CloudFormation provider](#new-enhancements-in-the-cloudformation-provider)
 - [New template option for the LocalStack Extensions CLI](#new-template-option-for-the-localstack-extensions-cli-starter-teams--enterprise)
@@ -58,9 +62,9 @@ Pin the LocalStack version in your `docker run` command or Docker Compose file t
 
 ### New Lambda Debug Mode
 
-You can now access a specialized set of features for debugging Lambda functions through the new Lambda Debug Mode, currently available in **preview**. This execution mode for LocalStack can be activated by setting `LAMBDA_DEBUG_MODE=1`.
+You can now access a specialized set of features for debugging Lambda functions through the new Lambda Debug Mode, which is currently available in **preview**. This execution mode for LocalStack can be activated by setting `LAMBDA_DEBUG_MODE=1`.
 
-The new Lambda Debug Mode introduces several enhancements aimed at improving the debugging experience for Lambda functions. These enhancements include automatic management of execution timeouts, integration with API Gateway, and the ability to assign specific ports to each Lambda function version for remote debugging. This setup allows for simultaneous debugging of multiple Lambda functions within the same runtime environment.
+The new Lambda Debug Mode introduces several enhancements aimed at improving the debugging experience for Lambda functions. These enhancements include automatic management of execution timeouts, integration with API Gateway, and the ability to assign specific ports to each Lambda function version for remote debugging. This setup allows for simultaneous debugging of Lambda functions within the same runtime environment.
 
 To configure your debugging session, use a configuration file that LocalStack will recognize when you set `LAMBDA_DEBUG_MODE_CONFIG_PATH` to the file's path. This configuration is effective only when Lambda Debug Mode is active. To begin, specify the qualified ARN of the Lambda function versions you wish to debug and assign each a dedicated debug port. For example:
 
@@ -79,7 +83,7 @@ LocalStack Cloud Pods now offer different strategies for state merging into your
 
 - `overwrite`: This strategy deletes the existing state and replaces it with the new state from the Cloud Pod, effectively resetting the LocalStack state.
 - `account-region-merge` (**default**): This strategy merges services by account and region pairs, combining states from both the existing and the Cloud Pod for the same account and region.
-- `service-merge`: This strategy merges services at the account-region level, assuming no resource overlap exists. It gives priority to the resources from the loaded state during the merge.
+- `service-merge`: This strategy merges services at the account-region level, assuming no resource overlap exists. It prioritizes the resources from the loaded state during the merge.
 
 To activate these strategies, use `--strategy <strategy>` when loading the Cloud Pod, where `<strategy>` is one of the strategies mentioned above. For example, to use the `service-merge` strategy, run:
 
@@ -119,7 +123,7 @@ This load operation will modify the runtime state as follows:
 
 LocalStack now supports AWS Database Migration Service (DMS) Serverless. DMS serverless can be used for the sources and targets that LocalStack already supports, and that are also supported by AWS. To simulate the different states that a replication config experiences during provisioning, you can set the `DMS_SERVERLESS_STATUS_CHANGE_WAITING_TIME` environment variable. This setting delays each state change for the configured number of seconds until the replication is actively running. Refer to the official documentation for details on the different states.
 
-Note that on AWS, replication table statistics are automatically deleted after the replication finishes and the configuration is deprovisioned. For parity, the same applies in LocalStack. To delay this deprovisioning process, you can set the `DMS_SERVERLESS_DEPROVISIONING_DELAY` environment variable, which defaults to 60 seconds.
+Note that on AWS, replication table statistics are automatically deleted after the replication finishes and the configuration is deprovisioned. For parity, the same applies in LocalStack. To delay this de-provisioning process, you can set the `DMS_SERVERLESS_DEPROVISIONING_DELAY` environment variable, which defaults to 60 seconds.
 
 Learn more about DMS in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/dms).
 
@@ -176,7 +180,7 @@ The improvements over ESM v1 include:
 
 - Improved reliability through internal retries and separation of concern such that single exceptions or timeouts don't affect other event source mappings.
 - Improved performance by enabling concurrent event source mappings rather than having a single thread handling everything.
-- Improved AWS parity, for example related to filtering and SQS polling.
+- Improved AWS parity, for example, related to filtering and SQS polling.
 
 The limitations compared to ESM v1 include:
 
@@ -185,7 +189,7 @@ The limitations compared to ESM v1 include:
 - Partial Batch Responses using `FunctionResponseTypes` are not yet fully supported.
 - Managed Streaming for Apache Kafka (MSK) event source is not yet supported.
 - ESM Lifecycle State Updates only provide basic support for state updates, such as no failure states, and `LastProcessingResult` is not consistently updated.
-- Persistence is not yet supported
+- Persistence is not yet supported.
 
 The limitations compared to AWS include:
 - Lambda Success Destinations are not supported.
@@ -272,7 +276,7 @@ To create a new extension using the `react` template, run:
 $ localstack extensions dev new --template=react
 ```
 
-The generated template will contain a simple Python distribution configuration, and some boilerplate extension code.
+The generated template will contain a simple Python distribution configuration and some boilerplate extension code.
 
 ### New enhancements in the EC2 Libvirt VM manager (Starter, Teams & Enterprise)
 
@@ -313,11 +317,11 @@ The SES provider now supports the following enhancements:
 - Support for custom URL aliases for Lambda Function URLs is now available in LocalStack. This feature allows users to assign custom IDs to either the `$LATEST` version of a function or to an existing version alias.
 - LocalStack now supports prebuilding Lambda images before execution with the `LAMBDA_PREBUILD_IMAGES` configuration variable. This approach increases the cold start time but reduces the duration until the Lambda function becomes `ACTIVE`. (**Preview**)
 - LocalStack now supports idempotent [`StartExecution` operations](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) against already running `STANDARD` Step Functions state machines with identical input.
-- LocalStack's S3 provider now supports conditional writes. You can use the `PutObject` or `CompleteMultipartUpload` API requests to check for an object's existence before creating it to prevent accidental overwrites in both general purpose and directory buckets. 
+- LocalStack's S3 provider now supports conditional writes. You can use the `PutObject` or `CompleteMultipartUpload` API requests to check for an object's existence before creating it to prevent accidental overwrites in both general-purpose and directory buckets. 
 - LocalStack now supports setting an SQS queue’s RedrivePolicy to an empty string, which will completely remove it from the queue’s Attributes map.
 - LocalStack now includes more robust checks for the Lambda provider’s `function_name` and `qualifier` validations, enhancing AWS parity and coverage of naming edge cases.
 - CloudFormation provider now emits `*_IN_PROGRESS` events, improving the visuals when using CDK with LocalStack.
 
 ## Conclusion
 
-This minor release underpins our commitment to providing a robust and feature-rich local cloud environment for developers, with a strong focus on improving parity with AWS, introduce new DevX features, and bring new local developer tools to the LocalStack ecosystem. Upgrade to LocalStack 3.7 today to take advantage of these new features and enhancements!
+This minor release underpins our commitment to providing a robust and feature-rich local cloud environment for developers, with a strong focus on improving parity with AWS, introducing new DevX features, and bringing new local developer tools to the LocalStack ecosystem. Upgrade to LocalStack 3.7 today to take advantage of these new features and enhancements!
