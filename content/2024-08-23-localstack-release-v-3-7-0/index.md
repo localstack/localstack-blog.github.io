@@ -234,6 +234,19 @@ The following tagging operations for EventBridge Pipes have now been implemented
 
 Learn more about EventBridge Pipes in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/pipes).
 
+### New operations in the Resource Access Manager (RAM) provider (Starter, Teams & Enterprise)
+
+The following operations have been implemented in the RAM provider:
+
+| API                                          | Notes                     |
+|----------------------------------------------|---------------------------|
+| [`AssociateResourceShare`](https://docs.aws.amazon.com/ram/latest/APIReference/API_AssociateResourceShare.html) | Links resources to a resource share in AWS RAM. |
+| [`DisassociateResourceShare`](https://docs.aws.amazon.com/ram/latest/APIReference/API_DisassociateResourceShare.html) | Removes resource associations from a resource share. |
+| [`TagResource`](https://docs.aws.amazon.com/ram/latest/APIReference/API_TagResource.html) | Adds tags to a specified resource. |
+| [`UntagResource`](https://docs.aws.amazon.com/ram/latest/APIReference/API_UntagResource.html) | Removes tags from a specified resource. |
+
+Learn more about RAM in the [LocalStack documentation](https://docs.localstack.cloud/user-guide/aws/ram).
+
 ### New enhancements in the CloudFormation provider
 
 LocalStack's CloudFormation provider now supports the following enhancements:
@@ -295,9 +308,14 @@ The SES provider now supports the following enhancements:
 ### Miscellaneous
 
 - Users should be able to use LocalStack in any region, encompassing standard AWS regions as well as specialized regions such as those in China, GovCloud, and ISO-partitions. (**Enterprise**)
+- Cloud Pods now have folder support for S3 remote storage. Users would need to set their custom remote, and then specify the destination bucket with folders. (**Teams & Enterprise**)
 - Support for custom URL aliases for Lambda Function URLs is now available in LocalStack. This feature allows users to assign custom IDs to either the `$LATEST` version of a function or to an existing version alias.
 - LocalStack now supports prebuilding Lambda images before execution with the `LAMBDA_PREBUILD_IMAGES` configuration variable. This approach increases the cold start time but reduces the duration until the Lambda function becomes `ACTIVE`. (**Preview**)
 - LocalStack now supports idempotent [`StartExecution` operations](https://docs.aws.amazon.com/step-functions/latest/apireference/API_StartExecution.html) against already running `STANDARD` Step Functions state machines with identical input.
+- LocalStack's S3 provider now supports conditional writes. You can use the `PutObject` or `CompleteMultipartUpload` API requests to check for an object's existence before creating it to prevent accidental overwrites in both general purpose and directory buckets. 
+- LocalStack now supports setting an SQS queue’s RedrivePolicy to an empty string, which will completely remove it from the queue’s Attributes map.
+- LocalStack now includes more robust checks for the Lambda provider’s `function_name` and `qualifier` validations, enhancing AWS parity and coverage of naming edge cases.
+- CloudFormation provider now emits `*_IN_PROGRESS` events, improving the visuals when using CDK with LocalStack.
 
 ## Conclusion
 
