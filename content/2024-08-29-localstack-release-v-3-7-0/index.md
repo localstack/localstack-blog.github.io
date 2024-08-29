@@ -1,25 +1,26 @@
 ---
 title: Announcing the LocalStack 3.7 release!
-description: LocalStack 3.7.0 is now available! This minor release introduces several new features, enhancements, and bug fixes, with a focus on improved parity with AWS, new DevX features, and enhanced local developer tooling.
-lead: LocalStack 3.7.0 is now available! This minor release introduces several new features, enhancements, and bug fixes, with a focus on improved parity with AWS, new DevX features, and enhanced local developer tooling.
-date: 2024-08-23T3:59:43+05:30
-lastmod: 2024-08-23T3:59:43+05:30
-images: []
+description: LocalStack 3.7 is now available! This minor release introduces several new features, enhancements, and bug fixes, with a focus on improved parity with AWS, new DevX features, and enhanced local developer tooling.
+lead: LocalStack 3.7 is now available! This minor release introduces several new features, enhancements, and bug fixes, with a focus on improved parity with AWS, new DevX features, and enhanced local developer tooling.
+date: 2024-08-29
+lastmod: 2024-08-29
+images: ['localstack-3.7-banner-image.png']
+leadimage: ['localstack-3.7-banner-image.png']
 contributors: ['Harsh Mishra']
 tags: ['news']
 ---
 
 ## Introduction
 
-LocalStack 3.7.0 is now available! This minor release introduces several new features, enhancements, and bug fixes. The highlights include a new Lambda Debug Mode, state merging for Cloud Pods, support for DMS Serverless, and a new Lambda Event Source Mapping implementation. 
+LocalStack 3.7 is now available! This minor release introduces several new features, enhancements, and bug fixes. The highlights include a new Lambda Debug Mode, state merging for Cloud Pods, support for DMS Serverless, and a new Lambda Event Source Mapping implementation. 
 
 Additionally, the Chaos Engineering dashboard now uses the Chaos API, and LocalStack now supports fetching logs for Ephemeral Instances. The Extensions interface is now embedded in the Web Application, and the CloudFormation provider has received new enhancements. The EC2 Libvirt VM manager and SES provider have also been updated with new features.
 
-**[Get your free LocalStack account](https://app.localstack.cloud/sign-up)** to access the latest features and enhancements in LocalStack 3.7.0!
+**[Get your free LocalStack account](https://app.localstack.cloud/sign-up)** to access the latest features and enhancements in LocalStack 3.7!
 
 ## How to upgrade?
 
-To upgrade to LocalStack 3.7.0 using the LocalStack CLI, run the following command to update both the LocalStack Docker image and CLI to the latest version:
+To upgrade to LocalStack 3.7 using the LocalStack CLI, run the following command to update both the LocalStack Docker image and CLI to the latest version:
 
 ```bash
 $ localstack update all
@@ -34,7 +35,7 @@ $ docker pull localstack/localstack-pro:3.7.0 # Pro Edition
 
 Pin the LocalStack version in your `docker run` command or Docker Compose file to `3.7.0`.
 
-## What’s new in LocalStack 3.7.0?
+## What’s new in LocalStack 3.7?
 
 - [New Lambda Debug Mode](#new-lambda-debug-mode) (**Preview**)
 - [State merging for Cloud Pods](#state-merging-for-cloud-pods-teams--enterprise)
@@ -319,4 +320,4 @@ The SES provider now supports the following enhancements:
 
 ## Conclusion
 
-This minor release underpins our commitment to providing a robust and feature-rich local cloud environment for developers, with a strong focus on improving parity with AWS, introduce new DevX features, and bring new local developer tools to the LocalStack ecosystem. Upgrade to LocalStack 3.7.0 today to take advantage of these new features and enhancements!
+This minor release underpins our commitment to providing a robust and feature-rich local cloud environment for developers, with a strong focus on improving parity with AWS, introduce new DevX features, and bring new local developer tools to the LocalStack ecosystem. Upgrade to LocalStack 3.7 today to take advantage of these new features and enhancements!
