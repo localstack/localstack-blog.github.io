@@ -17,7 +17,7 @@ It's been said that there is a fine line between genius and insanity. Anyone who
 
 This feat of engineering is apparently not enough for our team however. "What if we took the local emulator for cloud services and then put it back in the cloud?" they wondered.
 
-![I'm glad we're right back where we started](back-where-we-started.gif)
+{{< img-simple src=back-where-we-started.gif width=400 alt="I'm glad we're right back where we started">}}
 
 Well, we released a preview of a new feature called [Ephemeral Instances](https://docs.localstack.cloud/user-guide/cloud-sandbox/ephemeral-instance/) that does just that. Stick with me though, because this can be incredibly useful for things like:
 
