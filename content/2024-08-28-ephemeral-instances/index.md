@@ -49,13 +49,14 @@ Hit the **Launch** button and give it just a little bit of time to work its magi
 
 The easiest way to add and manage resources running on your ephemeral instance is via the web app. Once the instance is finished booting up, you should see it listed under your LocalStack Instances on the left hand sidebar and also listed on the ephemeral instances page you've started it from.
 
-![the running instance in the navigation](running-instance.png)
+{{< img-simple src=running-instance.png width=230 alt="the running instance in the navigation">}}
 
 If you choose the resource browser, you can add any of the resources supported on your account to the running instance. For example, click on S3 and then, on the subsequent page, choose **Create**. You'll need to complete the bucket details via the form. At a minimum, give the bucket a name. Once you submit the form, you should see your bucket created on the ephemeral instance.
 
 To manually upload resources into the bucket, you'll need the instance URL located at the top of the page.
 
-![The ephemeral instance resource URL shown in the left hand navigation on LocalStack's web app](resource-url.png)
+{{< img-simple src=resource-url.png width=550 alt="The ephemeral instance resource URL shown in the left hand navigation on LocalStack's web app">}}
+
 
 We'll use the [AWS CLI](https://aws.amazon.com/cli/) to move objects into this S3 bucket with the following command (replacing the appropriate values with your ephemeral instance URL, file path and bucket name):
 
