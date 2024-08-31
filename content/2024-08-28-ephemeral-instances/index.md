@@ -17,7 +17,7 @@ It's been said that there is a fine line between genius and insanity. Anyone who
 
 This feat of engineering is apparently not enough for our team however. "What if we took the local emulator for cloud services and then put it back in the cloud?" they wondered.
 
-![I'm glad we're right back where we started](back-where-we-started.gif)
+{{< img-simple src=back-where-we-started.gif width=400 alt="I'm glad we're right back where we started">}}
 
 Well, we released a preview of a new feature called [Ephemeral Instances](https://docs.localstack.cloud/user-guide/cloud-sandbox/ephemeral-instance/) that does just that. Stick with me though, because this can be incredibly useful for things like:
 
@@ -49,13 +49,14 @@ Hit the **Launch** button and give it just a little bit of time to work its magi
 
 The easiest way to add and manage resources running on your ephemeral instance is via the web app. Once the instance is finished booting up, you should see it listed under your LocalStack Instances on the left hand sidebar and also listed on the ephemeral instances page you've started it from.
 
-![the running instance in the navigation](running-instance.png)
+{{< img-simple src=running-instance.png width=230 alt="the running instance in the navigation">}}
 
 If you choose the resource browser, you can add any of the resources supported on your account to the running instance. For example, click on S3 and then, on the subsequent page, choose **Create**. You'll need to complete the bucket details via the form. At a minimum, give the bucket a name. Once you submit the form, you should see your bucket created on the ephemeral instance.
 
 To manually upload resources into the bucket, you'll need the instance URL located at the top of the page.
 
-![The ephemeral instance resource URL shown in the left hand navigation on LocalStack's web app](resource-url.png)
+{{< img-simple src=resource-url.png width=550 alt="The ephemeral instance resource URL shown in the left hand navigation on LocalStack's web app">}}
+
 
 We'll use the [AWS CLI](https://aws.amazon.com/cli/) to move objects into this S3 bucket with the following command (replacing the appropriate values with your ephemeral instance URL, file path and bucket name):
 
@@ -76,7 +77,8 @@ The easiest and most efficient way to create an ephemeral instance is via a [Clo
 
 Let's see how this works. I have an example application I've built using a combination of S3, CloudFront, Lambda, API Gateway and DynamoDB running locally via LocalStack. The message displayed at the bottom of the page is from data pre-loaded into DynamoDB.
 
-![The sample app running on LocalStack in the cloud via an ephemeral instance](sample-app.png)
+
+{{< img-simple src=sample-app.png width=800 alt="The sample app running on LocalStack in the cloud via an ephemeral instance">}}
 
 Once the application is running locally, the next step is to save the state into a Cloud Pod. In the command below, I am saving this to a new Cloud Pod that I am naming `brian-ephemeral-instance`.
 
