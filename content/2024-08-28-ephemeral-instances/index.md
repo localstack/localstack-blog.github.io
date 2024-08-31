@@ -76,7 +76,8 @@ The easiest and most efficient way to create an ephemeral instance is via a [Clo
 
 Let's see how this works. I have an example application I've built using a combination of S3, CloudFront, Lambda, API Gateway and DynamoDB running locally via LocalStack. The message displayed at the bottom of the page is from data pre-loaded into DynamoDB.
 
-![The sample app running on LocalStack in the cloud via an ephemeral instance](sample-app.png)
+
+{{< img-simple src=sample-app.png width=800 alt="The sample app running on LocalStack in the cloud via an ephemeral instance">}}
 
 Once the application is running locally, the next step is to save the state into a Cloud Pod. In the command below, I am saving this to a new Cloud Pod that I am naming `brian-ephemeral-instance`.
 
