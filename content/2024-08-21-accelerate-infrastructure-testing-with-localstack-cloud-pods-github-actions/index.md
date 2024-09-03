@@ -1,7 +1,7 @@
 ---
 title: Accelerate infrastructure testing with LocalStack Cloud Pods & GitHub Actions
-description: Accelerate infrastructure testing with LocalStack Cloud Pods & GitHub Actions
-lead: Accelerate infrastructure testing with LocalStack Cloud Pods & GitHub Actions
+description: Cloud pods are persistent state snapshots of your LocalStack container. This blog guide you to use LocalStack Cloud Pods to save and load infrastructure state, enabling faster, consistent testing in CI workflows. It demonstrates the process with an AWS CDK application showing how to improve infrastructure testing on GitHub Actions to streamline cloud development.
+lead: Cloud pods are persistent state snapshots of your LocalStack container. This blog guide you to use LocalStack Cloud Pods to save and load infrastructure state, enabling faster, consistent testing in CI workflows. It demonstrates the process with an AWS CDK application showing how to improve infrastructure testing on GitHub Actions to streamline cloud development.
 date: 2024-08-21T3:07:04+05:30
 lastmod: 2024-08-21T3:07:04+05:30
 images: []
@@ -11,15 +11,15 @@ tags: ['tutorial']
 
 ## Introduction
 
-LocalStack is a cloud service emulator, that allows you to develop and test your cloud applications locally. It comes as a Docker image, meaning it's ephemeral, and any local cloud resources (like S3 buckets or Lambda functions) are destroyed when you stop the LocalStack container. However, there are cases where you want to keep resources, like databases or objects, for testing, debugging, or experimenting.
+LocalStack is a cloud service emulator, that allows you to develop and test your cloud applications locally. LocalStack runs as a Docker container, and it’s ephemeral local resources like S3 buckets or Lambda functions are destroyed when you stop the container. However, you would like to persist & save certain resources for testing, debugging, or experimenting. That’s where LocalStack's Cloud Pods come in.
 
-Cloud Pods are snapshots of your LocalStack's persistent state. They let you save the current LocalStack state, stored on the LocalStack Web Application. With Cloud Pods, you can:
+Cloud Pods are snapshots of your LocalStack’s state that are stored on the LocalStack Web Application. This is incredibly useful for things like:
 
-1.  Ensure consistent developer environments by resolving differences and easing onboarding.
-2.  Set up specific testing scenarios for your application, preventing data conflicts and ensuring isolation.
-3.  Improve efficiency in cloud application development by reducing environment setup times.
-    
-This blog will guide you in creating a Cloud Pod for your CDK stack, making infrastructure testing faster and more efficient. Additionally, we'll discuss using Cloud Pods to pre-seed your continuous integration (CI) runner with infrastructure state.
+1. Ensuring consistent developer environments and easing developer onboarding.
+2. Reducing environment setup times while using CDK, Terraform, or CloudFormation.
+3. Creating specific automated testing scenarios for your cloud application.
+
+In this blog, we're going to focus into this third use case: using Cloud Pods to enable pre-seeded testing scenarios in continuous integration (CI) workflows. We’ll explore creating a Cloud Pod from an existing stack, implementing integration tests against LocalStack, and running these tests as part of a GitHub Actions workflow.
 
 ## Table of Contents
 
@@ -54,13 +54,13 @@ The sample deploys Step Functions, DynamoDB, Lambda, SQS, and SNS with the follo
 -   Loan Broker routes the application to multiple banks, and the banks respond if they are willing to offer.
 -   Loan Broker aggregates all the results and returns them to the user.
     
-Step Functions control the sequence of activities and transfer data between components for the Loan Broker, while Lambda functions implement the business logic for the Loan Broker, Banks, and Aggregator in the application.
+The Step Function controls the sequence of activities and transfer data between components for the Loan Broker, while Lambda functions implement the business logic for the Loan Broker, Banks, and Aggregator in the application.
 
 An SNS topic publishes messages and broadcasts loan quote requests to any subscribing banks, while SQS fetches loan quotes from the banks to the Aggregator. DynamoDB is used to persist the state of the Aggregator.
 
 {{< img-simple src="loan-broker-application-architecture-diagram.png" alt="Exploring the Graph Data interactively" width="800">}}
 
-All resources can be deployed using the Cloud Development Kit (CDK). Before configuring the GitHub Action workflow, you need to save the infrastructure state using Cloud Pods on your local machine. After saving the Cloud Pod as a persistent state snapshot, you can implement a workflow that injects the Cloud Pod into your GitHub Action runner.
+All resources will be deployed using the Cloud Development Kit (CDK). Before configuring the GitHub Action workflow, you'll need to save the infrastructure state using Cloud Pods on our local machine. After saving the Cloud Pod as a persistent state snapshot, you'll be able toimplement a workflow that injects the Cloud Pod into our GitHub Action runner. Let's walk through the steps.
 
 ### Start your LocalStack container
 
@@ -135,7 +135,7 @@ Execute the `cdklocal bootstrap` command, adjusting the AWS account ID (`0000000
 cdklocal bootstrap aws://000000000000/us-east-1
 ```
 
-> Customize the account ID and region values for multi-account and multi-region setups in LocalStack.
+> You can customize the account ID and region values for multi-account and multi-region setups in LocalStack.
 
 Proceed to deploy the CDK stack with `cdklocal deploy`. Since multiple stacks are being deployed, include the `--all` flag. Execute the following command:
 
@@ -451,7 +451,7 @@ With the GitHub Action in place, you will notice that your Cloud Pod is automati
 
 {{< img-simple src="cloud-pods-github-action-workflow.png" alt="GitHub Action run page displaying the executed workflow" width="800">}}
 
-An interesting note is that it's faster to save your pre-existing infrastructure into a Cloud Pod, which can be further used for testing, compared to spinning up your infrastructure from scratch using CDK every time.
+An interesting note is that it's faster to save your pre-existing infrastructure into a Cloud Pod, which can be further used for testing, compared to spinning up your infrastructure from scratch using the CDK every time.
 
 You can incorporate an additional step to preserve a new Cloud Pod in the event of test failures. Insert the following step in your GitHub Action workflow to save a new Cloud Pod when tests fail:
 
