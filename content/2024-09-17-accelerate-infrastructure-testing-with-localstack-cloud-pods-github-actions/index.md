@@ -2,12 +2,15 @@
 title: Accelerate infrastructure testing with LocalStack Cloud Pods & GitHub Actions
 description: Cloud pods are persistent state snapshots of your LocalStack container. This blog guide you to use LocalStack Cloud Pods to save and load infrastructure state, enabling faster, consistent testing in CI workflows. It demonstrates the process with an AWS CDK application showing how to improve infrastructure testing on GitHub Actions to streamline cloud development.
 lead: Cloud pods are persistent state snapshots of your LocalStack container. This blog guide you to use LocalStack Cloud Pods to save and load infrastructure state, enabling faster, consistent testing in CI workflows. It demonstrates the process with an AWS CDK application showing how to improve infrastructure testing on GitHub Actions to streamline cloud development.
-date: 2024-08-21T3:07:04+05:30
-lastmod: 2024-08-21T3:07:04+05:30
-images: []
+date: 2024-09-17
+lastmod: 2024-09-17
+images: ['accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions-cover.png']
+leadimage: 'accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions-cover.png'
 contributors: ['Harsh Mishra']
 tags: ['tutorial']
 ---
+
+{{< img-simple src="accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions-cover.png" width=300 alt="Banner for Accelerate infrastructure testing with LocalStack Cloud Pods & GitHub Actions blog">}}
 
 ## Introduction
 
@@ -20,6 +23,8 @@ Cloud Pods are snapshots of your LocalStack’s state that are stored on the Loc
 3. Creating specific automated testing scenarios for your cloud application.
 
 In this blog, we're going to focus into this third use case: using Cloud Pods to enable pre-seeded testing scenarios in continuous integration (CI) workflows. We’ll explore creating a Cloud Pod from an existing stack, implementing integration tests against LocalStack, and running these tests as part of a GitHub Actions workflow.
+
+{{< img-simple src="cloud-pods-in-infra-testing.png" width=300 alt="How Cloud Pods work in infrastructure testing?">}}
 
 ## Table of Contents
 
