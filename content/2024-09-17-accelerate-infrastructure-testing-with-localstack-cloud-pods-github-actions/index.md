@@ -31,7 +31,7 @@ In this blog, we're going to focus into this third use case: using Cloud Pods to
 - [Prerequisites](#prerequisites)
 - [Tutorial: Loan Broker application with Step Functions, DynamoDB and Lambda](#tutorial-loan-broker-application-with-step-functions-dynamodb-and-lambda)
     - [Start your LocalStack container](#start-your-localstack-container)
-    - [Set Up the infrastructure locally](#set-up-the-infrastructure-locally)
+    - [Set up the infrastructure locally](#set-up-the-infrastructure-locally)
     - [Create a Cloud Pod](#create-a-cloud-pod)
     - [Implement integration tests against LocalStack](#implement-integration-tests-against-localstack)
     - [Create the GitHub Action workflow](#create-the-github-action-workflow)
@@ -48,16 +48,16 @@ In this blog, we're going to focus into this third use case: using Cloud Pods to
 -   [GitHub Account](https://github.com/join) & [`git`](https://git-scm.com/downloads)
 - `jq` for parsing JSON output
 
-## Tutorial: Loan Broker application with Step Functions, DynamoDB and Lambda
+## Tutorial: Loan Broker Application with Step Functions, DynamoDB, and Lambda
 
 This demo utilizes a [**public sample**](https://github.com/localstack-samples/sample-loan-broker-stepfunctions-lambda) to showcase a Loan Broker application inspired by Gregor Hohpe's [Loan Broker example](https://www.enterpriseintegrationpatterns.com/ramblings/loanbroker_stepfunctions.html). The sample application employs a [Recipient List](https://www.enterpriseintegrationpatterns.com/patterns/messaging/RecipientList.html) pattern and a [Scatter Gather](https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html) pattern to acquire a list of banks and dynamically route loan applications to multiple banks, respectively.
 
 The sample deploys Step Functions, DynamoDB, Lambda, SQS, and SNS with the following functionality:
 
--   User submits a loan application with personal data, desired terms, loan amount, and duration.
--   Loan Broker retrieves information from the Credit Bureau and adds it to the previously submitted loan application.
--   Loan Broker routes the application to multiple banks, and the banks respond if they are willing to offer.
--   Loan Broker aggregates all the results and returns them to the user.
+1.   User submits a loan application with personal data, desired terms, loan amount, and duration.
+2.   Loan Broker retrieves information from the Credit Bureau and adds it to the previously submitted loan application.
+3.   Loan Broker routes the application to multiple banks, and the banks respond if they are willing to offer.
+4.   Loan Broker aggregates all the results and returns them to the user.
     
 The Step Function controls the sequence of activities and transfer data between components for the Loan Broker, while Lambda functions implement the business logic for the Loan Broker, Banks, and Aggregator in the application.
 
@@ -117,9 +117,9 @@ curl -X GET http://localhost:4566/_localstack/info | jq
 }
 ```
 
-### Set Up the infrastructure locally
+### Set up the infrastructure locally
 
-To begin, fork the LocalStack sample repository on GitHub using this command:
+To begin, fork the LocalStack sample repository on GitHub and clone it on your local machine using this command:
 
 ```bash
 git clone https://github.com/localstack-samples/sample-loan-broker-stepfunctions-lambda.git
@@ -139,8 +139,6 @@ Execute the `cdklocal bootstrap` command, adjusting the AWS account ID (`0000000
 ```bash
 cdklocal bootstrap aws://000000000000/us-east-1
 ```
-
-> You can customize the account ID and region values for multi-account and multi-region setups in LocalStack.
 
 Proceed to deploy the CDK stack with `cdklocal deploy`. Since multiple stacks are being deployed, include the `--all` flag. Execute the following command:
 
@@ -178,7 +176,7 @@ You can now proceed to save the infrastructure state in a Cloud Pod, enabling re
 
 ### Create a Cloud Pod
 
-To create a Cloud Pod, utilize the `pods` CLI, which is shipped alongside the LocalStack CLI. Ensure the LocalStack CLI experience is activated by specifying `LOCALSTACK_AUTH_TOKEN` in the environment.
+To create a Cloud Pod, utilize the `pod` CLI, which is shipped alongside the LocalStack CLI. Ensure the LocalStack CLI experience is activated by specifying `LOCALSTACK_AUTH_TOKEN` in the environment.
 
 The `pod` CLI offers various options for:
 
