@@ -2,8 +2,8 @@
 title: Accelerate infrastructure testing with LocalStack Cloud Pods & GitHub Actions
 description: Cloud pods are persistent state snapshots of your LocalStack container. This blog guide you to use LocalStack Cloud Pods to save and load infrastructure state, enabling faster, consistent testing in CI workflows. It demonstrates the process with an AWS CDK application showing how to improve infrastructure testing on GitHub Actions to streamline cloud development.
 lead: Cloud pods are persistent state snapshots of your LocalStack container. This blog guide you to use LocalStack Cloud Pods to save and load infrastructure state, enabling faster, consistent testing in CI workflows. It demonstrates the process with an AWS CDK application showing how to improve infrastructure testing on GitHub Actions to streamline cloud development.
-date: 2024-09-17
-lastmod: 2024-09-17
+date: 2024-09-19
+lastmod: 2024-09-19
 images: ['accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions-cover.png']
 leadimage: 'accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions-cover.png'
 contributors: ['Harsh Mishra']
