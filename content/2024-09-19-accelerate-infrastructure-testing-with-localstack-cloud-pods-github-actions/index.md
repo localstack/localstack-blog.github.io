@@ -233,7 +233,7 @@ Now that the Cloud Pod is successfully created, you can proceed to write a simpl
 -   Start the state machine execution to get quotes from the banks after submitting a loan application.
 -   Validate the output of the state machine execution, listing the `Credit`, `Banks`, and `Quotes`.
 
-For integration testing, use the AWS SDK for Python (`boto3`) and the `pytest` framework. Create a new directory called `tests` and create a file named `test_`[`infra.py`](http://infra.py). Add the necessary imports and [`pytest` fixtures](https://docs.pytest.org/en/6.2.x/reference.html#fixtures-api):
+For integration testing, use the AWS SDK for Python (`boto3`) and the `pytest` framework. Create a new directory called `tests` and create a file named [`test_infra.py`](http://infra.py). Add the necessary imports and [`pytest` fixtures](https://docs.pytest.org/en/6.2.x/reference.html#fixtures-api):
 
 ```python
 import time
@@ -364,7 +364,7 @@ To set up the workflow:
 Add the following content to the `pods.yml` file:
 
 ```yaml
-name: Deploy on LocalStack 
+name: Deploy using Cloud Pods 
 
 on:
   push:
@@ -390,11 +390,10 @@ jobs:
 Set up the step to install Python in the runner as part of the workflow step:
 
 ```yaml
-steps:
-  - name: Install Python
-    uses: actions/setup-python@v4
-    with:
-      python-version: '3.10'
+- name: Install Python
+  uses: actions/setup-python@v4
+  with:
+    python-version: '3.10'
 ```
 
 Next, set up LocalStack in your runner using the `setup-localstack` action:
@@ -414,7 +413,7 @@ This action pulls the LocalStack Pro image (`localstack/localstack-pro:latest`) 
 Now, add the step to pull the Cloud Pod using the `LocalStack/setup-localstack/cloud-pods` action. It allows you to specify the name of the Cloud Pod and the corresponding action (`load` & `save`) to execute in the environment:
 
 ```yaml
-- name: Save the Cloud Pod 
+- name: Load the Cloud Pod 
   uses: LocalStack/setup-localstack/cloud-pods@main
   with:
     name: loan-broker-infra
@@ -477,4 +476,4 @@ Using Cloud Pods, you can boost efficiency by reducing the setup time from minut
 
 In the upcoming blog posts, we'll demonstrate how to use Cloud Pods in more unique scenarios — running end-to-end UI tests for your cloud apps, configuring distinct testing scenarios, facilitating developer onboarding and more! Stay tuned for more blogs on how LocalStack is enhancing your cloud development and testing experience.
 
-You can find the [GitHub Action workflow](https://github.com/HarshCasper/sample-loan-broker-stepfunctions-lambda/blob/main/.github/workflows/cloud-pods.yml) and [integration test](https://github.com/HarshCasper/sample-loan-broker-stepfunctions-lambda/blob/main/tests/test_infra.py) in this [GitHub repository](https://github.com/HarshCasper/sample-loan-broker-stepfunctions-lambda).
+You can find the [GitHub Action workflow](https://github.com/localstack-samples/sample-loan-broker-stepfunctions-lambda/blob/main/.github/workflows/pods.yml) and [integration test](https://github.com/localstack-samples/sample-loan-broker-stepfunctions-lambda/blob/main/tests/test_infra.py) in this [GitHub repository](https://github.com/localstack-samples/sample-loan-broker-stepfunctions-lambda).
