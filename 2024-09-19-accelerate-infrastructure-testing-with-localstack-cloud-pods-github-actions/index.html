@@ -1,0 +1,214 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=stylesheet href=/css/vendor/custom.css><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><link rel=stylesheet href=/main.b93f21975a8c509862bc461126163a533d1083c67ad9fe8621b9b49c72f22af2f868498b9be3305e5c0243d5b194d4e9df7ec3a49e44fa797de7700c870708a0.css integrity="sha512-uT8hl1qMUJhivEYRJhY6Uz0Qg8Z62f6GIbm0nHLyKvL4aEmLm+MwXlwCQ9WxlNTp337DpJ5E+nl953AMhwcIoA==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>Accelerate infrastructure testing with LocalStack Cloud Pods & GitHub Actions - LocalStack</title><meta name=description content="Cloud pods are persistent state snapshots of your LocalStack container. This blog guide you to use LocalStack Cloud Pods to save and load infrastructure state, enabling faster, consistent testing in CI workflows. It demonstrates the process with an AWS CDK application showing how to improve infrastructure testing on GitHub Actions to streamline cloud development."><link rel=canonical href=/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://blog.localstack.cloud/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions-cover.png"><meta name=twitter:title content="Accelerate infrastructure testing with LocalStack Cloud Pods & GitHub Actions"><meta name=twitter:description content="Cloud pods are persistent state snapshots of your LocalStack container. This blog guide you to use LocalStack Cloud Pods to save and load infrastructure state, enabling faster, consistent testing in CI workflows. It demonstrates the process with an AWS CDK application showing how to improve infrastructure testing on GitHub Actions to streamline cloud development."><meta name=twitter:site content="@localstack"><meta name=twitter:creator content="@localstack"><meta property="og:title" content="Accelerate infrastructure testing with LocalStack Cloud Pods & GitHub Actions"><meta property="og:description" content="Cloud pods are persistent state snapshots of your LocalStack container. This blog guide you to use LocalStack Cloud Pods to save and load infrastructure state, enabling faster, consistent testing in CI workflows. It demonstrates the process with an AWS CDK application showing how to improve infrastructure testing on GitHub Actions to streamline cloud development."><meta property="og:type" content="article"><meta property="og:url" content="/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/"><meta property="og:image" content="/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions-cover.png"><meta property="article:published_time" content="2024-09-19T00:00:00+00:00"><meta property="article:modified_time" content="2024-09-19T00:00:00+00:00"><meta property="og:site_name" content="LocalStack"><meta property="article:publisher" content="https://www.facebook.com/"><meta property="article:author" content="https://www.facebook.com/"><meta property="og:locale" content="en_US"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/blog.localstack.cloud\/"},{"@type":"ListItem","position":3,"name":"2024 09 19 Accelerate Infrastructure Testing With Localstack Cloud Pods Github Actions","item":"https:\/\/blog.localstack.cloud\/\/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions\/"}]}</script><meta name=theme-color content="#fff"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#6b7cf5><link rel=manifest href=/site.webmanifest><script>(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-101988473-1','auto'),ga('send','pageview')</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-QRFTZPWGB7"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-QRFTZPWGB7')</script><script defer src=https://unpkg.com/@tinybirdco/flock.js data-host=https://api.tinybird.co data-token=p.eyJ1IjogIjAwZDRjYzRjLTg4N2UtNGNmZS05YzY4LTJjNzMyNjE5ODdjMCIsICJpZCI6ICI2YzRhMDViNi1iZjVlLTRkY2QtODNlZS1jMmFjYjg5ZjQ1NzAifQ.EPdBzyAb28wUbtZacobblsMi42IwTd7d2amppDfw-jE></script><script type=text/javascript id=hs-script-loader async defer src=//js-eu1.hs-scripts.com/26596507.js></script><script type=text/javascript src=//js-eu1.hsforms.net/forms/embed/v2.js></script><script>function toggleTag(b){const c='tag-'+b;if(c!=='tag-all'){const a=document.getElementsByClassName('tag-all');for(let b=0;b<a.length;b++){const c=a[b];c.classList.add('d-none')}}const d=document.getElementsByClassName(c);for(let a=0;a<d.length;a++){const b=d[a];b.classList.remove('d-none')}const e=document.getElementsByClassName('filterButton');for(let a=0;a<e.length;a++){const b=e[a];b.classList.remove('bg-purple'),b.classList.remove('btn-primary'),b.classList.add('btn-outline-primary')}const f=b+"FilterButton",a=document.getElementById(f);a.classList.add('bg-purple'),a.classList.add('btn-primary'),a.classList.remove('btn-outline-primary')}</script></head><body class="page single"><header></header><section class="section section-sm bg-gradient-dark"><div class="position-absolute w-100 section pb-7 pt-7 d-none d-md-block"><div class=container><div class="row justify-content-center align-items-center"><div class=col-2><img class=w-100 style=transform:scale(2);opacity:.65 src=/images/heroes/blog.svg></div><div class=col-2></div><div class=col-2></div><div class=col-2><img class=w-100 style=transform:rotate(35deg)scale(1.4);opacity:.9 src=/images/heroes/blog.svg></div><div class=col-2><img class=w-100 style=transform:rotate(-45deg)scaleX(-1)scale(1.5);opacity:.75 src=/images/heroes/blog.svg></div></div></div></div><div class="container pb-5 pt-6 pb-md-7 pt-sm-7"><div class="row justify-content-center align-items-center text-white"><h1 class="text-center m-0 pt-lg-5">Accelerate infrastructure testing with LocalStack Cloud Pods & GitHub Actions</h1></div></div></section><section class="section section-sm mb-6"><div class="container px-lg-8"><div class="row justify-content-center"><div class=col-12><article><div class=blog-header><div class="d-flex align-items-center flex-wrap card-footer-text"><p class=mb-0><img src=/images/common/clock.svg>
+10&nbsp;MIN READ&nbsp;&#8212;&nbsp;
+posted September 19, 2024 by <a class="stretched-link position-relative">Harsh Mishra</a></p><p></div></div><p class=lead>Cloud pods are persistent state snapshots of your LocalStack container. This blog guide you to use LocalStack Cloud Pods to save and load infrastructure state, enabling faster, consistent testing in CI workflows. It demonstrates the process with an AWS CDK application showing how to improve infrastructure testing on GitHub Actions to streamline cloud development.</p><img class="img-simple img-fluid lazyload blur-up" src=/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/_hufc4478c32e03a567df98c40d6fcaf5ce_409083_29a404bdd57914b0ddb8d03baf463325.png data-src=/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions-cover.png width=1921 height=1081 alt="Banner for Accelerate infrastructure testing with LocalStack Cloud Pods & GitHub Actions blog"><h2 id=introduction>Introduction</h2><p>LocalStack is a cloud service emulator, that allows you to develop and test your cloud applications locally. LocalStack runs as a Docker container, and it’s ephemeral local resources like S3 buckets or Lambda functions are destroyed when you stop the container. However, you would like to persist & save certain resources for testing, debugging, or experimenting. That’s where LocalStack&rsquo;s <a href=https://docs.localstack.cloud/user-guide/state-management/cloud-pods/>Cloud Pods</a> come in.</p><p>Cloud Pods are snapshots of your LocalStack’s state that are stored on the LocalStack Web Application. This is incredibly useful for things like:</p><ol><li>Ensuring consistent developer environments and easing developer onboarding.</li><li>Reducing environment setup times while using <a href=https://docs.localstack.cloud/user-guide/integrations/aws-cdk/>CDK</a>, <a href=https://docs.localstack.cloud/user-guide/integrations/terraform/>Terraform</a>, or <a href=https://docs.localstack.cloud/user-guide/aws/cloudformation/>CloudFormation</a>.</li><li>Creating specific automated testing scenarios for your cloud application.</li></ol><p>In this blog, we&rsquo;re going to focus into this third use case: using Cloud Pods to enable pre-seeded testing scenarios in continuous integration (CI) workflows. We’ll explore creating a Cloud Pod from an existing stack, implementing integration tests against LocalStack, and running these tests as part of a <a href=https://docs.localstack.cloud/user-guide/ci/github-actions/>GitHub Actions workflow</a>.</p><img class="img-simple img-fluid lazyload blur-up" src=/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/cloud-pods-in-infra-testing_hua74471f72c9d7ab64ec0d3a0ce18368f_185637_20x0_resize_box_2.png data-src=/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/cloud-pods-in-infra-testing.png width=1922 height=983 alt="How Cloud Pods work in infrastructure testing?"><h2 id=table-of-contents>Table of Contents</h2><ul><li><a href=#prerequisites>Prerequisites</a></li><li><a href=#tutorial-loan-broker-application-with-step-functions-dynamodb-and-lambda>Tutorial: Loan Broker application with Step Functions, DynamoDB and Lambda</a><ul><li><a href=#start-your-localstack-container>Start your LocalStack container</a></li><li><a href=#set-up-the-infrastructure-locally>Set up the infrastructure locally</a></li><li><a href=#create-a-cloud-pod>Create a Cloud Pod</a></li><li><a href=#implement-integration-tests-against-localstack>Implement integration tests against LocalStack</a></li><li><a href=#create-the-github-action-workflow>Create the GitHub Action workflow</a></li><li><a href=#run-the-github-action-workflow>Run the GitHub Action workflow</a></li></ul></li><li><a href=#conclusion>Conclusion</a></li></ul><h2 id=prerequisites>Prerequisites</h2><ul><li><a href=https://docs.localstack.cloud/getting-started/installation/#localstack-cli><code>localstack</code> CLI</a> with the <a href=https://docs.localstack.cloud/getting-started/auth-token/><code>LOCALSTACK_AUTH_TOKEN</code></a></li><li><a href=https://app.localstack.cloud/>LocalStack Web Application account</a></li><li><a href=https://nodejs.org/en/download>Node.js</a> & <code>yarn</code></li><li><a href=https://www.python.org/downloads/>Python 3.10</a> & <code>pytest</code></li><li><a href="https://github.com/aws/aws-cdk?tab=readme-ov-file#getting-started">Cloud Development Kit (CDK)</a> & <a href=https://www.npmjs.com/package/aws-cdk-local><code>cdklocal</code></a></li><li><a href=https://github.com/join>GitHub Account</a> & <a href=https://git-scm.com/downloads><code>git</code></a></li><li><code>jq</code> for parsing JSON output</li></ul><h2 id=tutorial-loan-broker-application-with-step-functions-dynamodb-and-lambda>Tutorial: Loan Broker Application with Step Functions, DynamoDB, and Lambda</h2><p>This demo utilizes a <a href=https://github.com/localstack-samples/sample-loan-broker-stepfunctions-lambda><strong>public sample</strong></a> to showcase a Loan Broker application inspired by Gregor Hohpe&rsquo;s <a href=https://www.enterpriseintegrationpatterns.com/ramblings/loanbroker_stepfunctions.html>Loan Broker example</a>. The sample application employs a <a href=https://www.enterpriseintegrationpatterns.com/patterns/messaging/RecipientList.html>Recipient List</a> pattern and a <a href=https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html>Scatter Gather</a> pattern to acquire a list of banks and dynamically route loan applications to multiple banks, respectively.</p><p>The sample deploys Step Functions, DynamoDB, Lambda, SQS, and SNS with the following functionality:</p><ol><li>User submits a loan application with personal data, desired terms, loan amount, and duration.</li><li>Loan Broker retrieves information from the Credit Bureau and adds it to the previously submitted loan application.</li><li>Loan Broker routes the application to multiple banks, and the banks respond if they are willing to offer.</li><li>Loan Broker aggregates all the results and returns them to the user.</li></ol><p>The Step Function controls the sequence of activities and transfer data between components for the Loan Broker, while Lambda functions implement the business logic for the Loan Broker, Banks, and Aggregator in the application.</p><p>An SNS topic publishes messages and broadcasts loan quote requests to any subscribing banks, while SQS fetches loan quotes from the banks to the Aggregator. DynamoDB is used to persist the state of the Aggregator.</p><img class="img-simple img-fluid lazyload blur-up" src=/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/loan-broker-application-architecture-diagram_huf2a4d98fa333736628148eb651098148_123624_20x0_resize_box_2.png data-src=/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/loan-broker-application-architecture-diagram.png width=1920 height=1080 alt="Exploring the Graph Data interactively"><p>All resources will be deployed using the Cloud Development Kit (CDK). Before configuring the GitHub Action workflow, you&rsquo;ll need to save the infrastructure state using Cloud Pods on our local machine. After saving the Cloud Pod as a persistent state snapshot, you&rsquo;ll be able toimplement a workflow that injects the Cloud Pod into our GitHub Action runner. Let&rsquo;s walk through the steps.</p><h3 id=start-your-localstack-container>Start your LocalStack container</h3><p>Launch the LocalStack container on your local machine using the specified command:</p><pre><code class=language-bash>localstack auth set-token &lt;your-auth-token&gt;
+localstack start
+</code></pre><blockquote><p>Replace <code>&lt;your-auth-token</code> with your LocalStack Auth Token to start the LocalStack Pro container.</p></blockquote><p>Once initiated, you&rsquo;ll receive a confirmation output indicating that the LocalStack container is up and running.</p><pre><code class=language-bash>     __                     _______ __             __
+    / /   ____  _________ _/ / ___// /_____ ______/ /__
+   / /   / __ \/ ___/ __ `/ /\__ \/ __/ __ `/ ___/ //_/
+  / /___/ /_/ / /__/ /_/ / /___/ / /_/ /_/ / /__/ ,&lt;
+ /_____/\____/\___/\__,_/_//____/\__/\__,_/\___/_/|_|
+
+ 💻 LocalStack CLI 3.6.0
+ 👤 Profile: default
+
+[13:07:54] starting LocalStack in Docker localstack.py:503
+           mode 🐳
+...
+───── LocalStack Runtime Log (press CTRL-C to quit) ──────
+
+LocalStack version: 3.6.1.dev20240805094804
+LocalStack build date: 2024-08-05
+LocalStack build git hash: 98cc4e6
+
+</code></pre><p>To confirm the startup of your LocalStack container with the Pro services, utilize the <code>cURL</code> command to query the <code>http://localhost:4566/_localstack/info</code> endpoint.</p><pre><code class=language-bash>curl -X GET http://localhost:4566/_localstack/info | jq
+
+{
+  &quot;version&quot;: &quot;3.6.1.dev20240805094804:98cc4e6&quot;,
+  &quot;edition&quot;: &quot;pro&quot;,
+  &quot;is_license_activated&quot;: true,
+  ...
+  &quot;system&quot;: &quot;linux&quot;,
+  &quot;is_docker&quot;: true,
+  ...
+}
+</code></pre><h3 id=set-up-the-infrastructure-locally>Set up the infrastructure locally</h3><p>To begin, fork the LocalStack sample repository on GitHub and clone it on your local machine using this command:</p><pre><code class=language-bash>git clone https://github.com/localstack-samples/sample-loan-broker-stepfunctions-lambda.git
+</code></pre><p>To locally deploy the CDK infrastructure, you can use <code>cdklocal</code>, a CLI wrapper for deploying CDK stacks against LocalStack&rsquo;s emulated services. Before initiating the deployment, install the dependencies by executing the following command:</p><pre><code class=language-bash>cd sample-loan-broker-stepfunctions-lambda
+yarn
+</code></pre><p>Once the dependencies are installed, use <code>cdklocal</code> to deploy the application. First, ensure that each AWS environment intended for resource deployment is bootstrapped.</p><p>Execute the <code>cdklocal bootstrap</code> command, adjusting the AWS account ID (<code>000000000000</code>) and region (<code>us-east-1</code>) as needed:</p><pre><code class=language-bash>cdklocal bootstrap aws://000000000000/us-east-1
+</code></pre><p>Proceed to deploy the CDK stack with <code>cdklocal deploy</code>. Since multiple stacks are being deployed, include the <code>--all</code> flag. Execute the following command:</p><pre><code class=language-bash>cdklocal deploy --all
+</code></pre><p>Upon successful deployment, the output will include information for each stack, such as the ARN of the <code>LoanBroker</code> state machines and the CloudFormation stack ARN.</p><pre><code class=language-bash> ✅  LoanBroker-RecipientList-Stack
+
+✨  Deployment time: 30.36s
+
+Outputs:
+LoanBroker-RecipientList-Stack.LoanBrokerArn = arn:aws:states:us-east-1:000000000000:stateMachine:LoanBroker-RecipientList-Stack-LoanBroker641FC9A8-efa3f66a
+Stack ARN:
+arn:aws:cloudformation:us-east-1:000000000000:stack/LoanBroker-RecipientList-Stack/b85c91a1
+
+....
+
+ ✅  LoanBroker-PubSub-Stack
+
+✨  Deployment time: 35.38s
+
+Outputs:
+LoanBroker-PubSub-Stack.LoanBrokerArn = arn:aws:states:us-east-1:000000000000:stateMachine:LoanBroker-PubSub-Stack-LoanBroker641FC9A8-cc3ba97e
+Stack ARN:
+arn:aws:cloudformation:us-east-1:000000000000:stack/LoanBroker-PubSub-Stack/103b86ee
+
+✨  Total time: 40.2s
+</code></pre><p>You can now proceed to save the infrastructure state in a Cloud Pod, enabling resource spin-up without manual CDK deployment.</p><h3 id=create-a-cloud-pod>Create a Cloud Pod</h3><p>To create a Cloud Pod, utilize the <code>pod</code> CLI, which is shipped alongside the LocalStack CLI. Ensure the LocalStack CLI experience is activated by specifying <code>LOCALSTACK_AUTH_TOKEN</code> in the environment.</p><p>The <code>pod</code> CLI offers various options for:</p><ul><li>Saving your existing state in a Cloud Pod</li><li>Loading an available Cloud Pod in your container</li><li>Inspecting the content of the Cloud Pod</li><li>Listing and deleting Cloud Pods available in your workspace</li></ul><pre><code class=language-bash>localstack pod --help
+Usage: localstack pod [OPTIONS] COMMAND [ARGS]...
+
+  Manage the state of your instance via Cloud Pods.
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  delete    Delete a Cloud Pod
+  inspect   Inspect the contents of a Cloud Pod
+  list      List all available Cloud Pods
+  load      Load the state of a Cloud Pod into the application...
+  remote    Manage cloud pod remotes
+  save      Create a new Cloud Pod
+  versions  List all available versions for a Cloud Pod
+</code></pre><p>To save the existing infrastructure state in a Cloud Pod, use the <code>pod save</code> command in combination with the <code>localstack</code> CLI. Execute the following command to save the Cloud Pod as <code>loan-broker-infra</code>:</p><pre><code class=language-bash>localstack pod save loan-broker-infra
+</code></pre><p>The output should be:</p><pre><code class=language-bash>Cloud Pod `loan-broker-infra` successfully created ✅
+Version: 1
+Remote: platform
+Services:
+sts,cloudformation,iam,s3,ecr,ssm,events,dynamodb,logs,lambda,stepfunctions,sqs,sns,cloudwatch
+</code></pre><p>The version number specifies the latest version of the Cloud Pod saved. Verify the availability of your Cloud Pod by navigating to the <a href=https://app.localstack.cloud/pods>Cloud Pods browser</a>.</p><img class="img-simple img-fluid lazyload blur-up" src=/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/loan-broker-infra-cloud-pod_hu0a27f9147186350466f8f0f029919e0c_441374_20x0_resize_box_2.png data-src=/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/loan-broker-infra-cloud-pod.png width=3456 height=1822 alt="Exploring the Graph Data interactively"><h3 id=implement-integration-tests-against-localstack>Implement integration tests against LocalStack</h3><p>Now that the Cloud Pod is successfully created, you can proceed to write a simple integration test with the following steps:</p><ul><li>Validate that a Loan Broker (<code>LoanBroker-RecipientList-Stack</code>) state machine is available.</li><li>Insert an item in the DynamoDB table (<code>LoanBrokerBanksTable</code>) for the <code>RecipientsList</code> stack.</li><li>Start the state machine execution to get quotes from the banks after submitting a loan application.</li><li>Validate the output of the state machine execution, listing the <code>Credit</code>, <code>Banks</code>, and <code>Quotes</code>.</li></ul><p>For integration testing, use the AWS SDK for Python (<code>boto3</code>) and the <code>pytest</code> framework. Create a new directory called <code>tests</code> and create a file named <a href=http://infra.py><code>test_infra.py</code></a>. Add the necessary imports and <a href=https://docs.pytest.org/en/6.2.x/reference.html#fixtures-api><code>pytest</code> fixtures</a>:</p><pre><code class=language-python>import time
+import json
+import pytest
+import boto3
+
+@pytest.fixture
+def stepfunctions_client():
+    return boto3.client(
+        &quot;stepfunctions&quot;, region_name=&quot;us-east-1&quot;, endpoint_url=&quot;http://localhost:4566&quot;
+    )
+
+@pytest.fixture
+def dynamodb_client():
+    return boto3.client(
+        &quot;dynamodb&quot;, region_name=&quot;us-east-1&quot;, endpoint_url=&quot;http://localhost:4566&quot;
+    )
+</code></pre><p>Now, include the following code to execute an integration test against the deployed infrastructure:</p><pre><code class=language-python>def test_loan_broker_workflow(stepfunctions_client, dynamodb_client):
+    response = stepfunctions_client.list_state_machines()
+    state_machines = response[&quot;stateMachines&quot;]
+
+    state_machine_arn = None
+    for state_machine in state_machines:
+        if state_machine[&quot;name&quot;].startswith(
+            &quot;LoanBroker-RecipientList-Stack-LoanBroker&quot;
+        ):
+            state_machine_arn = state_machine[&quot;stateMachineArn&quot;]
+            break
+
+    assert (
+        state_machine_arn is not None
+    ), &quot;State machine with specified prefix not found&quot;
+
+    dynamodb_client.put_item(
+        TableName=&quot;LoanBrokerBanksTable&quot;,
+        Item={
+            &quot;Type&quot;: {&quot;S&quot;: &quot;Home&quot;},
+            &quot;BankAddress&quot;: {
+                &quot;L&quot;: [
+                    {&quot;S&quot;: &quot;BankRecipientPremium&quot;},
+                    {&quot;S&quot;: &quot;BankRecipientUniversal&quot;},
+                    {&quot;S&quot;: &quot;BankRecipientPawnshop&quot;},
+                ]
+            },
+        },
+    )
+
+    start_response = stepfunctions_client.start_execution(
+        stateMachineArn=state_machine_arn,
+        name=&quot;cli-test-run&quot;,
+        input='{&quot;SSN&quot;: &quot;123-45-6789&quot;, &quot;Amount&quot;: 500000, &quot;Term&quot;: 30}',
+    )
+    execution_arn = start_response[&quot;executionArn&quot;]
+
+    time.sleep(10)
+
+    describe_response = stepfunctions_client.describe_execution(
+        executionArn=execution_arn
+    )
+    output_json = json.loads(describe_response[&quot;output&quot;])
+
+    assert &quot;SSN&quot; in output_json
+    assert &quot;Amount&quot; in output_json
+    assert &quot;Term&quot; in output_json
+    assert &quot;Credit&quot; in output_json
+    assert &quot;Banks&quot; in output_json
+    assert &quot;Quotes&quot; in output_json
+</code></pre><p>Before running the integration tests, restart the LocalStack container using the following command:</p><pre><code class=language-bash>localstack restart
+</code></pre><p>Now, load the Cloud Pod (<code>loan-broker-infra</code>) created previously using the following command:</p><pre><code class=language-bash>localstack pod load loan-broker-infra
+</code></pre><p>The output should be:</p><pre><code class=language-bash>Cloud Pod loan-broker-infra successfully loaded
+</code></pre><p>Finally, run the integration tests using the following command:</p><pre><code class=language-bash>pytest
+</code></pre><p>The output should be:</p><pre><code class=language-bash>=========================================== test session starts ============================================
+platform darwin -- Python 3.10.4, pytest-7.2.0, pluggy-1.4.0
+rootdir: ...
+plugins: html-3.2.0, pylint-0.19.0, json-report-1.5.0, Faker-18.4.0, cov-4.0.0, metadata-2.0.4, anyio-3.6.2, datadir-1.4.1
+collected 1 item                                                                                           
+
+tests/test_infra.py .                                                                                [100%]
+
+============================================ 1 passed in 10.54s ============================================
+</code></pre><h3 id=create-the-github-action-workflow>Create the GitHub Action workflow</h3><p>As the final step, you can create the GitHub Action workflow to test your infrastructure. The workflow should:</p><ul><li>Checkout the repository from GitHub.</li><li>Install the <code>localstack</code> CLI and start the container.</li><li>Load the Cloud Pod you created previously in the container.</li><li>Run automated integration tests to verify the infrastructure functionality.</li></ul><p>To set up the workflow:</p><ul><li>Create a new directory called <code>.github</code> and a sub-directory called <code>workflows</code>.</li><li>Create a new file called <code>pods.yml</code> in the <code>workflows</code> sub-directory.</li></ul><p>Add the following content to the <code>pods.yml</code> file:</p><pre><code class=language-yaml>name: Deploy using Cloud Pods 
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+</code></pre><p>Create a new job named <code>cloud-pods-test</code> and specify the GitHub-hosted runner, while checking out the code:</p><pre><code class=language-yaml>jobs:
+  cloud-pods-test:
+    name: Setup infrastructure using Cloud Pods
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+</code></pre><p>Set up the step to install Python in the runner as part of the workflow step:</p><pre><code class=language-yaml>- name: Install Python
+  uses: actions/setup-python@v4
+  with:
+    python-version: '3.10'
+</code></pre><p>Next, set up LocalStack in your runner using the <a href=https://github.com/localstack/setup-localstack><code>setup-localstack</code> action</a>:</p><pre><code class=language-yaml>- name: Start LocalStack
+  uses: LocalStack/setup-localstack@main
+  with:
+    image-tag: 'latest'
+    use-pro: 'true'
+  env:
+    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+</code></pre><p>This action pulls the <a href=https://hub.docker.com/r/localstack/localstack-pro>LocalStack Pro image</a> (<code>localstack/localstack-pro:latest</code>) and installs the <code>localstack</code> CLI to start the LocalStack container. A repository secret <code>LOCALSTACK_API_KEY</code> is specified to activate your Pro license on the GitHub Actions runner.</p><p>Now, add the step to pull the Cloud Pod using the <code>LocalStack/setup-localstack/cloud-pods</code> action. It allows you to specify the name of the Cloud Pod and the corresponding action (<code>load</code> & <code>save</code>) to execute in the environment:</p><pre><code class=language-yaml>- name: Load the Cloud Pod 
+  uses: LocalStack/setup-localstack/cloud-pods@main
+  with:
+    name: loan-broker-infra
+    action: load
+  env:
+    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+</code></pre><p>Finally, add a step to run the integration tests in an automated way:</p><pre><code class=language-yaml>- name: Run integration tests 
+  run: |
+    pip3 install boto3 pytest
+    pytest
+  env:
+    AWS_DEFAULT_REGION: us-east-1
+    AWS_REGION: us-east-1
+    AWS_ACCESS_KEY_ID: test
+    AWS_SECRET_ACCESS_KEY: test
+</code></pre><h3 id=run-the-github-action-workflow>Run the GitHub Action workflow</h3><p>Before triggering your workflow, set up a continuous integration (CI) key for LocalStack. LocalStack requires a CI Key for use in CI or similar automated environments.</p><p>Follow these steps to add your LocalStack CI key to your GitHub repository:</p><ol><li>Go to the <a href=https://app.localstack.cloud/>LocalStack Web Application</a> and access the <a href=https://app.localstack.cloud/workspace/ci-keys>CI Keys</a> page.</li><li>Switch to the <strong>Generate CI Key</strong> tab, provide a name, and click <strong>Generate CI Key</strong>.</li><li>In your <a href=https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions>GitHub repository secrets</a>, set the <strong>Name</strong> as <code>LOCALSTACK_API_KEY</code> and the <strong>Secret</strong> as the CI Key.</li></ol><p>Now, commit and push your workflow to your forked GitHub repository.</p><p>With the GitHub Action in place, you will notice that your Cloud Pod is automatically loaded, and your tests are executed against it.</p><img class="img-simple img-fluid lazyload blur-up" src=/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/cloud-pods-github-action-workflow_hu66d2784fb51f2e51254c1873076a38ee_377153_20x0_resize_box_2.png data-src=/2024-09-19-accelerate-infrastructure-testing-with-localstack-cloud-pods-github-actions/cloud-pods-github-action-workflow.png width=3456 height=1822 alt="GitHub Action run page displaying the executed workflow"><p>An interesting note is that it&rsquo;s faster to save your pre-existing infrastructure into a Cloud Pod, which can be further used for testing, compared to spinning up your infrastructure from scratch using the CDK every time.</p><p>You can incorporate an additional step to preserve a new Cloud Pod in the event of test failures. Insert the following step in your GitHub Action workflow to save a new Cloud Pod when tests fail:</p><pre><code class=language-yaml>- name: Save the Cloud Pod 
+  if: failure()
+  uses: LocalStack/setup-localstack/cloud-pods@main
+  with:
+    name: loan-broker-infra-ci
+    action: save
+  env:
+    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+</code></pre><p>Post CI execution, you can access the <a href=https://app.localstack.cloud/pods>Cloud Pods browser</a> to examine the Cloud Pod and load it locally for further examination and debugging.</p><h2 id=conclusion>Conclusion</h2><p>Using Cloud Pods, you can boost efficiency by reducing the setup time from minutes to mere seconds. This rapid deployment not only accelerates the development cycle but also allows developers to focus more on actual work and less on waiting, aligning perfectly with the demands of agile methodologies and fast-paced project timelines.</p><p>In the upcoming blog posts, we&rsquo;ll demonstrate how to use Cloud Pods in more unique scenarios — running end-to-end UI tests for your cloud apps, configuring distinct testing scenarios, facilitating developer onboarding and more! Stay tuned for more blogs on how LocalStack is enhancing your cloud development and testing experience.</p><p>You can find the <a href=https://github.com/localstack-samples/sample-loan-broker-stepfunctions-lambda/blob/main/.github/workflows/pods.yml>GitHub Action workflow</a> and <a href=https://github.com/localstack-samples/sample-loan-broker-stepfunctions-lambda/blob/main/tests/test_infra.py>integration test</a> in this <a href=https://github.com/localstack-samples/sample-loan-broker-stepfunctions-lambda>GitHub repository</a>.</p></article></div></div></div></section><section class="section bg-gradient-light"><div class=container><div class="row justify-content-center"><div class="d-flex flex-column gap-4 col-lg-12 text-white"><h2 class="h2 text-center">Stay in the loop</h2><p>We'd love to get in touch with you.
+Please subscribe with your email to stay tuned for release notes and product updates.
+We promise never to send an excessive amount of emails (we hate spam, too).</p><script>hbspt.forms.create({region:"eu1",portalId:"26596507",formId:"1cc99237-4ce0-4d65-abdf-f87ac2724717"})</script></div></div></div></section><footer class="footer pt-6 bg-gradient-dark"><div class="footer-main pb-5"><div class=container><div class="row justify-content-between"><div class="col-12 col-lg-4"><img style=width:243px src=/images/header-logo-new.svg alt="LocalStack Logo"></div><div class="col-12 col-lg-8 mt-4 mt-lg-0"><div class="row gap-4"><div class=col><ul class="list-unstyled gap-4 d-flex flex-column"><li><a class=footer-text href=https://localstack.cloud/contact>Contact</a></li><li><a class=footer-text href=https://localstack.cloud/careers>Careers</a></li><li><a class=footer-text href=https://blog.localstack.cloud>Blog</a></li><li><a class=footer-text href=https://docs.localstack.cloud>Docs</a></li></ul></div><div class=col><ul class="list-unstyled gap-4 d-flex flex-column"><li><a class=footer-text href=https://docs.localstack.cloud/tutorials/>Tutorials</a></li><li><a class=footer-text href=https://docs.localstack.cloud/applications/>Applications</a></li><li><a class=footer-text href=https://docs.localstack.cloud/academy/>LocalStack Academy</a></li></ul></div><div class=col><ul class="list-unstyled gap-4 d-flex flex-column"><li><a class=footer-text href=https://www.localstack.cloud/legal/tos>Terms and Conditions</a></li><li><a class=footer-text href=https://www.localstack.cloud/legal/privacy-policy>Privacy Policy</a></li><li><a class=footer-text href=https://assets-global.website-files.com/6539036f80ddc9e9a467134e/657b15a7f5ba23e41984d5dd_LocalStack%20DPA.pdf>Data Processing Addendum</a></li></ul></div><div class=col><ul class="list-unstyled gap-4 d-flex flex-column"><li class=footer-text>Follow us</li><li class="d-flex gap-3"><a class=footer-text href=https://twitter.com/localstack><span><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M25 13.25c0 6.9036-5.5964 12.5-12.5 12.5C5.59644 25.75.0 20.1536.0 13.25.0 6.34644 5.59644.75 12.5.75 19.4036.75 25 6.34644 25 13.25zm-6.56-3.0468C19.0443 10.1315 19.6205 9.97084 20.1562 9.73331 19.7558 10.3325 19.2493 10.8586 18.6651 11.2797 18.6709 11.4076 18.6738 11.5366 18.6738 11.6661c0 3.9487-3.0055 8.5014-8.5012 8.5014C8.48534 20.1675 6.91443 19.6731 5.59285 18.825 5.82615 18.8528 6.06457 18.8669 6.30522 18.8669 7.70545 18.8669 8.9936 18.3894 10.0164 17.5879 8.70861 17.5636 7.6054 16.6997 7.22527 15.5129 7.40754 15.5477 7.59449 15.5662 7.78745 15.5662 8.05952 15.5662 8.32401 15.5299 8.57447 15.4612c-1.36658-.2743-2.39692-1.4817-2.39692-2.9294C6.17755 12.5193 6.17755 12.5066 6.17777 12.4939 6.58041 12.7183 7.04144 12.8526 7.53098 12.868 6.7297 12.3323 6.20183 11.4174 6.20183 10.3811c0-.547520000000001.14751-1.06113.40465-1.50232C8.08024 10.687 10.282 11.8764 12.7651 12.001 12.7139 11.7822 12.6874 11.5542 12.6874 11.32c0-1.64975 1.338-2.98781 2.9878-2.98781.8599.0 1.6364.36276 2.1815.94322C18.5369 9.14149 19.1767 8.89304 19.754 8.55056 19.5305 9.24867 19.057 9.83358 18.44 10.2032z" fill="#fff"/></svg></span></a><a class=footer-text href=https://www.linkedin.com/company/localstack-cloud><span><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 26c7.1797.0 13-5.8203 13-13S20.1797.0 13 0 0 5.8203.0 13 5.8203 26 13 26zM9.35126 10.5024C9.97963 10.5024 10.489 9.993 10.489 9.36463S9.97963 8.22687 9.35126 8.22687 8.2135 8.73626 8.2135 9.36463s.50939 1.13777 1.13776 1.13777zm2.21194.8622v6.3122h1.9599V14.5553C13.5231 13.7316 13.6781 12.9339 14.6993 12.9339c1.0073.0 1.0198.941700000000001 1.0198 1.6734v3.0701H17.68V14.2157C17.68 12.5153 17.3139 11.2086 15.3265 11.2086c-.9542.0-1.5938.5236-1.8554 1.0192H13.4446V11.3646H11.5632zm-3.19382.0H10.3324v6.3122H8.36938V11.3646z" fill="#fff"/></svg></span></a></li></ul></div></div></div></div></div></div><div class=footer-bottom><div class="container mb-2"><hr><div class="row pt-4"><div class=col style=color:#fff;opacity:.5>Copyright &copy; LocalStack</div><div class="col text-end"><ul class=list-inline></ul></div></div></div></div></footer><script src=/js/bootstrap.min.51b4083a09e54138d5bbe9c42a5f5f71af6e60a417f276d5620cbde3b15eb1a07c9ea17a889bc58074adf9b19641039a77521d3131f039300d2fe29ffa532aa8.js integrity="sha512-UbQIOgnlQTjVu+nEKl9fca9uYKQX8nbVYgy947FesaB8nqF6iJvFgHSt+bGWQQOad1IdMTHwOTANL+Kf+lMqqA==" crossorigin=anonymous defer></script><script src=/js/highlight.min.8cdbefd08ec63ef25f4b2510ae50c13b3d9ed43e25a15ddb55f14c33130e68cf8be3131ccf2d087c49f5f21fe88c2f0e2715a21f936047d0d0b85dc48cb864b9.js integrity="sha512-jNvv0I7GPvJfSyUQrlDBOz2e1D4loV3bVfFMMxMOaM+L4xMczy0IfEn18h/ojC8OJxWiH5NgR9DQuF3EjLhkuQ==" crossorigin=anonymous defer></script><script src=/main.min.8933efb6bcdc37606a11f732d52c6f65d7fc1d082b89d56516f6a1bfb528ee7c40c3430bb80214cdd129ec7d69d4cadd74e693da54a9ba6f08c44771204d4468.js integrity="sha512-iTPvtrzcN2BqEfcy1SxvZdf8HQgridVlFvahv7Uo7nxAw0MLuAIUzdEp7H1p1MrddOaT2lSpum8IxEdxIE1EaA==" crossorigin=anonymous defer></script><script src=/index.min.28297aad85d5f5902201eb4ef84e7012a37d4a34824e2256df80cd91e547bf155df22029e5596951d6f2692dd1fee54c76721b407e5ac526bd33bedc636a87e5.js integrity="sha512-KCl6rYXV9ZAiAetO+E5wEqN9SjSCTiJW34DNkeVHvxVd8iAp5VlpUdbyaS3R/uVMdnIbQH5axSa9M77cY2qH5Q==" crossorigin=anonymous defer></script></body></html>
