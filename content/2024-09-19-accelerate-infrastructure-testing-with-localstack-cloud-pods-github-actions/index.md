@@ -14,15 +14,15 @@ tags: ['tutorial']
 
 ## Introduction
 
-LocalStack is a cloud service emulator, that allows you to develop and test your cloud applications locally. LocalStack runs as a Docker container, and it’s ephemeral local resources like S3 buckets or Lambda functions are destroyed when you stop the container. However, you would like to persist & save certain resources for testing, debugging, or experimenting. That’s where LocalStack's Cloud Pods come in.
+LocalStack is a cloud service emulator, that allows you to develop and test your cloud applications locally. LocalStack runs as a Docker container, and it’s ephemeral local resources like S3 buckets or Lambda functions are destroyed when you stop the container. However, you would like to persist & save certain resources for testing, debugging, or experimenting. That’s where LocalStack's [Cloud Pods](https://docs.localstack.cloud/user-guide/state-management/cloud-pods/) come in.
 
 Cloud Pods are snapshots of your LocalStack’s state that are stored on the LocalStack Web Application. This is incredibly useful for things like:
 
 1. Ensuring consistent developer environments and easing developer onboarding.
-2. Reducing environment setup times while using CDK, Terraform, or CloudFormation.
+2. Reducing environment setup times while using [CDK](https://docs.localstack.cloud/user-guide/integrations/aws-cdk/), [Terraform](https://docs.localstack.cloud/user-guide/integrations/terraform/), or [CloudFormation](https://docs.localstack.cloud/user-guide/aws/cloudformation/).
 3. Creating specific automated testing scenarios for your cloud application.
 
-In this blog, we're going to focus into this third use case: using Cloud Pods to enable pre-seeded testing scenarios in continuous integration (CI) workflows. We’ll explore creating a Cloud Pod from an existing stack, implementing integration tests against LocalStack, and running these tests as part of a GitHub Actions workflow.
+In this blog, we're going to focus into this third use case: using Cloud Pods to enable pre-seeded testing scenarios in continuous integration (CI) workflows. We’ll explore creating a Cloud Pod from an existing stack, implementing integration tests against LocalStack, and running these tests as part of a [GitHub Actions workflow](https://docs.localstack.cloud/user-guide/ci/github-actions/).
 
 {{< img-simple src="cloud-pods-in-infra-testing.png" width=300 alt="How Cloud Pods work in infrastructure testing?">}}
 
@@ -396,7 +396,7 @@ Set up the step to install Python in the runner as part of the workflow step:
     python-version: '3.10'
 ```
 
-Next, set up LocalStack in your runner using the `setup-localstack` action:
+Next, set up LocalStack in your runner using the [`setup-localstack` action](https://github.com/localstack/setup-localstack):
 
 ```yaml
 - name: Start LocalStack
@@ -408,7 +408,7 @@ Next, set up LocalStack in your runner using the `setup-localstack` action:
     LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
 ```
 
-This action pulls the LocalStack Pro image (`localstack/localstack-pro:latest`) and installs the `localstack` CLI to start the LocalStack container. A repository secret `LOCALSTACK_API_KEY` is specified to activate your Pro license on the GitHub Actions runner.
+This action pulls the [LocalStack Pro image](https://hub.docker.com/r/localstack/localstack-pro) (`localstack/localstack-pro:latest`) and installs the `localstack` CLI to start the LocalStack container. A repository secret `LOCALSTACK_API_KEY` is specified to activate your Pro license on the GitHub Actions runner.
 
 Now, add the step to pull the Cloud Pod using the `LocalStack/setup-localstack/cloud-pods` action. It allows you to specify the name of the Cloud Pod and the corresponding action (`load` & `save`) to execute in the environment:
 
@@ -446,7 +446,6 @@ Follow these steps to add your LocalStack CI key to your GitHub repository:
 2.  Switch to the **Generate CI Key** tab, provide a name, and click **Generate CI Key**.
 3.  In your [GitHub repository secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions), set the **Name** as `LOCALSTACK_API_KEY` and the **Secret** as the CI Key.
     
-
 Now, commit and push your workflow to your forked GitHub repository.
 
 With the GitHub Action in place, you will notice that your Cloud Pod is automatically loaded, and your tests are executed against it.
